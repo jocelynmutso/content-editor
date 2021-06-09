@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       '& > *': {
         margin: theme.spacing(1),
-        width: '100ch',
+        
         backgroundColor: theme.palette.background.paper,
         borderRadius: 5,
       },
@@ -23,9 +23,9 @@ const PathView: React.FC<PathViewProps> = () => {
   const classes = useStyles();
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <div className={classes.root}>
       <TextField id="outlined-basic" label="Path View" variant="outlined" />
-    </form>
+    </div>
   );
 }
 

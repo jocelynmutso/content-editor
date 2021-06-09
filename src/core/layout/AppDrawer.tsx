@@ -17,11 +17,9 @@ const drawerWidth = '25vw';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+
     root: {
       display: 'flex',
-    },
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
     },
     drawer: {
       width: drawerWidth,
@@ -36,8 +34,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     content: {
       flexGrow: 1,
-      padding: theme.spacing(3),
+      padding: theme.spacing(1),
     },
+
   }),
 );
 
@@ -58,9 +57,10 @@ const AppDrawer: React.FC<AppDrawerProps> = () => {
           paper: classes.drawerPaper,
         }}
       >
-        <NewPathButton />
-        <DeletePathButton />
-        <Toolbar />
+          <NewPathButton />
+          <DeletePathButton />
+
+       
         <div className={classes.drawerContainer}>
           <List>
             {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (

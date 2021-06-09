@@ -7,19 +7,19 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       '& > *': {
         margin: theme.spacing(1),
-        width: '20vw',
+        width: '10vw',
       },
     },
   }),
 );
 
 interface NewPathButtonProps {
-  
+
 }
 
 const NewPathButton: React.FC<NewPathButtonProps> = () => {
   const classes = useStyles();
-  
+
   return (
     <div className={classes.root}>
       <Button variant="contained" color="primary">
@@ -30,6 +30,6 @@ const NewPathButton: React.FC<NewPathButtonProps> = () => {
 }
 
 export { NewPathButton }
-  
+
 
 

@@ -7,11 +7,13 @@ import DeleteIcon from '@material-ui/icons/Delete';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
+      width: '10vw',
       "&:hover": {
          color: theme.palette.error.dark,
          backgroundColor: theme.palette.background.default,
+         borderColor: theme.palette.error.dark,
       },
-      margin: theme.spacing(2),
+      margin: theme.spacing(1),
     },
   }),
 );
