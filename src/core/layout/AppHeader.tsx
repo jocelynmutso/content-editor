@@ -5,8 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import { PathView } from '../';
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -22,10 +20,10 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface AppHeaderProps {
-
+  children: React.ReactElement
 }
 
-const AppHeader: React.FC<AppHeaderProps> = () => {
+const AppHeader: React.FC<AppHeaderProps> = ({children}) => {
   const classes = useStyles();
 
   return (
@@ -36,7 +34,7 @@ const AppHeader: React.FC<AppHeaderProps> = () => {
             <MenuIcon />
           </IconButton>
           <div className={classes.spacer} />
-            <PathView />
+          {children}
         </Toolbar>
       </AppBar>
     </div>

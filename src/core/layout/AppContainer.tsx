@@ -1,7 +1,11 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
-import { AppHeader, AppDrawer, AppEditor } from '../';
+
+
+import { AppHeader } from './AppHeader';
+import { AppDrawer } from './AppDrawer';
+import { AppEditor } from './AppEditor';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -17,21 +21,26 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 interface AppContainerProps {
-
+  components: {
+    top: () => React.ReactElement;
+    left: () => React.ReactElement;
+    center: () => React.ReactElement;
+  }
 }
 
-const AppContainer: React.FC<AppContainerProps> = () => {
+const AppContainer: React.FC<AppContainerProps> = ({components}) => {
   const classes = useStyles();
 
   return (
     <div>
       <Container className={classes.container}>
-        <AppHeader />
+        <AppHeader children={components.top()} />
         <AppDrawer />
-        <AppEditor />
+        <AppEditor children={components.center()} />
       </Container>
     </div>
   )
 }
 
+export type {AppContainerProps};
 export { AppContainer }

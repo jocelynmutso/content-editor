@@ -2,7 +2,6 @@ import React from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -57,11 +56,11 @@ const AppDrawer: React.FC<AppDrawerProps> = () => {
           paper: classes.drawerPaper,
         }}
       >
-          <NewPathButton />
-          <DeletePathButton />
-
        
         <div className={classes.drawerContainer}>
+                  <NewPathButton />
+          <DeletePathButton />
+
           <List>
             {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
               <ListItem button key={text}>

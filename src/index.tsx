@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { ContentEditor } from './ContentEditor';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@material-ui/core';
 
@@ -10,7 +10,7 @@ import { siteTheme } from './themes/siteTheme'
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={siteTheme}>
-    <App />
+      <ContentEditor />
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
