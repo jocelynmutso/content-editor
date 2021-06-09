@@ -35,7 +35,7 @@ const AppContainer: React.FC<AppContainerProps> = ({components}) => {
     <div>
       <Container className={classes.container}>
         <AppHeader children={components.top()} />
-        <AppDrawer />
+        <AppDrawer children={components.left()}/>
         <AppEditor children={components.center()} />
       </Container>
     </div>
