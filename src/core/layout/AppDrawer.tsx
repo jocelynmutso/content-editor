@@ -6,13 +6,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+
 
 import { NewPathButton } from '../';
-
+import { DeleteCheckbox } from '../';
+import { DeletePathButton } from '../';
 
 const drawerWidth = '25vw';
 
@@ -58,15 +57,15 @@ const AppDrawer: React.FC<AppDrawerProps> = () => {
         classes={{
           paper: classes.drawerPaper,
         }}
-      >          
-      <NewPathButton />
-
+      >
+        <NewPathButton />
+        <DeletePathButton />
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
             {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
               <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <DeleteCheckbox />
                 <ListItemText primary={text} />
               </ListItem>
             ))}
@@ -75,7 +74,7 @@ const AppDrawer: React.FC<AppDrawerProps> = () => {
           <List>
             {['All mail', 'Trash', 'Spam'].map((text, index) => (
               <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <DeleteCheckbox />
                 <ListItemText primary={text} />
               </ListItem>
             ))}

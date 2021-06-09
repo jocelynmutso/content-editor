@@ -6,9 +6,10 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       '& > *': {
-        margin: theme.spacing(1),
+        marginLeft: 0,
+        marginBottom: theme.spacing(3),
         width: '20vw',
-        align: 'center'
+        backgroundColor: theme.palette.info.main
       },
     },
   }),
@@ -24,7 +25,7 @@ const EditModeButton: React.FC<EditModeButtonProps> = () => {
   return (
     <div className={classes.root}>
       <Button variant="contained" color="primary">
-        Edit
+        Edit Mode
       </Button>
     </div>
   );

@@ -8,6 +8,8 @@ const useStyles = makeStyles((theme: Theme) =>
       '& > *': {
         margin: theme.spacing(1),
         width: '100ch',
+        backgroundColor: theme.palette.background.paper,
+        borderRadius: 5,
       },
     },
   }),

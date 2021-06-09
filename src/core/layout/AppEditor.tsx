@@ -2,18 +2,23 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles, createStyles, Theme, Toolbar, Typography } from '@material-ui/core';
 
+import { EditModeButton } from '../';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       backgroundColor: theme.palette.background.paper,
       height: '95vh',
       maxWidth: "95vw",
-      paddingTop: theme.spacing(10),
+      paddingTop: theme.spacing(15),
     },
     content: {
       flexGrow: 1,
       paddingLeft: '25vw',
     },
+    spacer: {
+      flexGrow: 1,
+    }
   }),
 );
 
@@ -26,9 +31,11 @@ const AppEditor: React.FC<AppEditorProps> = () => {
   const classes = useStyles();
 
   return (
+    
     <Container className={classes.container}>
       <main className={classes.content}>
-        <Toolbar />
+        <div className={classes.spacer} />
+          <EditModeButton />
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum

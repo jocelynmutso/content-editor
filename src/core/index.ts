@@ -7,4 +7,5 @@ export { PathView } from './components/PathView';
 
 export { NewPathButton } from './buttons/NewPathButton';
 export { EditModeButton } from './buttons/EditModeButton';
-
+export { DeleteCheckbox } from './buttons/DeleteCheckbox';
+export { DeletePathButton } from './buttons/DeletePathButton';
