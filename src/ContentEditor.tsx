@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, PathView, Editor, Explorer } from './core';
+import { Layout, PathView, Editor, Explorer, API } from './core';
 
 interface ContentEditorProps {
 
@@ -7,10 +7,13 @@ interface ContentEditorProps {
 
 
 const ContentEditor: React.FC<ContentEditorProps> = () => {
+  
+  const site = API.create();
+  
   return (
     <Layout.Provider components={{
       top: () => (<PathView />),
-      left: () => (<Explorer />),
+      left: () => (<Explorer site={site} />),
       center: () => (<Editor />)
     }} />
   )

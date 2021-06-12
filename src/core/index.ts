@@ -1,5 +1,7 @@
 import Layout from './layout';
-export { Layout };
+import API from './api';
+
+export { Layout, API };
 
 export * from './editor';
 export * from './explorer';
