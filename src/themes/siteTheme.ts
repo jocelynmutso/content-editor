@@ -30,10 +30,12 @@ const palette = {
     main: '#005fcc',
   },
   action: {
-    main: '#f28d00' //orange
+    main: '#f28d00', //orange
   },
   info: {
     main: "#f28d00", //orange
+    light: '#ffe6c2' //light orange
+
   }
 };
 

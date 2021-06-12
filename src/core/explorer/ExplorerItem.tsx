@@ -1,6 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles, Divider, Typography, Box } from '@material-ui/core';
-import ListSubheader from '@material-ui/core/ListSubheader';
+import { makeStyles, Theme, createStyles, Divider, Typography, Box, Button } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -18,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '100%',
     },
     nested: {
-      paddingLeft: theme.spacing(4),
+      paddingLeft: theme.spacing(2),
     },
     nameStyle: {
       color: theme.palette.text.primary,
@@ -32,7 +31,17 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.primary.dark
     },
     iconColor: {
-      color: theme.palette.info.light,
+      color: theme.palette.info.main,
+    },
+    button: {
+      padding: 5,
+      fontWeight: 'bold',
+      //lineHeight: '.75',
+      "&:hover": {
+        backgroundColor: theme.palette.info.main,
+        color: 'white',
+        fontWeight: 'bold'
+      }
     }
   }),
 );
@@ -59,7 +68,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ path, site }) => {
           primary={<Typography variant="body1" className={classes.nameStyle}>{path.name}</Typography>}
           secondary={<>
             <Typography component="span" variant="caption" className={classes.localeSummary}>
-              {path.markdowns.map((id, index) => (<span key={index}>{site.markdowns[id].locale}&nbsp;</span>))}
+              {path.markdowns.map((id, index) => (<span className={classes.button} key={index}>{site.markdowns[id].locale}&nbsp;</span>))}
             </Typography>
             <br />
             <Typography variant="caption">{"Last Modified: 10 days ago"}</Typography></>
@@ -71,11 +80,11 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ path, site }) => {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           {path.markdowns.map(id => site.markdowns[id]).map((md, index) => (
-            <ListItem button className={classes.nested} key={index}>
+            <ListItem className={classes.nested} key={index}>
               <ListItemText
                 primary={
                   <Box display='flex'>
-                    <Typography variant="body2" className={classes.nameStyle}>{md.locale}</Typography>
+                    <Typography variant="body2" className={classes.nameStyle}><Button variant="text" className={classes.button}>{md.locale}</Button></Typography>
                     <Box flexGrow={1} />
                     <Typography component="span" variant="caption" className={classes.nameStyle}>
                       {"22 Nov., 2021"}
