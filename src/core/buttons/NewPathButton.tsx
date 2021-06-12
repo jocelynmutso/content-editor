@@ -23,7 +23,7 @@ const NewPathButton: React.FC<NewPathButtonProps> = () => {
   return (
     <div className={classes.root}>
       <Button variant="contained" color="primary">
-        New Path
+        Edit mode
       </Button>
     </div>
   );

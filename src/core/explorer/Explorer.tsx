@@ -5,10 +5,9 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import { LocaleDisplay } from './LocaleDisplay';
+import { ExplorerItem } from './ExplorerItem'
 
-import { NewPathButton } from '../';
-import { DeleteCheckbox } from './DeleteCheckbox';
-import { DeletePathButton } from './DeletePathButton';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,26 +31,7 @@ const Explorer: React.FC<ExplorerProps> = () => {
 
   return (
     <div className={classes.drawerContainer}>
-      <NewPathButton />
-      <DeletePathButton />
-
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <DeleteCheckbox />
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <DeleteCheckbox />
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      <ExplorerItem />
     </div>
   );
 }

@@ -18,22 +18,22 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface DeletePathButtonProps {
+interface DeleteModeProps {
 
 }
 
 
-const DeletePathButton: React.FC<DeletePathButtonProps> = () => {
+const DeleteMode: React.FC<DeleteModeProps> = () => {
   const classes = useStyles();
 
   return (
     <div>
       <Button variant="outlined" className={classes.button}>
       <DeleteIcon />
-        Delete path
+        Delete Path
       </Button>
     </div>
   );
 }
 
-export { DeletePathButton }
+export { DeleteMode }

@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       '& > *': {
         margin: theme.spacing(1),
-        
+        width: '25vw',
         backgroundColor: theme.palette.background.paper,
         borderRadius: 5,
       },

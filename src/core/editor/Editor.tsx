@@ -1,8 +1,6 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme, Typography } from '@material-ui/core';
 
-import { EditModeButton } from './EditModeButton';
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     menubar: {
@@ -24,7 +22,6 @@ const Editor: React.FC<EditorProps> = () => {
   return (<>
     <div className={classes.menubar}>
       <div className={classes.spacer} />
-      <EditModeButton />
     </div>
     <div>
       <Typography paragraph>
