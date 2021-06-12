@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     nested: {
       paddingLeft: theme.spacing(2),
+      lineHeight: '.5',
     },
     nameStyle: {
       color: theme.palette.text.primary,
@@ -34,9 +35,9 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.info.main,
     },
     button: {
-      padding: 5,
+      padding: 3,
+      marginBottom: 3,
       fontWeight: 'bold',
-      //lineHeight: '.75',
       "&:hover": {
         backgroundColor: theme.palette.info.main,
         color: 'white',
@@ -60,11 +61,10 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ path, site }) => {
   };
 
 
-
   return (
     <>
       <ListItem button onClick={handleClick}>
-        <ListItemText  
+        <ListItemText
           primary={<Typography variant="body1" className={classes.nameStyle}>{path.name}</Typography>}
           secondary={<>
             <Typography component="span" variant="caption" className={classes.localeSummary}>
@@ -84,11 +84,15 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ path, site }) => {
               <ListItemText
                 primary={
                   <Box display='flex'>
-                    <Typography variant="body2" className={classes.nameStyle}><Button variant="text" className={classes.button}>{md.locale}</Button></Typography>
+                    <Typography component="span" variant="body2" className={classes.nameStyle}>
+                      <Button variant="text" className={classes.button}>{md.locale}</Button>
+                    </Typography>
                     <Box flexGrow={1} />
+                    <Box display="flex" alignItems="center">
                     <Typography component="span" variant="caption" className={classes.nameStyle}>
                       {"22 Nov., 2021"}
                     </Typography>
+                    </Box>
                   </Box>
                 }
               />

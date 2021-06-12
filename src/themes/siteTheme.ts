@@ -105,6 +105,12 @@ const siteTheme = createMuiTheme({
     },
 
     MuiListItemText: {
+      root: {
+        paddingTop: 0,
+        paddingBottom: 0,
+        marginTop: 0,
+        marginBottom: 0,
+      },
       primary: {
         color: palette.text.main,
         "&:hover": {
