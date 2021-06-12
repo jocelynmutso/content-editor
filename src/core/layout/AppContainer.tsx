@@ -28,19 +28,19 @@ interface AppContainerProps {
   }
 }
 
-const AppContainer: React.FC<AppContainerProps> = ({components}) => {
+const AppContainer: React.FC<AppContainerProps> = ({ components }) => {
   const classes = useStyles();
 
   return (
     <div>
       <Container className={classes.container}>
         <AppHeader children={components.top()} />
-        <AppDrawer children={components.left()}/>
+        <AppDrawer children={components.left()} />
         <AppEditor children={components.center()} />
       </Container>
     </div>
   )
 }
 
-export type {AppContainerProps};
+export type { AppContainerProps };
 export { AppContainer }
