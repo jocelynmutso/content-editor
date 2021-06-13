@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ContentEditor } from './ContentEditor';
+import { ResourceEditor } from './ResourceEditor';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@material-ui/core';
-
+import { IntlProvider } from 'react-intl'
 import { siteTheme } from './themes/siteTheme'
+import messages from './intl';
 
+const locale = "en";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={siteTheme}>
-      <ContentEditor />
-    </ThemeProvider>
+    <IntlProvider locale={locale} messages={messages[locale]}>
+      <ThemeProvider theme={siteTheme}>
+        <ResourceEditor />
+      </ThemeProvider>
+    </IntlProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
