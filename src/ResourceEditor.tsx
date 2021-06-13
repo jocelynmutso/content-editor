@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Layout from './layout';
-import { PathView, Editor, Explorer, API, toolbar } from './core';
+import { Editor, toolbar } from './core';
 
 
 interface ResourceEditorProps {

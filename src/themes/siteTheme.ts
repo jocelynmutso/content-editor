@@ -34,7 +34,7 @@ const palette = {
   },
   info: {
     main: "#f28d00", //orange
-    light: '#ffe6c2' //light orange
+    light: '#2b9348' //light green
 
   }
 };

@@ -1,29 +1,39 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme, Typography, Box, Divider } from '@material-ui/core';
+import { Layout } from '../deps';
+import { Header } from './Header';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
   createStyles({
+    root: {
+      height: `${props.y}px`
+    },
     left: {
-      display: 'flex'
+      display: 'flex',
+      padding: '1vw',
+      backgroundColor: theme.palette.background.paper,
+      height: '100%',
     },
     right: {
       flexGrow: 1,
+      padding: '1vw'
     },
-    
   }),
-);
+)();
 
 
 interface EditorProps {
 }
 
 const Editor: React.FC<EditorProps> = () => {
-  const classes = useStyles();
+  const layout = Layout.useContext();
+  const classes = useStyles(layout.session.dimensions);
 
   return (<>
-    <Box display='flex'>
+    <Box display='flex' className={classes.root}>
       <Box flexGrow="0" className={classes.left}>
-          <Typography paragraph>
+        <Typography paragraph>
+          <Header />
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
             ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
             facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
@@ -35,9 +45,11 @@ const Editor: React.FC<EditorProps> = () => {
             arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
             donec massa sapien faucibus et molestie ac.
         </Typography>
+
       </Box>
       <Box flexGrow="1" className={classes.right}>
         <Typography paragraph>
+         <Header />
           Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
           facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
           tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
