@@ -16,22 +16,25 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface EditModeButtonProps {
-  
+
 }
 
 const EditModeButton: React.FC<EditModeButtonProps> = () => {
   const classes = useStyles();
-  
+
   return (
     <div className={classes.root}>
       <Button variant="contained" color="primary">
-        Edit Mode
+        Edit
+      </Button>
+      <Button variant="contained" color="primary">
+        Preview
       </Button>
     </div>
   );
 }
 
 export { EditModeButton }
-  
+
 
 

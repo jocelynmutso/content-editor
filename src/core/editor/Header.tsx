@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles, createStyles, Theme, Box } from '@material-ui/core';
 
 import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -49,9 +48,6 @@ const Header: React.FC<HeaderProps> = () => {
          <Box flexGrow="1" />
         <IconButton aria-label="save">
           <SaveIcon className={classes.saveIcon} />
-        </IconButton>
-        <IconButton aria-label="delete">
-          <DeleteIcon className={classes.deleteIcon} />
         </IconButton>
         <IconButton aria-label="cancel">
           <CloseIcon className={classes.cancelIcon} />
