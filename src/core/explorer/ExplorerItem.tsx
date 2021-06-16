@@ -1,6 +1,7 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles, Divider, Typography, Box, Button,
-TableContainer, Table, TableRow, TableCell, TableBody
+import {
+  makeStyles, Theme, createStyles, Divider, Typography, Box, Button,
+  TableContainer, Table, TableRow, TableCell, TableBody, Paper
 } from '@material-ui/core';
 import clsx from 'clsx';
 
@@ -38,9 +39,9 @@ const useStyles = makeStyles((theme: Theme) =>
     iconColor: {
       color: theme.palette.info.main,
     },
-    hover: {
+    hoverRow: {
       padding: 3,
-      marginBottom: 3,
+      marginBottom: 0,
       fontWeight: 'bold',
       "&:hover": {
         backgroundColor: theme.palette.info.main,
@@ -48,8 +49,17 @@ const useStyles = makeStyles((theme: Theme) =>
         fontWeight: 'bold'
       }
     },
-    localeDetails: {
-     // typography: theme.typography.caption,
+    table: {
+      borderBottom: 'none',
+      padding: '0',
+      fontVariant: 'all-small-caps',
+      fontWeight: 'bold',
+        "&:hover": {
+        backgroundColor: theme.palette.info.main,
+        color: 'white',
+        fontWeight: 'bold',
+        cursor: 'pointer'
+      }
     }
   }),
 );
@@ -60,14 +70,14 @@ interface ExplorerItemProps {
 }
 
 const ExplorerItem: React.FC<ExplorerItemProps> = ({ path, site }) => {
-            
+
   const layout = Layout.useContext();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
-    layout.actions.handleTabAdd({id: path.id, label: path.name });
+    layout.actions.handleTabAdd({ id: path.id, label: path.name });
   };
 
   return (
@@ -77,7 +87,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ path, site }) => {
           primary={<Typography variant="body1" className={classes.nameStyle}>{path.name}</Typography>}
           secondary={<>
             <Typography component="span" variant="caption" className={classes.localeSummary}>
-              {path.markdowns.map((id, index) => (<span className={classes.hover} key={index}>{site.markdowns[id].locale}&nbsp;</span>))}
+              {path.markdowns.map((id, index) => (<span className={classes.hoverRow} key={index}>{site.markdowns[id].locale}&nbsp;</span>))}
             </Typography>
             <br />
             <Typography variant="caption">{"Last Modified: 10 days ago"}</Typography></>
@@ -87,21 +97,20 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ path, site }) => {
       </ListItem>
 
       <Collapse in={open} timeout="auto" unmountOnExit>
-          <TableContainer>
-            <Table size="small">
-              <TableBody>
-                {path.markdowns.map(id => site.markdowns[id]).map((md, index) => (
-                  <TableRow key={index} >
-                    <TableCell component="th" scope="row" className={clsx( classes.localeDetails,classes.hover)}>
-                      {md.locale}
-                    </TableCell>
-                    <TableCell align="right">{"22 Nov., 2021"}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-
+        <TableContainer>
+          <Table size="small">
+            <TableBody>
+              {path.markdowns.map(id => site.markdowns[id]).map((md, index) => (
+                <TableRow key={index} className={clsx(classes.hoverRow)} >
+                  <TableCell className={classes.table}>
+                    {md.locale}
+                  </TableCell>
+                  <TableCell className={classes.table} align="right">{"22 Nov., 2021"}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
 
         <Divider />
       </Collapse>

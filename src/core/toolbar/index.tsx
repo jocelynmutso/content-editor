@@ -3,6 +3,7 @@ import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
+import LinkIcon from '@material-ui/icons/Link';
 import { Explorer } from '../';
 
 import { Layout } from '../deps';
@@ -18,11 +19,17 @@ const toolbar = (actions: Layout.Session.Actions, site: API.Site): Layout.Sessio
     },
 
     {
+      id: 'toolbar.links',
+      icon: <LinkIcon />,
+      type: { getView: () => (<Explorer site={API.createSite()} />) }
+    },
+
+    {
       id: 'toolbar.releases',
       icon: <NewReleasesIcon />,
       type: {
         onClick: () => {
-          actions.handleTabAdd({id: 'releases', label: 'Releases' });
+          actions.handleTabAdd({ id: 'releases', label: 'Releases' });
         }
       }
     },
