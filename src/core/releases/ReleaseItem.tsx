@@ -4,7 +4,6 @@ import {
   TableContainer, Table, TableRow, TableCell, TableBody
 } from '@material-ui/core';
 
-import { ReleaseItem } from './ReleaseItem';
 import { Layout } from '../deps';
 import { API } from '../';
 
@@ -27,12 +26,12 @@ const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
 )();
 
 
-interface ReleasesProps {
+interface ReleaseItemProps {
   releases: API.Releases,
   site: API.Site
 }
 
-const Releases: React.FC<ReleasesProps> = ({ releases, site }) => {
+const ReleaseItem: React.FC<ReleaseItemProps> = ({ releases, site }) => {
   const layout = Layout.useContext();
   const classes = useStyles(layout.session.dimensions);
 
@@ -67,7 +66,7 @@ const Releases: React.FC<ReleasesProps> = ({ releases, site }) => {
   )
 }
 
-export type { ReleasesProps }
-export { Releases }
+export type { ReleaseItemProps }
+export { ReleaseItem }
 
 

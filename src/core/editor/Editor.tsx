@@ -38,7 +38,7 @@ const Editor: React.FC<EditorProps> = ({site}) => {
   }
   const active = tabs[layout.session.history.open];  
   if(active.id === 'releases') {
-    return (<Releases releases={API.createReleases()}/>);  
+    return (<Releases releases={API.createReleases()} site={site}/>);  
   }
   
   const markdowns = site.paths[active.id].markdowns;

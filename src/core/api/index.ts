@@ -54,7 +54,7 @@ namespace API {
     export const createReleases = (): Releases => {
 
     return [
-      {id: '1ttg4r4', name: 'v3.2', created: '29 August, 2021', note: 'LATEST'},
+      {id: '1ttg4r4', name: 'LATEST', created: '29 August, 2021'},
       {id: '234883d', name: 'v3.0', created: '10 August, 2021', note: 'added topic "Business" and deleted "Entrepreneurship"'},
       {id: '3355trh', name: 'v2.5', created: '18 July, 2021', note: ''},
       {id: 'iu7800g', name: 'v2.0', created: '14 June, 2021', note: 'renamed Healthcare to Health Services'},

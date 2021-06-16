@@ -4,7 +4,6 @@ TableContainer, Table, TableRow, TableCell, TableBody
 } from '@material-ui/core';
 import clsx from 'clsx';
 
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
