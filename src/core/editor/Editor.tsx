@@ -18,7 +18,8 @@ const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
     },
     right: {
       flexGrow: 1,
-      padding: '1vw'
+      padding: '1vw',
+      backgroundColor: theme.palette.background.default,
     },
   }),
 )();

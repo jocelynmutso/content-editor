@@ -14,16 +14,17 @@ import { useLayout, Session } from '../context';
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
-    display: 'flex'
+    display: 'flex',
   },
   item: {
-    width: '100%'
+    width: '100%',
   },
   toolbar: {
     width: theme.spacing(7),
+    backgroundColor: theme.palette.primary.light,
   },
   view: {
-    flexGrow: 1
+    flexGrow: 1,
   }
 }));
 

@@ -21,10 +21,6 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       width: '100%',
     },
-    nested: {
-      paddingLeft: theme.spacing(2),
-      lineHeight: '.5',
-    },
     nameStyle: {
       color: theme.palette.text.primary,
       fontWeight: 'bold',
@@ -39,9 +35,11 @@ const useStyles = makeStyles((theme: Theme) =>
     iconColor: {
       color: theme.palette.info.main,
     },
+    dividerColor: {
+      background: theme.palette.primary.light,
+    },
     hoverRow: {
       padding: 3,
-      marginBottom: 0,
       fontWeight: 'bold',
       "&:hover": {
         backgroundColor: theme.palette.info.main,
@@ -51,7 +49,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     table: {
       borderBottom: 'none',
-      padding: '0',
+      paddingLeft: theme.spacing(2),
+      paddingTop: 0,
+      paddingBottom: 0,
       fontVariant: 'all-small-caps',
       fontWeight: 'bold',
         "&:hover": {
@@ -112,7 +112,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ path, site }) => {
           </Table>
         </TableContainer>
 
-        <Divider />
+       <Divider className={classes.dividerColor}/>
       </Collapse>
     </>
   );

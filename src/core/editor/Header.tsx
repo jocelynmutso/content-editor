@@ -18,16 +18,15 @@ const useStyles = () => makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       backgroundColor: theme.palette.secondary.dark
     },
-    deleteIcon: {
-      color: theme.palette.error.dark,
-    },
-    saveIcon: {
+    iconButton: {
       color: theme.palette.primary.main,
+      "&:hover, &.Mui-focusVisible": {
+        backgroundColor: theme.palette.info.main,
+        "& .MuiSvgIcon-root": {
+          color: theme.palette.background.paper,
+        }
+      }
     },
-    cancelIcon: {
-      color: theme.palette.text.primary
-    }
-
   }),
 )();
 
@@ -46,11 +45,11 @@ const Header: React.FC<HeaderProps> = () => {
       <Box flexGrow="1" className={classes.header}>
         LOCALE
          <Box flexGrow="1" />
-        <IconButton aria-label="save">
-          <SaveIcon className={classes.saveIcon} />
+        <IconButton aria-label="save" className={classes.iconButton}>
+          <SaveIcon />
         </IconButton>
-        <IconButton aria-label="cancel">
-          <CloseIcon className={classes.cancelIcon} />
+        <IconButton aria-label="cancel" className={classes.iconButton}>
+          <CloseIcon />
         </IconButton>
 
       </Box>
