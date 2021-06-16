@@ -35,30 +35,18 @@ const ReleaseItem: React.FC<ReleaseItemProps> = ({ releases, site }) => {
   const layout = Layout.useContext();
   const classes = useStyles(layout.session.dimensions);
 
+ // { releases.map((row, index) => (<TableCell>{row.name}</TableCell>)) }
+  //{path.markdowns.map((id, index) => (<span className={classes.hover} key={index}>{site.markdowns[id].locale}&nbsp;</span>))}
+
   return (<>
     <TableContainer>
       <Table size="small">
         <TableBody>
-          {releases.map((row, index) => (
-            <TableRow key={index} >
-              <TableCell component="th" scope="row" className={classes.hover}>
-                {row.name}
-              </TableCell>
-              
-              <TableCell>
-                {row.created}
-              </TableCell>
-              
-              <TableCell>
-                {row.note}
-              </TableCell>
-              
-              <TableCell>
-                {row.id}
-              </TableCell>
-              
-            </TableRow>
-          ))}
+          <TableRow>
+            <TableCell component="th" scope="row" className={classes.hover}>
+              {releases.map((row, index) => (<TableCell>{row.name}</TableCell>))}
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>

@@ -41,24 +41,7 @@ const Releases: React.FC<ReleasesProps> = ({ releases, site }) => {
       <Table size="small">
         <TableBody>
           {releases.map((row, index) => (
-            <TableRow key={index} >
-              <TableCell component="th" scope="row" className={classes.hover}>
-                {row.name}
-              </TableCell>
-              
-              <TableCell>
-                {row.created}
-              </TableCell>
-              
-              <TableCell>
-                {row.note}
-              </TableCell>
-              
-              <TableCell>
-                {row.id}
-              </TableCell>
-              
-            </TableRow>
+            <ReleaseItem key={index} site={site} releases={releases} />
           ))}
         </TableBody>
       </Table>
@@ -66,7 +49,7 @@ const Releases: React.FC<ReleasesProps> = ({ releases, site }) => {
   </>
   )
 }
-
+ 
 export type { ReleasesProps }
 export { Releases }
 
