@@ -7,49 +7,47 @@ import {
 import { Layout } from '../deps';
 import { API } from '../';
 
-const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      height: `${props.y}px`
+
     },
     hover: {
-      padding: 3,
-      marginBottom: 3,
-      fontWeight: 'bold',
       "&:hover": {
-        backgroundColor: theme.palette.info.main,
+        backgroundColor: theme.palette.info.light,
         color: 'white',
         fontWeight: 'bold'
       }
     },
+    viewButton: {
+      color: theme.palette.secondary.main,
+      fontWeight: 'bold',
+       "&:hover": {
+        color: theme.palette.background.default,
+        backgroundColor: theme.palette.info.main,
+        fontWeight: 'bold',
+        cursor: 'pointer'
+      }
+    }
   }),
-)();
+);
 
 
 interface ReleaseItemProps {
-  releases: API.Releases,
-  site: API.Site
+  value: API.Release,
 }
 
-const ReleaseItem: React.FC<ReleaseItemProps> = ({ releases, site }) => {
+const ReleaseItem: React.FC<ReleaseItemProps> = ({ value }) => {
   const layout = Layout.useContext();
   const classes = useStyles(layout.session.dimensions);
 
- // { releases.map((row, index) => (<TableCell>{row.name}</TableCell>)) }
-  //{path.markdowns.map((id, index) => (<span className={classes.hover} key={index}>{site.markdowns[id].locale}&nbsp;</span>))}
-
   return (<>
-    <TableContainer>
-      <Table size="small">
-        <TableBody>
-          <TableRow>
-            <TableCell component="th" scope="row" className={classes.hover}>
-              {releases.map((row, index) => (<TableCell>{row.name}</TableCell>))}
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <TableRow className={classes.hover}>
+      <TableCell>{value.name}</TableCell>
+      <TableCell>{value.created}</TableCell>
+      <TableCell>{value.note}</TableCell>
+      <TableCell align="center" className={classes.viewButton}>View</TableCell>
+    </TableRow>
   </>
   )
 }
