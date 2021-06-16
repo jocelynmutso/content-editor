@@ -22,6 +22,7 @@ const useStyles = (props: {drawerWidth: number}) => makeStyles((theme) => ({
     height: '100%',
   },
   content: {
+    flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
   },

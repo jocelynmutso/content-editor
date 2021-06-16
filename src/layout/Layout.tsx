@@ -125,7 +125,7 @@ const Container: React.FC<ContainerProps> = ({ components }) => {
 
       <main className={classes.content} ref={ref}>
         <div className={classes.appBarSpacer} />
-        <MaterialContainer className={classes.container} disableGutters>{components.content}</MaterialContainer>
+        {components.content}
       </main>
     </div>
   );

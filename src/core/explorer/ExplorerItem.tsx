@@ -12,6 +12,7 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
+import { Layout } from '../deps';
 import API from '../api';
 
 
@@ -60,11 +61,14 @@ interface ExplorerItemProps {
 }
 
 const ExplorerItem: React.FC<ExplorerItemProps> = ({ path, site }) => {
+            
+  const layout = Layout.useContext();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
+    layout.actions.handleTabAdd({id: path.id, label: path.name });
   };
 
   return (

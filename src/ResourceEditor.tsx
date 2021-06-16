@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Layout from './layout';
-import { Editor, toolbar } from './core';
+import { Editor, toolbar, API } from './core';
 
 
 interface ResourceEditorProps {
@@ -11,12 +11,13 @@ interface ResourceEditorProps {
 
 const Components: React.FC = () => {
   const layout = Layout.useContext();
+  const site = API.createSite();
   return (
     <Layout.Container components={{
       search: (_value: string) => console.log("Search"),
       header: (<></>),
-      content: (<Editor />),
-      toolbar: toolbar(),
+      content: (<Editor site={site}/>),
+      toolbar: toolbar(layout.actions, site),
       badges: []
     }} />);
 }
