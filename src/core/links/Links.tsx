@@ -6,6 +6,7 @@ import {
 
 import { LinkItem } from './LinkItem';
 import { Layout } from '../deps';
+import { PathSelect } from './PathSelect';
 import { API } from '../';
 
 const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
