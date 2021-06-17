@@ -4,6 +4,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import LinkIcon from '@material-ui/icons/Link';
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import { Explorer } from '../';
 
 import { Layout } from '../deps';
@@ -12,6 +13,13 @@ import { API } from '../';
 
 const toolbar = (actions: Layout.Session.Actions, site: API.Site): Layout.Session.ToolbarItem[] => {
   return [
+    
+    {
+      id: 'toolbar.createNew',
+      icon: <PlaylistAddIcon />,
+      type: { getView: () => (<Explorer site={site} />) }
+    },
+
     {
       id: 'toolbar.explorer',
       icon: <LibraryBooksIcon />,
@@ -21,7 +29,11 @@ const toolbar = (actions: Layout.Session.Actions, site: API.Site): Layout.Sessio
     {
       id: 'toolbar.links',
       icon: <LinkIcon />,
-      type: { getView: () => (<Explorer site={API.createSite()} />) }
+      type: {
+        onClick: () => {
+          actions.handleTabAdd({ id: 'links', label: "Links" });
+        }
+      }
     },
 
     {

@@ -3,6 +3,7 @@ import { makeStyles, createStyles, Theme, Typography, Box, Divider } from '@mate
 import { Layout } from '../deps';
 import { Header } from './Header';
 import { Releases } from '../releases';
+import { Links } from '../links';
 import API from '../api';
 
 const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
@@ -40,7 +41,10 @@ const Editor: React.FC<EditorProps> = ({site}) => {
   const active = tabs[layout.session.history.open];  
   if(active.id === 'releases') {
     return (<Releases releases={API.createReleases()} site={site}/>);  
+  } else if (active.id === 'links') {
+    return (<Links links={API.createLinks()} site={site} />)  
   }
+  
   
   const markdowns = site.paths[active.id].markdowns;
   const md1 = site.markdowns[markdowns[0]];
@@ -50,15 +54,15 @@ const Editor: React.FC<EditorProps> = ({site}) => {
     <Box display='flex' className={classes.root}>
       <Box flexGrow="0" className={classes.left}>
         <Typography paragraph>
-          <Header />
+          <Header locale={md1.locale}/>
           {md1.content}
         </Typography>
-
       </Box>
       <Box flexGrow="1" className={classes.right}>
         <Typography paragraph>
-         <Header />
-          {md2.content}
+         <Header locale={md2.locale}>
+         {md2.content}
+          </Header>
         </Typography>
       </Box>
     </Box>

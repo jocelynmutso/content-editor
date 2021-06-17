@@ -1,1 +1,1 @@
-# Spo-content-editor
+# Content-editor

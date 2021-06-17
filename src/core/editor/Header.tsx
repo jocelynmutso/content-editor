@@ -33,18 +33,19 @@ const useStyles = () => makeStyles((theme: Theme) =>
 
 
 interface HeaderProps {
-
+  locale: string,
 }
 
-const Header: React.FC<HeaderProps> = () => {
+const Header: React.FC<HeaderProps> = ({ locale }) => {
   const classes = useStyles();
+
 
   return (
 
     <Box display="flex" alignItems="center">
       <Box flexGrow="1" className={classes.header}>
-        LOCALE
-         <Box flexGrow="1" />
+        {locale}
+        <Box flexGrow="1" />
         <IconButton aria-label="save" className={classes.iconButton}>
           <SaveIcon />
         </IconButton>

@@ -33,28 +33,27 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-interface ReleaseItemProps {
-  value: API.Release,
+interface LinkItemProps {
+  value: API.Link,
 }
 
-const ReleaseItem: React.FC<ReleaseItemProps> = ({ value }) => {
+const LinkItem: React.FC<LinkItemProps> = ({ value }) => {
   const layout = Layout.useContext();
   const classes = useStyles(layout.session.dimensions);
   
   return (<>
     <TableRow className={classes.hover}>
-      <TableCell>{value.name}</TableCell>
-      <TableCell>{value.created}</TableCell>
-      <TableCell>{value.note}</TableCell>
-      <TableCell align="center" className={classes.viewButton}>
-        {value.name === "LATEST" ? "EDIT | PUBLISH" : "VIEW"}
-      </TableCell>
+      <TableCell>{value.type}</TableCell>
+      <TableCell>{value.value}</TableCell>
+      <TableCell>{value.description}</TableCell>
+      <TableCell>{value.path}</TableCell>
+      <TableCell>{value.locale}</TableCell>
     </TableRow>
   </>
   )
 }
 
-export type { ReleaseItemProps }
-export { ReleaseItem }
+export type { LinkItemProps }
+export { LinkItem }
 
 
