@@ -6,7 +6,6 @@ import {
 
 import { Layout } from '../deps';
 import { API } from '../';
-import { LinkEditor } from './LinkEditor';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -51,7 +50,7 @@ const LinkItem: React.FC<LinkItemProps> = ({ value, onEdit }) => {
       <TableCell>{value.path}</TableCell>
       <TableCell>{value.locale}</TableCell>
       <TableCell onClick={onEdit}>
-        Edit
+        <Button color="primary" className={classes.viewButton}>Edit</Button>
       </TableCell>
     </TableRow>
   </>

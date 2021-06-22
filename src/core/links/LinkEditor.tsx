@@ -10,50 +10,77 @@ import { API } from '../';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      padding: theme.spacing(3),
-      width: '75wv'
+
+    },
+    dialog: {
+      padding: theme.spacing(3)
     },
     form: {
-      display: 'flex',
-      flexDirection: 'column',
       margin: 'auto',
-      width: 'fit-content',
     },
     formControl: {
       marginTop: theme.spacing(2),
-      minWidth: 'fit-content',
     },
     formControlLabel: {
       marginTop: theme.spacing(1),
     },
+    viewButton: {
+      color: theme.palette.secondary.main,
+      fontWeight: 'bold',
+      "&:hover": {
+        color: theme.palette.background.default,
+        backgroundColor: theme.palette.info.main,
+        fontWeight: 'bold',
+        cursor: 'pointer'
+      }
+    }
   }),
 );
 interface LinkEditorProps {
   link: API.Link | undefined,
-  handleClose:() => void
+  handleClose: () => void
 }
 
 const LinkEditor: React.FC<LinkEditorProps> = ({ link, handleClose }) => {
   const classes = useStyles();
 
-  if(link === undefined) {
+  if (link === undefined) {
     return null
   }
 
   return (
     <div>
       <Dialog
+        fullWidth={true}
+        maxWidth={"md"}
         open={true}
         onClose={handleClose}
         aria-labelledby="max-width-dialog-title"
       >
         <DialogTitle id="max-width-dialog-title">Edit link</DialogTitle>
+        <div className={classes.dialog}>
+          Description: {link.description}
+        </div>
+        <div className={classes.dialog}>
+          Path: {link.path}
+        </div>
+        <div className={classes.dialog}>
+          Type: {link.type}
+        </div>
+        <div className={classes.dialog}>
+          Value: {link.value}
+        </div>
+        <div className={classes.dialog}>
+          Locale: {link.locale}
+        </div>
+
+
 
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Exit without saving
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color="primary" className={classes.viewButton}>
             Save and exit
           </Button>
         </DialogActions>

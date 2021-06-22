@@ -9,6 +9,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 
+import LinkIcon from '@material-ui/icons/Link';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
@@ -35,6 +36,9 @@ const useStyles = makeStyles((theme: Theme) =>
     iconColor: {
       color: theme.palette.info.main,
     },
+    link: {
+      marginRight: theme.spacing(1)
+    },
     dividerColor: {
       background: theme.palette.primary.light,
     },
@@ -54,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingBottom: 0,
       fontVariant: 'all-small-caps',
       fontWeight: 'bold',
-        "&:hover": {
+      "&:hover": {
         backgroundColor: theme.palette.info.main,
         color: 'white',
         fontWeight: 'bold',
@@ -83,6 +87,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ path, site }) => {
   return (
     <>
       <ListItem button onClick={handleClick}>
+      
         <ListItemText
           primary={<Typography variant="body1" className={classes.nameStyle}>{path.name}</Typography>}
           secondary={<>
@@ -112,7 +117,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ path, site }) => {
           </Table>
         </TableContainer>
 
-       <Divider className={classes.dividerColor}/>
+        <Divider className={classes.dividerColor} />
       </Collapse>
     </>
   );
