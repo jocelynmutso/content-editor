@@ -37,9 +37,11 @@ interface LinksProps {
 const Links: React.FC<LinksProps> = ({ links, site }) => {
   const layout = Layout.useContext();
   const classes = useStyles(layout.session.dimensions);
-
+  
+  const [edit, setEdit] = React.useState<API.Link | undefined>();
 
   return (<>
+  <LinkEditor link={edit} handleClose={() => setEdit(undefined)}/>
     <TableContainer className={classes.table}>
       <Table size="small">
         <TableHead>
@@ -53,7 +55,7 @@ const Links: React.FC<LinksProps> = ({ links, site }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {links.map((row, index) => (<LinkItem key={index} value={row} />))}
+          {links.map((row, index) => (<LinkItem key={index} value={row} onEdit={() => setEdit(row)}/>))}
         </TableBody>
       </Table>
     </TableContainer>

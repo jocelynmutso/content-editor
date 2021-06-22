@@ -36,9 +36,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface LinkItemProps {
   value: API.Link,
+  onEdit:() => void,
 }
 
-const LinkItem: React.FC<LinkItemProps> = ({ value }) => {
+const LinkItem: React.FC<LinkItemProps> = ({ value, onEdit }) => {
   const layout = Layout.useContext();
   const classes = useStyles(layout.session.dimensions);
 
@@ -49,8 +50,8 @@ const LinkItem: React.FC<LinkItemProps> = ({ value }) => {
       <TableCell>{value.description}</TableCell>
       <TableCell>{value.path}</TableCell>
       <TableCell>{value.locale}</TableCell>
-      <TableCell>
-        <LinkEditor />
+      <TableCell onClick={onEdit}>
+        Edit
       </TableCell>
     </TableRow>
   </>
