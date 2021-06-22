@@ -54,7 +54,7 @@ const Editor: React.FC<EditorProps> = ({site}) => {
     <Box display='flex' className={classes.root}>
       <Box flexGrow="0" className={classes.left}>
         <Typography paragraph>
-          <Header locale={md1.locale}/>
+          <Header locale={md1.locale} />
           {md1.content}
         </Typography>
       </Box>

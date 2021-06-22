@@ -5,6 +5,8 @@ import IconButton from '@material-ui/core/IconButton';
 import SaveIcon from '@material-ui/icons/Save';
 import CloseIcon from '@material-ui/icons/Close';
 
+import { API } from '../';
+
 
 const useStyles = () => makeStyles((theme: Theme) =>
   createStyles({

@@ -6,6 +6,7 @@ import {
 
 import { Layout } from '../deps';
 import { API } from '../';
+import { LinkEditor } from './LinkEditor';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -40,7 +41,7 @@ interface LinkItemProps {
 const LinkItem: React.FC<LinkItemProps> = ({ value }) => {
   const layout = Layout.useContext();
   const classes = useStyles(layout.session.dimensions);
-  
+
   return (<>
     <TableRow className={classes.hover}>
       <TableCell>{value.type}</TableCell>
@@ -48,6 +49,9 @@ const LinkItem: React.FC<LinkItemProps> = ({ value }) => {
       <TableCell>{value.description}</TableCell>
       <TableCell>{value.path}</TableCell>
       <TableCell>{value.locale}</TableCell>
+      <TableCell>
+        <LinkEditor />
+      </TableCell>
     </TableRow>
   </>
   )

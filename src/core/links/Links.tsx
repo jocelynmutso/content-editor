@@ -6,8 +6,8 @@ import {
 
 import { LinkItem } from './LinkItem';
 import { Layout } from '../deps';
-import { PathSelect } from './PathSelect';
 import { API } from '../';
+import { LinkEditor } from './LinkEditor';
 
 const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
   createStyles({
@@ -19,8 +19,11 @@ const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
       padding: theme.spacing(1),
     },
     tableHead: {
-     fontWeight: 'bold',
-     backgroundColor: theme.palette.secondary.dark
+      fontWeight: 'bold',
+      backgroundColor: theme.palette.secondary.dark
+    },
+    add: {
+      margin: theme.spacing(2),
     }
   }),
 )();
@@ -35,6 +38,7 @@ const Links: React.FC<LinksProps> = ({ links, site }) => {
   const layout = Layout.useContext();
   const classes = useStyles(layout.session.dimensions);
 
+
   return (<>
     <TableContainer className={classes.table}>
       <Table size="small">
@@ -45,6 +49,7 @@ const Links: React.FC<LinksProps> = ({ links, site }) => {
             <TableCell className={classes.tableHead}> Description </TableCell>
             <TableCell className={classes.tableHead}> Path </TableCell>
             <TableCell className={classes.tableHead}> Locale </TableCell>
+            <TableCell className={classes.tableHead} />
           </TableRow>
         </TableHead>
         <TableBody>
