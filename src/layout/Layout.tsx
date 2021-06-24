@@ -32,7 +32,7 @@ interface ContainerProps {
   }
 };
 
-const drawerWidth = 300;
+const drawerWidth = 400;
 const Container: React.FC<ContainerProps> = ({ components }) => {
   const classes = useStyles({ drawerWidth });
 

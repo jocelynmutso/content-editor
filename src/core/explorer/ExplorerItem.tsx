@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   makeStyles, Theme, createStyles, Divider, Typography, Box, Button,
-  TableContainer, Table, TableRow, TableCell, TableBody, Paper
+  TableContainer, Table, TableRow, TableCell, TableBody, Paper, IconButton
 } from '@material-ui/core';
 import clsx from 'clsx';
 
@@ -37,7 +37,8 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.info.main,
     },
     link: {
-      marginRight: theme.spacing(1)
+      padding: 0,
+      color: theme.palette.primary.dark
     },
     dividerColor: {
       background: theme.palette.primary.light,
@@ -84,10 +85,18 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ path, site }) => {
     layout.actions.handleTabAdd({ id: path.id, label: path.name });
   };
 
+  const handleClose = () => {
+    setOpen(false);
+  }
+
+  const handleLinkClick = () => {
+    layout.actions.handleTabAdd({ id: path.id, label: path.name });
+  }
+
   return (
     <>
-      <ListItem button onClick={handleClick}>
-      
+      <ListItem>
+
         <ListItemText
           primary={<Typography variant="body1" className={classes.nameStyle}>{path.name}</Typography>}
           secondary={<>
@@ -98,7 +107,12 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ path, site }) => {
             <Typography variant="caption">{"Last Modified: 10 days ago"}</Typography></>
           }
         />
-        {open ? <ExpandLess className={classes.iconColor} /> : <ExpandMore className={classes.iconColor} />}
+        <IconButton>
+          <LinkIcon className={classes.link} onClick={handleLinkClick} />
+        </IconButton>
+        {open ?
+          <IconButton><ExpandLess className={classes.iconColor} onClick={handleClose} /></IconButton> :
+          <IconButton><ExpandMore className={classes.iconColor} onClick={handleClick} /></IconButton>}
       </ListItem>
 
       <Collapse in={open} timeout="auto" unmountOnExit>
