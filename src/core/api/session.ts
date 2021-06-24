@@ -13,7 +13,11 @@ declare namespace Session {
   interface Instance {
     releases: CMS.Releases;
     site: CMS.Site;
-    getEditor: (id: CMS.ArticleId) => Editor | undefined;
+    
+    getPages(id: CMS.ArticleId): CMS.PageId[],
+    getLinks(id: CMS.ArticleId): CMS.LinkId[],
+    getWorkflows(id: CMS.ArticleId): CMS.WorkflowId[]
+    getEditor(id: CMS.ArticleId): Editor | undefined;
   }
   
   interface Actions {

@@ -34,9 +34,6 @@ declare namespace CMS {
     parentId?: ArticleId,
     name: string,
     order: number,
-    pages: PageId[],
-    links: LinkId[],
-    workflows: WorkflowId[]
   }
 
   type Releases = Release[];
