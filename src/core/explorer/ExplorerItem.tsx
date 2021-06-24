@@ -9,7 +9,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 
-import LinkIcon from '@material-ui/icons/Link';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
@@ -27,7 +26,9 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       "&:hover": {
         cursor: 'pointer',
-        color: theme.palette.primary.dark,
+        color: theme.palette.secondary.main,
+        textDecoration: 'underline',
+        textDecorationColor: theme.palette.info.main
       }
     },
     localeSummary: {
@@ -46,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     modified: {
       color: theme.palette.text.primary
-    },    
+    },
     divider: {
       background: theme.palette.primary.dark,
       marginTop: 4,
@@ -59,7 +60,7 @@ const useStyles = makeStyles((theme: Theme) =>
         backgroundColor: theme.palette.info.main,
         color: 'white',
         fontWeight: 'bold',
-        cursor: 'pointer'
+        cursor: 'pointer',
       }
     },
     table: {
@@ -102,8 +103,10 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
   const handleLinkClick = () => {
     layout.actions.handleTabAdd({ id: article.id, label: article.name });
   }
-  
+
   const pages: API.CMS.Page[] = Object.values(site.pages).filter(page => article.id === page.article);
+  const links: API.CMS.Link[] = Object.values(site.links).filter(link => article.id === link.article);
+  const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => article.id === workflow.article)
 
   return (
     <>
@@ -119,26 +122,31 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
             <Typography className={classes.modified} variant="caption">{"Last Modified: 10 days ago"}</Typography></>
           }
         />
-        <IconButton onClick={handleLinkClick}>
-          <LinkIcon className={classes.link}  />
-        </IconButton>
         {open ?
           <IconButton onClick={handleClose}><ExpandLess className={classes.iconColor} /></IconButton> :
-          <IconButton onClick={handleClick}><ExpandMore className={classes.iconColor}  /></IconButton>}
+          <IconButton onClick={handleClick}><ExpandMore className={classes.iconColor} /></IconButton>}
       </ListItem>
 
       <Collapse in={open} timeout="auto" unmountOnExit>
         <TableContainer>
           <Table size="small">
             <TableBody>
-              {pages.map((page, index) => (
-                <TableRow key={index} className={clsx(classes.hoverRow)} >
+           
+                <TableRow className={classes.hoverRow} >
+
                   <TableCell className={classes.table}>
-                    {page.locale}
+                    Links: {links.length}
                   </TableCell>
-                  <TableCell className={classes.table} align="right">{"22 Nov., 2021"}</TableCell>
                 </TableRow>
-              ))}
+                
+                <TableRow className={classes.hoverRow}>
+
+                  <TableCell className={classes.table}>
+                    Workflows: {workflows.length}
+                  </TableCell>
+
+                </TableRow>
+            
             </TableBody>
           </Table>
         </TableContainer>

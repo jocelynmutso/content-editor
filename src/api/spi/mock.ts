@@ -82,9 +82,12 @@ const links: API.CMS.Link[] = [
 ];
 
 const workflows: API.CMS.Workflow[] = [
-  { id: "w1", name: "generalProcess1", content: "General Process", locale: "en"},
-  { id: "w2", name: "greatFlow",       content: "Default Flow",    locale: "en"},
-  { id: "w3", name: "inquiryMgr",      content: "MsgHandler",      locale: "en"},
+  { id: "w1", article: "a1", name: "generalProcess1", content: "General Process",  locale: "en"},
+  { id: "w2", article: "a1", name: "greatFlow",       content: "Default Flow",     locale: "en"},
+  { id: "w3", article: "a1", name: "inquiryMgr",      content: "MsgHandler",       locale: "en"},
+  { id: "w4", article: "a1.2", name: "generalProcess1", content: "General Process",  locale: "fi"},
+  { id: "w5", article: "a1.3", name: "greatFlow",       content: "Default Flow",     locale: "en"},
+  { id: "w6", article: "a1.3", name: "inquiryMgr",      content: "MsgHandler",       locale: "fi"},
 ];
 
 const createMock = (): API.CMS.Service => {
