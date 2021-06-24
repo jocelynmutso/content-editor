@@ -22,8 +22,6 @@ const articles: API.CMS.Article[] = [
   { id: "a3.4", order: 400, parentId: "a3", name: "special_education"},
   { id: "a3.5", order: 500, parentId: "a3", name: "vocational_training"},
 
-
-
 ];
 
 const pages: API.CMS.Page[] = [
@@ -37,15 +35,15 @@ const pages: API.CMS.Page[] = [
   { id: "p8", article: "a1.4", content: "# Uuden kodin rakentaminen", locale: "fi", created: "04-11-2020", modified: "05-11-2020" },
   { id: "p9", article: "a1.5", content: "# Sosiaalinen asunto",       locale: "fi", created: "01-01-2020", modified: "16-02-2020" },
   
-  { id: "p10", article: "a2",   content: "Healthcare and services",   locale: "en", created: "04-11-2020", modified: "05-11-2020" },
-  { id: "p11", article: "a2",   content: "Terveydenhuolto ja palvelut",  locale: "fi", created: "04-11-2020", modified: "06-11-2020" },
-  { id: "p12", article: "a2.1", content: "Hospitals around the city", locale: "en", created: "09-10-2020", modified: "09-11-2020" },
-  { id: "p13", article: "a2.1", content: "sairaala",                  locale: "fi", created: "10-12-2020", modified: "12-12-2020" },
-  { id: "p14", article: "a2.2", content: "Emergency",                 locale: "en", created: "04-11-2020", modified: "05-11-2020" },
-  { id: "p15", article: "a2.2", content: "Hätä",                      locale: "fi", created: "04-11-2020", modified: "05-11-2020" },
-  { id: "p16", article: "a2.3", content: "Elderly care services",     locale: "en", created: "17-04-2020", modified: "24-04-2020" },
-  { id: "p17", article: "a2.3", content: "Vanhustenhoito",            locale: "fi", created: "04-11-2020", modified: "05-11-2020" },
-  { id: "p18", article: "a2.4", content: "Mielenterveys",             locale: "fi", created: "01-01-2020", modified: "16-02-2020" },
+  { id: "p10", article: "a2",   content: "# Healthcare and services",      locale: "en", created: "04-11-2020", modified: "05-11-2020" },
+  { id: "p11", article: "a2",   content: "# Terveydenhuolto ja palvelut",  locale: "fi", created: "04-11-2020", modified: "06-11-2020" },
+  { id: "p12", article: "a2.1", content: "# Hospitals around the city",    locale: "en", created: "09-10-2020", modified: "09-11-2020" },
+  { id: "p13", article: "a2.1", content: "# sairaala",                     locale: "fi", created: "10-12-2020", modified: "12-12-2020" },
+  { id: "p14", article: "a2.2", content: "# Emergency",                    locale: "en", created: "04-11-2020", modified: "05-11-2020" },
+  { id: "p15", article: "a2.2", content: "# Hätä",                         locale: "fi", created: "04-11-2020", modified: "05-11-2020" },
+  { id: "p16", article: "a2.3", content: "# Elderly care services",        locale: "en", created: "17-04-2020", modified: "24-04-2020" },
+  { id: "p17", article: "a2.3", content: "# Vanhustenhoito",               locale: "fi", created: "04-11-2020", modified: "05-11-2020" },
+  { id: "p18", article: "a2.4", content: "# Mielenterveys",                locale: "fi", created: "01-01-2020", modified: "16-02-2020" },
   
   { id: "p1", article: "a3",   content: "# Education",                locale: "en", created: "04-11-2020", modified: "05-11-2020" },
   { id: "p2", article: "a3",   content: "# Koulutus",                 locale: "fi", created: "04-11-2020", modified: "06-11-2020" },
@@ -80,9 +78,9 @@ const links: API.CMS.Link[] = [
 ];
 
 const workflows: API.CMS.Workflow[] = [
-  { id: "w1", name: "superProcess1", content: "content1", locale: "en"},
-  { id: "w2", name: "greatFlow",     content: "content2", locale: "en"},
-  { id: "w3", name: "inquiryMgr",    content: "content3", locale: "en"},
+  { id: "w1", name: "generalProcess1", content: "General Process", locale: "en"},
+  { id: "w2", name: "greatFlow",       content: "Default Flow",    locale: "en"},
+  { id: "w3", name: "inquiryMgr",      content: "MsgHandler",      locale: "en"},
 ];
 
 const createMock = (): API.CMS.Service => {

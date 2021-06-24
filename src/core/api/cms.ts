@@ -5,7 +5,8 @@ declare namespace CMS {
   type ArticleId = string;
   type WorkflowId = string;
   type Locale = string;
-  type Markdown = string;
+  type LocalisedMarkdown = string;
+  type LocalisedContent = string;
 
   interface Site {
     pages: Record<PageId, Page>,
@@ -20,13 +21,13 @@ declare namespace CMS {
     created: string,
     modified: string,
     locale: Locale,
-    content: Markdown,
+    content: LocalisedMarkdown,
   }
   
   interface PageMutator {
     id: PageId,
     locale: Locale;
-    content: string;
+    content: LocalisedContent;
   }
 
   interface Article {
@@ -51,14 +52,14 @@ declare namespace CMS {
     id: LinkId,
     article: ArticleId,
     type: string,
-    content: string,
+    content: LocalisedContent,
     locale: Locale,
     description: string
   }
   
   interface LinkMutator {
     id: LinkId,
-    content: string, 
+    content: LocalisedContent, 
     locale: Locale, 
     description: string
   }
@@ -67,14 +68,14 @@ declare namespace CMS {
     id: WorkflowId,
     name: string,
     locale: Locale,
-    content: string
+    content: LocalisedContent
   }
   
   interface WorkflowMutator {
     id: WorkflowId, 
     name: string, 
     locale: Locale, 
-    content: string
+    content: LocalisedContent
   }
 
   interface FetchIntegration {
