@@ -19,7 +19,13 @@ declare namespace Session {
   interface Actions {
     handleReload(): Promise<void>;
     handleEditor(article: CMS.Article): Promise<void>;
-    handleEditorChange(article: CMS.Article, ): Promise<void>;
+    handleEditorChange(article: CMS.Article, change: EditorChange): Promise<void>;
+  }
+  
+  interface EditorChange {
+    page?: CMS.PageMutator,
+    link?: CMS.LinkMutator,
+    workflow?: CMS.WorkflowMutator
   }
   
   interface Editor {

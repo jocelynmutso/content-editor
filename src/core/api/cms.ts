@@ -80,6 +80,9 @@ declare namespace CMS {
     content: string
   }
 
+  interface FetchIntegration {
+    fetch<T>(path: string, init?: RequestInit): Promise<T>;
+  }
 
   interface Service {
     getSite(): Promise<Site>,
