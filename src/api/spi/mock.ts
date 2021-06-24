@@ -8,6 +8,7 @@ const articles: API.CMS.Article[] = [
   { id: "a1.4", order: 400, parentId: "a1", name: "new_home_construction" },
   { id: "a1.5", order: 500, parentId: "a1", name: "social_housing" },
   
+  
   { id: "a2",   order: 200,                 name: "health_services", },
   { id: "a2.1", order: 100, parentId: "a2", name: "hospitals" },
   { id: "a2.2", order: 200, parentId: "a2", name: "emergency_care" },
@@ -15,25 +16,27 @@ const articles: API.CMS.Article[] = [
   { id: "a2.4", order: 400, parentId: "a2", name: "elder_care"},
   { id: "a2.5", order: 500, parentId: "a2", name: "mental_health" },
   
+/*
   { id: "a3",   order: 300,                 name: "education", },
   { id: "a3.1", order: 100, parentId: "a3", name: "public_primary_schools" },
   { id: "a3.2", order: 200, parentId: "a3", name: "private_primary_schools" },
   { id: "a3.3", order: 300, parentId: "a3", name: "higher_education" },
   { id: "a3.4", order: 400, parentId: "a3", name: "special_education"},
   { id: "a3.5", order: 500, parentId: "a3", name: "vocational_training"},
-
+*/
 ];
 
 const pages: API.CMS.Page[] = [
   { id: "p1", article: "a1",   content: "# Residence topic",          locale: "en", created: "04-11-2020", modified: "05-11-2020" },
   { id: "p2", article: "a1",   content: "# Asuinpaikka",              locale: "fi", created: "04-11-2020", modified: "06-11-2020" },
-  { id: "p3", article: "a1.1", content: "# Utilities",                locale: "en", created: "09-10-2020", modified: "09-11-2020" },
-  { id: "p4", article: "a1.1", content: "# apuohjelmat",              locale: "fi", created: "10-12-2020", modified: "12-12-2020" },
+  { id: "p3", article: "a1.1",   content: "# Utilities",                locale: "en", created: "09-10-2020", modified: "09-11-2020" },
+  { id: "p4", article: "a1.1",   content: "# apuohjelmat",              locale: "fi", created: "10-12-2020", modified: "12-12-2020" },
   { id: "p5", article: "a1.2", content: "# Registering new address",  locale: "en", created: "04-11-2020", modified: "05-11-2020" },
   { id: "p6", article: "a1.2", content: "# Osoitetiedot",             locale: "fi", created: "04-11-2020", modified: "05-11-2020" },
   { id: "p7", article: "a1.3", content: "# Renovation permits",       locale: "en", created: "17-04-2020", modified: "24-04-2020" },
   { id: "p8", article: "a1.4", content: "# Uuden kodin rakentaminen", locale: "fi", created: "04-11-2020", modified: "05-11-2020" },
   { id: "p9", article: "a1.5", content: "# Sosiaalinen asunto",       locale: "fi", created: "01-01-2020", modified: "16-02-2020" },
+  
   
   { id: "p10", article: "a2",   content: "# Healthcare and services",      locale: "en", created: "04-11-2020", modified: "05-11-2020" },
   { id: "p11", article: "a2",   content: "# Terveydenhuolto ja palvelut",  locale: "fi", created: "04-11-2020", modified: "06-11-2020" },
@@ -42,9 +45,10 @@ const pages: API.CMS.Page[] = [
   { id: "p14", article: "a2.2", content: "# Emergency",                    locale: "en", created: "04-11-2020", modified: "05-11-2020" },
   { id: "p15", article: "a2.2", content: "# Hätä",                         locale: "fi", created: "04-11-2020", modified: "05-11-2020" },
   { id: "p16", article: "a2.3", content: "# Elderly care services",        locale: "en", created: "17-04-2020", modified: "24-04-2020" },
-  { id: "p17", article: "a2.3", content: "# Vanhustenhoito",               locale: "fi", created: "04-11-2020", modified: "05-11-2020" },
-  { id: "p18", article: "a2.4", content: "# Mielenterveys",                locale: "fi", created: "01-01-2020", modified: "16-02-2020" },
+  { id: "p17", article: "a2.4", content: "# Vanhustenhoito",               locale: "fi", created: "04-11-2020", modified: "05-11-2020" },
+  { id: "p18", article: "a2.5", content: "# Mielenterveys",                locale: "fi", created: "01-01-2020", modified: "16-02-2020" },
   
+/*
   { id: "p1", article: "a3",   content: "# Education",                locale: "en", created: "04-11-2020", modified: "05-11-2020" },
   { id: "p2", article: "a3",   content: "# Koulutus",                 locale: "fi", created: "04-11-2020", modified: "06-11-2020" },
   { id: "p3", article: "a3.1", content: "# Public primary schools",   locale: "en", created: "09-10-2020", modified: "09-11-2020" },
@@ -54,7 +58,7 @@ const pages: API.CMS.Page[] = [
   { id: "p7", article: "a3.3", content: "# University education",     locale: "en", created: "17-04-2020", modified: "24-04-2020" },
   { id: "p8", article: "a3.4", content: "# Korkeampi koulutus",       locale: "fi", created: "04-11-2020", modified: "05-11-2020" },
   { id: "p9", article: "a3.5", content: "# Ammatillinen koulutus",    locale: "fi", created: "01-01-2020", modified: "16-02-2020" },
-
+*/
 ];
 
 const links: API.CMS.Link[] = [

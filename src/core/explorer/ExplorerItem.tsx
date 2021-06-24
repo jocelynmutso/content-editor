@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme: Theme) =>
     nameStyle: {
       color: theme.palette.text.primary,
       fontWeight: 'bold',
+      "&:hover": {
+        cursor: 'pointer',
+        color: theme.palette.primary.dark,
+      }
     },
     localeSummary: {
       color: theme.palette.primary.main,
@@ -40,16 +44,22 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: 0,
       color: theme.palette.primary.dark
     },
-    dividerColor: {
-      background: theme.palette.primary.light,
+    modified: {
+      color: theme.palette.text.primary
+    },    
+    divider: {
+      background: theme.palette.primary.dark,
+      marginTop: 4,
     },
     hoverRow: {
       padding: 3,
       fontWeight: 'bold',
+      textTransform: 'uppercase',
       "&:hover": {
         backgroundColor: theme.palette.info.main,
         color: 'white',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        cursor: 'pointer'
       }
     },
     table: {
@@ -100,21 +110,21 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
       <ListItem>
 
         <ListItemText
-          primary={<Typography variant="body1" className={classes.nameStyle}>{article.name}</Typography>}
+          primary={<Typography onClick={handleClick} variant="body1" className={classes.nameStyle}>{article.name}</Typography>}
           secondary={<>
             <Typography component="span" variant="caption" className={classes.localeSummary}>
               {pages.map((page, index) => (<span className={classes.hoverRow} key={index}>{page.locale}&nbsp;</span>))}
             </Typography>
             <br />
-            <Typography variant="caption">{"Last Modified: 10 days ago"}</Typography></>
+            <Typography className={classes.modified} variant="caption">{"Last Modified: 10 days ago"}</Typography></>
           }
         />
-        <IconButton>
-          <LinkIcon className={classes.link} onClick={handleLinkClick} />
+        <IconButton onClick={handleLinkClick}>
+          <LinkIcon className={classes.link}  />
         </IconButton>
         {open ?
-          <IconButton><ExpandLess className={classes.iconColor} onClick={handleClose} /></IconButton> :
-          <IconButton><ExpandMore className={classes.iconColor} onClick={handleClick} /></IconButton>}
+          <IconButton onClick={handleClose}><ExpandLess className={classes.iconColor} /></IconButton> :
+          <IconButton onClick={handleClick}><ExpandMore className={classes.iconColor}  /></IconButton>}
       </ListItem>
 
       <Collapse in={open} timeout="auto" unmountOnExit>
@@ -133,7 +143,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
           </Table>
         </TableContainer>
 
-        <Divider className={classes.dividerColor} />
+        <Divider className={classes.divider} />
       </Collapse>
     </>
   );
