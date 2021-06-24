@@ -26,9 +26,8 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       "&:hover": {
         cursor: 'pointer',
-        color: theme.palette.secondary.main,
         textDecoration: 'underline',
-        textDecorationColor: theme.palette.info.main
+        textDecorationColor: theme.palette.secondary.light
       }
     },
     localeSummary: {
@@ -96,6 +95,10 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
     layout.actions.handleTabAdd({ id: article.id, label: article.name });
   };
 
+ const handleExpand = () => {
+    setOpen(true);
+  };
+
   const handleClose = () => {
     setOpen(false);
   }
@@ -115,7 +118,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
         <ListItemText
           primary={<Typography onClick={handleClick} variant="body1" className={classes.nameStyle}>{article.name}</Typography>}
           secondary={<>
-            <Typography component="span" variant="caption" className={classes.localeSummary}>
+            <Typography component="span" variant="caption" className={classes.localeSummary} onClick={handleLinkClick}>
               {pages.map((page, index) => (<span className={classes.hoverRow} key={index}>{page.locale}&nbsp;</span>))}
             </Typography>
             <br />
@@ -124,7 +127,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
         />
         {open ?
           <IconButton onClick={handleClose}><ExpandLess className={classes.iconColor} /></IconButton> :
-          <IconButton onClick={handleClick}><ExpandMore className={classes.iconColor} /></IconButton>}
+          <IconButton onClick={handleExpand}><ExpandMore className={classes.iconColor} /></IconButton>}
       </ListItem>
 
       <Collapse in={open} timeout="auto" unmountOnExit>

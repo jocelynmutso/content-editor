@@ -1,5 +1,6 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme, Typography, Box, Divider } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, Box } from '@material-ui/core';
+import { PageComposer } from '../composers';
 import { API, Layout} from '../deps';
 
 const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
@@ -42,7 +43,7 @@ const Editor: React.FC<EditorProps> = ({site}) => {
 
   return (<>
     <Box display='flex' className={classes.root}>
-      Editor is here
+    <PageComposer />
     </Box>
   </>
   )
