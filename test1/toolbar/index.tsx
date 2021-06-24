@@ -5,13 +5,13 @@ import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import LinkIcon from '@material-ui/icons/Link';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
-import { Explorer } from '../explorer';
+import { Explorer } from '../';
 
-import { Layout, API } from '../deps';
+import { Layout } from '../deps';
+import { API } from '../';
 
 
-
-const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site): Layout.Session.ToolbarItem[] => {
+const toolbar = (actions: Layout.Session.Actions, site: API.Site): Layout.Session.ToolbarItem[] => {
   return [
     
     {
@@ -49,7 +49,7 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site): Layout.Se
     {
       id: 'toolbar.delete',
       icon: <DeleteIcon />,
-      type: { getView: () => (<Explorer site={site} />) }
+      type: { getView: () => (<Explorer site={API.createSite()} />) }
     },
 
   ];

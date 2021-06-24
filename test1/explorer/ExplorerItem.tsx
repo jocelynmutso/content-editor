@@ -14,7 +14,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
 import { Layout } from '../deps';
-import { API } from '../deps';
+import API from '../api';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -70,11 +70,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface ExplorerItemProps {
-  article: API.CMS.Article,
+  path: API.CMS.Article,
   site: API.CMS.Site
 }
 
-const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
+const ExplorerItem: React.FC<ExplorerItemProps> = ({ path, site }) => {
 
   const layout = Layout.useContext();
   const classes = useStyles();
@@ -82,7 +82,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
 
   const handleClick = () => {
     setOpen(!open);
-    layout.actions.handleTabAdd({ id: article.id, label: article.name });
+    layout.actions.handleTabAdd({ id: path.id, label: path.name });
   };
 
   const handleClose = () => {
@@ -90,20 +90,18 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
   }
 
   const handleLinkClick = () => {
-    layout.actions.handleTabAdd({ id: article.id, label: article.name });
+    layout.actions.handleTabAdd({ id: path.id, label: path.name });
   }
-  
-  const pages: API.CMS.Page[] = Object.values(site.pages).filter(page => article.id === page.article);
 
   return (
     <>
       <ListItem>
 
         <ListItemText
-          primary={<Typography variant="body1" className={classes.nameStyle}>{article.name}</Typography>}
+          primary={<Typography variant="body1" className={classes.nameStyle}>{path.name}</Typography>}
           secondary={<>
             <Typography component="span" variant="caption" className={classes.localeSummary}>
-              {pages.map((page, index) => (<span className={classes.hoverRow} key={index}>{page.locale}&nbsp;</span>))}
+              {path.markdowns.map((id, index) => (<span className={classes.hoverRow} key={index}>{site.markdowns[id].locale}&nbsp;</span>))}
             </Typography>
             <br />
             <Typography variant="caption">{"Last Modified: 10 days ago"}</Typography></>
@@ -121,10 +119,10 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
         <TableContainer>
           <Table size="small">
             <TableBody>
-              {pages.map((page, index) => (
+              {path.markdowns.map(id => site.markdowns[id]).map((md, index) => (
                 <TableRow key={index} className={clsx(classes.hoverRow)} >
                   <TableCell className={classes.table}>
-                    {page.locale}
+                    {md.locale}
                   </TableCell>
                   <TableCell className={classes.table} align="right">{"22 Nov., 2021"}</TableCell>
                 </TableRow>

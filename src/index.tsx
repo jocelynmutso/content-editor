@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ResourceEditor } from './ResourceEditor';
+import { CMSEditor } from './core';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@material-ui/core';
 import { IntlProvider } from 'react-intl'
 import { siteTheme } from './themes/siteTheme'
 import messages from './intl';
 
-import API from './core/api';
+import API from './api'; 
 
 const locale = "en";
 
@@ -17,7 +17,7 @@ ReactDOM.render(
   <React.StrictMode>
     <IntlProvider locale={locale} messages={messages[locale]}>
       <ThemeProvider theme={siteTheme}>
-        <ResourceEditor service={service} />
+        <CMSEditor service={service} />
       </ThemeProvider>
     </IntlProvider>
   </React.StrictMode>,

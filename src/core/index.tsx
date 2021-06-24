@@ -1,42 +1,43 @@
 import React from 'react';
 
-import Layout from './layout';
-import { Editor, toolbar, API } from './core';
+import { API, Layout } from './deps';
+import { Editor } from './editor';
+import { toolbar } from './toolbar';
 
-interface ResourceEditorProps {
+interface CMSEditorProps {
   service: API.CMS.Service,
 };
 
 
-const Components: React.FC<{service: API.CMS.Service}> = ({service}) => {
+const Components: React.FC<{ service: API.CMS.Service }> = ({ service }) => {
   const layout = Layout.useContext();
   const [site, setSite] = React.useState<API.CMS.Site>();
-  
+
   React.useLayoutEffect(() => {
     service.getSite().then(setSite);
   }, [service]);
-  
-  if(!site) {
+
+  if (!site) {
     return null;
   }
-  
+
   return (
     <Layout.Container components={{
       search: (_value: string) => console.log("Search"),
       header: (<></>),
-      content: (<Editor site={site}/>),
+      content: (<Editor site={site} />),
       toolbar: toolbar(layout.actions, site),
       badges: []
     }} />);
 }
 
-const ResourceEditor: React.FC<ResourceEditorProps> = ({service}) => {
+const CMSEditor: React.FC<CMSEditorProps> = ({ service }) => {
   return (
-      <Layout.Provider>
-        <Components service={service}/>
-      </Layout.Provider>
+    <Layout.Provider>
+      <Components service={service} />
+    </Layout.Provider>
   );
 }
 
-export type { ResourceEditorProps };
-export { ResourceEditor };
+export type { CMSEditorProps };
+export { CMSEditor };
