@@ -27,10 +27,11 @@ const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
 
 
 interface EditorProps {
-  site: API.Site;
+  site: API.CMS.Site;
+  releases: API.CMS.Releases;
 }
 
-const Editor: React.FC<EditorProps> = ({site}) => {
+const Editor: React.FC<EditorProps> = ({site, releases}) => {
   const layout = Layout.useContext();
   const classes = useStyles(layout.session.dimensions);
   
@@ -40,9 +41,9 @@ const Editor: React.FC<EditorProps> = ({site}) => {
   }
   const active = tabs[layout.session.history.open];  
   if(active.id === 'releases') {
-    return (<Releases releases={API.createReleases()} site={site}/>);  
+    return (<Releases releases={releases} site={site}/>);  
   } else if (active.id === 'links') {
-    return (<Links links={API.createLinks()} site={site} />)  
+    //return (<Links links={API.createLinks()} site={site} />)  
   }
   
   

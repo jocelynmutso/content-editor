@@ -3,15 +3,23 @@ import React from 'react';
 import Layout from './layout';
 import { Editor, toolbar, API } from './core';
 
-
 interface ResourceEditorProps {
-
+  service: API.CMS.Service,
 };
 
 
-const Components: React.FC = () => {
+const Components: React.FC<{service: API.CMS.Service}> = ({service}) => {
   const layout = Layout.useContext();
-  const site = API.createSite();
+  const [site, setSite] = React.useState<API.CMS.Site>();
+  
+  React.useLayoutEffect(() => {
+    service.getSite().then(setSite);
+  }, [service]);
+  
+  if(!site) {
+    return null;
+  }
+  
   return (
     <Layout.Container components={{
       search: (_value: string) => console.log("Search"),
@@ -22,10 +30,10 @@ const Components: React.FC = () => {
     }} />);
 }
 
-const ResourceEditor: React.FC<ResourceEditorProps> = ({ }) => {
+const ResourceEditor: React.FC<ResourceEditorProps> = ({service}) => {
   return (
       <Layout.Provider>
-        <Components />
+        <Components service={service}/>
       </Layout.Provider>
   );
 }

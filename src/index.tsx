@@ -7,13 +7,17 @@ import { IntlProvider } from 'react-intl'
 import { siteTheme } from './themes/siteTheme'
 import messages from './intl';
 
+import API from './core/api';
+
 const locale = "en";
+
+const service = API.mock();
 
 ReactDOM.render(
   <React.StrictMode>
     <IntlProvider locale={locale} messages={messages[locale]}>
       <ThemeProvider theme={siteTheme}>
-        <ResourceEditor />
+        <ResourceEditor service={service} />
       </ThemeProvider>
     </IntlProvider>
   </React.StrictMode>,
