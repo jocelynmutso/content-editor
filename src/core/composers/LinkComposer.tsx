@@ -1,21 +1,20 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme, Box } from '@material-ui/core';
-
+import { EditorToolbar } from '../editor';
 import { API, Layout } from '../deps';
 
 
-interface PageComposerProps {
-
+interface LinkComposerProps {
+  
 }
 
 
-const PageComposer: React.FC<PageComposerProps> = ({ }) => {
+const LinkComposer: React.FC<LinkComposerProps> = ({ }) => {
   return (
     <div>
-      
-      Page Composer
+      Link Composer
     </div>
   )
 }
 
-export { PageComposer }
+export { LinkComposer }

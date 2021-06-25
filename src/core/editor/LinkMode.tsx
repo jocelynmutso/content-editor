@@ -1,9 +1,5 @@
 import React from 'react';
-import { List, ListItem, makeStyles, createStyles, Theme, IconButton } from '@material-ui/core';
-import Popper, { PopperPlacementType } from '@material-ui/core/Popper';
-import Grid from '@material-ui/core/Grid';
-import Fade from '@material-ui/core/Fade';
-import Paper from '@material-ui/core/Paper';
+import { makeStyles, createStyles, Theme, IconButton } from '@material-ui/core';
 import LinkIcon from '@material-ui/icons/Link';
 
 
@@ -19,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: 'auto',
     },
     icon: {
-       transform: "rotate(145deg)"
+      transform: "rotate(145deg)"
     }
   }),
 );
@@ -29,40 +25,15 @@ interface LinkModeProps {
 }
 
 const LinkMode: React.FC<LinkModeProps> = ({ }) => {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
-  const [open, setOpen] = React.useState(false);
-  const [placement, setPlacement] = React.useState<PopperPlacementType>();
   const classes = useStyles();
-
-  const handleClick = (newPlacement: PopperPlacementType) => (
-    event: React.MouseEvent<HTMLElement>,
-  ) => {
-    setAnchorEl(event.currentTarget);
-    setOpen((prev) => placement !== newPlacement || !prev);
-    setPlacement(newPlacement);
-  }
+  const [open, setOpen] = React.useState(false);
 
 
   return (
     <div className={classes.root}>
-      <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
-        {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={350}>
-            <Paper className={classes.paper}>
-              <List>
-                <ListItem>Open link editor</ListItem>
-              </List>
-            </Paper>
-          </Fade>
-        )}
-      </Popper>
-      <Grid container justify="flex-end">
-        <Grid item xs={4}>
-          <IconButton onClick={handleClick('bottom')}>
-            <LinkIcon className={classes.icon} />
-          </IconButton>
-        </Grid>
-      </Grid>
+      <IconButton>
+        <LinkIcon />
+      </IconButton>
     </div>
   );
 }

@@ -1,13 +1,14 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme, Box } from '@material-ui/core';
-import { PageComposer } from '../composers';
 import { EditorToolbar } from './EditorToolbar';
 import { API, Layout} from '../deps';
+import { PageComposer, LinkComposer } from '../composers';
 
 const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      height: `${props.y}px`
+      height: `${props.y}px`,
+      paddingLeft: theme.spacing(2)
     },
     left: {
       display: 'flex',
@@ -42,11 +43,12 @@ const Editor: React.FC<EditorProps> = ({site}) => {
     //return (<Releases releases={releases} site={site}/>);  
   } 
 
-
   return (<>
-    <Box display='flex' className={classes.root}>
-    <PageComposer />
-    </Box>
+    <div className={classes.root}>
+      <EditorToolbar />
+      <PageComposer />
+      <LinkComposer />
+    </div>
   </>
   )
 }

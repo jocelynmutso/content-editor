@@ -114,7 +114,6 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
   return (
     <>
       <ListItem>
-
         <ListItemText
           primary={<Typography onClick={handleClick} variant="body1" className={classes.nameStyle}>{article.name}</Typography>}
           secondary={<>
