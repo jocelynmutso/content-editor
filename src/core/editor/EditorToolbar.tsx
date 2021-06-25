@@ -10,19 +10,12 @@ import LinkIcon from '@material-ui/icons/Link';
 import LanguageIcon from '@material-ui/icons/Language';
 import WorkIcon from '@material-ui/icons/Work';
 
-import { EditMode } from './EditMode';
-import { LinkMode } from './LinkMode';
-import { LocaleMode } from './LocaleMode';
-import { WorkflowMode } from './WorkflowMode';
-
 
 const useStyles = () => makeStyles((theme: Theme) =>
   createStyles({
     root: {
-
     },
     header: {
-
       // backgroundColor: theme.palette.secondary.dark
     },
     iconButton: {
