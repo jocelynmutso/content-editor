@@ -9,7 +9,7 @@ interface PageComposerProps {
 }
 
 
-const PageComposer: React.FC<PageComposerProps> = ({  }) => {
+const PageComposer: React.FC<PageComposerProps> = ({ }) => {
   return (
     <div>
       <EditorToolbar />

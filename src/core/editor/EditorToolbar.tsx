@@ -1,23 +1,23 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme, Box } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, Box, Divider } from '@material-ui/core';
 
 import IconButton from '@material-ui/core/IconButton';
 import SaveIcon from '@material-ui/icons/Save';
 import CloseIcon from '@material-ui/icons/Close';
 
-import { API, Layout} from '../deps';
+import { EditMode } from './EditMode';
+import { LinkMode } from './LinkMode';
+import { LocaleMode } from './LocaleMode';
+import { WorkflowMode } from './WorkflowMode';
 
 
 const useStyles = () => makeStyles((theme: Theme) =>
   createStyles({
     root: {
+      display: 'flex'
     },
     header: {
       display: 'flex',
-      alignItems: 'center',
-      padding: theme.spacing(1),
-      marginBottom: theme.spacing(1),
-      fontWeight: 'bold',
       backgroundColor: theme.palette.secondary.dark
     },
     iconButton: {
@@ -38,15 +38,17 @@ interface EditorToolbarProps {
 
 }
 
-const EditorToolbar: React.FC<EditorToolbarProps> = ({ }) => {
+const EditorToolbar: React.FC<EditorToolbarProps> = () => {
   const classes = useStyles();
 
 
   return (
 
-    <Box display="flex" alignItems="center">
+    <Box className={classes.root} >
       <Box flexGrow="1" className={classes.header}>
-        <Box flexGrow="1" />
+        <LocaleMode />
+        <WorkflowMode />
+        <LinkMode />
         <IconButton aria-label="save" className={classes.iconButton}>
           <SaveIcon />
         </IconButton>

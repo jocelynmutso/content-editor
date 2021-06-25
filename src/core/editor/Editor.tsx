@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme, Box } from '@material-ui/core';
 import { PageComposer } from '../composers';
+import { EditorToolbar } from './EditorToolbar';
 import { API, Layout} from '../deps';
 
 const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
@@ -25,6 +26,7 @@ const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
 
 interface EditorProps {
   site: API.CMS.Site;
+
 }
 
 const Editor: React.FC<EditorProps> = ({site}) => {
