@@ -2,10 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles, Theme, Box, TextField } from '@material-ui/core';
 
 import MDEditor from '@uiw/react-md-editor';
-
-export default function App() {
-
-}
+import { API } from '../deps';
 
 const useStyles = () => makeStyles((theme: Theme) =>
   createStyles({
@@ -22,12 +19,18 @@ const useStyles = () => makeStyles((theme: Theme) =>
 
 
 type PageComposerProps = {
-
+  site: API.CMS.Site,
+  article: API.CMS.Article,
+  locale: API.CMS.Locale
 }
 
-const PageComposer: React.FC<PageComposerProps> = ({ }) => {
+const PageComposer: React.FC<PageComposerProps> = ({ site, article, locale }) => {
   const classes = useStyles();
-  const [value, setValue] = React.useState<string | undefined>("**Hello world!!!**");
+  const page = Object.values(site.pages)
+    .filter(page => page.article === article.id)
+    .filter(page => page.locale === locale).pop();
+  
+  const [value, setValue] = React.useState<string | undefined>(page?.content);
   
   return (
     <div className={classes.container}>

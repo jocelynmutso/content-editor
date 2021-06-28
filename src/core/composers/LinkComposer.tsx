@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme, Box, TextField, InputLabel, FormControl } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, Box, TextField, InputLabel, FormControl, IconButton } from '@material-ui/core';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -7,10 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import TableRow from '@material-ui/core/TableRow';
 
 
-import { LinkItem} from './LinkItem';
+import { LinksTable } from './LinksTable';
 import { API, Layout } from '../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -19,6 +18,9 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '98%',
       marginLeft: theme.spacing(1),
       marginRight: theme.spacing(1),
+    },
+    accordion: {
+      backgroundColor: theme.palette.info.light
     },
     select: {
       marginRight: theme.spacing(1),
@@ -29,8 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
       minWidth: '50ch',
     },
     heading: {
-      fontSize: theme.typography.pxToRem(15),
-      fontWeight: theme.typography.fontWeightRegular,
+      fontWeight: 'bold',
     },
     iconButton: {
       color: theme.palette.primary.dark,
@@ -46,24 +47,30 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface LinkComposerProps {
-
+  site: API.CMS.Site,
+  article: API.CMS.Article
 }
 
 
-const LinkComposer: React.FC<LinkComposerProps> = ({ }) => {
+const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
   const classes = useStyles();
   const [type, setType] = React.useState('');
+  const [locale, setLocale] = React.useState('');
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setType(event.target.value as string);
+  };
+
+  const handleLocaleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setLocale(event.target.value as string);
   };
 
 
   return (
     <div className={classes.root}>
-      <Accordion square={true} >
+      <Accordion square={true} className={classes.accordion} >
         <AccordionSummary
-          expandIcon={<AddCircleOutlineIcon className={classes.iconButton} />}
+          expandIcon={<IconButton className={classes.iconButton}><AddCircleOutlineIcon/> </IconButton>}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
@@ -77,7 +84,7 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ }) => {
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
                 value={type}
-                onChange={handleChange}
+                onChange={handleTypeChange}
                 label="Age"
               >
                 <MenuItem value={10}>Internal</MenuItem>
@@ -89,8 +96,8 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ }) => {
               <Select
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
-                value={type}
-                onChange={handleChange}
+                value={locale}
+                onChange={handleLocaleChange}
                 label="Age"
               >
                 <MenuItem value={10}>EN</MenuItem>
@@ -104,6 +111,7 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ }) => {
           </Typography>
         </AccordionDetails>
       </Accordion>
+      <LinksTable site={site} article={article} />
     </div>
   );
 }

@@ -32,7 +32,7 @@ interface EditorProps {
 const Editor: React.FC<EditorProps> = ({ site }) => {
   const layout = Layout.useContext();
   const classes = useStyles(layout.session.dimensions);
-
+  const [locale, setLocale] = React.useState("en");
   const tabs = layout.session.tabs;
   if (tabs.length === 0) {
     return null;
@@ -41,15 +41,15 @@ const Editor: React.FC<EditorProps> = ({ site }) => {
   if (active.id === 'releases') {
     //return (<Releases releases={releases} site={site}/>);  
   }
+  const article = site.articles[active.id];
 
-  return (<>
-    <div className={classes.root}>
-      <EditorToolbar />
-      <PageComposer />
-      <LinkComposer />
-      <WorkflowComposer />
+  return (
+    <div className={classes.root} key={article.id} >
+      <EditorToolbar key={article.id} />
+      <PageComposer key={article.id} site={site} article={article} locale={locale} />
+      <LinkComposer key={article.id} site={site} article={article}/>
+      <WorkflowComposer key={article.id}/>
     </div>
-  </>
   )
 }
 
