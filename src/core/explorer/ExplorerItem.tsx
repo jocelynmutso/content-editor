@@ -133,22 +133,16 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
         <TableContainer>
           <Table size="small">
             <TableBody>
-           
                 <TableRow className={classes.hoverRow} >
-
                   <TableCell className={classes.table}>
                     Links: {links.length}
                   </TableCell>
                 </TableRow>
-                
                 <TableRow className={classes.hoverRow}>
-
                   <TableCell className={classes.table}>
                     Workflows: {workflows.length}
                   </TableCell>
-
                 </TableRow>
-            
             </TableBody>
           </Table>
         </TableContainer>

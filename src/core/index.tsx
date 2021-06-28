@@ -9,7 +9,7 @@ interface CMSEditorProps {
 };
 
 
-const Components: React.FC<{ service: API.CMS.Service }> = ({ service }) => {
+const Components: React.FC<{ service: API.CMS.Service }> = ({ service}) => {
   const layout = Layout.useContext();
   const [site, setSite] = React.useState<API.CMS.Site>();
 

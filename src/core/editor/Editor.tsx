@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme, Box } from '@material-ui/core';
 import { EditorToolbar } from './EditorToolbar';
-import { API, Layout} from '../deps';
+import { API, Layout } from '../deps';
 import { PageComposer, LinkComposer, WorkflowComposer } from '../composers';
 
 const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
@@ -27,21 +27,20 @@ const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
 
 interface EditorProps {
   site: API.CMS.Site;
-
 }
 
-const Editor: React.FC<EditorProps> = ({site}) => {
+const Editor: React.FC<EditorProps> = ({ site }) => {
   const layout = Layout.useContext();
   const classes = useStyles(layout.session.dimensions);
-  
+
   const tabs = layout.session.tabs;
-  if(tabs.length === 0) {
+  if (tabs.length === 0) {
     return null;
   }
-  const active = tabs[layout.session.history.open];  
-  if(active.id === 'releases') {
+  const active = tabs[layout.session.history.open];
+  if (active.id === 'releases') {
     //return (<Releases releases={releases} site={site}/>);  
-  } 
+  }
 
   return (<>
     <div className={classes.root}>
