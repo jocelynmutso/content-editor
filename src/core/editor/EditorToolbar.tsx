@@ -5,7 +5,6 @@ import IconButton from '@material-ui/core/IconButton';
 import SaveIcon from '@material-ui/icons/Save';
 import CloseIcon from '@material-ui/icons/Close';
 
-
 import LinkIcon from '@material-ui/icons/Link';
 import LanguageIcon from '@material-ui/icons/Language';
 import WorkIcon from '@material-ui/icons/Work';
@@ -29,6 +28,9 @@ const useStyles = () => makeStyles((theme: Theme) =>
     },
     buttonGroup: {
       margin: theme.spacing(1)
+    },
+    divider: {
+      width: '1px'
     }
   }),
 )();
@@ -47,10 +49,10 @@ const EditorToolbar: React.FC<EditorToolbarProps> = () => {
       <Box display="flex">
         <Box flexGrow="1" />
         <ButtonGroup variant="outlined" className={classes.buttonGroup} >
-          <IconButton aria-label="save" className={classes.iconButton}>
+          <IconButton aria-label="Locale1" className={classes.iconButton}>
             <LanguageIcon />
           </IconButton>
-          <IconButton aria-label="save" className={classes.iconButton}>
+          <IconButton aria-label="Locale2" className={classes.iconButton}>
             <LanguageIcon />
           </IconButton>
           <IconButton aria-label="save" className={classes.iconButton}>
