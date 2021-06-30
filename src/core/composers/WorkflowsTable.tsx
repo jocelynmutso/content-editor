@@ -34,14 +34,14 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 
-interface LinksTableProps {
+interface WorkflowsTableProps {
   site: API.CMS.Site,
   article: API.CMS.Article
 }
 
-const LinksTable: React.FC<LinksTableProps> = ({ site, article }) => {
+const WorkflowsTable: React.FC<WorkflowsTableProps> = ({ site, article }) => {
   const classes = useStyles();
-  const links: API.CMS.Link[] = Object.values(site.links).filter(link => article.id === link.article);
+  const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => article.id === workflow.article);
 
 
   return (
@@ -49,21 +49,19 @@ const LinksTable: React.FC<LinksTableProps> = ({ site, article }) => {
       <Table className={classes.table} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell className={classes.bold} align="left">Type</TableCell>
+            <TableCell className={classes.bold} align="left">Technical Name</TableCell>
             <TableCell className={classes.bold} align="left">Locale</TableCell>
-            <TableCell className={classes.bold} align="left">Description</TableCell>
-            <TableCell className={classes.bold} align="left">Value</TableCell>
+            <TableCell className={classes.bold} align="left">Localised Name</TableCell>
             <TableCell align="left"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {links.map((link, index) => (
+          {workflows.map((workflow, index) => (
             <TableRow key={index}>
-              <TableCell align="left">{link.type}</TableCell>
-              <TableCell align="left">{link.locale}</TableCell>
-              <TableCell align="left">{link.description}</TableCell>
-              <TableCell align="left">{link.content}</TableCell>
-              <TableCell align="right"><IconButton className={classes.iconButton}><EditIcon /></IconButton></TableCell>
+              <TableCell align="left">{workflow.name}</TableCell>
+              <TableCell align="left">{workflow.locale}</TableCell>
+              <TableCell align="left">{workflow.content}</TableCell>
+              <TableCell align="right"><IconButton className={classes.iconButton}><EditIcon/></IconButton></TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -72,7 +70,7 @@ const LinksTable: React.FC<LinksTableProps> = ({ site, article }) => {
   );
 }
 
-export { LinksTable }
+export { WorkflowsTable }
 
 
 

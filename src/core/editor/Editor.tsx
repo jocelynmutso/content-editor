@@ -48,7 +48,8 @@ const Editor: React.FC<EditorProps> = ({ site }) => {
       <EditorToolbar key={article.id} />
       <PageComposer key={article.id} site={site} article={article} locale={locale} />
       <LinkComposer key={article.id} site={site} article={article}/>
-      <WorkflowComposer key={article.id}/>
+      <br />
+      <WorkflowComposer key={article.id} site={site} article={article}/>
     </div>
   )
 }

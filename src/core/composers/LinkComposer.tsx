@@ -8,9 +8,8 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-
 import { LinksTable } from './LinksTable';
-import { API, Layout } from '../deps';
+import { API } from '../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,10 +24,12 @@ const useStyles = makeStyles((theme: Theme) =>
     select: {
       marginRight: theme.spacing(1),
       minWidth: '15ch',
+      backgroundColor: theme.palette.background.paper
     },
     formControl: {
       marginRight: theme.spacing(1),
       minWidth: '50ch',
+      backgroundColor: theme.palette.background.paper
     },
     heading: {
       fontWeight: 'bold',
@@ -65,6 +66,7 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
     setLocale(event.target.value as string);
   };
 
+ const links: API.CMS.Link[] = Object.values(site.links).filter(link => article.id === link.article);
 
   return (
     <div className={classes.root}>
@@ -111,7 +113,7 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <LinksTable site={site} article={article} />
+      {links.length === 0 ? null : <LinksTable site={site} article={article} /> }
     </div>
   );
 }

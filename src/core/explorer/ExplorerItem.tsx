@@ -26,8 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       "&:hover": {
         cursor: 'pointer',
-        textDecoration: 'underline',
-        textDecorationColor: theme.palette.secondary.light
+        color: theme.palette.text.primary
       }
     },
     localeSummary: {
@@ -37,8 +36,15 @@ const useStyles = makeStyles((theme: Theme) =>
     localeStyle: {
       color: theme.palette.primary.dark
     },
-    iconColor: {
-      color: theme.palette.info.main,
+    iconButton: {
+      color: theme.palette.primary.dark,
+      "&:hover, &.Mui-focusVisible": {
+        backgroundColor: theme.palette.info.main,
+        color: theme.palette.background.paper,
+        "& .MuiSvgIcon-root": {
+          color: theme.palette.background.paper,
+        }
+      }
     },
     link: {
       padding: 0,
@@ -48,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.text.primary
     },
     divider: {
-      background: theme.palette.primary.dark,
+      background: theme.palette.secondary.dark,
       marginTop: 4,
     },
     hoverRow: {
@@ -56,8 +62,8 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       textTransform: 'uppercase',
       "&:hover": {
-        backgroundColor: theme.palette.info.main,
-        color: 'white',
+        backgroundColor: theme.palette.info.light,
+        color: theme.palette.text.primary,
         fontWeight: 'bold',
         cursor: 'pointer',
       }
@@ -69,12 +75,9 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingBottom: 0,
       fontVariant: 'all-small-caps',
       fontWeight: 'bold',
-      "&:hover": {
-        backgroundColor: theme.palette.info.main,
-        color: 'white',
-        fontWeight: 'bold',
-        cursor: 'pointer'
-      }
+    },
+    verticalSpacer: {
+      margin: 0
     }
   }),
 );
@@ -95,7 +98,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
     layout.actions.handleTabAdd({ id: article.id, label: article.name });
   };
 
- const handleExpand = () => {
+  const handleExpand = () => {
     setOpen(true);
   };
 
@@ -114,7 +117,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
   return (
     <>
       <ListItem>
-        <ListItemText
+        <ListItemText className={classes.verticalSpacer}
           primary={<Typography onClick={handleClick} variant="body1" className={classes.nameStyle}>{article.name}</Typography>}
           secondary={<>
             <Typography component="span" variant="caption" className={classes.localeSummary} onClick={handleLinkClick}>
@@ -125,30 +128,30 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
           }
         />
         {open ?
-          <IconButton onClick={handleClose}><ExpandLess className={classes.iconColor} /></IconButton> :
-          <IconButton onClick={handleExpand}><ExpandMore className={classes.iconColor} /></IconButton>}
+          <IconButton className={classes.iconButton} onClick={handleClose}><ExpandLess /></IconButton> :
+          <IconButton className={classes.iconButton} onClick={handleExpand}><ExpandMore /></IconButton>}
       </ListItem>
 
       <Collapse in={open} timeout="auto" unmountOnExit>
         <TableContainer>
           <Table size="small">
             <TableBody>
-                <TableRow className={classes.hoverRow} >
-                  <TableCell className={classes.table}>
-                    Links: {links.length}
-                  </TableCell>
-                </TableRow>
-                <TableRow className={classes.hoverRow}>
-                  <TableCell className={classes.table}>
-                    Workflows: {workflows.length}
-                  </TableCell>
-                </TableRow>
+              <TableRow className={classes.hoverRow} >
+                <TableCell className={classes.table}>
+                  Links: {links.length}
+                </TableCell>
+              </TableRow>
+              <TableRow className={classes.hoverRow}>
+                <TableCell className={classes.table}>
+                  Workflows: {workflows.length}
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
-
-        <Divider className={classes.divider} />
       </Collapse>
+      <Divider className={classes.divider} />
+
     </>
   );
 }
