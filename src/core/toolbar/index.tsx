@@ -11,9 +11,9 @@ import { Layout, API } from '../deps';
 
 
 
-const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site): Layout.Session.ToolbarItem[] => {
+const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: API.CMS.Releases): Layout.Session.ToolbarItem[] => {
   return [
-    
+
     {
       id: 'toolbar.createNew',
       icon: <PlaylistAddIcon />,
@@ -41,7 +41,7 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site): Layout.Se
       icon: <NewReleasesIcon />,
       type: {
         onClick: () => {
-          actions.handleTabAdd({ id: 'releases', label: 'Releases' });
+          actions.handleTabAdd({ id: 'releases', label: "Releases" });
         }
       }
     },

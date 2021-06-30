@@ -28,7 +28,7 @@ const Components: React.FC<{ service: API.CMS.Service }> = ({ service}) => {
       search: (_value: string) => console.log("Search"),
       header: (<></>),
       content: (<Editor site={site} releases={releases}/>),
-      toolbar: toolbar(layout.actions, site),
+      toolbar: toolbar(layout.actions, site, releases),
       badges: []
     }} />);
 }
