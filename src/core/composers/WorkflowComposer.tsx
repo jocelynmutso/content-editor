@@ -23,9 +23,14 @@ const useStyles = makeStyles((theme: Theme) =>
     accordion: {
       backgroundColor: theme.palette.info.light
     },
-    select: {
+    selectSmall: {
       marginRight: theme.spacing(1),
       minWidth: '15ch',
+      backgroundColor: theme.palette.background.paper
+    },
+    selectLarge: {
+      marginRight: theme.spacing(1),
+      minWidth: '50ch',
       backgroundColor: theme.palette.background.paper
     },
     formControl: {
@@ -79,12 +84,26 @@ const WorkflowComposer: React.FC<WorkflowComposerProps> = ({ site, article }) =>
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Add workflow</Typography>
+      <Typography className={classes.heading}>Add workflow</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={classes.heading}>
-            <TextField className={classes.formControl} id="outlined-basic" label="Technical name" variant="outlined" />
-            <FormControl variant="outlined" className={classes.select}>
+            <FormControl variant="outlined" className={classes.selectLarge}>
+              <InputLabel id="demo-simple-select-outlined-label">Workflow</InputLabel>
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={locale}
+                onChange={handleLocaleChange}
+                label="Workflow"
+              >
+                <MenuItem value={10}>None</MenuItem>
+                <MenuItem value={10}>Flow 1</MenuItem>
+                <MenuItem value={20}>MyForm</MenuItem>
+                <MenuItem value={20}>GeneralTopics</MenuItem>
+              </Select>
+            </FormControl >
+            <FormControl variant="outlined" className={classes.selectSmall}>
               <InputLabel id="demo-simple-select-outlined-label">Locale</InputLabel>
               <Select
                 labelId="demo-simple-select-outlined-label"
@@ -97,8 +116,7 @@ const WorkflowComposer: React.FC<WorkflowComposerProps> = ({ site, article }) =>
                 <MenuItem value={20}>FI</MenuItem>
                 <MenuItem value={20}>SV</MenuItem>
               </Select>
-            </FormControl >
-          <TextField className={classes.formControl} id="outlined-basic" label="Localised name" variant="outlined" />
+            </FormControl>
           </Typography>
         </AccordionDetails>
       </Accordion>
