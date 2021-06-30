@@ -5,8 +5,6 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 
 import { ReleasesTable } from './ReleasesTable';
 import { API } from '../deps';
@@ -49,24 +47,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface ReleaseComposerProps {
   site: API.CMS.Site,
-  article: API.CMS.Article
+  releases: API.CMS.Releases;
 }
 
 
-const ReleaseComposer: React.FC<ReleaseComposerProps> = ({ site, article }) => {
+const ReleaseComposer: React.FC<ReleaseComposerProps> = ({ site, releases }) => {
   const classes = useStyles();
-  const [type, setType] = React.useState('');
-  const [locale, setLocale] = React.useState('');
 
-  const handleTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setType(event.target.value as string);
-  };
-
-  const handleLocaleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setLocale(event.target.value as string);
-  };
-
-  const links: API.CMS.Link[] = Object.values(site.links).filter(link => article.id === link.article);
 
   return (
     <div className={classes.root}>
@@ -82,12 +69,12 @@ const ReleaseComposer: React.FC<ReleaseComposerProps> = ({ site, article }) => {
           <Typography className={classes.heading}>
             <TextField className={classes.formControlSmall} id="outlined-basic" label="Tag" variant="outlined" />
             <TextField className={classes.formControlLarge} id="outlined-basic" label="Note" variant="outlined" />
-            <TextField className={classes.formControlSmall} disabled={true} id="outlined-basic" label="Date" defaultValue={"03/09/2021"} variant="outlined" />
+            <TextField className={classes.formControlSmall} disabled id="outlined-basic" label="Date" defaultValue={"03/09/2021"} variant="outlined" />
 
           </Typography>
         </AccordionDetails>
       </Accordion>
-      {links.length === 0 ? null : <ReleasesTable site={site} article={article} />}
+      {releases.length === 0 ? null : <ReleasesTable site={site} releases={releases} />}
     </div>
   );
 }

@@ -6,7 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import EditIcon from '@material-ui/icons/Edit';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import Paper from '@material-ui/core/Paper';
 
 import { API, Layout } from '../deps';
@@ -36,13 +36,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface ReleasesTableProps {
   site: API.CMS.Site,
-  article: API.CMS.Article
+  releases: API.CMS.Releases;
+  
 }
 
-const ReleasesTable: React.FC<ReleasesTableProps> = ({ site, article }) => {
+const ReleasesTable: React.FC<ReleasesTableProps> = ({ site, releases }) => {
   const classes = useStyles();
-  const links: API.CMS.Link[] = Object.values(site.links).filter(link => article.id === link.article);
-
 
   return (
     <TableContainer component={Paper}>
@@ -57,13 +56,13 @@ const ReleasesTable: React.FC<ReleasesTableProps> = ({ site, article }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {links.map((link, index) => (
+          {releases.map((release, index) => (
             <TableRow key={index}>
-              <TableCell align="left">{link.type}</TableCell>
-              <TableCell align="left">{link.locale}</TableCell>
-              <TableCell align="left">{link.type}</TableCell>
+              <TableCell align="left">{release.name}</TableCell>
+              <TableCell align="left">{release.note}</TableCell>
+              <TableCell align="left">{release.created}</TableCell>
               <TableCell align="left"></TableCell>
-              <TableCell align="right"><IconButton className={classes.iconButton}><EditIcon /></IconButton></TableCell>
+              <TableCell align="right"><IconButton className={classes.iconButton}><VisibilityIcon /></IconButton></TableCell>
             </TableRow>
           ))}
         </TableBody>

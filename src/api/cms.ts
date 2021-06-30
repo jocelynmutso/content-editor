@@ -8,6 +8,7 @@ declare namespace CMS {
   type LocalisedMarkdown = string;
   type LocalisedContent = string;
 
+
   interface Site {
     pages: Record<PageId, Page>,
     links: Record<LinkId, Link>,

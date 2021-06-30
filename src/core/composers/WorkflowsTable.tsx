@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Paper from '@material-ui/core/Paper';
 
 import { API, Layout } from '../deps';
@@ -52,7 +53,7 @@ const WorkflowsTable: React.FC<WorkflowsTableProps> = ({ site, article }) => {
             <TableCell className={classes.bold} align="left">Technical Name</TableCell>
             <TableCell className={classes.bold} align="left">Locale</TableCell>
             <TableCell className={classes.bold} align="left">Localised Name</TableCell>
-            <TableCell align="left"></TableCell>
+            <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -61,7 +62,13 @@ const WorkflowsTable: React.FC<WorkflowsTableProps> = ({ site, article }) => {
               <TableCell align="left">{workflow.name}</TableCell>
               <TableCell align="left">{workflow.locale}</TableCell>
               <TableCell align="left">{workflow.content}</TableCell>
-              <TableCell align="right"><IconButton className={classes.iconButton}><EditIcon/></IconButton></TableCell>
+              <TableCell align="right"><IconButton className={classes.iconButton}>
+                <EditIcon />
+              </IconButton>
+                <IconButton className={classes.iconButton}>
+                  <DeleteIcon />
+                </IconButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
