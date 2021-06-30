@@ -3,6 +3,7 @@ import { makeStyles, createStyles, Theme, Box } from '@material-ui/core';
 import { EditorToolbar } from './EditorToolbar';
 import { API, Layout } from '../deps';
 import { PageComposer, LinkComposer, WorkflowComposer } from '../composers';
+import { ReleaseComposer } from '../releases';
 
 const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
   createStyles({
@@ -47,9 +48,11 @@ const Editor: React.FC<EditorProps> = ({ site }) => {
     <div className={classes.root} key={article.id} >
       <EditorToolbar key={article.id} />
       <PageComposer key={article.id} site={site} article={article} locale={locale} />
-      <LinkComposer key={article.id} site={site} article={article}/>
+      <LinkComposer key={article.id} site={site} article={article} />
       <br />
-      <WorkflowComposer key={article.id} site={site} article={article}/>
+      <WorkflowComposer key={article.id} site={site} article={article} />
+      <br />
+      <ReleaseComposer site={site} article={article} />
     </div>
   )
 }
