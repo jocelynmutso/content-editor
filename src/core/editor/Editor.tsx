@@ -4,6 +4,7 @@ import { EditorToolbar } from './EditorToolbar';
 import { API, Layout } from '../deps';
 import { PageComposer, LinkComposer, WorkflowComposer } from '../composers';
 import { ReleaseComposer } from '../releases';
+import { LinksView } from '../links';
 
 const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
   createStyles({
@@ -37,6 +38,7 @@ const Editor: React.FC<EditorProps> = ({ site, releases }) => {
   const [locale, setLocale] = React.useState("en");
   const tabs = layout.session.tabs;
   
+  
   if (tabs.length === 0) {
     return null;
   }
@@ -44,9 +46,12 @@ const Editor: React.FC<EditorProps> = ({ site, releases }) => {
   const active = tabs[layout.session.history.open];
   if (active.id === 'releases') {
     return (<ReleaseComposer releases={releases} site={site}/>);  
+  } else if (active.id === 'links') {
+    return (<LinksView site={site}/>)
   }
+
   const article = site.articles[active.id];
-  
+
 
   return (
     <div className={classes.root} key={article.id} >
