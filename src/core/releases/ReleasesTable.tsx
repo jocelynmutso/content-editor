@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import EditIcon from '@material-ui/icons/Edit';
 import Paper from '@material-ui/core/Paper';
 
 import { API, Layout } from '../deps';
@@ -37,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
 interface ReleasesTableProps {
   site: API.CMS.Site,
   releases: API.CMS.Releases;
-  
+
 }
 
 const ReleasesTable: React.FC<ReleasesTableProps> = ({ site, releases }) => {
@@ -62,7 +63,11 @@ const ReleasesTable: React.FC<ReleasesTableProps> = ({ site, releases }) => {
               <TableCell align="left">{release.note}</TableCell>
               <TableCell align="left">{release.created}</TableCell>
               <TableCell align="left"></TableCell>
-              <TableCell align="right"><IconButton className={classes.iconButton}><VisibilityIcon /></IconButton></TableCell>
+              <TableCell align="right">
+                <IconButton className={classes.iconButton}>
+                  {release.name === "LATEST" ? <EditIcon/> : <VisibilityIcon />}
+                </IconButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

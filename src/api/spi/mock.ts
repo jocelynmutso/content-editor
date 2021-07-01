@@ -73,11 +73,11 @@ const links: API.CMS.Link[] = [
   { id: "l9", article: "a2", type: "internal", description: "hospital information", content: "http://www.hospitals.com", locale: "fi" },
   { id: "l10", article: "a2", type: "external", description: "terveys", content: "http://www.health.fi", locale: "fi" },
   { id: "l11", article: "a2", type: "internal", description: "elder care", content: "http://www.vanhukset.fi", locale: "fi" },
-  { id: "l12", article: "a3", type: "phone", description: "secretary phone", content: "+664-4185-6512", locale: "fi" },
-  { id: "l13", article: "a3", type: "phone", description: "manager phone", content: "+124-2241-1188", locale: "en" },
-  { id: "l14", article: "a3", type: "internal", description: "general information", content: "http://www.example.com", locale: "fi" },
-  { id: "l15", article: "a3", type: "external", description: "vocational training", content: "http://www.adult-learning.com", locale: "fi" },
-  { id: "l16", article: "a3", type: "internal", description: "education", content: "http://www.learn.fi", locale: "fi" }
+  { id: "l12", article: "a2", type: "phone", description: "secretary phone", content: "+664-4185-6512", locale: "fi" },
+  { id: "l13", article: "a2", type: "phone", description: "manager phone", content: "+124-2241-1188", locale: "en" },
+  { id: "l14", article: "a2", type: "internal", description: "general information", content: "http://www.example.com", locale: "fi" },
+  { id: "l15", article: "a2", type: "external", description: "vocational training", content: "http://www.adult-learning.com", locale: "fi" },
+  { id: "l16", article: "a2", type: "internal", description: "education", content: "http://www.learn.fi", locale: "fi" }
 
 ];
 
@@ -94,8 +94,9 @@ const workflows: API.CMS.Workflow[] = [
 
 const createMock = (): API.CMS.Service => {
   const releases: API.CMS.Releases = [
-    { id: "r1", name: "v1.5", created: "04/02/20021", note: "super note here" },
-    { id: "r2", name: "v1.6", created: "12/02/20021", note: "Even better note here" },
+    { id: "r3", name: "LATEST", created: "03/10/2021", note: "" },
+    { id: "r1", name: "v1.5", created: "04/02/2021", note: "super note here" },
+    { id: "r2", name: "v1.6", created: "12/02/2021", note: "Even better note here" },
 
   ];
   const getSite = async () => {

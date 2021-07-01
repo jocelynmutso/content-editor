@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Typography, IconButton, Theme, createStyles } from '@material-ui/core';
+import { makeStyles, IconButton, Theme, createStyles } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import EditIcon from '@material-ui/icons/Edit';
 import Paper from '@material-ui/core/Paper';
 
-import { API, Layout } from '../deps';
+import { API } from '../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
       }
     },
     bold: {
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     tableCell: {
       paddingTop: 0,
@@ -38,25 +38,26 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 
-interface LinksViewProps {
+interface ArticlesTableProps {
   site: API.CMS.Site,
+  article: API.CMS.Article
 }
 
-const LinksView: React.FC<LinksViewProps> = ({ site }) => {
+const ArticlesTable: React.FC<ArticlesTableProps> = ({ site, article }) => {
   const classes = useStyles();
-  
-  const links = Object.values(site.links);
+  const links: API.CMS.Link[] = Object.values(site.links).filter(link => article.id === link.article);
 
-    return (
+
+  return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} size="small" aria-label="a dense table">
+      <Table className={classes.table} size="small" aria-label="a dense table" >
         <TableHead>
           <TableRow>
-            <TableCell className={classes.bold} align="left">Type</TableCell>
-            <TableCell className={classes.bold} align="left">Locale</TableCell>
-            <TableCell className={classes.bold} align="left">Description</TableCell>
-            <TableCell className={classes.bold} align="left">URL / value</TableCell>
-            <TableCell className={classes.bold} align="left">Article</TableCell>
+            <TableCell className={classes.bold} align="left">Order</TableCell>
+            <TableCell className={classes.bold} align="left">Technical name</TableCell>
+            <TableCell className={classes.bold} align="left">Localised name</TableCell>
+            <TableCell className={classes.bold} align="left">Page Locale</TableCell>
+            <TableCell align="left"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -66,7 +67,7 @@ const LinksView: React.FC<LinksViewProps> = ({ site }) => {
               <TableCell className={classes.tableCell} align="left">{link.locale}</TableCell>
               <TableCell className={classes.tableCell} align="left">{link.description}</TableCell>
               <TableCell className={classes.tableCell} align="left">{link.content}</TableCell>
-              <TableCell className={classes.tableCell} align="left">{site.articles[link.article].name}</TableCell>
+              <TableCell className={classes.tableCell} align="right"><IconButton className={classes.iconButton}><EditIcon /></IconButton></TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -75,7 +76,7 @@ const LinksView: React.FC<LinksViewProps> = ({ site }) => {
   );
 }
 
-export { LinksView }
+export { ArticlesTable }
 
 
 

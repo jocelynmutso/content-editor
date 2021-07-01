@@ -8,7 +8,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-import { LinksTable } from './LinksTable';
+import { ArticlesTable } from './ArticlesTable';
 import { API } from '../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -47,13 +47,13 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface LinkComposerProps {
+interface ArticleComposerProps {
   site: API.CMS.Site,
   article: API.CMS.Article
 }
 
 
-const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
+const ArticleComposer: React.FC<ArticleComposerProps> = ({ site, article }) => {
   const classes = useStyles();
   const [type, setType] = React.useState('');
   const [locale, setLocale] = React.useState('');
@@ -76,7 +76,7 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Create new link</Typography>
+          <Typography className={classes.heading}>Create new Article</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={classes.heading}>
@@ -113,9 +113,9 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      {links.length === 0 ? null : <LinksTable site={site} article={article} /> }
+      {links.length === 0 ? null : <ArticlesTable site={site} article={article} /> }
     </div>
   );
 }
 
-export { LinkComposer }
+export { ArticleComposer }

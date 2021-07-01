@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles, Theme, Box } from '@material-ui/core';
 import { EditorToolbar } from './EditorToolbar';
 import { API, Layout } from '../deps';
-import { PageComposer, LinkComposer, WorkflowComposer } from '../composers';
+import { PageComposer, LinkComposer, WorkflowComposer, ArticleComposer } from '../composers';
 import { ReleaseComposer } from '../releases';
 import { LinksView } from '../links';
 
@@ -60,6 +60,8 @@ const Editor: React.FC<EditorProps> = ({ site, releases }) => {
       <LinkComposer key={article.id} site={site} article={article} />
       <br />
       <WorkflowComposer key={article.id} site={site} article={article} />
+      <br />
+      <ArticleComposer site={site} article={article}  />
     </div>
   )
 }
