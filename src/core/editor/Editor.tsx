@@ -60,8 +60,6 @@ const Editor: React.FC<EditorProps> = ({ site, releases }) => {
       <LinkComposer key={article.id} site={site} article={article} />
       <br />
       <WorkflowComposer key={article.id} site={site} article={article} />
-      <br />
-      <ReleaseComposer site={site} releases={releases}/>
     </div>
   )
 }

@@ -30,6 +30,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     bold: {
       fontWeight: 'bold'
+    },
+    tableCell: {
+      paddingTop: 0,
+      paddingBottom: 0
     }
   }));
 
@@ -59,10 +63,10 @@ const WorkflowsTable: React.FC<WorkflowsTableProps> = ({ site, article }) => {
         <TableBody>
           {workflows.map((workflow, index) => (
             <TableRow key={index}>
-              <TableCell align="left">{workflow.name}</TableCell>
-              <TableCell align="left">{workflow.locale}</TableCell>
-              <TableCell align="left">{workflow.content}</TableCell>
-              <TableCell align="right"><IconButton className={classes.iconButton}>
+              <TableCell className={classes.tableCell} align="left">{workflow.name}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{workflow.locale}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{workflow.content}</TableCell>
+              <TableCell className={classes.tableCell} align="right"><IconButton className={classes.iconButton}>
                 <EditIcon />
               </IconButton>
                 <IconButton className={classes.iconButton}>

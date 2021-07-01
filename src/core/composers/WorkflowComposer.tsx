@@ -84,7 +84,7 @@ const WorkflowComposer: React.FC<WorkflowComposerProps> = ({ site, article }) =>
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-      <Typography className={classes.heading}>Add workflow</Typography>
+          <Typography className={classes.heading}>Add workflow</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={classes.heading}>

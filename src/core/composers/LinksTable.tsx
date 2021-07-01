@@ -28,7 +28,11 @@ const useStyles = makeStyles((theme: Theme) =>
       }
     },
     bold: {
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+    },
+    tableCell: {
+      paddingTop: 0,
+      paddingBottom: 0
     }
   }));
 
@@ -46,7 +50,7 @@ const LinksTable: React.FC<LinksTableProps> = ({ site, article }) => {
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} size="small" aria-label="a dense table">
+      <Table className={classes.table} size="small" aria-label="a dense table" >
         <TableHead>
           <TableRow>
             <TableCell className={classes.bold} align="left">Type</TableCell>
@@ -59,11 +63,11 @@ const LinksTable: React.FC<LinksTableProps> = ({ site, article }) => {
         <TableBody>
           {links.map((link, index) => (
             <TableRow key={index}>
-              <TableCell align="left">{link.type}</TableCell>
-              <TableCell align="left">{link.locale}</TableCell>
-              <TableCell align="left">{link.description}</TableCell>
-              <TableCell align="left">{link.content}</TableCell>
-              <TableCell align="right"><IconButton className={classes.iconButton}><EditIcon /></IconButton></TableCell>
+              <TableCell className={classes.tableCell} align="left">{link.type}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{link.locale}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{link.description}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{link.content}</TableCell>
+              <TableCell className={classes.tableCell} align="right"><IconButton className={classes.iconButton}><EditIcon /></IconButton></TableCell>
             </TableRow>
           ))}
         </TableBody>

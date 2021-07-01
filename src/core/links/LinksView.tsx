@@ -29,6 +29,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     bold: {
       fontWeight: 'bold'
+    },
+    tableCell: {
+      paddingTop: 0,
+      paddingBottom: 0
     }
   }));
 
@@ -41,27 +45,27 @@ interface LinksViewProps {
 const LinksView: React.FC<LinksViewProps> = ({ site }) => {
   const classes = useStyles();
   const links = Object.values(site.links);
-  
+
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
             <TableCell className={classes.bold} align="left">Type</TableCell>
-            <TableCell className={classes.bold} align="left">Page</TableCell>
             <TableCell className={classes.bold} align="left">Locale</TableCell>
             <TableCell className={classes.bold} align="left">Description</TableCell>
-            <TableCell className={classes.bold} align="left">Value</TableCell>
+            <TableCell className={classes.bold} align="left">URL / value</TableCell>
+            <TableCell className={classes.bold} align="left">Article</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {links.map((link, index) => (
             <TableRow key={index}>
-              <TableCell align="left">{link.type}</TableCell>
-              <TableCell align="left">{link.locale}</TableCell>
-              <TableCell align="left">{link.description}</TableCell>
-              <TableCell align="left">{link.content}</TableCell>
-              <TableCell align="left">{link.article}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{link.type}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{link.locale}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{link.description}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{link.content}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{link.article}</TableCell>
             </TableRow>
           ))}
         </TableBody>
