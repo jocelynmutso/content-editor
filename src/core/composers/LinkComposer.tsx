@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme, Box, TextField, InputLabel, FormControl, IconButton } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, TextField, InputLabel, FormControl, IconButton } from '@material-ui/core';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -83,7 +83,7 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
               <Select
                 value={type}
                 onChange={handleTypeChange}
-                label="Age"
+                label="Type"
               >
                 <MenuItem value={10}>Internal</MenuItem>
                 <MenuItem value={20}>External</MenuItem>
@@ -94,6 +94,7 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
               <Select
                 value={locale}
                 onChange={handleLocaleChange}
+                label="locale"
               >
                 <MenuItem value={10}>EN</MenuItem>
                 <MenuItem value={20}>FI</MenuItem>

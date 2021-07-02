@@ -90,7 +90,7 @@ interface LocaleOptionsProps {
 
 const LocaleOptions: React.FC<LocaleOptionsProps> = ({ site }) => {
   const classes = useStyles();
-  const [country, setCountry] = React.useState();
+
   const [locale, setLocale] = React.useState('');
   
   const locales: API.CMS.SiteLocale[] = Object.values(site.locales);
@@ -108,6 +108,7 @@ const LocaleOptions: React.FC<LocaleOptionsProps> = ({ site }) => {
             <InputLabel>Locale</InputLabel>
             <Select
               value={locale}
+              label="locale"
               >
               <MenuItem value={10}>English: EN</MenuItem>
               <MenuItem value={20}>Finnish: FI</MenuItem>

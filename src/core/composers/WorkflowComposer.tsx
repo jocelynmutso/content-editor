@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme, Box, TextField, InputLabel, FormControl, IconButton } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, InputLabel, FormControl, IconButton } from '@material-ui/core';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -8,7 +8,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-import { API, Layout } from '../deps';
+import { API } from '../deps';
 
 import { WorkflowsTable } from './WorkflowsTable';
 
@@ -62,13 +62,7 @@ interface WorkflowComposerProps {
 
 const WorkflowComposer: React.FC<WorkflowComposerProps> = ({ site, article }) => {
   const classes = useStyles();
-
-  const [type, setType] = React.useState('');
   const [locale, setLocale] = React.useState('');
-
-  const handleTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setType(event.target.value as string);
-  };
 
   const handleLocaleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setLocale(event.target.value as string);
@@ -81,18 +75,14 @@ const WorkflowComposer: React.FC<WorkflowComposerProps> = ({ site, article }) =>
       <Accordion square={true} className={classes.accordion} >
         <AccordionSummary
           expandIcon={<IconButton className={classes.iconButton}><AddCircleOutlineIcon /> </IconButton>}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
         >
           <Typography className={classes.heading}>Add workflow</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={classes.heading}>
             <FormControl variant="outlined" className={classes.selectLarge}>
-              <InputLabel id="demo-simple-select-outlined-label">Workflow</InputLabel>
+              <InputLabel >Workflow</InputLabel>
               <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
                 value={locale}
                 onChange={handleLocaleChange}
                 label="Workflow"
@@ -104,13 +94,11 @@ const WorkflowComposer: React.FC<WorkflowComposerProps> = ({ site, article }) =>
               </Select>
             </FormControl >
             <FormControl variant="outlined" className={classes.selectSmall}>
-              <InputLabel id="demo-simple-select-outlined-label">Locale</InputLabel>
+              <InputLabel>Locale</InputLabel>
               <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
                 value={locale}
                 onChange={handleLocaleChange}
-                label="Age"
+                label="Locale"
               >
                 <MenuItem value={10}>EN</MenuItem>
                 <MenuItem value={20}>FI</MenuItem>

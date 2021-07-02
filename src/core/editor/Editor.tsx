@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme, Box } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core';
 import { API, Layout } from '../deps';
 import { PageComposer, LinkComposer, WorkflowComposer, ArticleComposer } from '../composers';
 import { ReleaseComposer } from '../releases';
@@ -57,9 +57,10 @@ const Editor: React.FC<EditorProps> = ({ site, releases }) => {
 
   const article = site.articles[active.id];
 
-  const onClose = () => {
+ /* const onClose = () => {
     layout.actions.handleTabClose(active)
   }
+  */
   return (
     <div className={classes.root} key={article.id} >
       <PageComposer key={article.id} site={site} article={article} locale={locale} />

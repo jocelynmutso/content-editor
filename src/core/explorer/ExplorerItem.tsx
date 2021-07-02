@@ -1,9 +1,7 @@
 import React from 'react';
 import {
-  makeStyles, Theme, createStyles, Divider, Typography, Box, Button,
-  TableContainer, Table, TableRow, TableCell, TableBody, Paper, IconButton
+  makeStyles, Theme, createStyles, Divider, Typography, TableContainer, Table, TableRow, TableCell, TableBody, IconButton
 } from '@material-ui/core';
-import clsx from 'clsx';
 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';

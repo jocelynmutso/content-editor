@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Typography, IconButton, Theme, createStyles } from '@material-ui/core';
+import { makeStyles, IconButton, Theme, createStyles } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,7 +11,7 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import EditIcon from '@material-ui/icons/Edit';
 import Paper from '@material-ui/core/Paper';
 
-import { API, Layout } from '../deps';
+import { API } from '../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

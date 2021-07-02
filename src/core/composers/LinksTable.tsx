@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Typography, IconButton, Theme, createStyles } from '@material-ui/core';
+import { makeStyles, IconButton, Theme, createStyles } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';

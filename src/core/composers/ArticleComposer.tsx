@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme, Box, TextField, InputLabel, FormControl, IconButton } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, TextField, InputLabel, FormControl, IconButton } from '@material-ui/core';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -7,9 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-
-import { ArticlesTable } from './ArticlesTable';
-import { API } from '../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -50,14 +47,10 @@ interface ArticleComposerProps {
 }
 
 
-const ArticleComposer: React.FC<ArticleComposerProps> = ({  }) => {
+const ArticleComposer: React.FC<ArticleComposerProps> = () => {
   const classes = useStyles();
-  const [type, setType] = React.useState('');
   const [locale, setLocale] = React.useState('');
-  
-  const handleTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setType(event.target.value as string);
-  };
+
 
   const handleLocaleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setLocale(event.target.value as string);
@@ -68,21 +61,17 @@ const ArticleComposer: React.FC<ArticleComposerProps> = ({  }) => {
       <Accordion square={true} className={classes.accordion} >
         <AccordionSummary
           expandIcon={<IconButton className={classes.iconButton}><AddCircleOutlineIcon /> </IconButton>}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
         >
           <Typography className={classes.heading}>Create new Article</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={classes.heading}>
             <FormControl variant="outlined" className={classes.select}>
-              <InputLabel id="demo-simple-select-outlined-label">Parent</InputLabel>
+              <InputLabel>Parent</InputLabel>
               <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
                 value={locale}
                 onChange={handleLocaleChange}
-                label="Age"
+                label="Parent"
               >
                 <MenuItem value={10}>none</MenuItem>
                 <MenuItem value={20}>300_residence</MenuItem>
@@ -90,8 +79,8 @@ const ArticleComposer: React.FC<ArticleComposerProps> = ({  }) => {
                 <MenuItem value={40}>450_education</MenuItem>
               </Select>
             </FormControl >
-            <TextField className={classes.select} id="outlined-basic" label="Order" variant="outlined" />
-            <TextField className={classes.formControl} id="outlined-basic" label="Name" variant="outlined" />
+            <TextField className={classes.select} label="Order" variant="outlined" />
+            <TextField className={classes.formControl} label="Name" variant="outlined" />
           </Typography>
         </AccordionDetails>
       </Accordion>
