@@ -105,7 +105,8 @@ const createMock = (): API.CMS.Service => {
       links: toRecord(links),
       articles: toRecord(articles),
       workflows: toRecord(workflows),
-      release: toRecord(releases)
+      release: toRecord(releases),
+      locales: ["fi", "sv", "en"]
     };
   }
   const getReleases = async () => {

@@ -3,7 +3,7 @@ import { makeStyles, createStyles, Theme, Box } from '@material-ui/core';
 import { API, Layout } from '../deps';
 import { PageComposer, LinkComposer, WorkflowComposer, ArticleComposer } from '../composers';
 import { ReleaseComposer } from '../releases';
-import { Options } from '../options';
+import { LocaleOptions } from '../locales';
 import { LinksView } from '../links';
 
 const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
@@ -52,7 +52,7 @@ const Editor: React.FC<EditorProps> = ({ site, releases }) => {
   } else if (active.id === 'article') {
     return (<ArticleComposer />)
   } else if (active.id === 'options') {
-    return (<Options />)
+    return (<LocaleOptions site={site} />)
   }
 
   const article = site.articles[active.id];

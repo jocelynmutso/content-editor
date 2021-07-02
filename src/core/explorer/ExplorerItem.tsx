@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.primary.dark
     },
     iconButton: {
+      marginTop: 1,
       color: theme.palette.primary.dark,
       "&:hover, &.Mui-focusVisible": {
         backgroundColor: theme.palette.info.main,

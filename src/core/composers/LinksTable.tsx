@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import EditIcon from '@material-ui/icons/Edit';
 import Paper from '@material-ui/core/Paper';
 
-import { API, Layout } from '../deps';
+import { API } from '../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
