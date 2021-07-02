@@ -17,7 +17,11 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
     {
       id: 'toolbar.createNew',
       icon: <PlaylistAddIcon />,
-      type: { getView: () => (<Explorer site={site} />) }
+      type: {
+        onClick: () => {
+          actions.handleTabAdd({ id: 'article', label: "New Article" });
+        }
+      }
     },
 
     {

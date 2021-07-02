@@ -70,7 +70,6 @@ const ReleaseComposer: React.FC<ReleaseComposerProps> = ({ site, releases }) => 
             <TextField className={classes.formControlSmall} id="outlined-basic" label="Tag" variant="outlined" />
             <TextField className={classes.formControlLarge} id="outlined-basic" label="Note" variant="outlined" />
             <TextField className={classes.formControlSmall} disabled id="outlined-basic" label="Date" defaultValue={"03/09/2021"} variant="outlined" />
-
           </Typography>
         </AccordionDetails>
       </Accordion>

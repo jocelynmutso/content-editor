@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme, Box } from '@material-ui/core';
-import { EditorToolbar } from './EditorToolbar';
 import { API, Layout } from '../deps';
 import { PageComposer, LinkComposer, WorkflowComposer, ArticleComposer } from '../composers';
 import { ReleaseComposer } from '../releases';
@@ -38,6 +37,7 @@ const Editor: React.FC<EditorProps> = ({ site, releases }) => {
   const [locale, setLocale] = React.useState("en");
   const tabs = layout.session.tabs;
   
+
   
   if (tabs.length === 0) {
     return null;
@@ -48,20 +48,23 @@ const Editor: React.FC<EditorProps> = ({ site, releases }) => {
     return (<ReleaseComposer releases={releases} site={site}/>);  
   } else if (active.id === 'links') {
     return (<LinksView site={site}/>)
-  }
+  } else if (active.id === 'article') {
+    return (<ArticleComposer />)
+  } 
 
   const article = site.articles[active.id];
 
-
+  const onClose = () => {
+    layout.actions.handleTabClose(active)
+  }
   return (
     <div className={classes.root} key={article.id} >
-      <EditorToolbar key={article.id} />
       <PageComposer key={article.id} site={site} article={article} locale={locale} />
       <LinkComposer key={article.id} site={site} article={article} />
       <br />
       <WorkflowComposer key={article.id} site={site} article={article} />
       <br />
-      <ArticleComposer site={site} article={article}  />
+      <ArticleComposer key={article.id} />
     </div>
   )
 }

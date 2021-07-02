@@ -15,8 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '98%',
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
+      margin: theme.spacing(1)
     },
     accordion: {
       backgroundColor: theme.palette.info.light
@@ -28,8 +27,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     formControl: {
       marginRight: theme.spacing(1),
-      minWidth: '50ch',
-      backgroundColor: theme.palette.background.paper
+      backgroundColor: theme.palette.background.paper,
+      minWidth: '60ch'
     },
     heading: {
       fontWeight: 'bold',
@@ -48,16 +47,14 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface ArticleComposerProps {
-  site: API.CMS.Site,
-  article: API.CMS.Article
 }
 
 
-const ArticleComposer: React.FC<ArticleComposerProps> = ({ site, article }) => {
+const ArticleComposer: React.FC<ArticleComposerProps> = ({  }) => {
   const classes = useStyles();
   const [type, setType] = React.useState('');
   const [locale, setLocale] = React.useState('');
-
+  
   const handleTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setType(event.target.value as string);
   };
@@ -66,13 +63,11 @@ const ArticleComposer: React.FC<ArticleComposerProps> = ({ site, article }) => {
     setLocale(event.target.value as string);
   };
 
- const links: API.CMS.Link[] = Object.values(site.links).filter(link => article.id === link.article);
-
   return (
     <div className={classes.root}>
       <Accordion square={true} className={classes.accordion} >
         <AccordionSummary
-          expandIcon={<IconButton className={classes.iconButton}><AddCircleOutlineIcon/> </IconButton>}
+          expandIcon={<IconButton className={classes.iconButton}><AddCircleOutlineIcon /> </IconButton>}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
@@ -81,20 +76,7 @@ const ArticleComposer: React.FC<ArticleComposerProps> = ({ site, article }) => {
         <AccordionDetails>
           <Typography className={classes.heading}>
             <FormControl variant="outlined" className={classes.select}>
-              <InputLabel id="demo-simple-select-outlined-label">Type</InputLabel>
-              <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                value={type}
-                onChange={handleTypeChange}
-                label="Age"
-              >
-                <MenuItem value={10}>Internal</MenuItem>
-                <MenuItem value={20}>External</MenuItem>
-              </Select>
-            </FormControl >
-            <FormControl variant="outlined" className={classes.select}>
-              <InputLabel id="demo-simple-select-outlined-label">Locale</InputLabel>
+              <InputLabel id="demo-simple-select-outlined-label">Parent</InputLabel>
               <Select
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
@@ -102,18 +84,17 @@ const ArticleComposer: React.FC<ArticleComposerProps> = ({ site, article }) => {
                 onChange={handleLocaleChange}
                 label="Age"
               >
-                <MenuItem value={10}>EN</MenuItem>
-                <MenuItem value={20}>FI</MenuItem>
-                <MenuItem value={20}>SV</MenuItem>
+                <MenuItem value={10}>none</MenuItem>
+                <MenuItem value={20}>300_residence</MenuItem>
+                <MenuItem value={30}>350_construction</MenuItem>
+                <MenuItem value={40}>450_education</MenuItem>
               </Select>
             </FormControl >
-
-            <TextField className={classes.formControl} id="outlined-basic" label="Description" variant="outlined" />
-            <TextField className={classes.formControl} id="outlined-basic" label="Value" variant="outlined" />
+            <TextField className={classes.select} id="outlined-basic" label="Order" variant="outlined" />
+            <TextField className={classes.formControl} id="outlined-basic" label="Name" variant="outlined" />
           </Typography>
         </AccordionDetails>
       </Accordion>
-      {links.length === 0 ? null : <ArticlesTable site={site} article={article} /> }
     </div>
   );
 }

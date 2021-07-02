@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import EditIcon from '@material-ui/icons/Edit';
 import Paper from '@material-ui/core/Paper';
 
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     iconButton: {
       padding: 2,
+      marginLeft: theme.spacing(3),
       color: theme.palette.primary.dark,
       "&:hover, &.Mui-focusVisible": {
         backgroundColor: theme.palette.info.main,
@@ -64,9 +66,13 @@ const ReleasesTable: React.FC<ReleasesTableProps> = ({ site, releases }) => {
               <TableCell align="left">{release.created}</TableCell>
               <TableCell align="left"></TableCell>
               <TableCell align="right">
-                <IconButton className={classes.iconButton}>
-                  {release.name === "LATEST" ? <EditIcon/> : <VisibilityIcon />}
-                </IconButton>
+                {release.name === "LATEST" ?
+                  <>
+                    <IconButton className={classes.iconButton}> <EditIcon /> </IconButton>
+                    <IconButton className={classes.iconButton}> <CheckCircleIcon /> </IconButton>
+                  </>
+                  : <IconButton className={classes.iconButton}><VisibilityIcon /> </IconButton>}
+
               </TableCell>
             </TableRow>
           ))}

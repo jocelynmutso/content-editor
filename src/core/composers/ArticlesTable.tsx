@@ -53,6 +53,7 @@ const ArticlesTable: React.FC<ArticlesTableProps> = ({ site, article }) => {
       <Table className={classes.table} size="small" aria-label="a dense table" >
         <TableHead>
           <TableRow>
+            <TableCell className={classes.bold} align="left">Parent</TableCell>
             <TableCell className={classes.bold} align="left">Order</TableCell>
             <TableCell className={classes.bold} align="left">Technical name</TableCell>
             <TableCell className={classes.bold} align="left">Localised name</TableCell>
@@ -63,9 +64,10 @@ const ArticlesTable: React.FC<ArticlesTableProps> = ({ site, article }) => {
         <TableBody>
           {links.map((link, index) => (
             <TableRow key={index}>
-              <TableCell className={classes.tableCell} align="left">{link.type}</TableCell>
-              <TableCell className={classes.tableCell} align="left">{link.locale}</TableCell>
-              <TableCell className={classes.tableCell} align="left">{link.description}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{article.parentId}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{article.order}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{article.name}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{article.parentId}</TableCell>
               <TableCell className={classes.tableCell} align="left">{link.content}</TableCell>
               <TableCell className={classes.tableCell} align="right"><IconButton className={classes.iconButton}><EditIcon /></IconButton></TableCell>
             </TableRow>

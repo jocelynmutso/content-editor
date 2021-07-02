@@ -66,19 +66,21 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
     setLocale(event.target.value as string);
   };
 
- const links: API.CMS.Link[] = Object.values(site.links).filter(link => article.id === link.article);
+  const links: API.CMS.Link[] = Object.values(site.links).filter(link => article.id === link.article);
 
   return (
     <div className={classes.root}>
       <Accordion square={true} className={classes.accordion} >
         <AccordionSummary
-          expandIcon={<IconButton className={classes.iconButton}><AddCircleOutlineIcon/> </IconButton>}
+          expandIcon={<IconButton className={classes.iconButton}><AddCircleOutlineIcon /> </IconButton>}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
           <Typography className={classes.heading}>Create new link</Typography>
         </AccordionSummary>
         <AccordionDetails>
+          <TextField className={classes.formControl} id="outlined-basic" label="Technical name" variant="outlined" />
+          <TextField className={classes.formControl} id="outlined-basic" label="Value" variant="outlined" />
           <Typography className={classes.heading}>
             <FormControl variant="outlined" className={classes.select}>
               <InputLabel id="demo-simple-select-outlined-label">Type</InputLabel>
@@ -113,7 +115,7 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
           </Typography>
         </AccordionDetails>
       </Accordion>
-      {links.length === 0 ? null : <LinksTable site={site} article={article} /> }
+      {links.length === 0 ? null : <LinksTable site={site} article={article} />}
     </div>
   );
 }
