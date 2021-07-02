@@ -73,18 +73,14 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
       <Accordion square={true} className={classes.accordion} >
         <AccordionSummary
           expandIcon={<IconButton className={classes.iconButton}><AddCircleOutlineIcon /> </IconButton>}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
         >
           <Typography className={classes.heading}>Create new link</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={classes.heading}>
             <FormControl variant="outlined" className={classes.select}>
-              <InputLabel id="demo-simple-select-outlined-label">Type</InputLabel>
+              <InputLabel>Type</InputLabel>
               <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
                 value={type}
                 onChange={handleTypeChange}
                 label="Age"
@@ -94,13 +90,10 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
               </Select>
             </FormControl >
             <FormControl variant="outlined" className={classes.select}>
-              <InputLabel id="demo-simple-select-outlined-label">Locale</InputLabel>
+              <InputLabel>Locale</InputLabel>
               <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
                 value={locale}
                 onChange={handleLocaleChange}
-                label="Age"
               >
                 <MenuItem value={10}>EN</MenuItem>
                 <MenuItem value={20}>FI</MenuItem>
@@ -108,8 +101,8 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
               </Select>
             </FormControl >
 
-            <TextField className={classes.formControl} id="outlined-basic" label="Description" variant="outlined" />
-            <TextField className={classes.formControl} id="outlined-basic" label="Value" variant="outlined" />
+            <TextField className={classes.formControl} label="Description" variant="outlined" />
+            <TextField className={classes.formControl} label="Value" variant="outlined" />
           </Typography>
         </AccordionDetails>
       </Accordion>

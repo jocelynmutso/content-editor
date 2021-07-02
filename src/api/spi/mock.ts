@@ -90,7 +90,11 @@ const workflows: API.CMS.Workflow[] = [
   { id: "w6", article: "a1.3", name: "inquiryMgr", content: "General Question", locale: "fi" },
 ];
 
-
+const locales: API.CMS.SiteLocale[] = [
+  {id: "l1", enabled: true, value: "fi", note: "initial translation"},
+  {id: "l2", enabled: true, value: "sv", note: "initial translation"},
+  {id: "l3", enabled: false, value: "en", note: "initial translation"}
+] 
 
 const createMock = (): API.CMS.Service => {
   const releases: API.CMS.Releases = [
@@ -106,7 +110,7 @@ const createMock = (): API.CMS.Service => {
       articles: toRecord(articles),
       workflows: toRecord(workflows),
       release: toRecord(releases),
-      locales: ["fi", "sv", "en"]
+      locales: toRecord(locales),
     };
   }
   const getReleases = async () => {

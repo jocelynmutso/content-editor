@@ -10,11 +10,18 @@ declare namespace CMS {
 
 
   interface Site {
-    locales: Locale[],
+    locales: Record<string, SiteLocale>,
     pages: Record<PageId, Page>,
     links: Record<LinkId, Link>,
     articles: Record<ArticleId, Article>,
     workflows: Record<WorkflowId, Workflow>,
+  }
+  
+  interface SiteLocale {
+    id: string,
+    value: Locale,
+    enabled: boolean,
+    note: string,
   }
 
   interface Page {
