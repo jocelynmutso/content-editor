@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
         color: theme.palette.text.primary
       }
     },
-    localeSummary: {
+    summary: {
       color: theme.palette.primary.main,
       fontWeight: 'bold',
     },
@@ -75,6 +75,7 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingBottom: 0,
       fontVariant: 'all-small-caps',
       fontWeight: 'bold',
+      lineHeight: 1.1
     },
     verticalSpacer: {
       margin: 0
@@ -119,13 +120,6 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
       <ListItem>
         <ListItemText className={classes.verticalSpacer}
           primary={<Typography onClick={handleClick} variant="body1" className={classes.nameStyle}>{article.name}</Typography>}
-          secondary={<>
-            <Typography component="span" variant="caption" className={classes.localeSummary} onClick={handleLinkClick}>
-              {pages.map((page, index) => (<span className={classes.hoverRow} key={index}>{page.locale}&nbsp;</span>))}
-            </Typography>
-            <br />
-            <Typography className={classes.modified} variant="caption">{"Last Modified: 10 days ago"}</Typography></>
-          }
         />
         {open ?
           <IconButton className={classes.iconButton} onClick={handleClose}><ExpandLess /></IconButton> :
@@ -135,17 +129,29 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <TableContainer>
           <Table size="small">
-            <TableBody>
+            <TableBody >
+              <TableRow className={classes.hoverRow} >
+                <TableCell className={classes.table} onClick={handleLinkClick}>
+                  Locales: {pages.map((page, index) => (<span className={classes.hoverRow} key={index}>
+                  <span className={classes.summary}>{page.locale}&nbsp;</span></span>))}
+                </TableCell>
+              </TableRow>
               <TableRow className={classes.hoverRow} >
                 <TableCell className={classes.table}>
-                  Links: {links.length}
+                  Links: <span className={classes.summary}>{links.length} </span>
                 </TableCell>
               </TableRow>
               <TableRow className={classes.hoverRow}>
                 <TableCell className={classes.table}>
-                  Workflows: {workflows.length}
+                  Workflows: <span className={classes.summary}>{workflows.length}</span>
                 </TableCell>
               </TableRow>
+              <TableRow className={classes.hoverRow} >
+                <TableCell className={classes.table}>
+                  Last Modified: <span className={classes.summary}>9 days ago</span>
+                </TableCell>
+              </TableRow>
+
             </TableBody>
           </Table>
         </TableContainer>

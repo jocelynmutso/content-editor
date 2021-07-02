@@ -5,6 +5,7 @@ import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import LinkIcon from '@material-ui/icons/Link';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
+import SettingsIcon from '@material-ui/icons/Settings';
 import { Explorer } from '../explorer';
 
 import { Layout, API } from '../deps';
@@ -54,6 +55,16 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
       id: 'toolbar.delete',
       icon: <DeleteIcon />,
       type: { getView: () => (<Explorer site={site} />) }
+    },
+    
+    {
+      id: 'toolbar.options',
+      icon: <SettingsIcon />,
+      type: {
+        onClick: () => {
+          actions.handleTabAdd({ id: 'options', label: "Options" });
+        }
+      }
     },
 
   ];

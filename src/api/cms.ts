@@ -10,6 +10,7 @@ declare namespace CMS {
 
 
   interface Site {
+    locales: Locale[],
     pages: Record<PageId, Page>,
     links: Record<LinkId, Link>,
     articles: Record<ArticleId, Article>,

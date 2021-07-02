@@ -79,8 +79,6 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
           <Typography className={classes.heading}>Create new link</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <TextField className={classes.formControl} id="outlined-basic" label="Technical name" variant="outlined" />
-          <TextField className={classes.formControl} id="outlined-basic" label="Value" variant="outlined" />
           <Typography className={classes.heading}>
             <FormControl variant="outlined" className={classes.select}>
               <InputLabel id="demo-simple-select-outlined-label">Type</InputLabel>
