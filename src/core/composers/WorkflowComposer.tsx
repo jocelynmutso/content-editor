@@ -8,6 +8,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
+import { Create } from '../buttons';
 import { API } from '../deps';
 
 import { WorkflowsTable } from './WorkflowsTable';
@@ -106,6 +107,7 @@ const WorkflowComposer: React.FC<WorkflowComposerProps> = ({ site, article }) =>
               </Select>
             </FormControl>
           </Typography>
+          <Create />
         </AccordionDetails>
       </Accordion>
       { workflows.length === 0 ? null : <WorkflowsTable site={site} article={article} />}

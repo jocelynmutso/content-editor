@@ -5,6 +5,7 @@ import { PageComposer, LinkComposer, WorkflowComposer, ArticleComposer } from '.
 import { ReleaseComposer } from '../releases';
 import { LocaleOptions } from '../locales';
 import { LinksView } from '../links';
+import { WorkflowsView } from '../workflows';
 
 const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
   createStyles({
@@ -53,8 +54,9 @@ const Editor: React.FC<EditorProps> = ({ site, releases }) => {
     return (<ArticleComposer />)
   } else if (active.id === 'options') {
     return (<LocaleOptions site={site} />)
+  } else if (active.id === 'workflows') {
+    return (<WorkflowsView site={site} />)
   }
-
   const article = site.articles[active.id];
 
  /* const onClose = () => {

@@ -24,10 +24,10 @@ const Explorer: React.FC<ExplorerProps> = ({ site }) => {
   const classes = useStyles();
 
   const paths = Object.values(site.articles);
-  
+
   return (
     <div className={classes.drawerContainer}>
-      {paths.map((path, index) => (<ExplorerItem key={index} article={path} site={site}/>) )}
+      {paths.map((path, index) => (<ExplorerItem key={index} article={path} site={site}/>))}
     </div>
   );
 }

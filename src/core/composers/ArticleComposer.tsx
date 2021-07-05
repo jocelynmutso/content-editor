@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import { Create } from '../buttons';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -82,7 +83,9 @@ const ArticleComposer: React.FC<ArticleComposerProps> = () => {
             <TextField className={classes.select} label="Order" variant="outlined" />
             <TextField className={classes.formControl} label="Name" variant="outlined" />
           </Typography>
+           <Create />
         </AccordionDetails>
+                         
       </Accordion>
     </div>
   );

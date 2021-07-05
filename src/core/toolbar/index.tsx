@@ -6,6 +6,7 @@ import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import LinkIcon from '@material-ui/icons/Link';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import TranslateIcon from '@material-ui/icons/Translate';
+import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
 import { Explorer } from '../explorer';
 
 import { Layout, API } from '../deps';
@@ -42,6 +43,16 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
     },
 
     {
+      id: 'toolbar.workflows',
+      icon: <WorkOutlineIcon />,
+      type: {
+        onClick: () => {
+          actions.handleTabAdd({ id: 'workflows', label: "Workflows" });
+        }
+      }
+    },
+
+    {
       id: 'toolbar.releases',
       icon: <NewReleasesIcon />,
       type: {
@@ -56,7 +67,7 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
       icon: <DeleteIcon />,
       type: { getView: () => (<Explorer site={site} />) }
     },
-    
+
     {
       id: 'toolbar.options',
       icon: <TranslateIcon />,

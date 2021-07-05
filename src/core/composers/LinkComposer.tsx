@@ -9,6 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
 import { LinksTable } from './LinksTable';
+import { Create } from '../buttons';
 import { API } from '../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -105,6 +106,7 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
             <TextField className={classes.formControl} label="Description" variant="outlined" />
             <TextField className={classes.formControl} label="Value" variant="outlined" />
           </Typography>
+          <Create />
         </AccordionDetails>
       </Accordion>
       {links.length === 0 ? null : <LinksTable site={site} article={article} />}

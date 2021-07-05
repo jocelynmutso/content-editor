@@ -31,9 +31,6 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.primary.main,
       fontWeight: 'bold',
     },
-    localeStyle: {
-      color: theme.palette.primary.dark
-    },
     iconButton: {
       marginTop: 1,
       color: theme.palette.primary.dark,
@@ -45,10 +42,6 @@ const useStyles = makeStyles((theme: Theme) =>
         }
       }
     },
-    link: {
-      padding: 0,
-      color: theme.palette.primary.dark
-    },
     modified: {
       color: theme.palette.text.primary
     },
@@ -57,7 +50,6 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: 4,
     },
     hoverRow: {
-      padding: 3,
       fontWeight: 'bold',
       textTransform: 'uppercase',
       "&:hover": {
@@ -67,18 +59,22 @@ const useStyles = makeStyles((theme: Theme) =>
         cursor: 'pointer',
       }
     },
+    itemHover: {
+      "&:hover": {
+        backgroundColor: theme.palette.info.light,
+        color: theme.palette.text.primary,
+        fontWeight: 'bold',
+        cursor: 'pointer',
+      }
+    },
     table: {
       borderBottom: 'none',
-      paddingLeft: theme.spacing(2),
       paddingTop: 0,
       paddingBottom: 0,
       fontVariant: 'all-small-caps',
       fontWeight: 'bold',
       lineHeight: 1.1
     },
-    verticalSpacer: {
-      margin: 0
-    }
   }),
 );
 
@@ -116,8 +112,8 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
 
   return (
     <>
-      <ListItem>
-        <ListItemText className={classes.verticalSpacer}
+      <ListItem className={classes.itemHover}>
+        <ListItemText 
           primary={<Typography onClick={handleClick} variant="body1" className={classes.nameStyle}>{article.name}</Typography>}
         />
         {open ?
@@ -150,7 +146,6 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
                   Last Modified: <span className={classes.summary}>9 days ago</span>
                 </TableCell>
               </TableRow>
-
             </TableBody>
           </Table>
         </TableContainer>

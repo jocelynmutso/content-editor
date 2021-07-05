@@ -16,7 +16,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import VisibilityOnIcon from '@material-ui/icons/Visibility';
-import AddIcon from '@material-ui/icons/Add';
+import { Create } from '../buttons';
 
 import { API } from '../deps';
 
@@ -116,7 +116,7 @@ const LocaleOptions: React.FC<LocaleOptionsProps> = ({ site }) => {
             </Select>
           </FormControl>
             <TextField className={classes.input} label="Optional note" variant="outlined" />
-          <IconButton className={classes.iconButton}><AddIcon /></IconButton>
+          <Create />
         </AccordionDetails>
       </Accordion>
 
@@ -131,7 +131,7 @@ const LocaleOptions: React.FC<LocaleOptionsProps> = ({ site }) => {
           </TableHead>
           <TableBody>
             {locales.map((locale, index) => (
-              <TableRow key={index}>
+              <TableRow key={index} hover>
                 <TableCell className={classes.tableCell} align="left">{locale.value}</TableCell>
                 <TableCell>{locale.enabled ? 
                   <IconButton className={classes.iconButton}> <VisibilityOnIcon /></IconButton> 

@@ -63,7 +63,7 @@ const ArticlesTable: React.FC<ArticlesTableProps> = ({ site, article }) => {
         </TableHead>
         <TableBody>
           {links.map((link, index) => (
-            <TableRow key={index}>
+            <TableRow key={index} hover>
               <TableCell className={classes.tableCell} align="left">{article.parentId}</TableCell>
               <TableCell className={classes.tableCell} align="left">{article.order}</TableCell>
               <TableCell className={classes.tableCell} align="left">{article.name}</TableCell>

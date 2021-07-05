@@ -60,7 +60,7 @@ const LinksView: React.FC<LinksViewProps> = ({ site }) => {
         </TableHead>
         <TableBody>
           {links.map((link, index) => (
-            <TableRow key={index}>
+            <TableRow key={index} hover>
               <TableCell className={classes.tableCell} align="left">{link.type}</TableCell>
               <TableCell className={classes.tableCell} align="left">{link.locale}</TableCell>
               <TableCell className={classes.tableCell} align="left">{link.description}</TableCell>
