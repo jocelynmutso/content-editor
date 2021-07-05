@@ -10,6 +10,8 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
+import Context from '../context';
+
 import { Layout } from '../deps';
 import { API } from '../deps';
 
@@ -91,7 +93,6 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
 
   const handleClick = () => {
     setOpen(!open);
-    layout.actions.handleTabAdd({ id: article.id, label: article.name });
   };
 
   const handleExpand = () => {
@@ -102,11 +103,21 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
     setOpen(false);
   }
 
-  const handleLinkClick = () => {
-    layout.actions.handleTabAdd({ id: article.id, label: article.name });
+  const handleLinkClick = (type: Context.NavType, locale?: string) => {
+    const nav = { type: type, value: locale };
+    const tab: Context.Tab = {
+      id: article.id, 
+      label: article.name, data: new Context.ImmutableTabData({ nav })
+    };
+    
+    const oldTab = layout.session.findTab(article.id);
+    if(oldTab !== undefined) {
+      layout.actions.handleTabData(article.id, (oldData: Context.TabData) => oldData.withNav(nav));
+    }
+    layout.actions.handleTabAdd(tab);
   }
 
-  
+
   const pages: API.CMS.Page[] = Object.values(site.pages).filter(page => article.id === page.article);
   const links: API.CMS.Link[] = Object.values(site.links).filter(link => article.id === link.article);
   const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => article.id === workflow.article)
@@ -114,7 +125,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
   return (
     <>
       <ListItem className={classes.itemHover}>
-        <ListItemText 
+        <ListItemText
           primary={<Typography onClick={handleClick} variant="body1" className={classes.nameStyle}>{article.name}</Typography>}
         />
         {open ?
@@ -127,8 +138,9 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
           <Table size="small">
             <TableBody >
               <TableRow className={classes.hoverRow} >
-                <TableCell className={classes.table} >
-                  Locales: {pages.map((page, index) => (<span className={classes.hoverRow} key={index}>
+                <TableCell className={classes.table}>
+                  Locales: {pages.map((page, index) => (<span className={classes.hoverRow} key={index} 
+                    onClick={() => handleLinkClick("LOCALE", page.locale)}>
                   <span className={classes.summary}>{page.locale}&nbsp;</span></span>))}
                 </TableCell>
               </TableRow>

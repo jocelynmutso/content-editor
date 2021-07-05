@@ -68,6 +68,7 @@ declare namespace Session {
     handleLink(id?: string): void;
     handleSearch(keyword: string): void;
     handleTabAdd(newItem: Session.Tab<any>): void;
+    handleTabData(tabId: string, updateCommand: (oldData: any) => any): void;
     handleTabChange(tabIndex: number): void;
     handleTabClose(tab: Session.Tab<any>): void;
     handleTabCloseAll(): void;

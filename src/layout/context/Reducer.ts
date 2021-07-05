@@ -73,6 +73,9 @@ class ReducerDispatch implements Session.Actions {
   handleTabCloseAll() {
     this._sessionDispatch(ActionBuilder.closeTabs());
   }
+  handleTabData(tabId: string, updateCommand: (oldData: any) => any) {
+    this._sessionDispatch(ActionBuilder.setTabData(tabId, updateCommand));
+  }
 }
 
 const Reducer = (state: Session.InstanceMutator, action: Action): Session.InstanceMutator => {

@@ -62,7 +62,8 @@ class SessionData implements Session.InstanceMutator {
     const tabs: Session.Tab<any>[] = [];
     for(const tab of this.tabs) {
       if(tabId === tab.id) {
-        tabs.push({id: tab.id, label: tab.label, data: updateCommand(tab.data)});
+        const newData = updateCommand(tab.data);
+        tabs.push({id: tab.id, label: tab.label, data: newData});
       } else {
         tabs.push(tab);
       }
