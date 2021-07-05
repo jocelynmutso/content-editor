@@ -38,7 +38,6 @@ const PageComposer: React.FC<PageComposerProps> = ({ site, article, locale }) =>
         value={value}
         onChange={setValue}
       />
-      <MDEditor.Markdown source={value} />
     </div>
   );
 }
