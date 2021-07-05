@@ -106,6 +106,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
     layout.actions.handleTabAdd({ id: article.id, label: article.name });
   }
 
+  
   const pages: API.CMS.Page[] = Object.values(site.pages).filter(page => article.id === page.article);
   const links: API.CMS.Link[] = Object.values(site.links).filter(link => article.id === link.article);
   const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => article.id === workflow.article)
@@ -126,7 +127,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
           <Table size="small">
             <TableBody >
               <TableRow className={classes.hoverRow} >
-                <TableCell className={classes.table} onClick={handleLinkClick}>
+                <TableCell className={classes.table} >
                   Locales: {pages.map((page, index) => (<span className={classes.hoverRow} key={index}>
                   <span className={classes.summary}>{page.locale}&nbsp;</span></span>))}
                 </TableCell>

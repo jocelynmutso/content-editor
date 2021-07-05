@@ -92,7 +92,7 @@ const LocaleOptions: React.FC<LocaleOptionsProps> = ({ site }) => {
   const classes = useStyles();
 
   const [locale, setLocale] = React.useState('');
-  
+
   const locales: API.CMS.SiteLocale[] = Object.values(site.locales);
 
   return (
@@ -109,13 +109,13 @@ const LocaleOptions: React.FC<LocaleOptionsProps> = ({ site }) => {
             <Select
               value={locale}
               label="locale"
-              >
+            >
               <MenuItem value={10}>English: EN</MenuItem>
               <MenuItem value={20}>Finnish: FI</MenuItem>
               <MenuItem value={20}>Swedish: SV</MenuItem>
             </Select>
           </FormControl>
-            <TextField className={classes.input} label="Optional note" variant="outlined" />
+          <TextField className={classes.input} label="Optional note" variant="outlined" />
           <Create />
         </AccordionDetails>
       </Accordion>
@@ -133,8 +133,8 @@ const LocaleOptions: React.FC<LocaleOptionsProps> = ({ site }) => {
             {locales.map((locale, index) => (
               <TableRow key={index} hover>
                 <TableCell className={classes.tableCell} align="left">{locale.value}</TableCell>
-                <TableCell>{locale.enabled ? 
-                  <IconButton className={classes.iconButton}> <VisibilityOnIcon /></IconButton> 
+                <TableCell>{locale.enabled ?
+                  <IconButton className={classes.iconButton}> <VisibilityOnIcon /></IconButton>
                   : <IconButton className={classes.iconButton}><VisibilityOffIcon /></IconButton>}
                 </TableCell>
                 <TableCell>{locale.note}</TableCell>

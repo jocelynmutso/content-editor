@@ -39,7 +39,6 @@ const Editor: React.FC<EditorProps> = ({ site, releases }) => {
   const [locale, setLocale] = React.useState("en");
   const tabs = layout.session.tabs;
   
-
   
   if (tabs.length === 0) {
     return null;
@@ -52,7 +51,7 @@ const Editor: React.FC<EditorProps> = ({ site, releases }) => {
     return (<LinksView site={site}/>)
   } else if (active.id === 'article') {
     return (<ArticleComposer />)
-  } else if (active.id === 'options') {
+  } else if (active.id === 'locales') {
     return (<LocaleOptions site={site} />)
   } else if (active.id === 'workflows') {
     return (<WorkflowsView site={site} />)
@@ -67,10 +66,6 @@ const Editor: React.FC<EditorProps> = ({ site, releases }) => {
     <div className={classes.root} key={article.id} >
       <PageComposer key={article.id} site={site} article={article} locale={locale} />
       <LinkComposer key={article.id} site={site} article={article} />
-      <br />
-      <WorkflowComposer key={article.id} site={site} article={article} />
-      <br />
-      <ArticleComposer key={article.id} />
     </div>
   )
 }

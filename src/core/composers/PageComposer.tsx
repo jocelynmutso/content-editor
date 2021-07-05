@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme} from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core';
 
 import MDEditor from '@uiw/react-md-editor';
 import { API } from '../deps';
@@ -12,7 +12,7 @@ const useStyles = () => makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1),
       marginBottom: theme.spacing(1),
       backgroundColor: theme.palette.background.paper,
- 
+
     }
   }),
 )();
@@ -29,9 +29,9 @@ const PageComposer: React.FC<PageComposerProps> = ({ site, article, locale }) =>
   const page = Object.values(site.pages)
     .filter(page => page.article === article.id)
     .filter(page => page.locale === locale).pop();
-  
+
   const [value, setValue] = React.useState<string | undefined>(page?.content);
-  
+
   return (
     <div className={classes.container}>
       <MDEditor

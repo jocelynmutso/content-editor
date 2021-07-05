@@ -91,9 +91,9 @@ const workflows: API.CMS.Workflow[] = [
 ];
 
 const locales: API.CMS.SiteLocale[] = [
-  {id: "l1", enabled: true, value: "fi", note: "initial translation"},
-  {id: "l2", enabled: true, value: "sv", note: "initial translation"},
-  {id: "l3", enabled: false, value: "en", note: "initial translation"}
+  {id: "l1", enabled: true, value: "Finnish: fi", note: "initial translation"},
+  {id: "l2", enabled: true, value: "Swedish: sv", note: "initial translation"},
+  {id: "l3", enabled: false, value: "English: en", note: "initial translation"}
 ] 
 
 const createMock = (): API.CMS.Service => {

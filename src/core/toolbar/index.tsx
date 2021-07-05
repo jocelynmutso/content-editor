@@ -69,11 +69,11 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
     },
 
     {
-      id: 'toolbar.options',
+      id: 'toolbar.locales',
       icon: <TranslateIcon />,
       type: {
         onClick: () => {
-          actions.handleTabAdd({ id: 'options', label: "Options" });
+          actions.handleTabAdd({ id: 'locales', label: "Locales" });
         }
       }
     },
