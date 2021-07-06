@@ -10,6 +10,7 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
+import { DeleteRename } from '../buttons';
 import Context from '../context';
 
 import { Layout } from '../deps';
@@ -149,27 +150,28 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
                   Links:  <span className={classes.summary}>{links.length}</span>
                 </TableCell>
               </TableRow>
-                <TableRow className={classes.hoverRow}>
-                  <TableCell className={classes.table} onClick={() => handleLinkClick("WORKFLOW")}>
-                    Workflows: <span className={classes.summary}>{workflows.length}</span>
-                  </TableCell>
-                </TableRow>
-                <TableRow className={classes.hoverRow} >
-                  <TableCell className={classes.table}>
-                    Last Modified: <span className={classes.summary}>9 days ago</span>
-                  </TableCell>
-                </TableRow>
+              <TableRow className={classes.hoverRow}>
+                <TableCell className={classes.table} onClick={() => handleLinkClick("WORKFLOW")}>
+                  Workflows: <span className={classes.summary}>{workflows.length}</span>
+                </TableCell>
+              </TableRow>
+              <TableRow className={classes.hoverRow} >
+                <TableCell className={classes.table}>
+                  Last Modified: <span className={classes.summary}>9 days ago</span>
+                </TableCell>
+              </TableRow>
+              <DeleteRename onClick={handleClick} site={site} article={article}/>
             </TableBody>
           </Table>
         </TableContainer>
       </Collapse>
-        <Divider className={classes.divider} />
+      <Divider className={classes.divider} />
 
     </>
   );
 }
 
-export { ExplorerItem}
+export { ExplorerItem }
 
 
 
