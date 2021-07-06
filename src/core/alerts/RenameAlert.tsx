@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme: Theme) =>
 interface RenameAlertProps {
   site: API.CMS.Site;
   article: API.CMS.Article;
-  onClick: (event: React.MouseEvent) => void;
 }
 
 

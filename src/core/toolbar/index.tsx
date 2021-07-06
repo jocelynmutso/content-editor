@@ -1,10 +1,10 @@
 import React from 'react';
 
-import DeleteIcon from '@material-ui/icons/Delete';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-import NewReleasesIcon from '@material-ui/icons/NewReleases';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import LibraryBooksOutlinedIcon from '@material-ui/icons/LibraryBooksOutlined';
+import NewReleasesOutlinedIcon from '@material-ui/icons/NewReleasesOutlined';
 import LinkIcon from '@material-ui/icons/Link';
-import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
+import PostAddOutlinedIcon from '@material-ui/icons/PostAddOutlined';
 import TranslateIcon from '@material-ui/icons/Translate';
 import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
 import { Explorer } from '../explorer';
@@ -18,13 +18,13 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
 
     {
       id: 'toolbar.explorer',
-      icon: <LibraryBooksIcon />,
+      icon: <LibraryBooksOutlinedIcon />,
       type: { getView: () => (<Explorer site={site} />) }
     },
 
     {
       id: 'toolbar.createNew',
-      icon: <PlaylistAddIcon />,
+      icon: <PostAddOutlinedIcon />,
       type: {
         onClick: () => {
           actions.handleTabAdd({ id: 'article', label: "New Article" });
@@ -54,7 +54,7 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
 
     {
       id: 'toolbar.releases',
-      icon: <NewReleasesIcon />,
+      icon: <NewReleasesOutlinedIcon />,
       type: {
         onClick: () => {
           actions.handleTabAdd({ id: 'releases', label: "Releases" });
@@ -64,7 +64,7 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
 
     {
       id: 'toolbar.delete',
-      icon: <DeleteIcon />,
+      icon: <DeleteOutlinedIcon />,
       type: { getView: () => (<Explorer site={site} />) }
     },
 

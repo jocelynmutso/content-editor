@@ -160,7 +160,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
                   Last Modified: <span className={classes.summary}>9 days ago</span>
                 </TableCell>
               </TableRow>
-              <DeleteRename onClick={handleClick} site={site} article={article}/>
+              <DeleteRename site={site} article={article}/>
             </TableBody>
           </Table>
         </TableContainer>

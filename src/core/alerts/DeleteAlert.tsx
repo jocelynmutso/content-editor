@@ -29,10 +29,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 interface DeleteAlertProps {
-  onClick: (event: React.MouseEvent) => void;
+
 }
 
-const DeleteAlert: React.FC<DeleteAlertProps> = ({ onClick }) => {
+const DeleteAlert: React.FC<DeleteAlertProps> = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {

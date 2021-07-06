@@ -40,23 +40,16 @@ const useStyles = makeStyles((theme: Theme) =>
 interface DeleteRenameProps {
   site: API.CMS.Site;
   article: API.CMS.Article;
-  onClick: (event: React.MouseEvent) => void;
 }
 
-const DeleteRename: React.FC<DeleteRenameProps> = ({ onClick, site, article }) => {
+const DeleteRename: React.FC<DeleteRenameProps> = ({ site, article }) => {
   const classes = useStyles();
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
   return (
     <div className={classes.root}>
       <ButtonGroup size="small">
-        <DeleteAlert onClick={onClick} />
-        <RenameAlert onClick={onClick} site={site} article={article} />
+        <DeleteAlert  />
+        <RenameAlert site={site} article={article} />
       </ButtonGroup>
     </div>
   );
