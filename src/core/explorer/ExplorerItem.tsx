@@ -106,12 +106,12 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
   const handleLinkClick = (type: Context.NavType, locale?: string) => {
     const nav = { type: type, value: locale };
     const tab: Context.Tab = {
-      id: article.id, 
+      id: article.id,
       label: article.name, data: new Context.ImmutableTabData({ nav })
     };
-    
+
     const oldTab = layout.session.findTab(article.id);
-    if(oldTab !== undefined) {
+    if (oldTab !== undefined) {
       layout.actions.handleTabData(article.id, (oldData: Context.TabData) => oldData.withNav(nav));
     }
     layout.actions.handleTabAdd(tab);
@@ -139,37 +139,37 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
             <TableBody >
               <TableRow className={classes.hoverRow} >
                 <TableCell className={classes.table}>
-                  Locales: {pages.map((page, index) => (<span className={classes.hoverRow} key={index} 
-                    onClick={() => handleLinkClick("LOCALE", page.locale)}>
+                  Locales: {pages.map((page, index) => (<span className={classes.hoverRow} key={index}
+                  onClick={() => handleLinkClick("LOCALE", page.locale)}>
                   <span className={classes.summary}>{page.locale}&nbsp;</span></span>))}
                 </TableCell>
               </TableRow>
               <TableRow className={classes.hoverRow} >
-                <TableCell className={classes.table}>
-                  Links: <span className={classes.summary}>{links.length} </span>
+                <TableCell className={classes.table} onClick={() => handleLinkClick("LINK")}>
+                  Links:  <span className={classes.summary}>{links.length}</span>
                 </TableCell>
               </TableRow>
-              <TableRow className={classes.hoverRow}>
-                <TableCell className={classes.table}>
-                  Workflows: <span className={classes.summary}>{workflows.length}</span>
-                </TableCell>
-              </TableRow>
-              <TableRow className={classes.hoverRow} >
-                <TableCell className={classes.table}>
-                  Last Modified: <span className={classes.summary}>9 days ago</span>
-                </TableCell>
-              </TableRow>
+                <TableRow className={classes.hoverRow}>
+                  <TableCell className={classes.table} onClick={() => handleLinkClick("WORKFLOW")}>
+                    Workflows: <span className={classes.summary}>{workflows.length}</span>
+                  </TableCell>
+                </TableRow>
+                <TableRow className={classes.hoverRow} >
+                  <TableCell className={classes.table}>
+                    Last Modified: <span className={classes.summary}>9 days ago</span>
+                  </TableCell>
+                </TableRow>
             </TableBody>
           </Table>
         </TableContainer>
       </Collapse>
-      <Divider className={classes.divider} />
+        <Divider className={classes.divider} />
 
     </>
   );
 }
 
-export { ExplorerItem }
+export { ExplorerItem}
 
 
 

@@ -17,6 +17,12 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
   return [
 
     {
+      id: 'toolbar.explorer',
+      icon: <LibraryBooksIcon />,
+      type: { getView: () => (<Explorer site={site} />) }
+    },
+
+    {
       id: 'toolbar.createNew',
       icon: <PlaylistAddIcon />,
       type: {
@@ -24,12 +30,6 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
           actions.handleTabAdd({ id: 'article', label: "New Article" });
         }
       }
-    },
-
-    {
-      id: 'toolbar.explorer',
-      icon: <LibraryBooksIcon />,
-      type: { getView: () => (<Explorer site={site} />) }
     },
 
     {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
 import { API, Layout } from '../deps';
-import { PageComposer, LinkComposer, WorkflowComposer, ArticleComposer } from '../composers';
+import { PageComposer, ArticleComposer, LinkComposer, WorkflowComposer } from '../composers';
 import { ReleaseComposer } from '../releases';
 import { LocaleOptions } from '../locales';
 import { LinksView } from '../links';
@@ -69,7 +69,12 @@ const Editor: React.FC<EditorProps> = ({ site, releases }) => {
   if(tab.data.nav.type === "LOCALE") {
     const locale = tab.data.nav.value as string;
     composer = (<PageComposer key={article.id + "-" + locale} site={site} article={article} locale={locale} />);
-  } else {
+  } else if (tab.data.nav.type === "LINK"){
+    composer = (<LinkComposer key={article.id} article={article} site={site}/>)
+  } else if (tab.data.nav.type === "WORKFLOW") {
+    composer = (<WorkflowComposer article={article} site={site}/>)
+  }
+  else {
     composer = (<></>);
   }
   
