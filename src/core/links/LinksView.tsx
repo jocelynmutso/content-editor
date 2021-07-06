@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Context from '../context';
 
 import { API } from '../deps';
 
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface LinksViewProps {
   site: API.CMS.Site,
+  
 }
 
 const LinksView: React.FC<LinksViewProps> = ({ site }) => {

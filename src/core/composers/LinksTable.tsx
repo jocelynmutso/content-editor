@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import EditIcon from '@material-ui/icons/Edit';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import Paper from '@material-ui/core/Paper';
 
 import { API } from '../deps';
@@ -18,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     iconButton: {
       padding: 2,
+      marginLeft: theme.spacing(3),
       color: theme.palette.primary.dark,
       "&:hover, &.Mui-focusVisible": {
         backgroundColor: theme.palette.info.main,
@@ -67,7 +69,10 @@ const LinksTable: React.FC<LinksTableProps> = ({ site, article }) => {
               <TableCell className={classes.tableCell} align="left">{link.locale}</TableCell>
               <TableCell className={classes.tableCell} align="left">{link.description}</TableCell>
               <TableCell className={classes.tableCell} align="left">{link.content}</TableCell>
-              <TableCell className={classes.tableCell} align="right"><IconButton className={classes.iconButton}><EditIcon /></IconButton></TableCell>
+              <TableCell className={classes.tableCell} align="right">
+                <IconButton className={classes.iconButton}><EditIcon /></IconButton>
+                <IconButton className={classes.iconButton}><RemoveCircleOutlineIcon /></IconButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

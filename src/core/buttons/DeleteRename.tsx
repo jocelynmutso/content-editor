@@ -54,7 +54,7 @@ const DeleteRename: React.FC<DeleteRenameProps> = ({ onClick, site, article }) =
 
   return (
     <div className={classes.root}>
-      <ButtonGroup disableElevation size="small">
+      <ButtonGroup size="small">
         <DeleteAlert onClick={onClick} />
         <RenameAlert onClick={onClick} site={site} article={article} />
       </ButtonGroup>

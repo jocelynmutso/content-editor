@@ -50,12 +50,10 @@ const DeleteAlert: React.FC<DeleteAlertProps> = ({ onClick }) => {
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Delete this article?"}</DialogTitle>
+        <DialogTitle>{"Delete this article?"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText>
             <ListItem>* Content files associated with this article will be permanently deleted.</ListItem>
             <ListItem>* Deleting this article will NOT delete its links and workflows</ListItem>
             <ListItem> * Links and workflows must be deleted globally via toolbar menu actions. </ListItem>

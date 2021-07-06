@@ -67,16 +67,14 @@ const RenameAlert: React.FC<RenameAlertProps> = ({ site, article }) => {
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Rename this article?"}</DialogTitle>
+        <DialogTitle>{"Rename this article?"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
+          <DialogContentText>
             Renaming this article will only change its technical name. This action has no consequences for the end-user experience.
           </DialogContentText>
           <Typography className={classes.typography} variant="body1">Old name: {" "} {article.order} {article.name}</Typography>
-            <TextField placeholder="100" label="Order" variant="outlined" className={classes.formControl} />
+            <TextField placeholder="Example: 100" label="Order" variant="outlined" className={classes.formControl} />
             <TextField label="New name" variant="outlined" className={classes.formControl} />
         </DialogContent>
         <DialogActions>

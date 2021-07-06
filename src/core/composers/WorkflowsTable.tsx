@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import Paper from '@material-ui/core/Paper';
 
 import { API } from '../deps';
@@ -67,12 +67,9 @@ const WorkflowsTable: React.FC<WorkflowsTableProps> = ({ site, article }) => {
               <TableCell className={classes.tableCell} align="left">{workflow.name}</TableCell>
               <TableCell className={classes.tableCell} align="left">{workflow.locale}</TableCell>
               <TableCell className={classes.tableCell} align="left">{workflow.content}</TableCell>
-              <TableCell className={classes.tableCell} align="right"><IconButton className={classes.iconButton}>
-                <EditIcon />
-              </IconButton>
-                <IconButton className={classes.iconButton}>
-                  <DeleteIcon />
-                </IconButton>
+                <TableCell className={classes.tableCell} align="right">
+                  <IconButton className={classes.iconButton}><EditIcon /></IconButton>
+                  <IconButton className={classes.iconButton}><RemoveCircleOutlineIcon /></IconButton>
               </TableCell>
             </TableRow>
           ))}
