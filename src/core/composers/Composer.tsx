@@ -1,10 +1,11 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
 import { API, Layout } from '../deps';
-import { PageComposer, ArticleComposer, LinkComposer, WorkflowComposer, LocaleComposer, ReleaseComposer } from '../composers';
+import { 
+  PageComposer, ArticleComposer, LinkComposer, WorkflowComposer, LocaleComposer, ReleaseComposer, 
+  LinksView, WorkflowsView
+} from './';
 
-import { LinksView } from '../links';
-import { WorkflowsView } from '../workflows';
 import Context from '../context';
 
 
@@ -29,12 +30,12 @@ const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
 )();
 
 
-interface EditorProps {
+interface ComposerProps {
   site: API.CMS.Site;
   releases: API.CMS.Releases;
 }
 
-const Editor: React.FC<EditorProps> = ({ site, releases }) => {
+const Composer: React.FC<ComposerProps> = ({ site, releases }) => {
   const layout = Layout.useContext();
   const classes = useStyles(layout.session.dimensions);
   const tabs = layout.session.tabs;
@@ -86,7 +87,7 @@ const Editor: React.FC<EditorProps> = ({ site, releases }) => {
   )
 }
 
-export type { EditorProps }
-export { Editor }
+export type { ComposerProps }
+export { Composer }
 
 

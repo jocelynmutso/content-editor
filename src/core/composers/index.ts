@@ -1,6 +1,10 @@
-export * from './PageComposer';
-export * from './LinkComposer';
-export * from './WorkflowComposer';
-export * from './ArticleComposer';
-export * from './LocaleComposer';
-export * from './ReleaseComposer';
+export * from './Composer'
+
+
+
+export * from './page';
+export * from './link';
+export * from './workflow';
+export * from './article';
+export * from './locale';
+export * from './release';

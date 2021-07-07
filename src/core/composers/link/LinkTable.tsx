@@ -11,7 +11,7 @@ import Paper from '@material-ui/core/Paper';
 
 import { LinkRemove } from './LinkRemove';
 
-import { API } from '../deps';
+import { API } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

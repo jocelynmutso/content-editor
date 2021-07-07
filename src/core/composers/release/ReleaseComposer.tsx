@@ -6,9 +6,11 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
-import { AddButton } from './AddButton';
-import { ReleasesTable } from './ReleasesTable';
-import { API } from '../deps';
+
+import { ReleaseTable } from './ReleaseTable';
+import { AddButton } from '../styles';
+import { API } from '../../deps';
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -75,7 +77,7 @@ const ReleaseComposer: React.FC<ReleaseComposerProps> = ({ site, releases }) => 
           <AddButton />
         </AccordionDetails>
       </Accordion>
-      {releases.length === 0 ? null : <ReleasesTable site={site} releases={releases} />}
+      {releases.length === 0 ? null : <ReleaseTable site={site} releases={releases} />}
     </div>
   );
 }

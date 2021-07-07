@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
 
-import { API } from '../deps';
+import { API } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

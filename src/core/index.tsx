@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { API, Layout } from './deps';
-import { Editor } from './editor';
+import { Composer } from './composers';
 import { toolbar } from './toolbar';
 
 interface CMSEditorProps {
@@ -28,7 +28,7 @@ const Components: React.FC<{ service: API.CMS.Service }> = ({ service }) => {
     <Layout.Container components={{
       search: (_value: string) => console.log("Search"),
       header: (<></>),
-      content: (<Editor site={site} releases={releases} />),
+      content: (<Composer site={site} releases={releases} />),
       toolbar: toolbar(layout.actions, site, releases),
       badges: []
     }} />);

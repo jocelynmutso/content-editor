@@ -16,9 +16,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import VisibilityOnIcon from '@material-ui/icons/Visibility';
-import { AddButton } from './AddButton';
 
-import { API } from '../deps';
+import { AddButton } from '../styles';
+import { API } from '../../deps';
 
 
 const useStyles = makeStyles((theme: Theme) =>

@@ -1,14 +1,16 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core';
+import { makeStyles, IconButton, Theme, createStyles } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import EditIcon from '@material-ui/icons/Edit';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import Paper from '@material-ui/core/Paper';
 
-import { API } from '../deps';
+import { API } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     iconButton: {
       padding: 2,
+      marginLeft: theme.spacing(3),
       color: theme.palette.primary.dark,
       "&:hover, &.Mui-focusVisible": {
         backgroundColor: theme.palette.info.main,
@@ -37,14 +40,15 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 
-interface WorkflowsViewProps {
+interface WorkflowTableProps {
   site: API.CMS.Site,
+  article: API.CMS.Article
 }
 
-const WorkflowsView: React.FC<WorkflowsViewProps> = ({ site }) => {
+const WorkflowTable: React.FC<WorkflowTableProps> = ({ site, article }) => {
   const classes = useStyles();
+  const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => article.id === workflow.article);
 
-  const workflows = Object.values(site.workflows);
 
   return (
     <TableContainer component={Paper}>
@@ -52,18 +56,21 @@ const WorkflowsView: React.FC<WorkflowsViewProps> = ({ site }) => {
         <TableHead>
           <TableRow>
             <TableCell className={classes.bold} align="left">Technical Name</TableCell>
-            <TableCell className={classes.bold} align="left">Article</TableCell>
             <TableCell className={classes.bold} align="left">Locale</TableCell>
             <TableCell className={classes.bold} align="left">Localised Name</TableCell>
+            <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {workflows.map((workflow, index) => (
-            <TableRow hover key={index}>
+            <TableRow key={index} hover>
               <TableCell className={classes.tableCell} align="left">{workflow.name}</TableCell>
-              <TableCell className={classes.tableCell} align="left">{site.articles[workflow.article].name}</TableCell>
               <TableCell className={classes.tableCell} align="left">{workflow.locale}</TableCell>
               <TableCell className={classes.tableCell} align="left">{workflow.content}</TableCell>
+                <TableCell className={classes.tableCell} align="right">
+                  <IconButton className={classes.iconButton}><EditIcon /></IconButton>
+                  <IconButton className={classes.iconButton}><RemoveCircleOutlineIcon /></IconButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -72,7 +79,7 @@ const WorkflowsView: React.FC<WorkflowsViewProps> = ({ site }) => {
   );
 }
 
-export { WorkflowsView }
+export { WorkflowTable }
 
 
 

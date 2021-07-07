@@ -8,8 +8,8 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-import { AddButton } from './AddButton';
-import { API } from '../deps';
+import { AddButton } from '../styles';
+import { API } from '../../deps';
 
 import { WorkflowTable } from './WorkflowTable';
 

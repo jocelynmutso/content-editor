@@ -11,7 +11,9 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import EditIcon from '@material-ui/icons/Edit';
 import Paper from '@material-ui/core/Paper';
 
-import { API } from '../deps';
+
+import { API } from '../../deps';
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -37,13 +39,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 
-interface ReleasesTableProps {
+interface ReleaseTableProps {
   site: API.CMS.Site,
   releases: API.CMS.Releases;
 
 }
 
-const ReleasesTable: React.FC<ReleasesTableProps> = ({ site, releases }) => {
+const ReleaseTable: React.FC<ReleaseTableProps> = ({ site, releases }) => {
   const classes = useStyles();
 
   return (
@@ -82,7 +84,7 @@ const ReleasesTable: React.FC<ReleasesTableProps> = ({ site, releases }) => {
   );
 }
 
-export { ReleasesTable }
+export { ReleaseTable }
 
 
 
