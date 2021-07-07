@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme: Theme) =>
       
     },
     container: {
-      display: 'flex'
     },
     title: {
       fontSize: 14,
