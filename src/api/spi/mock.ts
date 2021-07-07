@@ -62,22 +62,23 @@ const pages: API.CMS.Page[] = [
 ];
 
 const links: API.CMS.Link[] = [
-  { id: "l1", article: "a1", type: "internal", description: "new housing developments", content: "http://www.housing-sipoo.fi/fi", locale: "fi" },
-  { id: "l2", article: "a1", type: "internal", description: "new housing developments", content: "http://www.housing-sipoo.fi/en", locale: "en" },
-  { id: "l3", article: "a1", type: "external", description: "move to finland", content: "http://www.finland.fi", locale: "fi" },
-  { id: "l4", article: "a1", type: "phone", description: "office phone", content: "+664-5277-7733", locale: "en" },
-  { id: "l5", article: "a1", type: "phone", description: "päätilintarkastajan puhelin", content: "+664-4321-1223", locale: "fi" },
-  { id: "l6", article: "a1", type: "internal", description: "about the service", content: "http://www.us/service/about", locale: "en" },
-  { id: "l7", article: "a2", type: "phone", description: "secretary phone", content: "+664-4185-6512", locale: "fi" },
-  { id: "l8", article: "a2", type: "phone", description: "manager phone", content: "+124-2241-1188", locale: "en" },
-  { id: "l9", article: "a2", type: "internal", description: "hospital information", content: "http://www.hospitals.com", locale: "fi" },
-  { id: "l10", article: "a2", type: "external", description: "terveys", content: "http://www.health.fi", locale: "fi" },
-  { id: "l11", article: "a2", type: "internal", description: "elder care", content: "http://www.vanhukset.fi", locale: "fi" },
-  { id: "l12", article: "a2", type: "phone", description: "secretary phone", content: "+664-4185-6512", locale: "fi" },
-  { id: "l13", article: "a2", type: "phone", description: "manager phone", content: "+124-2241-1188", locale: "en" },
-  { id: "l14", article: "a2", type: "internal", description: "general information", content: "http://www.example.com", locale: "fi" },
-  { id: "l15", article: "a2", type: "external", description: "vocational training", content: "http://www.adult-learning.com", locale: "fi" },
-  { id: "l16", article: "a2", type: "internal", description: "education", content: "http://www.learn.fi", locale: "fi" }
+  { id: "l1", articles: ["a1", "a2", "a2.4"], type: "internal", description: "new housing developments", content: "http://www.housing-sipoo.fi/fi", locale: "fi" },
+  { id: "l2", articles: ["a1"], type: "internal", description: "new housing developments", content: "http://www.housing-sipoo.fi/en", locale: "en" },
+  { id: "l3", articles: ["a1"], type: "external", description: "move to finland", content: "http://www.finland.fi", locale: "fi" },
+  { id: "l4", articles: ["a1"], type: "phone", description: "office phone", content: "+664-5277-7733", locale: "en" },
+  { id: "l5", articles: ["a1"], type: "phone", description: "päätilintarkastajan puhelin", content: "+664-4321-1223", locale: "fi" },
+  { id: "l6", articles: ["a1"], type: "internal", description: "about the service", content: "http://www.us/service/about", locale: "en" },
+  { id: "l7", articles: ["a2"], type: "phone", description: "secretary phone", content: "+664-4185-6512", locale: "fi" },
+  { id: "l8", articles: ["a2"], type: "phone", description: "manager phone", content: "+124-2241-1188", locale: "en" },
+  { id: "l9", articles: ["a2"], type: "internal", description: "hospital information", content: "http://www.hospitals.com", locale: "fi" },
+  { id: "l10", articles: ["a2"], type: "external", description: "terveys", content: "http://www.health.fi", locale: "fi" },
+  { id: "l11", articles: ["a2"], type: "internal", description: "elder care", content: "http://www.vanhukset.fi", locale: "fi" },
+  { id: "l12", articles: ["a2"], type: "phone", description: "secretary phone", content: "+664-4185-6512", locale: "fi" },
+  { id: "l13", articles: ["a2"], type: "phone", description: "manager phone", content: "+124-2241-1188", locale: "en" },
+  { id: "l14", articles: ["a2"], type: "internal", description: "general information", content: "http://www.example.com", locale: "fi" },
+  { id: "l15", articles: ["a2"], type: "external", description: "vocational training", content: "http://www.adult-learning.com", locale: "fi" },
+  { id: "l16", articles: ["a2"], type: "internal", description: "education", content: "http://www.learn.fi", locale: "fi" },
+  
 
 ];
 

@@ -59,7 +59,7 @@ declare namespace CMS {
 
   interface Link {
     id: LinkId,
-    article: ArticleId,
+    articles: ArticleId[],
     type: string,
     content: LocalisedContent,
     locale: Locale,

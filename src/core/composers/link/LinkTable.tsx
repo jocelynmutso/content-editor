@@ -50,9 +50,8 @@ interface LinkTableProps {
 
 const LinkTable: React.FC<LinkTableProps> = ({ site, article }) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
 
-  const links: API.CMS.Link[] = Object.values(site.links).filter(link => article.id === link.article);
+  const links: API.CMS.Link[] = Object.values(site.links).filter(link => link.articles.includes(article.id));
 
 
   return (
@@ -65,7 +64,6 @@ const LinkTable: React.FC<LinkTableProps> = ({ site, article }) => {
             <TableCell className={classes.bold} align="left">Description</TableCell>
             <TableCell className={classes.bold} align="left">Value</TableCell>
             <TableCell align="left"></TableCell>
-            <TableCell align="left"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -75,7 +73,6 @@ const LinkTable: React.FC<LinkTableProps> = ({ site, article }) => {
               <TableCell className={classes.tableCell} align="left">{link.locale}</TableCell>
               <TableCell className={classes.tableCell} align="left">{link.description}</TableCell>
               <TableCell className={classes.tableCell} align="left">{link.content}</TableCell>
-              <TableCell className={classes.tableCell} align="right"><LinkEdit site={site} article={article} link={link} /></TableCell>
               <TableCell className={classes.tableCell} align="right"><LinkRemove site={site} article={article} link={link} /></TableCell>
             </TableRow>
           ))}

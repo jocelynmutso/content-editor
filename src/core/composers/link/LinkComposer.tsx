@@ -68,8 +68,6 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
     setLocale(event.target.value as string);
   };
 
-  const links: API.CMS.Link[] = Object.values(site.links).filter(link => article.id === link.article);
-
   return (
     <div className={classes.root}>
       <Accordion square={true} className={classes.accordion} >
@@ -110,7 +108,7 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
           <AddButton />
         </AccordionDetails>
       </Accordion>
-      {links.length === 0 ? null : <LinkTable site={site} article={article} />}
+      <LinkTable site={site} article={article} />
     </div>
   );
 }
