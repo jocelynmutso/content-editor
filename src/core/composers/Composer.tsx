@@ -45,11 +45,12 @@ const Composer: React.FC<ComposerProps> = ({ site, releases }) => {
     return null;
   }
   
+
   const active = tabs[layout.session.history.open];
   if (active.id === 'releases') {
     return (<ReleaseComposer releases={releases} site={site}/>);  
   } else if (active.id === 'links') {
-    return (<LinksView site={site}/>)
+    return (<LinksView site={site} article={article} />)
   } else if (active.id === 'article') {
     return (<ArticleComposer />)
   } else if (active.id === 'locales') {

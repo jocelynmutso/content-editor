@@ -44,11 +44,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface LinkRemoveProps {
   site: API.CMS.Site;
-  article: API.CMS.Article;
   link: API.CMS.Link;
+  article: API.CMS.Article;
 }
 
-const LinkRemove: React.FC<LinkRemoveProps> = ({ site }) => {
+const LinkRemove: React.FC<LinkRemoveProps> = ({ site, link, article }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -66,10 +66,10 @@ const LinkRemove: React.FC<LinkRemoveProps> = ({ site }) => {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>{"Remove this item"}</DialogTitle>
+        <DialogTitle>{"Remove this link"} {" "} </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <ListItem>* Removing this item only removes its association with this article.</ListItem>
+            <ListItem>* Removing the link only removes its association with this article.</ListItem>
             <ListItem>* To delete this item permanently, go to "Delete screen" </ListItem>
           </DialogContentText>
         </DialogContent>

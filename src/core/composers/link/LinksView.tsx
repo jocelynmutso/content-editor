@@ -10,6 +10,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import { LinkRemove } from './LinkRemove';
+
 import { API } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -34,6 +36,12 @@ const useRowStyles = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       borderBottom: 'unset'
     },
+    column: {
+      width: '25%',
+      fontWeight: 'bold',
+      borderBottom: 'unset',
+      padding: 0
+    },
     tableCell: {
       paddingTop: 0,
       paddingBottom: 0
@@ -49,18 +57,15 @@ const useRowStyles = makeStyles((theme: Theme) =>
         }
       }
     },
-    collapse: {
-      marginLeft: theme.spacing(2)
-    }
   }));
 
 
 interface LinksViewProps {
   site: API.CMS.Site,
-
+  article: API.CMS.Article
 }
 
-const LinksView: React.FC<LinksViewProps> = ({ site }) => {
+const LinksView: React.FC<LinksViewProps> = ({ site, article}) => {
   const classes = useStyles();
 
   const links = Object.values(site.links);
@@ -78,7 +83,7 @@ const LinksView: React.FC<LinksViewProps> = ({ site }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {links.map((link, index) => (<Row site={site} link={link} />))}
+          {links.map((link, index) => (<Row site={site} link={link} article={article} />))}
         </TableBody>
       </Table>
     </TableContainer>
@@ -86,7 +91,7 @@ const LinksView: React.FC<LinksViewProps> = ({ site }) => {
 }
 
 
-const Row: React.FC<{ site: API.CMS.Site, link: API.CMS.Link }> = ({ site, link }) => {
+const Row: React.FC<{ site: API.CMS.Site, link: API.CMS.Link , article: API.CMS.Article}> = ({ site, link, article }) => {
   const classes = useRowStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -107,21 +112,23 @@ const Row: React.FC<{ site: API.CMS.Site, link: API.CMS.Link }> = ({ site, link 
 
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-          <Collapse in={open} timeout="auto" unmountOnExit className={classes.collapse}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={2}>
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell className={classes.bold} align="left">Articles</TableCell>
-                    <TableCell className={classes.bold} align="left">Remove</TableCell>
-
+                    <TableCell className={classes.column} align="right" style={{paddingRight: 0}}>Articles</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {link.articles.map((id) => (
                     <TableRow key={id} className={classes.row}>
-                      <TableCell component="th" scope="row">
+                      <TableCell component="th" scope="row" align="right">
                         {site.articles[id].name}
+                      </TableCell>
+                      <TableCell>
+                        <IconButton className={classes.iconButton}>
+                        </IconButton>
                       </TableCell>
                     </TableRow>
                   ))}
