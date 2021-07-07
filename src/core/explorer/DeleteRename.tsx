@@ -2,8 +2,8 @@ import React from 'react';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-import { DeleteAlert } from './DeleteAlert';
-import { RenameAlert} from './RenameAlert';
+import { DeleteArticle } from './DeleteArticle';
+import { RenameArticle} from './RenameArticle';
 import { API } from '../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -49,8 +49,8 @@ const DeleteRename: React.FC<DeleteRenameProps> = ({ site, article }) => {
   return (
     <div className={classes.root}>
       <ButtonGroup size="small">
-        <DeleteAlert site={site} article={article}  />
-        <RenameAlert site={site} article={article} />
+        <DeleteArticle site={site} article={article}  />
+        <RenameArticle site={site} article={article} />
       </ButtonGroup>
     </div>
   );

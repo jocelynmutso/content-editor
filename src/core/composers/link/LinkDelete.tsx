@@ -5,14 +5,15 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { makeStyles, createStyles, Theme, ListItem } from '@material-ui/core';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
 
-import { API } from '../deps';
+import { API } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
-      padding: 0,
+     // padding: 0,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.background.paper,
       fontWeight: 'bold',
@@ -24,17 +25,29 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     margin: {
       marginRight: theme.spacing(1)
-    }
+    },
+    iconButton: {
+      padding: 2,
+      marginLeft: theme.spacing(1),
+      color: theme.palette.primary.dark,
+      "&:hover, &.Mui-focusVisible": {
+        backgroundColor: theme.palette.info.main,
+        color: theme.palette.background.paper,
+        "& .MuiSvgIcon-root": {
+          color: theme.palette.background.paper,
+        }
+      }
+    },
   }),
 );
 
 
-interface DeleteAlertProps {
+interface LinkDeleteProps {
   site: API.CMS.Site;
-  article: API.CMS.Article;
+  link: API.CMS.Link; 
 }
 
-const DeleteAlert: React.FC<DeleteAlertProps> = ({site, article}) => {
+const LinkDelete: React.FC<LinkDeleteProps> = ({ site, link }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   
@@ -47,20 +60,19 @@ const DeleteAlert: React.FC<DeleteAlertProps> = ({site, article}) => {
 
   return (
     <div className={classes.margin}>
-      <Button variant="outlined" className={classes.button} onClick={handleClickOpen}>
-        Delete
-      </Button>
+      <IconButton className={classes.iconButton} onClick={handleClickOpen}>
+        <DeleteOutlinedIcon />
+      </IconButton>
+      
       <Dialog
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>{"Delete this article?"}</DialogTitle>
+        <DialogTitle>{"Permanently delete this link?"} </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <ListItem>* Content files associated with this article will be permanently deleted.</ListItem>
-            <ListItem>* Deleting this article will NOT delete its links and workflows</ListItem>
-            <ListItem>* Links and workflows must be deleted globally via toolbar menu actions. </ListItem>
-            <ListItem>* Deletion of this article cannot be undone!</ListItem>
+            <ListItem>* Deleting this link will remove it globally from the application.</ListItem>
+            <ListItem>* This action cannot be undone! </ListItem>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -68,11 +80,11 @@ const DeleteAlert: React.FC<DeleteAlertProps> = ({site, article}) => {
             Cancel
           </Button>
           <Button onClick={handleClose} color="primary" autoFocus>
-            Continue and delete
+            Continue and remove
           </Button>
         </DialogActions>
       </Dialog>
     </div>
   );
 }
-export { DeleteAlert }
+export { LinkDelete }

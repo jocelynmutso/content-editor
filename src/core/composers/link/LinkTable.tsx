@@ -63,7 +63,6 @@ const LinkTable: React.FC<LinkTableProps> = ({ site, article }) => {
             <TableCell className={classes.bold} align="left">Locale</TableCell>
             <TableCell className={classes.bold} align="left">Description</TableCell>
             <TableCell className={classes.bold} align="left">Value</TableCell>
-            <TableCell align="left"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -73,7 +72,6 @@ const LinkTable: React.FC<LinkTableProps> = ({ site, article }) => {
               <TableCell className={classes.tableCell} align="left">{link.locale}</TableCell>
               <TableCell className={classes.tableCell} align="left">{link.description}</TableCell>
               <TableCell className={classes.tableCell} align="left">{link.content}</TableCell>
-              <TableCell className={classes.tableCell} align="right"><LinkRemove site={site} article={article} link={link} /></TableCell>
             </TableRow>
           ))}
         </TableBody>

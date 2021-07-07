@@ -74,7 +74,7 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
         <AccordionSummary
           expandIcon={<IconButton className={classes.iconButton}><AddCircleOutlineIcon /> </IconButton>}
         >
-          <Typography className={classes.heading}>Create new link</Typography>
+          <Typography className={classes.heading}>Add a link</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography className={classes.heading}>

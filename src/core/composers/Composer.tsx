@@ -50,7 +50,7 @@ const Composer: React.FC<ComposerProps> = ({ site, releases }) => {
   if (active.id === 'releases') {
     return (<ReleaseComposer releases={releases} site={site}/>);  
   } else if (active.id === 'links') {
-    return (<LinksView site={site} article={article} />)
+    return (<LinksView site={site} />)
   } else if (active.id === 'article') {
     return (<ArticleComposer />)
   } else if (active.id === 'locales') {

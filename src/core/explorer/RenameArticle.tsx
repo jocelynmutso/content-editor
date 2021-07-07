@@ -40,13 +40,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-interface RenameAlertProps {
+interface RenameArticleProps {
   site: API.CMS.Site;
   article: API.CMS.Article;
 }
 
 
-const RenameAlert: React.FC<RenameAlertProps> = ({ site, article }) => {
+const RenameArticle: React.FC<RenameArticleProps> = ({ site, article }) => {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -89,4 +89,4 @@ const RenameAlert: React.FC<RenameAlertProps> = ({ site, article }) => {
     </div>
   );
 }
-export { RenameAlert }
+export { RenameArticle }

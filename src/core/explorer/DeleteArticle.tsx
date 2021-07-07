@@ -5,15 +5,14 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
-import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, ListItem } from '@material-ui/core';
 
-import { API } from '../../deps';
+import { API } from '../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
-     // padding: 0,
+      padding: 0,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.background.paper,
       fontWeight: 'bold',
@@ -25,29 +24,17 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     margin: {
       marginRight: theme.spacing(1)
-    },
-    iconButton: {
-      padding: 2,
-      marginLeft: theme.spacing(1),
-      color: theme.palette.primary.dark,
-      "&:hover, &.Mui-focusVisible": {
-        backgroundColor: theme.palette.info.main,
-        color: theme.palette.background.paper,
-        "& .MuiSvgIcon-root": {
-          color: theme.palette.background.paper,
-        }
-      }
-    },
+    }
   }),
 );
 
 
-interface LinkRemoveProps {
+interface DeleteArticleProps {
   site: API.CMS.Site;
-  link: API.CMS.Link; 
+  article: API.CMS.Article;
 }
 
-const LinkRemove: React.FC<LinkRemoveProps> = ({ site, link }) => {
+const DeleteArticle: React.FC<DeleteArticleProps> = ({site, article}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   
@@ -60,19 +47,20 @@ const LinkRemove: React.FC<LinkRemoveProps> = ({ site, link }) => {
 
   return (
     <div className={classes.margin}>
-      <IconButton className={classes.iconButton} onClick={handleClickOpen}>
-        <RemoveCircleOutlineIcon />
-      </IconButton>
-      
+      <Button variant="outlined" className={classes.button} onClick={handleClickOpen}>
+        Delete
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>{"Remove this link?"} </DialogTitle>
+        <DialogTitle>{"Delete this article?"}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <ListItem>* Removing the link only removes its association with this article.</ListItem>
-            <ListItem>* To delete this item permanently, go to "Delete screen" </ListItem>
+            <ListItem>* Content files associated with this article will be permanently deleted.</ListItem>
+            <ListItem>* Deleting this article will NOT delete its links and workflows</ListItem>
+            <ListItem>* Links and workflows must be deleted globally via toolbar menu actions. </ListItem>
+            <ListItem>* Deletion of this article cannot be undone!</ListItem>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -80,11 +68,11 @@ const LinkRemove: React.FC<LinkRemoveProps> = ({ site, link }) => {
             Cancel
           </Button>
           <Button onClick={handleClose} color="primary" autoFocus>
-            Continue and remove
+            Continue and delete
           </Button>
         </DialogActions>
       </Dialog>
     </div>
   );
 }
-export { LinkRemove }
+export { DeleteArticle }
