@@ -1,11 +1,13 @@
 import React from 'react';
+import { makeStyles, createStyles, Theme, TextField, Typography, Divider } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { makeStyles, createStyles, Theme, ListItem } from '@material-ui/core';
+
+import { API } from '../deps';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -16,25 +18,39 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.background.paper,
       fontWeight: 'bold',
       "&:hover, &.Mui-focusVisible": {
-        backgroundColor: theme.palette.error.dark,
+        backgroundColor: theme.palette.info.main,
         color: theme.palette.background.paper,
         fontWeight: 'bold'
       }
     },
-    margin: {
-      marginRight: theme.spacing(1)
+    formControl: {
+      backgroundColor: theme.palette.background.paper,
+      margin: theme.spacing(1),
+      width: '45%'
+    },
+    typography: {
+      marginBottom: theme.spacing(2),
+      padding: theme.spacing(1),
+      backgroundColor: theme.palette.info.light,
+      border: '1px solid',
+      fontWeight: 'bold',
+
     }
   }),
 );
 
 
-interface DeleteAlertProps {
-
+interface RenameAlertProps {
+  site: API.CMS.Site;
+  article: API.CMS.Article;
 }
 
-const DeleteAlert: React.FC<DeleteAlertProps> = () => {
+
+const RenameAlert: React.FC<RenameAlertProps> = ({ site, article }) => {
   const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -42,34 +58,35 @@ const DeleteAlert: React.FC<DeleteAlertProps> = () => {
     setOpen(false);
   };
 
+
   return (
-    <div className={classes.margin}>
+    <div>
       <Button variant="outlined" className={classes.button} onClick={handleClickOpen}>
-        Delete
+        Rename
       </Button>
       <Dialog
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>{"Delete this article?"}</DialogTitle>
+        <DialogTitle>{"Rename this article?"}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <ListItem>* Content files associated with this article will be permanently deleted.</ListItem>
-            <ListItem>* Deleting this article will NOT delete its links and workflows</ListItem>
-            <ListItem> * Links and workflows must be deleted globally via toolbar menu actions. </ListItem>
-            <ListItem>* Deletion of this article cannot be undone!</ListItem>
+            Renaming this article will only change its technical name. This action has no consequences for the end-user experience.
           </DialogContentText>
+          <Typography className={classes.typography} variant="body1">Old order: {" "} {article.order} <Divider /> Old name: {" "} {article.name}</Typography>
+          <TextField placeholder="Example: 100" label="New order" variant="outlined" className={classes.formControl} />
+          <TextField label="New name" variant="outlined" className={classes.formControl} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="inherit">
             Cancel
           </Button>
           <Button onClick={handleClose} color="primary" autoFocus>
-            Continue and delete
+            Continue and rename
           </Button>
         </DialogActions>
       </Dialog>
     </div>
   );
 }
-export { DeleteAlert }
+export { RenameAlert }

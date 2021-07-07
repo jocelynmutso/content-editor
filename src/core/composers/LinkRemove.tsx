@@ -1,14 +1,14 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme, TextField, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
 
 import { API } from '../deps';
-
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,74 +18,71 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.background.paper,
       fontWeight: 'bold',
       "&:hover, &.Mui-focusVisible": {
-        backgroundColor: theme.palette.info.main,
+        backgroundColor: theme.palette.error.dark,
         color: theme.palette.background.paper,
         fontWeight: 'bold'
       }
     },
-    formControl: {
-      backgroundColor: theme.palette.background.paper,
-      margin: theme.spacing(1),
-      width: '45%'
+    margin: {
+      marginRight: theme.spacing(1)
     },
-    typography: {
-      marginBottom: theme.spacing(2),
-      padding: theme.spacing(1),
-      backgroundColor: theme.palette.info.light,
-      border: '1px solid',
-      fontWeight: 'bold'
-    }
+    iconButton: {
+      padding: 2,
+      marginLeft: theme.spacing(3),
+      color: theme.palette.primary.dark,
+      "&:hover, &.Mui-focusVisible": {
+        backgroundColor: theme.palette.info.main,
+        color: theme.palette.background.paper,
+        "& .MuiSvgIcon-root": {
+          color: theme.palette.background.paper,
+        }
+      }
+    },
   }),
 );
 
 
-interface RenameAlertProps {
+interface LinkRemoveProps {
   site: API.CMS.Site;
   article: API.CMS.Article;
+  link: API.CMS.Link;
 }
 
-
-const RenameAlert: React.FC<RenameAlertProps> = ({ site, article }) => {
+const LinkRemove: React.FC<LinkRemoveProps> = ({ site }) => {
   const classes = useStyles();
-
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
   const handleClose = () => {
     setOpen(false);
   };
 
-
   return (
-    <div>
-      <Button variant="outlined" className={classes.button} onClick={handleClickOpen}>
-        Rename
-      </Button>
+    <div className={classes.margin}>
+      <IconButton className={classes.iconButton}>
+        <RemoveCircleOutlineIcon />
+      </IconButton>
+      
       <Dialog
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>{"Rename this article?"}</DialogTitle>
+        <DialogTitle>{"Remove this item"}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Renaming this article will only change its technical name. This action has no consequences for the end-user experience.
+            <ListItem>* Removing this item only removes its association with this article.</ListItem>
+            <ListItem>* To delete this item permanently, go to "Delete screen" </ListItem>
           </DialogContentText>
-          <Typography className={classes.typography} variant="body1">Old name: {" "} {article.order} {article.name}</Typography>
-            <TextField placeholder="Example: 100" label="Order" variant="outlined" className={classes.formControl} />
-            <TextField label="New name" variant="outlined" className={classes.formControl} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="inherit">
             Cancel
           </Button>
           <Button onClick={handleClose} color="primary" autoFocus>
-            Continue and rename
+            Continue and remove
           </Button>
         </DialogActions>
       </Dialog>
     </div>
   );
 }
-export { RenameAlert }
+export { LinkRemove }

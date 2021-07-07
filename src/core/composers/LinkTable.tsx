@@ -7,8 +7,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import EditIcon from '@material-ui/icons/Edit';
-import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import Paper from '@material-ui/core/Paper';
+
+import { LinkRemove } from './LinkRemove';
 
 import { API } from '../deps';
 
@@ -40,12 +41,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 
-interface LinksTableProps {
+interface LinkTableProps {
   site: API.CMS.Site,
   article: API.CMS.Article
 }
 
-const LinksTable: React.FC<LinksTableProps> = ({ site, article }) => {
+const LinkTable: React.FC<LinkTableProps> = ({ site, article }) => {
   const classes = useStyles();
   const links: API.CMS.Link[] = Object.values(site.links).filter(link => article.id === link.article);
 
@@ -71,7 +72,7 @@ const LinksTable: React.FC<LinksTableProps> = ({ site, article }) => {
               <TableCell className={classes.tableCell} align="left">{link.content}</TableCell>
               <TableCell className={classes.tableCell} align="right">
                 <IconButton className={classes.iconButton}><EditIcon /></IconButton>
-                <IconButton className={classes.iconButton}><RemoveCircleOutlineIcon /></IconButton>
+                <LinkRemove site={site} article={article} link={link}/>
               </TableCell>
             </TableRow>
           ))}
@@ -81,7 +82,7 @@ const LinksTable: React.FC<LinksTableProps> = ({ site, article }) => {
   );
 }
 
-export { LinksTable }
+export { LinkTable }
 
 
 

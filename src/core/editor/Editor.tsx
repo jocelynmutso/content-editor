@@ -1,9 +1,8 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
 import { API, Layout } from '../deps';
-import { PageComposer, ArticleComposer, LinkComposer, WorkflowComposer } from '../composers';
-import { ReleaseComposer } from '../releases';
-import { LocaleOptions } from '../locales';
+import { PageComposer, ArticleComposer, LinkComposer, WorkflowComposer, LocaleComposer, ReleaseComposer } from '../composers';
+
 import { LinksView } from '../links';
 import { WorkflowsView } from '../workflows';
 import Context from '../context';
@@ -53,7 +52,7 @@ const Editor: React.FC<EditorProps> = ({ site, releases }) => {
   } else if (active.id === 'article') {
     return (<ArticleComposer />)
   } else if (active.id === 'locales') {
-    return (<LocaleOptions site={site} />)
+    return (<LocaleComposer site={site} />)
   } else if (active.id === 'workflows') {
     return (<WorkflowsView site={site} />)
   }   

@@ -16,7 +16,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import VisibilityOnIcon from '@material-ui/icons/Visibility';
-import { Create } from '../buttons';
+import { AddButton } from './AddButton';
 
 import { API } from '../deps';
 
@@ -83,12 +83,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 
-interface LocaleOptionsProps {
+interface LocaleComposerProps {
   site: API.CMS.Site;
 }
 
 
-const LocaleOptions: React.FC<LocaleOptionsProps> = ({ site }) => {
+const LocaleComposer: React.FC<LocaleComposerProps> = ({ site }) => {
   const classes = useStyles();
 
   const [locale, setLocale] = React.useState('');
@@ -116,7 +116,7 @@ const LocaleOptions: React.FC<LocaleOptionsProps> = ({ site }) => {
             </Select>
           </FormControl>
           <TextField className={classes.input} label="Optional note" variant="outlined" />
-          <Create />
+          <AddButton />
         </AccordionDetails>
       </Accordion>
 
@@ -148,4 +148,5 @@ const LocaleOptions: React.FC<LocaleOptionsProps> = ({ site }) => {
   );
 }
 
-export { LocaleOptions }
+export { LocaleComposer }
+

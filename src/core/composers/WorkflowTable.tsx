@@ -40,12 +40,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 
-interface WorkflowsTableProps {
+interface WorkflowTableProps {
   site: API.CMS.Site,
   article: API.CMS.Article
 }
 
-const WorkflowsTable: React.FC<WorkflowsTableProps> = ({ site, article }) => {
+const WorkflowTable: React.FC<WorkflowTableProps> = ({ site, article }) => {
   const classes = useStyles();
   const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => article.id === workflow.article);
 
@@ -79,7 +79,7 @@ const WorkflowsTable: React.FC<WorkflowsTableProps> = ({ site, article }) => {
   );
 }
 
-export { WorkflowsTable }
+export { WorkflowTable }
 
 
 

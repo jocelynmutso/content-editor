@@ -6,7 +6,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
-import { Create } from '../buttons';
+import { AddButton } from './AddButton';
 import { ReleasesTable } from './ReleasesTable';
 import { API } from '../deps';
 
@@ -72,7 +72,7 @@ const ReleaseComposer: React.FC<ReleaseComposerProps> = ({ site, releases }) => 
             <TextField className={classes.formControlLarge} id="outlined-basic" label="Note" variant="outlined" />
             <TextField className={classes.formControlSmall} disabled id="outlined-basic" label="Date" defaultValue={"03/09/2021"} variant="outlined" />
           </Typography>
-          <Create />
+          <AddButton />
         </AccordionDetails>
       </Accordion>
       {releases.length === 0 ? null : <ReleasesTable site={site} releases={releases} />}

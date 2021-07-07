@@ -10,7 +10,7 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
-import { DeleteRename } from '../buttons';
+import { DeleteRename } from './DeleteRename';
 import Context from '../context';
 
 import { Layout } from '../deps';
@@ -33,6 +33,16 @@ const useStyles = makeStyles((theme: Theme) =>
     summary: {
       color: theme.palette.primary.main,
       fontWeight: 'bold',
+    },
+    localeSummary: {
+      color: theme.palette.primary.main,
+      paddingLeft: 3,
+      paddingRight: 3,
+      fontWeight: 'bold',
+      "&:hover, &.Mui-focusVisible": {
+        backgroundColor: theme.palette.info.main,
+        color: theme.palette.background.paper,
+      }
     },
     iconButton: {
       marginTop: 1,
@@ -142,7 +152,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
                 <TableCell className={classes.table}>
                   Locales: {pages.map((page, index) => (<span className={classes.hoverRow} key={index}
                   onClick={() => handleLinkClick("LOCALE", page.locale)}>
-                  <span className={classes.summary}>{page.locale}&nbsp;</span></span>))}
+                  <span className={classes.localeSummary}>{page.locale}&nbsp;</span></span>))}
                 </TableCell>
               </TableRow>
               <TableRow className={classes.hoverRow} >
@@ -160,7 +170,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
                   Last Modified: <span className={classes.summary}>9 days ago</span>
                 </TableCell>
               </TableRow>
-              <DeleteRename site={site} article={article}/>
+              <DeleteRename site={site} article={article} />
             </TableBody>
           </Table>
         </TableContainer>
