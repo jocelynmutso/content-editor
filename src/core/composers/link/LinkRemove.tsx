@@ -13,7 +13,7 @@ import { API } from '../../deps';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
-      padding: 0,
+     // padding: 0,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.background.paper,
       fontWeight: 'bold',
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     iconButton: {
       padding: 2,
-      marginLeft: theme.spacing(3),
+      marginLeft: theme.spacing(1),
       color: theme.palette.primary.dark,
       "&:hover, &.Mui-focusVisible": {
         backgroundColor: theme.palette.info.main,

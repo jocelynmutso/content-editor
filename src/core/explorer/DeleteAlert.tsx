@@ -37,6 +37,7 @@ interface DeleteAlertProps {
 const DeleteAlert: React.FC<DeleteAlertProps> = ({site, article}) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  
   const handleClickOpen = () => {
     setOpen(true);
   };
