@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
 import { API, Layout } from '../deps';
 import { 
-  PageComposer, ArticleComposer, LinkComposer, WorkflowComposer, LocaleComposer, ReleaseComposer, 
+  PageComposer, ComposerSelect, ArticleComposer, LinkComposer, WorkflowComposer, LocaleComposer, ReleaseComposer, 
   LinksView, WorkflowsView
 } from './';
 
@@ -51,8 +51,8 @@ const Composer: React.FC<ComposerProps> = ({ site, releases }) => {
     return (<ReleaseComposer releases={releases} site={site}/>);  
   } else if (active.id === 'links') {
     return (<LinksView site={site} />)
-  } else if (active.id === 'article') {
-    return (<ArticleComposer />)
+  } else if (active.id === 'newItem') {
+    return (<ComposerSelect site={site} />)
   } else if (active.id === 'locales') {
     return (<LocaleComposer site={site} />)
   } else if (active.id === 'workflows') {

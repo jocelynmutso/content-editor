@@ -72,7 +72,7 @@ const LinkRemove: React.FC<LinkRemoveProps> = ({ site, link }) => {
         <DialogContent>
           <DialogContentText>
             <ListItem>* Removing the link only removes its association with this article.</ListItem>
-            <ListItem>* To delete this item permanently, go to "Delete screen" </ListItem>
+            <ListItem>* To delete this item permanently, click the Delete icon. </ListItem>
           </DialogContentText>
         </DialogContent>
         <DialogActions>

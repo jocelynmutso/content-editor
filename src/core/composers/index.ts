@@ -1,4 +1,5 @@
 export * from './Composer'
+export * from './ComposerSelect';
 
 
 

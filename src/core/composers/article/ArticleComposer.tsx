@@ -47,13 +47,15 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface ArticleComposerProps {
+  site: API.CMS.Site;
 }
 
 
-const ArticleComposer: React.FC<ArticleComposerProps> = () => {
+const ArticleComposer: React.FC<ArticleComposerProps> = ({site}) => {
   const classes = useStyles();
   const [locale, setLocale] = React.useState('');
 
+  const articles: API.CMS.Article[] = Object.values(site.articles);
 
   const handleLocaleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setLocale(event.target.value as string);

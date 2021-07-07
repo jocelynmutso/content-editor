@@ -79,8 +79,8 @@ const LinksView: React.FC<LinksViewProps> = ({ site }) => {
             <TableCell className={classes.bold} align="left">Locale</TableCell>
             <TableCell className={classes.bold} align="left">Description</TableCell>
             <TableCell className={classes.bold} align="left">URL / value</TableCell>
-            <TableCell className={classes.bold} align="left">Articles</TableCell>
-            <TableCell className={classes.bold} align="right">Delete</TableCell>
+            <TableCell className={classes.bold} align="center">Articles</TableCell>
+            <TableCell className={classes.bold} align="center">Delete</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -113,8 +113,8 @@ const Row: React.FC<RowProps> = ({ site, link }) => {
         <TableCell className={classes.tableCell} align="left">{link.locale}</TableCell>
         <TableCell className={classes.tableCell} align="left">{link.description}</TableCell>
         <TableCell className={classes.tableCell} align="left">{link.content}</TableCell>
-        <TableCell className={classes.tableCell} align="left">{link.articles.length}</TableCell>
-        <TableCell className={classes.tableCell} align="right"><LinkDelete link={link} site={site} /></TableCell>
+        <TableCell className={classes.tableCell} align="center">{link.articles.length}</TableCell>
+        <TableCell className={classes.tableCell} align="center"><LinkDelete link={link} site={site} /></TableCell>
       </TableRow>
 
       <TableRow>

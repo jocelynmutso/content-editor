@@ -27,7 +27,7 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
       icon: <PostAddOutlinedIcon />,
       type: {
         onClick: () => {
-          actions.handleTabAdd({ id: 'article', label: "New Article" });
+          actions.handleTabAdd({ id: 'newItem', label: "New Item" });
         }
       }
     },
