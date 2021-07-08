@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
 import { API, Layout } from '../deps';
 import { 
-  PageComposer, ComposerSelect, ArticleComposer, LinkComposer, WorkflowComposer, LocaleComposer, ReleaseComposer, 
+  PageComposer, ComposerSelect, ArticleComposer, LinkAdd, WorkflowComposer, LocaleComposer, ReleaseComposer, 
   LinksView, WorkflowsView
 } from './';
 
@@ -71,7 +71,7 @@ const Composer: React.FC<ComposerProps> = ({ site, releases }) => {
     const locale = tab.data.nav.value as string;
     composer = (<PageComposer key={article.id + "-" + locale} site={site} article={article} locale={locale} />);
   } else if (tab.data.nav.type === "LINK"){
-    composer = (<LinkComposer key={article.id} article={article} site={site}/>)
+    composer = (<LinkAdd key={article.id} article={article} site={site}/>)
   } else if (tab.data.nav.type === "WORKFLOW") {
     composer = (<WorkflowComposer article={article} site={site}/>)
   }

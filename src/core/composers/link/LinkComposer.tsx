@@ -1,35 +1,28 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme, TextField, InputLabel, FormControl, IconButton } from '@material-ui/core';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
+import { makeStyles, createStyles, Theme, TextField, InputLabel, FormControl, IconButton, Button, Paper } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
-import { LinkTable } from './LinkTable';
-import { AddButton } from '../styles';
 import { API } from '../../deps';
 
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '98%',
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-    },
-    accordion: {
-      backgroundColor: theme.palette.info.light
+      margin: theme.spacing(1),
     },
     select: {
-      marginRight: theme.spacing(1),
+      margin: theme.spacing(1),
       minWidth: '15ch',
       backgroundColor: theme.palette.background.paper
     },
     formControl: {
-      marginRight: theme.spacing(1),
+      margin: theme.spacing(1),
       minWidth: '50ch',
       backgroundColor: theme.palette.background.paper
     },
@@ -51,14 +44,23 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface LinkComposerProps {
   site: API.CMS.Site,
-  article: API.CMS.Article
+
 }
 
 
-const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
+const LinkComposer: React.FC<LinkComposerProps> = ({ site }) => {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
   const [type, setType] = React.useState('');
   const [locale, setLocale] = React.useState('');
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   const handleTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setType(event.target.value as string);
@@ -68,15 +70,18 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
     setLocale(event.target.value as string);
   };
 
+
+
   return (
     <div className={classes.root}>
-      <Accordion square={true} className={classes.accordion} >
-        <AccordionSummary
-          expandIcon={<IconButton className={classes.iconButton}><AddCircleOutlineIcon /> </IconButton>}
-        >
-          <Typography className={classes.heading}>Add a link</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
+      <Button onClick={handleClickOpen} size="small">Create</Button>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+      >
+        <DialogTitle>{"Create a new link"} </DialogTitle>
+        <DialogContent>
           <Typography className={classes.heading}>
             <FormControl variant="outlined" className={classes.select}>
               <InputLabel>Type</InputLabel>
@@ -102,13 +107,20 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site, article }) => {
               </Select>
             </FormControl >
 
-            <TextField className={classes.formControl} label="Description" variant="outlined" />
-            <TextField className={classes.formControl} label="Value" variant="outlined" />
+            <TextField className={classes.formControl} label="Description" variant="outlined" helperText="Text that the user will see"/>
+            <TextField className={classes.formControl} label="Value" variant="outlined" helperText="URL / path of link (http://www.example.com)"/>
           </Typography>
-          <AddButton />
-        </AccordionDetails>
-      </Accordion>
-      <LinkTable site={site} article={article} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="inherit">
+            Cancel
+          </Button>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            Create
+          </Button>
+        </DialogActions>
+      </Dialog>
+
     </div>
   );
 }

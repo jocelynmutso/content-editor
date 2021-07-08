@@ -7,6 +7,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
 import { ArticleComposer } from './article';
+import { LinkComposer } from './link';
 
 import { API } from '../deps';
 
@@ -15,9 +16,9 @@ import { API } from '../deps';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      margin: theme.spacing(2),
+      margin: theme.spacing(1),
       maxWidth: '25%'
-      
+
     },
     container: {
     },
@@ -35,7 +36,9 @@ interface ComposerSelectProps {
 
 const ComposerSelect: React.FC<ComposerSelectProps> = ({ site }) => {
   const classes = useStyles();
-
+  
+  
+  
   return (
     <div className={classes.container}>
       <Card className={classes.root} variant="outlined">
@@ -44,7 +47,20 @@ const ComposerSelect: React.FC<ComposerSelectProps> = ({ site }) => {
             Article
         </Typography>
           <Typography color="textSecondary">
-            Description of an article
+            A group of associated Pages, Links, Workflows, and Locales
+        </Typography>
+        </CardContent>
+        <CardActions>
+           <Button size="small">Create</Button>
+        </CardActions>
+      </Card>
+      <Card className={classes.root} variant="outlined">
+        <CardContent>
+          <Typography variant="h6">
+            Page
+        </Typography>
+          <Typography color="textSecondary">
+            One file representing one language, associated links, and associated workflows within an Article
         </Typography>
         </CardContent>
         <CardActions>
@@ -54,14 +70,14 @@ const ComposerSelect: React.FC<ComposerSelectProps> = ({ site }) => {
       <Card className={classes.root} variant="outlined">
         <CardContent>
           <Typography variant="h6">
-            Page
+            Link
         </Typography>
           <Typography color="textSecondary">
-            Description of a page
+            Internal (within your domain), and external (outside your domain)
         </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Create</Button>
+          <LinkComposer site={site} />
         </CardActions>
       </Card>
     </div>
