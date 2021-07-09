@@ -42,6 +42,9 @@ const useRowStyles = makeStyles((theme: Theme) =>
       borderBottom: 'unset',
       padding: 0
     },
+    expandRow: {
+      width: "30px"
+    },
     tableCell: {
       paddingTop: 0,
       paddingBottom: 0
@@ -104,7 +107,7 @@ const Row: React.FC<RowProps> = ({ site, link }) => {
   return (
     <>
       <TableRow key={link.id} hover className={classes.row}>
-        <TableCell>
+        <TableCell className={classes.expandRow}>
           <IconButton className={classes.iconButton} size="small" onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
