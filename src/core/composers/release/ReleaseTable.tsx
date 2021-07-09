@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     table: {
       minWidth: 650,
+      padding: 0,
     },
     iconButton: {
       padding: 2,

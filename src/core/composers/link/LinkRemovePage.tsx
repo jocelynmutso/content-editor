@@ -42,12 +42,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-interface LinkRemoveProps {
+interface LinkRemovePageProps {
   site: API.CMS.Site;
   link: API.CMS.Link; 
 }
 
-const LinkRemove: React.FC<LinkRemoveProps> = ({ site, link }) => {
+const LinkRemovePage: React.FC<LinkRemovePageProps> = ({ site, link }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   
@@ -87,4 +87,4 @@ const LinkRemove: React.FC<LinkRemoveProps> = ({ site, link }) => {
     </div>
   );
 }
-export { LinkRemove }
+export { LinkRemovePage }

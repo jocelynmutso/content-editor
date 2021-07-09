@@ -3,7 +3,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core';
 import { API, Layout } from '../deps';
 import { 
   PageComposer, ComposerSelect, ArticleComposer, LinkAdd, WorkflowAdd, LocaleComposer, ReleaseComposer, 
-  LinksView, WorkflowsView
+  LinksView, WorkflowsView, ReleasesView
 } from './';
 
 import Context from '../context';
@@ -48,7 +48,7 @@ const Composer: React.FC<ComposerProps> = ({ site, releases }) => {
 
   const active = tabs[layout.session.history.open];
   if (active.id === 'releases') {
-    return (<ReleaseComposer releases={releases} site={site}/>);  
+    return (<ReleasesView site={site} releases={releases}/>);  
   } else if (active.id === 'links') {
     return (<LinksView site={site} />)
   } else if (active.id === 'newItem') {
