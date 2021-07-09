@@ -61,13 +61,7 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
         }
       }
     },
-
-    {
-      id: 'toolbar.delete',
-      icon: <DeleteOutlinedIcon />,
-      type: { getView: () => (<Explorer site={site} />) }
-    },
-
+    
     {
       id: 'toolbar.locales',
       icon: <TranslateIcon />,

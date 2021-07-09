@@ -47,7 +47,7 @@ interface WorkflowTableProps {
 
 const WorkflowTable: React.FC<WorkflowTableProps> = ({ site, article }) => {
   const classes = useStyles();
-  const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => article.id === workflow.article);
+  const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => workflow.articles.includes(article.id));
 
 
   return (

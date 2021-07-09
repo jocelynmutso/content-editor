@@ -83,12 +83,12 @@ const links: API.CMS.Link[] = [
 ];
 
 const workflows: API.CMS.Workflow[] = [
-  { id: "w1", article: "a1",   name: "generalProcess1", content: "General Inquiry",     locale: "en" },
-  { id: "w2", article: "a1",   name: "greatFlow",       content: "Default Form",        locale: "en" },
-  { id: "w3", article: "a1",   name: "inquiryMgr",      content: "Super good question", locale: "en" },
-  { id: "w4", article: "a1.2", name: "generalProcess1", content: "General Process",     locale: "fi" },
-  { id: "w5", article: "a1.3", name: "greatFlow",       content: "Default Flow",        locale: "en" },
-  { id: "w6", article: "a1.3", name: "inquiryMgr",      content: "General Question",    locale: "fi" },
+  { id: "w1", articles: ["a1"],   name: "generalProcess1", content: "General Inquiry",     locale: "en" },
+  { id: "w2", articles: ["a1"],   name: "greatFlow",       content: "Default Form",        locale: "en" },
+  { id: "w3", articles: ["a1"],   name: "inquiryMgr",      content: "Super good question", locale: "en" },
+  { id: "w4", articles: ["a1.2"], name: "generalProcess1", content: "General Process",     locale: "fi" },
+  { id: "w5", articles: ["a1.3"], name: "greatFlow",       content: "Default Flow",        locale: "en" },
+  { id: "w6", articles: ["a1.3"], name: "inquiryMgr",      content: "General Question",    locale: "fi" },
 ];
 
 const locales: API.CMS.SiteLocale[] = [

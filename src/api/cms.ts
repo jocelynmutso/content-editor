@@ -75,8 +75,8 @@ declare namespace CMS {
 
   interface Workflow {
     id: WorkflowId,
+    articles: ArticleId[],
     name: string,
-    article: ArticleId,
     locale: Locale,
     content: LocalisedContent
   }

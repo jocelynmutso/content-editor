@@ -69,7 +69,7 @@ const WorkflowComposer: React.FC<WorkflowComposerProps> = ({ site, article }) =>
     setLocale(event.target.value as string);
   };
 
-  const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => article.id === workflow.article);
+  const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => workflow.articles.includes(article.id));
 
   return (
     <div className={classes.root}>
