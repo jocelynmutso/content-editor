@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import { ArticleComposer } from './article';
 import { LinkComposer } from './link';
 import { WorkflowComposer } from './workflow';
+import { LocaleComposer } from './locale';
 import { NewPage } from './page';
 
 import { API } from '../deps';
@@ -19,7 +20,6 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       margin: theme.spacing(1),
       maxWidth: '25%'
-
     },
     container: {
     },
@@ -37,7 +37,6 @@ interface ComposerSelectProps {
 
 const ComposerSelect: React.FC<ComposerSelectProps> = ({ site }) => {
   const classes = useStyles();
-
 
 
   return (
@@ -81,7 +80,7 @@ const ComposerSelect: React.FC<ComposerSelectProps> = ({ site }) => {
           <LinkComposer site={site} />
         </CardActions>
       </Card>
-            <Card className={classes.root} variant="outlined">
+      <Card className={classes.root} variant="outlined">
         <CardContent>
           <Typography variant="h6">
             Workflow
@@ -92,6 +91,19 @@ const ComposerSelect: React.FC<ComposerSelectProps> = ({ site }) => {
         </CardContent>
         <CardActions>
           <WorkflowComposer site={site} />
+        </CardActions>
+      </Card>
+      <Card className={classes.root} variant="outlined">
+        <CardContent>
+          <Typography variant="h6">
+            Locale
+        </Typography>
+          <Typography color="textSecondary" variant="caption">
+            Add and activate new languages
+        </Typography>
+        </CardContent>
+        <CardActions>
+          <LocaleComposer site={site} />
         </CardActions>
       </Card>
     </div>

@@ -84,7 +84,7 @@ const WorkflowComposer: React.FC<WorkflowComposerProps> = ({ site }) => {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>{"Create a new workflow"} </DialogTitle>
+        <DialogTitle>{"Connect an existing workflow"} </DialogTitle>
         <DialogContent>
           <Typography className={classes.heading}>
             <FormControl variant="outlined" className={classes.selectSmall}>
@@ -113,7 +113,7 @@ const WorkflowComposer: React.FC<WorkflowComposerProps> = ({ site }) => {
               </Select>
 
             </FormControl>
-            <TextField className={classes.selectLarge} label="Localised Name" variant="outlined" defaultValue="Localised name" helperText="Name to be displayed to users" />
+            <TextField className={classes.selectLarge} label="Localised Name" variant="outlined" placeholder="Permit application form" helperText="Name to be displayed to users" />
 
           </Typography>
         </DialogContent>

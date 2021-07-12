@@ -85,7 +85,7 @@ const ArticleComposer: React.FC<ArticleComposerProps> = ({ site }) => {
                 ))}
               </Select>
             </FormControl >
-            <TextField className={classes.select} label="Order" variant="outlined" defaultValue="100" helperText="3 digit numeric prefix for menu ordering purposes" />
+            <TextField className={classes.select} label="Order" variant="outlined" placeholder="100" helperText="3 digit numeric prefix for menu ordering purposes" />
             <TextField className={classes.formControl} label="Name" variant="outlined" />
           </Typography>
         </DialogContent>
