@@ -11,7 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-import { LinkRemovePage, LinkDelete } from '../link';
+import { LinkRemovePage, LinkDelete, LinkComposer } from '../link';
 import { API } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -87,7 +87,7 @@ const LinksView: React.FC<LinksViewProps> = ({ site }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {links.map((link, index) => (<Row site={site} link={link} />))}
+          {links.map((link, index) => (<Row key={index} site={site} link={link} />))}
         </TableBody>
       </Table>
     </TableContainer>

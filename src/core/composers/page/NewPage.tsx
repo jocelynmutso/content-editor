@@ -10,6 +10,7 @@ import Select from '@material-ui/core/Select';
 
 import { API } from '../../deps';
 
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -20,42 +21,21 @@ const useStyles = makeStyles((theme: Theme) =>
       minWidth: '20ch',
       backgroundColor: theme.palette.background.paper
     },
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: '60ch',
-      backgroundColor: theme.palette.background.paper
-    },
     heading: {
       fontWeight: 'bold',
-    },
-    iconButton: {
-      color: theme.palette.primary.dark,
-      "&:hover, &.Mui-focusVisible": {
-        backgroundColor: theme.palette.info.main,
-        color: theme.palette.background.paper,
-        "& .MuiSvgIcon-root": {
-          color: theme.palette.background.paper,
-        }
-      }
     },
   }),
 );
 
-
-
-interface ArticleComposerProps {
-  site: API.CMS.Site;
+type NewPageProps = {
+  site: API.CMS.Site,
 }
 
-
-const ArticleComposer: React.FC<ArticleComposerProps> = ({ site }) => {
+const NewPage: React.FC<NewPageProps> = ({ site }) => {
   const classes = useStyles();
-  const [locale, setLocale] = React.useState('');
   const [open, setOpen] = React.useState(false);
-
-
-  const articles: API.CMS.Article[] = Object.values(site.articles);
-
+  const [locale, setLocale] = React.useState('');
+  const [article, setArticle] = React.useState('');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -64,9 +44,10 @@ const ArticleComposer: React.FC<ArticleComposerProps> = ({ site }) => {
     setOpen(false);
   };
 
-  const handleLocaleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setLocale(event.target.value as string);
-  };
+
+
+  const articles: API.CMS.Article[] = Object.values(site.articles);
+  const locales: API.CMS.SiteLocale[] = Object.values(site.locales);
 
   return (
     <div className={classes.root}>
@@ -76,23 +57,33 @@ const ArticleComposer: React.FC<ArticleComposerProps> = ({ site }) => {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>{"Create a new article"} </DialogTitle>
+        <DialogTitle>{"Create a new page"} </DialogTitle>
         <DialogContent>
           <Typography className={classes.heading}>
             <FormControl variant="outlined" className={classes.select}>
-              <InputLabel >Parent</InputLabel>
+              <InputLabel >Article</InputLabel>
               <Select
-                value={locale}
-                onChange={handleLocaleChange}
-                label="Parent"
+                value={article}
+                onChange={({target}) => setArticle(target.value as any)}
+                label="article"
               >
                 {articles.map((article, index) => (
-                  <MenuItem key={index}>{article.order}{"_"}{article.name}</MenuItem>
+                  <MenuItem key={index} value={article.name}>{article.order}{"_"}{article.name}</MenuItem>
                 ))}
               </Select>
             </FormControl >
-            <TextField className={classes.select} label="Order" variant="outlined" defaultValue="100" helperText="3 digit numeric prefix for menu ordering purposes" />
-            <TextField className={classes.formControl} label="Name" variant="outlined" />
+            <FormControl variant="outlined" className={classes.select}>
+              <InputLabel >Locale</InputLabel>
+              <Select
+                value={locale}
+                onChange={({target}) => setLocale(target.value as any)}
+                label="locale"
+              >
+                {locales.map((locale, index) => (
+                  <MenuItem key={index} value={locale.value}>{locale.value}</MenuItem>
+                ))}
+              </Select>
+            </FormControl >
           </Typography>
         </DialogContent>
         <DialogActions>
@@ -108,4 +99,4 @@ const ArticleComposer: React.FC<ArticleComposerProps> = ({ site }) => {
   );
 }
 
-export { ArticleComposer }
+export { NewPage }

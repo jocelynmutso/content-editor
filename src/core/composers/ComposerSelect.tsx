@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 
 import { ArticleComposer } from './article';
 import { LinkComposer } from './link';
+import { NewPage } from './page';
 
 import { API } from '../deps';
 
@@ -36,9 +37,9 @@ interface ComposerSelectProps {
 
 const ComposerSelect: React.FC<ComposerSelectProps> = ({ site }) => {
   const classes = useStyles();
-  
-  
-  
+
+
+
   return (
     <div className={classes.container}>
       <Card className={classes.root} variant="outlined">
@@ -51,7 +52,7 @@ const ComposerSelect: React.FC<ComposerSelectProps> = ({ site }) => {
         </Typography>
         </CardContent>
         <CardActions>
-           <Button size="small">Create</Button>
+          <ArticleComposer site={site} />
         </CardActions>
       </Card>
       <Card className={classes.root} variant="outlined">
@@ -64,7 +65,7 @@ const ComposerSelect: React.FC<ComposerSelectProps> = ({ site }) => {
         </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Create</Button>
+          <NewPage site={site} />
         </CardActions>
       </Card>
       <Card className={classes.root} variant="outlined">
