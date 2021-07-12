@@ -27,7 +27,9 @@ const palette = {
     hint: 'rgba(125,73,73,0.38)',
   },
   success: {
-    main: '#005fcc',
+    main: '#4caf50',
+    light: '#81c784',
+    dark: '#388e3c',
   },
   action: {
     main: '#f28d00', //orange
@@ -35,9 +37,7 @@ const palette = {
   info: {
     main: "#f28d00", //orange
     light: '#f0f6fa', //light blue
-    
-
-  }
+  },
 };
 
 

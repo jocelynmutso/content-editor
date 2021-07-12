@@ -46,7 +46,7 @@ const ComposerSelect: React.FC<ComposerSelectProps> = ({ site }) => {
           <Typography variant="h6">
             Article
         </Typography>
-          <Typography color="textSecondary">
+          <Typography color="textSecondary" variant="caption">
             A group of associated Pages, Links, Workflows, and Locales
         </Typography>
         </CardContent>
@@ -59,7 +59,7 @@ const ComposerSelect: React.FC<ComposerSelectProps> = ({ site }) => {
           <Typography variant="h6">
             Page
         </Typography>
-          <Typography color="textSecondary">
+          <Typography color="textSecondary" variant="caption">
             One file representing one language, associated links, and associated workflows within an Article
         </Typography>
         </CardContent>
@@ -72,7 +72,7 @@ const ComposerSelect: React.FC<ComposerSelectProps> = ({ site }) => {
           <Typography variant="h6">
             Link
         </Typography>
-          <Typography color="textSecondary">
+          <Typography color="textSecondary" variant="caption">
             Internal (within your domain), and external (outside your domain)
         </Typography>
         </CardContent>

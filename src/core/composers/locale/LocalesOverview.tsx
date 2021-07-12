@@ -1,13 +1,10 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme, Paper, InputLabel, TextField, IconButton, Collapse } from '@material-ui/core';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
+import { makeStyles, createStyles, Theme, Paper, IconButton, Typography, Divider } from '@material-ui/core';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import AddIcon from '@material-ui/icons/Add';
 
 import { API } from '../../deps';
 
@@ -18,10 +15,14 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       margin: theme.spacing(1),
       padding: theme.spacing(1),
-      backgroundColor: theme.palette.info.light
+
     },
     bold: {
       fontWeight: 'bold',
+    },
+    typography: {
+      marginBottom: theme.spacing(3),
+      fontWeight: 'bold'
     },
     tableCell: {
       paddingTop: 0,
@@ -55,6 +56,9 @@ const useStyles = makeStyles((theme: Theme) =>
         }
       }
     },
+    checkIcon: {
+      color: theme.palette.success.main
+    },
   }),
 );
 
@@ -81,20 +85,26 @@ const LocalesOverview: React.FC<LocalesOverviewProps> = ({ site }) => {
   }
 
   return (
-    <div>
-      <TableContainer component={Paper}>
+    <div className={classes.root}>
+
+      <TableContainer >
+        <Typography variant="body1" className={classes.typography}>Locale usage overview</Typography>
+        <Divider />
         <TableRow>
           <TableCell className={classes.bold} align="left">Article</TableCell>
-          {locales.map((locale, index) => <TableCell key={index} className={classes.bold} align="left">{locale.value}</TableCell>)}
+          {locales.map((locale, index) => <TableCell key={index} className={classes.bold} align="left" >{locale.value}</TableCell>
+          )}
         </TableRow>
         {articles.map((article, index) => (
           <TableRow key={index} hover>
-            <TableCell className={classes.tableCell} align="left">{article.name}</TableCell>
+            <TableCell align="left">{article.name}</TableCell>
             {locales.map((locale, index) => <TableCell key={index} className={classes.bold} align="left">{
-              isLocale(locale, article) === true ? (<span>V</span>) : (<span></span>)
+              isLocale(locale, article) === true ? (<span><CheckCircleOutlineIcon className={classes.checkIcon} /></span>) : (<span><AddIcon /></span>)
             }</TableCell>)}
           </TableRow>
+
         ))}
+
       </TableContainer>
     </div >
 

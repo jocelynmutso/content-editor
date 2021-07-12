@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles, Collapse, Box } from '@material-ui/core';
+import { makeStyles, Theme, createStyles, IconButton } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,6 +11,7 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import VisibilityOnIcon from '@material-ui/icons/Visibility';
 
 import { LocalesOverview } from './LocalesOverview';
+import { LocaleDisable } from './LocaleDisable';
 import { API } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -27,7 +28,6 @@ const useRowStyles = makeStyles((theme: Theme) =>
   createStyles({
     row: {
       '& > *': {
-        borderBottom: 'unset',
         paddingLeft: 15
       },
     },
@@ -44,9 +44,6 @@ const useRowStyles = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       borderBottom: 'unset',
       padding: 0
-    },
-    expandRow: {
-      width: "30px"
     },
     tableCell: {
       paddingTop: 0,
@@ -82,10 +79,10 @@ const LocalesView: React.FC<LocalesViewProps> = ({ site }) => {
         <Table className={classes.table} size="small">
           <TableHead>
             <TableRow>
-              <TableCell className={classes.bold} align="left" colSpan={2}>Locale</TableCell>
+              <TableCell className={classes.bold} align="left">Locale</TableCell>
               <TableCell className={classes.bold} align="left">Status</TableCell>
               <TableCell className={classes.bold} align="left">Note</TableCell>
-              <TableCell className={classes.bold} align="left">Remove</TableCell>
+              <TableCell className={classes.bold} align="left">Disable</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -101,7 +98,6 @@ const LocalesView: React.FC<LocalesViewProps> = ({ site }) => {
 interface RowProps {
   site: API.CMS.Site,
   locale: API.CMS.SiteLocale,
-
 }
 
 const Row: React.FC<RowProps> = ({ site, locale }) => {
@@ -111,11 +107,17 @@ const Row: React.FC<RowProps> = ({ site, locale }) => {
     <>
       <TableRow key={locale.id} hover className={classes.row}>
         <TableCell className={classes.tableCell} align="left">{locale.value}</TableCell>
-        <TableCell className={classes.tableCell} align="left">{locale.enabled}</TableCell>
+        <TableCell className={classes.tableCell} align="left">
+          {locale.enabled ?
+            <IconButton className={classes.iconButton}> <VisibilityOnIcon /></IconButton>
+            : <IconButton className={classes.iconButton}><VisibilityOffIcon /></IconButton>}
+        </TableCell>
         <TableCell className={classes.tableCell} align="left">{locale.note}</TableCell>
+        <TableCell className={classes.tableCell} align="left">
+          <LocaleDisable site={site} locale={locale} />
+        </TableCell>
+
       </TableRow>
-
-
     </>
   )
 }
