@@ -1,17 +1,15 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme, InputLabel, FormControl, IconButton } from '@material-ui/core';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
+import { makeStyles, createStyles, Theme, InputLabel, Button, FormControl, TextField } from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-import { AddButton } from '../styles';
 import { API } from '../../deps';
 
-import { WorkflowTable } from './WorkflowTable';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -25,17 +23,17 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.info.light
     },
     selectSmall: {
-      marginRight: theme.spacing(1),
+      margin: theme.spacing(1),
       minWidth: '15ch',
       backgroundColor: theme.palette.background.paper
     },
     selectLarge: {
-      marginRight: theme.spacing(1),
+      margin: theme.spacing(1),
       minWidth: '50ch',
       backgroundColor: theme.palette.background.paper
     },
     formControl: {
-      marginRight: theme.spacing(1),
+      margin: theme.spacing(1),
       minWidth: '50ch',
       backgroundColor: theme.palette.background.paper
     },
@@ -57,60 +55,77 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface WorkflowComposerProps {
   site: API.CMS.Site,
-  article: API.CMS.Article
 }
 
 
-const WorkflowComposer: React.FC<WorkflowComposerProps> = ({ site, article }) => {
+const WorkflowComposer: React.FC<WorkflowComposerProps> = ({ site }) => {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
   const [locale, setLocale] = React.useState('');
+  const [workflow, setWorkflow] = React.useState('');
 
-  const handleLocaleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setLocale(event.target.value as string);
+  const handleClickOpen = () => {
+    setOpen(true);
   };
 
-  const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => workflow.articles.includes(article.id));
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
+  const workflows: API.CMS.Workflow[] = Object.values(site.workflows);
+  const locales: API.CMS.SiteLocale[] = Object.values(site.locales);
 
   return (
     <div className={classes.root}>
-      <Accordion square={true} className={classes.accordion} >
-        <AccordionSummary
-          expandIcon={<IconButton className={classes.iconButton}><AddCircleOutlineIcon /> </IconButton>}
-        >
-          <Typography className={classes.heading}>Create new workflow</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
+      <Button onClick={handleClickOpen} size="small">Create</Button>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+      >
+        <DialogTitle>{"Create a new workflow"} </DialogTitle>
+        <DialogContent>
           <Typography className={classes.heading}>
-            <FormControl variant="outlined" className={classes.selectLarge}>
-              <InputLabel >Workflow</InputLabel>
-              <Select
-                value={locale}
-                onChange={handleLocaleChange}
-                label="Workflow"
-              >
-                <MenuItem value={10}>None</MenuItem>
-                <MenuItem value={10}>Flow 1</MenuItem>
-                <MenuItem value={20}>MyForm</MenuItem>
-                <MenuItem value={20}>GeneralTopics</MenuItem>
-              </Select>
-            </FormControl >
             <FormControl variant="outlined" className={classes.selectSmall}>
               <InputLabel>Locale</InputLabel>
               <Select
+                onChange={({ target }) => setLocale(target.value as any)}
                 value={locale}
-                onChange={handleLocaleChange}
                 label="Locale"
               >
-                <MenuItem value={10}>EN</MenuItem>
-                <MenuItem value={20}>FI</MenuItem>
-                <MenuItem value={20}>SV</MenuItem>
+                {locales.map((locale, index) => (
+                  <MenuItem key={index} value={locale.value}>{locale.value}</MenuItem>
+                ))}
               </Select>
+
             </FormControl>
+            <FormControl variant="outlined" className={classes.selectLarge}>
+              <InputLabel>Workflow</InputLabel>
+              <Select
+                onChange={({ target }) => setWorkflow(target.value as any)}
+                value={workflow}
+                label="workflow"
+              >
+                {workflows.map((workflow, index) => (
+                  <MenuItem key={index} value={workflow.name}>{workflow.name}</MenuItem>
+                ))}
+              </Select>
+
+            </FormControl>
+            <TextField className={classes.selectLarge} label="Localised Name" variant="outlined" defaultValue="Localised name" helperText="Name to be displayed to users" />
+
           </Typography>
-          <AddButton />
-        </AccordionDetails>
-      </Accordion>
-      { workflows.length === 0 ? null : <WorkflowTable site={site} article={article} />}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="inherit">
+            Cancel
+          </Button>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            Create
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

@@ -2,8 +2,8 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
 import { API, Layout } from '../deps';
 import { 
-  PageComposer, ComposerSelect, ArticleComposer, LinkAdd, WorkflowAdd, LocaleComposer, ReleaseComposer, 
-  LinksView, WorkflowsView, ReleasesView, LocalesView
+  PageComposer, ComposerSelect, ArticleComposer, LinkAdd, LocaleComposer, ReleaseComposer, 
+  LinksView, WorkflowsView, WorkflowsTable, ReleasesView, LocalesView
 } from './';
 
 import Context from '../context';
@@ -73,7 +73,7 @@ const Composer: React.FC<ComposerProps> = ({ site, releases }) => {
   } else if (tab.data.nav.type === "LINK"){
     composer = (<LinkAdd key={article.id} article={article} site={site}/>)
   } else if (tab.data.nav.type === "WORKFLOW") {
-    composer = (<WorkflowAdd article={article} site={site}/>)
+    composer = (<WorkflowsTable site={site} article={article}/>)
   }
   else {
     composer = (<></>);

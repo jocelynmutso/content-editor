@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme, TextField, Button, InputLabel, FormControl, IconButton } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, Button, InputLabel, FormControl } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -43,7 +43,6 @@ const NewPage: React.FC<NewPageProps> = ({ site }) => {
   const handleClose = () => {
     setOpen(false);
   };
-
 
 
   const articles: API.CMS.Article[] = Object.values(site.articles);

@@ -1,3 +1,3 @@
 export * from './WorkflowComposer';
-export * from './WorkflowAdd';
 export * from './WorkflowsView';
+export * from './WorkflowsTable';

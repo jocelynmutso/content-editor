@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme, TextField, Button, InputLabel, FormControl, IconButton } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, TextField, Button, InputLabel, FormControl } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     select: {
       margin: theme.spacing(1),
-      minWidth: '20ch',
+      minWidth: '40ch',
       backgroundColor: theme.palette.background.paper
     },
     formControl: {
@@ -50,12 +50,8 @@ interface ArticleComposerProps {
 
 const ArticleComposer: React.FC<ArticleComposerProps> = ({ site }) => {
   const classes = useStyles();
-  const [locale, setLocale] = React.useState('');
   const [open, setOpen] = React.useState(false);
-
-
-  const articles: API.CMS.Article[] = Object.values(site.articles);
-
+  const [article, setArticle] = React.useState('');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -64,9 +60,7 @@ const ArticleComposer: React.FC<ArticleComposerProps> = ({ site }) => {
     setOpen(false);
   };
 
-  const handleLocaleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setLocale(event.target.value as string);
-  };
+  const articles: API.CMS.Article[] = Object.values(site.articles);
 
   return (
     <div className={classes.root}>
@@ -79,15 +73,15 @@ const ArticleComposer: React.FC<ArticleComposerProps> = ({ site }) => {
         <DialogTitle>{"Create a new article"} </DialogTitle>
         <DialogContent>
           <Typography className={classes.heading}>
-            <FormControl variant="outlined" className={classes.select}>
-              <InputLabel >Parent</InputLabel>
+          <FormControl variant="outlined" className={classes.select}>
+              <InputLabel >Parent article</InputLabel>
               <Select
-                value={locale}
-                onChange={handleLocaleChange}
-                label="Parent"
+                value={article}
+                onChange={({target}) => setArticle(target.value as any)}
+                label="parentarticle"
               >
                 {articles.map((article, index) => (
-                  <MenuItem key={index}>{article.order}{"_"}{article.name}</MenuItem>
+                  <MenuItem key={index} value={article.name}>{article.order}{"_"}{article.name}</MenuItem>
                 ))}
               </Select>
             </FormControl >

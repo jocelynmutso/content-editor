@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -8,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 
 import { ArticleComposer } from './article';
 import { LinkComposer } from './link';
+import { WorkflowComposer } from './workflow';
 import { NewPage } from './page';
 
 import { API } from '../deps';
@@ -79,6 +79,19 @@ const ComposerSelect: React.FC<ComposerSelectProps> = ({ site }) => {
         </CardContent>
         <CardActions>
           <LinkComposer site={site} />
+        </CardActions>
+      </Card>
+            <Card className={classes.root} variant="outlined">
+        <CardContent>
+          <Typography variant="h6">
+            Workflow
+        </Typography>
+          <Typography color="textSecondary" variant="caption">
+            Connect forms and processes
+        </Typography>
+        </CardContent>
+        <CardActions>
+          <WorkflowComposer site={site} />
         </CardActions>
       </Card>
     </div>
