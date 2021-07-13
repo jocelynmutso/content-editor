@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     select: {
       margin: theme.spacing(1),
-      minWidth: '20ch',
       backgroundColor: theme.palette.background.paper
     },
     heading: {
@@ -35,7 +34,7 @@ const NewPage: React.FC<NewPageProps> = ({ site }) => {
 
   return (
     <Typography className={classes.heading}>
-      <FormControl variant="outlined" className={classes.select}>
+      <FormControl variant="outlined" className={classes.select} fullWidth>
         <InputLabel >Article</InputLabel>
         <Select
           value={article}
@@ -47,7 +46,7 @@ const NewPage: React.FC<NewPageProps> = ({ site }) => {
           ))}
         </Select>
       </FormControl >
-      <FormControl variant="outlined" className={classes.select}>
+      <FormControl variant="outlined" className={classes.select} fullWidth>
         <InputLabel >Locale</InputLabel>
         <Select
           value={locale}
