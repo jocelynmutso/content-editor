@@ -101,7 +101,7 @@ const ComposerSelect: React.FC<ComposerSelectProps> = ({ site, releases }) => {
     <div className={classes.root}>
       { !open ? null : (
         <Dialog open={true} onClose={handleClose} >
-          <DialogTitle>{"Create a new article"} </DialogTitle>
+          <DialogTitle>{cards[open].dialog} </DialogTitle>
           <DialogContent>{cards[open].composer()}</DialogContent>
           <DialogActions>
             <Button onClick={handleClose} color="inherit">Cancel</Button>

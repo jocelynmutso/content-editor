@@ -10,27 +10,8 @@ import { API } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      width: '98%',
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-    },
-    accordion: {
-      backgroundColor: theme.palette.info.light
-    },
-    selectSmall: {
+    select: {
       margin: theme.spacing(1),
-      minWidth: '15ch',
-      backgroundColor: theme.palette.background.paper
-    },
-    selectLarge: {
-      margin: theme.spacing(1),
-      minWidth: '50ch',
-      backgroundColor: theme.palette.background.paper
-    },
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: '50ch',
       backgroundColor: theme.palette.background.paper
     },
     heading: {
@@ -55,7 +36,7 @@ const WorkflowComposer: React.FC<WorkflowComposerProps> = ({ site }) => {
 
   return (
     <Typography className={classes.heading}>
-      <FormControl variant="outlined" className={classes.selectSmall}>
+      <FormControl variant="outlined" className={classes.select} fullWidth>
         <InputLabel>Locale</InputLabel>
         <Select
           onChange={({ target }) => setLocale(target.value as any)}
@@ -68,7 +49,7 @@ const WorkflowComposer: React.FC<WorkflowComposerProps> = ({ site }) => {
         </Select>
 
       </FormControl>
-      <FormControl variant="outlined" className={classes.selectLarge}>
+      <FormControl variant="outlined" className={classes.select} fullWidth>
         <InputLabel>Workflow</InputLabel>
         <Select
           onChange={({ target }) => setWorkflow(target.value as any)}
@@ -81,7 +62,7 @@ const WorkflowComposer: React.FC<WorkflowComposerProps> = ({ site }) => {
         </Select>
 
       </FormControl>
-      <TextField className={classes.selectLarge} label="Localised Name" variant="outlined" placeholder="Permit application form" helperText="Name to be displayed to users" />
+      <TextField className={classes.select} label="Localised Name" variant="outlined" placeholder="Permit application form" helperText="Name to be displayed to users" fullWidth />
 
     </Typography>
 

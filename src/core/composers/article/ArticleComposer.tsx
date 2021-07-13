@@ -13,12 +13,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     select: {
       margin: theme.spacing(1),
-      minWidth: '40ch',
       backgroundColor: theme.palette.background.paper
     },
     formControl: {
       margin: theme.spacing(1),
-      minWidth: '60ch',
       backgroundColor: theme.palette.background.paper
     },
   }),
@@ -39,7 +37,7 @@ const ArticleComposer: React.FC<ArticleComposerProps> = ({ site }) => {
 
   return (
     <Typography className={classes.root}>
-      <FormControl variant="outlined" className={classes.select}>
+      <FormControl variant="outlined" className={classes.select} fullWidth>
         <InputLabel >Parent article</InputLabel>
         <Select
           value={article}
@@ -51,8 +49,8 @@ const ArticleComposer: React.FC<ArticleComposerProps> = ({ site }) => {
           ))}
         </Select>
       </FormControl >
-      <TextField className={classes.select} label="Order" variant="outlined" placeholder="100" helperText="3 digit numeric prefix for menu ordering purposes" />
-      <TextField className={classes.formControl} label="Name" variant="outlined" />
+      <TextField className={classes.select} label="Order" variant="outlined" placeholder="100" helperText="3 digit numeric prefix for menu ordering purposes" fullWidth />
+      <TextField className={classes.formControl} label="Name" variant="outlined" fullWidth/>
     </Typography>
   );
 }

@@ -11,12 +11,10 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     select: {
       margin: theme.spacing(1),
-      minWidth: '15ch',
       backgroundColor: theme.palette.background.paper
     },
     formControl: {
       margin: theme.spacing(1),
-      minWidth: '50ch',
       backgroundColor: theme.palette.background.paper
     },
     heading: {
@@ -44,11 +42,9 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site }) => {
     setLocale(event.target.value as string);
   };
 
-
-
   return (
     <Typography className={classes.heading}>
-      <FormControl variant="outlined" className={classes.select}>
+      <FormControl variant="outlined" className={classes.select} fullWidth>
         <InputLabel>Type</InputLabel>
         <Select
           value={type}
@@ -59,7 +55,7 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site }) => {
           <MenuItem value={20}>External</MenuItem>
         </Select>
       </FormControl >
-      <FormControl variant="outlined" className={classes.select}>
+      <FormControl variant="outlined" className={classes.select} fullWidth>
         <InputLabel>Locale</InputLabel>
         <Select
           value={locale}
@@ -72,8 +68,8 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site }) => {
         </Select>
       </FormControl >
 
-      <TextField className={classes.formControl} label="Description" variant="outlined" helperText="Text that the user will see" />
-      <TextField className={classes.formControl} label="Value" variant="outlined" helperText="URL / path of link (http://www.example.com)" />
+      <TextField className={classes.formControl} label="Description" variant="outlined" helperText="Text that the user will see" fullWidth/>
+      <TextField className={classes.formControl} label="Value" variant="outlined" helperText="URL / path of link (http://www.example.com)" fullWidth />
     </Typography>
   );
 }

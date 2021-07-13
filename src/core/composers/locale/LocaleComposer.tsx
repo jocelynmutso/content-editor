@@ -8,14 +8,12 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
-      width: '98%',
       margin: theme.spacing(1),
       padding: theme.spacing(1),
     },
     input: {
       margin: theme.spacing(1),
       padding: 0,
-      minWidth: '10ch',
       backgroundColor: theme.palette.background.paper
     },
   }),
@@ -38,9 +36,7 @@ const LocaleComposer: React.FC<LocaleComposerProps> = ({ site }) => {
 
   return (
     <div className={classes.root}>
-
-        <TextField className={classes.input} helperText="Two-letter locale code" placeholder="en" variant="outlined" />
-
+      <TextField className={classes.input} helperText="Two-letter locale code" placeholder="en" variant="outlined" fullWidth />
     </div>
 
   );
