@@ -52,7 +52,7 @@ const Composer: React.FC<ComposerProps> = ({ site, releases }) => {
   } else if (active.id === 'links') {
     return (<LinksView site={site} />)
   } else if (active.id === 'newItem') {
-    return (<ComposerSelect site={site} />)
+    return (<ComposerSelect site={site} releases={releases} />)
   } else if (active.id === 'locales') {
     return (<LocalesView site={site} />)
   } else if (active.id === 'workflows') {
