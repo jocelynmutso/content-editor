@@ -15,27 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
       '& > *': {
         margin: theme.spacing(1),
       },
-    },
-    button1: {
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.background.paper,
-      fontWeight: 'bold',
-      "&:hover, &.Mui-focusVisible": {
-        backgroundColor: theme.palette.info.main,
-        color: theme.palette.background.paper,
-        fontWeight: 'bold'
-      }
-    },
-    button2: {
-      backgroundColor: theme.palette.primary.dark,
-      color: theme.palette.background.paper,
-      fontWeight: 'bold',
-      "&:hover, &.Mui-focusVisible": {
-        backgroundColor: theme.palette.error.dark,
-        color: theme.palette.background.paper,
-        fontWeight: 'bold'
-      }
-    },
+    }
   }),
 );
 interface DeleteRenameProps {

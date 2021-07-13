@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles, Collapse, Box, Typography } from '@material-ui/core';
+import { makeStyles, Theme, createStyles, Collapse, Box } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -11,7 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-import { LinkRemovePage, LinkDelete, LinkComposer } from '../link';
+import { LinkRemovePage, LinkDelete } from '../link';
 import { API } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>

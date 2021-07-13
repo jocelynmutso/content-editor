@@ -55,7 +55,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ children, open, setOpen }) => {
   const [active, setActive] = React.useState<string | undefined>();
   const [view, setView] = React.useState<React.ReactNode | undefined>();
 
-  const activeView = { id: active, view };
+  const activeView = React.useMemo(() => ({ id: active, view }), [active, view]);
   const links = ToolbarAPI.create({ session, actions, values: children });
 
   React.useEffect(() => {
@@ -79,6 +79,15 @@ const Toolbar: React.FC<ToolbarProps> = ({ children, open, setOpen }) => {
     }
 
   }, [active, setView, setActive, session, children, setOpen, links])
+
+  React.useLayoutEffect(() => {
+    const defaultView = children.filter(c => c.enabled).pop();
+    if(defaultView && !view) {
+      links.handle(defaultView, activeView);
+    }
+    
+  }, [children, activeView, links, view]);
+
 
   const buttons = children.map((item, index) => (
     <Tooltip title={<FormattedMessage id={item.id} />} key={index}>

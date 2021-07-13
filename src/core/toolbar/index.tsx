@@ -1,6 +1,4 @@
 import React from 'react';
-
-import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import LibraryBooksOutlinedIcon from '@material-ui/icons/LibraryBooksOutlined';
 import NewReleasesOutlinedIcon from '@material-ui/icons/NewReleasesOutlined';
 import LinkIcon from '@material-ui/icons/Link';
@@ -19,6 +17,7 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
     {
       id: 'toolbar.explorer',
       icon: <LibraryBooksOutlinedIcon />,
+      enabled: true,
       type: { getView: () => (<Explorer site={site} />) }
     },
 

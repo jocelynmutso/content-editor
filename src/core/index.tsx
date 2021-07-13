@@ -17,7 +17,6 @@ const Components: React.FC<{ service: API.CMS.Service }> = ({ service }) => {
   React.useLayoutEffect(() => {
     service.getSite().then(setSite);
     service.getReleases().then(setReleases);
-
   }, [service]);
 
   if (!site) {

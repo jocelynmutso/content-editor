@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme, Paper, IconButton, Typography, Divider } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, Typography, Divider } from '@material-ui/core';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
@@ -61,8 +61,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
-
-
 
 
 interface LocalesOverviewProps {

@@ -132,7 +132,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
   const pages: API.CMS.Page[] = Object.values(site.pages).filter(page => article.id === page.article);
   const links: API.CMS.Link[] = Object.values(site.links).filter(link => link.articles.includes(article.id));
   const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => workflow.articles.includes(article.id));
-  
+
   return (
     <>
       <ListItem className={classes.itemHover}>
@@ -170,7 +170,12 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
                   Last Modified: <span className={classes.summary}>9 days ago</span>
                 </TableCell>
               </TableRow>
-              <DeleteRename site={site} article={article} />
+
+              <TableRow>
+                <TableCell>
+                  <DeleteRename site={site} article={article} />
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </TableContainer>

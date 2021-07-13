@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles, Collapse, Box } from '@material-ui/core';
+import { makeStyles, Theme, createStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -97,8 +97,6 @@ interface RowProps {
 
 const Row: React.FC<RowProps> = ({ site, release }) => {
   const classes = useRowStyles();
-  const [open, setOpen] = React.useState(false);
-
 
   return (
     <>
