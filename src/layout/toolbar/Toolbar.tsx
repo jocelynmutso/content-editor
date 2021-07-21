@@ -110,7 +110,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ children, open, setOpen }) => {
     </Tooltip>)
   );
   
-  let dialog = null;
+  let dialog: React.ReactNode = (<></>);
   if(session.dialogId) {
     const type = (links.find(session.dialogId)?.type as any as Session.ToolbarItemDialog);
     dialog = type.getDialog(session.dialogId, () => actions.handleDialog());
