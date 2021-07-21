@@ -68,10 +68,10 @@ const WorkflowDelete: React.FC<WorkflowDeleteProps> = ({ site, workflow }) => {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>{"Permanently delete this link?"} </DialogTitle>
+        <DialogTitle>{"Permanently delete this workflow?"} </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <ListItem>* Deleting this link will remove it globally from the application.</ListItem>
+            <ListItem>* Deleting this workflow will remove it globally from the application.</ListItem>
             <ListItem>* This action cannot be undone! </ListItem>
           </DialogContentText>
         </DialogContent>
@@ -80,7 +80,7 @@ const WorkflowDelete: React.FC<WorkflowDeleteProps> = ({ site, workflow }) => {
             Cancel
           </Button>
           <Button onClick={handleClose} color="primary" autoFocus>
-            Continue and remove
+            Continue and delete
           </Button>
         </DialogActions>
       </Dialog>

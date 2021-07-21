@@ -81,7 +81,7 @@ const WorkflowsView: React.FC<WorkflowsViewProps> = ({ site }) => {
             <TableCell className={classes.bold} align="left">Locale</TableCell>
             <TableCell className={classes.bold} align="left">Localised name</TableCell>
             <TableCell className={classes.bold} align="center">Articles</TableCell>
-            <TableCell className={classes.bold} align="center"></TableCell>
+            <TableCell className={classes.bold} align="center">Delete</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
