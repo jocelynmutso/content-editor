@@ -1,6 +1,6 @@
 {
   "name": "zoe-ide",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "license": "Apache-2.0",
   "main": "build/core/index.js",
@@ -34,14 +34,13 @@
     "react-dom": "^17.0.2",
     "react-intl": "^5.20.2",
     "react-scripts": "4.0.3",
-    "typescript": "^4.3.2",
-    "ts-node": "^9.1.1"
+    "ts-node": "^9.1.1",
+    "typescript": "^4.3.2"
   },
   "scripts": {
     "start": "cp ./.demo/index.tsx ./src/index.tsx && cp ./.demo/react-app-env.d.ts ./src/react-app-env.d.ts && cp -R ./.demo/public ./public && react-scripts start",
     "build": "rm -rf ./build && tsc",
     "clean": "rm -rf ./build",
-    
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
