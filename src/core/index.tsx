@@ -3,6 +3,7 @@ import React from 'react';
 import { API, Layout } from './deps';
 import { Composer } from './composers';
 import { toolbar } from './toolbar';
+import messages from '../intl';
 
 interface CMSEditorProps {
   service: API.CMS.Service,
@@ -42,4 +43,4 @@ const CMSEditor: React.FC<CMSEditorProps> = ({ service }) => {
 }
 
 export type { CMSEditorProps };
-export { CMSEditor };
+export { CMSEditor, API, messages };
