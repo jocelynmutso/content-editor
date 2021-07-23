@@ -66,7 +66,7 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site }) => {
           label="locale"
         >
         {locales.map((locale, index) => (
-          <MenuItem key={index}>{locale.value}</MenuItem>
+          <MenuItem key={index} value={locale.value}>{locale.value}</MenuItem>
         ))}
         </Select>
       </FormControl >
