@@ -12,9 +12,9 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 import { LinkRemovePage, LinkDelete } from '../link';
-import { API } from '../../deps';
+import { API, Ide } from '../../deps';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((_theme: Theme) =>
   createStyles({
     table: {
       minWidth: 650,
@@ -62,15 +62,9 @@ const useRowStyles = makeStyles((theme: Theme) =>
     },
   }));
 
-
-interface LinksViewProps {
-  site: API.CMS.Site,
-
-}
-
-const LinksView: React.FC<LinksViewProps> = ({ site }) => {
+const LinksView: React.FC<{}> = () => {
   const classes = useStyles();
-
+  const site = Ide.useSite();
   const links = Object.values(site.links);
 
   return (

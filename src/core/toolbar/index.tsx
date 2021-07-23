@@ -12,14 +12,14 @@ import { Layout, API } from '../deps';
 
 
 
-const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: API.CMS.Releases): Layout.Session.ToolbarItem[] => {
+const toolbar = (actions: Layout.Session.Actions): Layout.Session.ToolbarItem[] => {
   return [
 
     {
       id: 'toolbar.explorer',
       icon: <ExploreOutlinedIcon />,
       enabled: true,
-      type: { getView: () => (<Explorer site={site} />) }
+      type: { getView: () => (<Explorer />) }
     },
     
     {

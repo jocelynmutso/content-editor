@@ -9,7 +9,7 @@ import { LocaleComposer } from './locale';
 import { ReleaseComposer } from './release';
 import { NewPage } from './page';
 
-import { API } from '../deps';
+import { API, Ide } from '../deps';
 
 
 
@@ -28,12 +28,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
-interface ComposerSelectProps {
-  site: API.CMS.Site;
-  releases: API.CMS.Releases
-}
-
 interface CardData {
   title: string;
   dialog: string;
@@ -43,7 +37,7 @@ interface CardData {
 
 type CardType = "release" | "article" | "page" | "link" | "workflow" | "locale";
 
-const createCards: (props: ComposerSelectProps) => Record<CardType, CardData> = ({ site, releases }) => ({
+const createCards: (site: API.CMS.Site, releases: API.CMS.Releases) => Record<CardType, CardData> = (site, releases) => ({
   article: {
     composer: () => (<ArticleComposer site={site} />),
     title: "Article",
@@ -89,13 +83,13 @@ const createCards: (props: ComposerSelectProps) => Record<CardType, CardData> = 
 
 
 //card view for all CREATE views
-const ComposerSelect: React.FC<ComposerSelectProps> = ({ site, releases }) => {
+const ComposerSelect: React.FC<{}> = () => {
   const classes = useStyles();
-
+  const { site, releases } = Ide.useIde().session;
   const [open, setOpen] = React.useState<CardType>();
   const handleOpen = (type: CardType) => setOpen(type);
   const handleClose = () => setOpen(undefined);
-  const cards = React.useMemo(() => createCards({ site, releases }), [site, releases]);
+  const cards = React.useMemo(() => createCards(site, releases), [site, releases]);
 
   return (
     <div className={classes.root}>

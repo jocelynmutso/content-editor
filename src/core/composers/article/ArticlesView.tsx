@@ -12,7 +12,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
 import { ArticleRemovePage, ArticleDelete } from '../article';
-import { API } from '../../deps';
+import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -62,15 +62,9 @@ const useRowStyles = makeStyles((theme: Theme) =>
     },
   }));
 
-
-interface ArticlesViewProps {
-  site: API.CMS.Site,
-
-}
-
-const ArticlesView: React.FC<ArticlesViewProps> = ({ site }) => {
+const ArticlesView: React.FC<{}> = () => {
   const classes = useStyles();
-
+  const site = Ide.useSite();
   const articles = Object.values(site.articles);
 
   return (
@@ -85,7 +79,7 @@ const ArticlesView: React.FC<ArticlesViewProps> = ({ site }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {articles.map((article, index) => (<Row key={index} site={site} article={article} />))}
+          {articles.map((article, index) => (<Row key={index} article={article} />))}
         </TableBody>
       </Table>
     </TableContainer>
@@ -93,12 +87,10 @@ const ArticlesView: React.FC<ArticlesViewProps> = ({ site }) => {
 }
 
 interface RowProps {
-  site: API.CMS.Site,
-  article: API.CMS.Article,
-
+  article: API.CMS.Article
 }
 
-const Row: React.FC<RowProps> = ({ site, article }) => {
+const Row: React.FC<RowProps> = ({ article }) => {
   const classes = useRowStyles();
   const [open, setOpen] = React.useState(false);
 

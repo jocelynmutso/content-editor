@@ -12,9 +12,9 @@ import VisibilityOnIcon from '@material-ui/icons/Visibility';
 
 import { LocalesOverview } from './LocalesOverview';
 import { LocaleDisable } from './LocaleDisable';
-import { API } from '../../deps';
+import { API, Ide } from '../../deps';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((_theme: Theme) =>
   createStyles({
     table: {
       minWidth: 650,
@@ -63,14 +63,9 @@ const useRowStyles = makeStyles((theme: Theme) =>
   }));
 
 
-interface LocalesViewProps {
-  site: API.CMS.Site,
-
-}
-
-const LocalesView: React.FC<LocalesViewProps> = ({ site }) => {
+const LocalesView: React.FC<{}> = () => {
   const classes = useStyles();
-
+  const site = Ide.useSite();
   const locales = Object.values(site.locales);
 
   return (
@@ -86,7 +81,7 @@ const LocalesView: React.FC<LocalesViewProps> = ({ site }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {locales.map((locale, index) => (<Row site={site} locale={locale} />))}
+            {locales.map((locale, index) => (<Row key={index} site={site} locale={locale} />))}
           </TableBody>
         </Table>
       </TableContainer>

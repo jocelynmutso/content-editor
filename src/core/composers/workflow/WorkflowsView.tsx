@@ -11,11 +11,11 @@ import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-import { API } from '../../deps';
+import { API, Ide } from '../../deps';
 import { WorkflowRemovePage} from './WorkflowRemovePage';
 import { WorkflowDelete } from './WorkflowDelete';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((_theme: Theme) =>
   createStyles({
     table: {
       minWidth: 650,
@@ -64,12 +64,9 @@ const useRowStyles = makeStyles((theme: Theme) =>
   }));
 
 
-interface WorkflowsViewProps {
-  site: API.CMS.Site,
-}
-
-const WorkflowsView: React.FC<WorkflowsViewProps> = ({ site }) => {
+const WorkflowsView: React.FC<{}> = () => {
   const classes = useStyles();
+  const site = Ide.useSite();
   const workflows = Object.values(site.workflows);
 
   return (
@@ -85,7 +82,7 @@ const WorkflowsView: React.FC<WorkflowsViewProps> = ({ site }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {workflows.map((workflow, index) => (<Row site={site} workflow={workflow} />))}
+          {workflows.map((workflow, index) => (<Row key={index} site={site} workflow={workflow} />))}
         </TableBody>
       </Table>
     </TableContainer>

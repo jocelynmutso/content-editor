@@ -11,10 +11,8 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
 import { DeleteRename } from './DeleteRename';
-import Context from '../context';
 
-import { Layout } from '../deps';
-import { API } from '../deps';
+import { API, Ide } from '../deps';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -92,13 +90,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface ExplorerItemProps {
-  article: API.CMS.Article,
-  site: API.CMS.Site
+  article: API.CMS.Article
 }
 
-const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
+const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
 
-  const layout = Layout.useContext();
+  const { handleInTab } = Ide.useNav();
+  const site = Ide.useSite();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -113,22 +111,6 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
   const handleClose = () => {
     setOpen(false);
   }
-
-  const handleLinkClick = (type: Context.NavType, locale?: string) => {
-    const nav = { type: type, value: locale };
-    const tab: Context.Tab = {
-      id: article.id,
-      label: article.name, data: new Context.ImmutableTabData({ nav })
-    };
-
-    const oldTab = layout.session.findTab(article.id);
-    if (oldTab !== undefined) {
-      layout.actions.handleTabData(article.id, (oldData: Context.TabData) => oldData.withNav(nav));
-    }
-    layout.actions.handleTabAdd(tab);
-  }
-
-
   const pages: API.CMS.Page[] = Object.values(site.pages).filter(page => article.id === page.article);
   const links: API.CMS.Link[] = Object.values(site.links).filter(link => link.articles.includes(article.id));
   const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => workflow.articles.includes(article.id));
@@ -151,17 +133,17 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article, site }) => {
               <TableRow className={classes.hoverRow} >
                 <TableCell className={classes.table}>
                   Locales: {pages.map((page, index) => (<span className={classes.hoverRow} key={index}
-                  onClick={() => handleLinkClick("LOCALE", page.locale)}>
+                  onClick={() =>  handleInTab({article, type: "ARTICLE_PAGES", locale: page.locale})  }>
                   <span className={classes.localeSummary}>{page.locale}&nbsp;</span></span>))}
                 </TableCell>
               </TableRow>
               <TableRow className={classes.hoverRow} >
-                <TableCell className={classes.table} onClick={() => handleLinkClick("LINK")}>
+                <TableCell className={classes.table} onClick={() => handleInTab({article, type: "ARTICLE_LINKS"})}>
                   Links:  <span className={classes.summary}>{links.length}</span>
                 </TableCell>
               </TableRow>
               <TableRow className={classes.hoverRow}>
-                <TableCell className={classes.table} onClick={() => handleLinkClick("WORKFLOW")}>
+                <TableCell className={classes.table} onClick={() => handleInTab({article, type: "ARTICLE_WORKFLOWS"})}>
                   Workflows: <span className={classes.summary}>{workflows.length}</span>
                 </TableCell>
               </TableRow>
