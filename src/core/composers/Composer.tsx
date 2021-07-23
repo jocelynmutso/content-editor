@@ -1,12 +1,13 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
 import { API, Layout } from '../deps';
-import { 
-  PageComposer, ComposerSelect, LinkComposer, LinksView, WorkflowsView, 
+import {
+  PageComposer, ComposerSelect, LinkComposer, LinksView, WorkflowsView,
   WorkflowsTable, ReleasesView, LocalesView
 } from './';
 
 import Context from '../context';
+import { ArticlesView } from './article';
 
 
 const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
@@ -39,16 +40,16 @@ const Composer: React.FC<ComposerProps> = ({ site, releases }) => {
   const layout = Layout.useContext();
   const classes = useStyles(layout.session.dimensions);
   const tabs = layout.session.tabs;
-  
-  
+
+
   if (tabs.length === 0) {
     return null;
   }
-  
 
+  //composers which are not linked directly with an article
   const active = tabs[layout.session.history.open];
   if (active.id === 'releases') {
-    return (<ReleasesView site={site} releases={releases}/>);  
+    return (<ReleasesView site={site} releases={releases} />);
   } else if (active.id === 'links') {
     return (<LinksView site={site} />)
   } else if (active.id === 'newItem') {
@@ -57,30 +58,34 @@ const Composer: React.FC<ComposerProps> = ({ site, releases }) => {
     return (<LocalesView site={site} />)
   } else if (active.id === 'workflows') {
     return (<WorkflowsView site={site} />)
-  }   
-  
+  } else if (active.id === 'articles') {
+    return (<ArticlesView site={site}/>)
+  }
+
+
+  //article-based composers
   const article = site.articles[active.id];
   const tab: Context.Tab = active;
-  if(!tab.data || !tab.data.nav) {
+  if (!tab.data || !tab.data.nav) {
     return null;
   }
 
-  
+
   let composer: React.ReactChild;
-  if(tab.data.nav.type === "LOCALE") {
+  if (tab.data.nav.type === "LOCALE") {
     const locale = tab.data.nav.value as string;
     composer = (<PageComposer key={article.id + "-" + locale} site={site} article={article} locale={locale} />);
-  } else if (tab.data.nav.type === "LINK"){
-    composer = (<LinkComposer key={article.id} site={site}/>)
+  } else if (tab.data.nav.type === "LINK") {
+    composer = (<LinkComposer key={article.id} site={site} />)
   } else if (tab.data.nav.type === "WORKFLOW") {
-    composer = (<WorkflowsTable site={site} article={article}/>)
+    composer = (<WorkflowsTable site={site} article={article} />)
   }
   else {
     composer = (<></>);
   }
-  
+
   //<LinkComposer key={article.id} site={site} article={article} />
-  
+
   return (
     <div className={classes.root} key={article.id} >
       {composer}

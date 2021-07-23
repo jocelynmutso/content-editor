@@ -5,6 +5,7 @@ import LinkIcon from '@material-ui/icons/Link';
 import PostAddOutlinedIcon from '@material-ui/icons/PostAddOutlined';
 import TranslateIcon from '@material-ui/icons/Translate';
 import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
+import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
 import { Explorer } from '../explorer';
 
 import { Layout, API } from '../deps';
@@ -16,17 +17,17 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
 
     {
       id: 'toolbar.explorer',
-      icon: <LibraryBooksOutlinedIcon />,
+      icon: <ExploreOutlinedIcon />,
       enabled: true,
       type: { getView: () => (<Explorer site={site} />) }
     },
-
+    
     {
-      id: 'toolbar.createNew',
-      icon: <PostAddOutlinedIcon />,
+      id: 'toolbar.articles',
+      icon: <LibraryBooksOutlinedIcon />,
       type: {
         onClick: () => {
-          actions.handleTabAdd({ id: 'newItem', label: "New Item" });
+          actions.handleTabAdd({ id: 'articles', label: "Articles" });
         }
       }
     },
@@ -60,7 +61,7 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
         }
       }
     },
-    
+
     {
       id: 'toolbar.locales',
       icon: <TranslateIcon />,
@@ -70,6 +71,16 @@ const toolbar = (actions: Layout.Session.Actions, site: API.CMS.Site, releases: 
         }
       }
     },
+    {
+      id: 'toolbar.createNew',
+      icon: <PostAddOutlinedIcon />,
+      type: {
+        onClick: () => {
+          actions.handleTabAdd({ id: 'newItem', label: "New Item" });
+        }
+      }
+    },
+
 
   ];
 }
