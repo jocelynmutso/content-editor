@@ -33,6 +33,9 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site }) => {
   const classes = useStyles();
   const [type, setType] = React.useState('');
   const [locale, setLocale] = React.useState('');
+  
+  const locales: API.CMS.SiteLocale[] = Object.values(site.locales);
+
 
   const handleTypeChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setType(event.target.value as string);
@@ -62,9 +65,9 @@ const LinkComposer: React.FC<LinkComposerProps> = ({ site }) => {
           onChange={handleLocaleChange}
           label="locale"
         >
-          <MenuItem value={10}>EN</MenuItem>
-          <MenuItem value={20}>FI</MenuItem>
-          <MenuItem value={20}>SV</MenuItem>
+        {locales.map((locale, index) => (
+          <MenuItem key={index}>{locale.value}</MenuItem>
+        ))}
         </Select>
       </FormControl >
 
