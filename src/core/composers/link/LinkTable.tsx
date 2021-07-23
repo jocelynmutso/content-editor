@@ -7,9 +7,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import EditIcon from '@material-ui/icons/Edit';
 
-
-import { API } from '../../deps';
+import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -40,13 +40,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 interface LinkTableProps {
-  site: API.CMS.Site,
   article: API.CMS.Article
 }
 
-const LinkTable: React.FC<LinkTableProps> = ({ site, article }) => {
+const LinkTable: React.FC<LinkTableProps> = ({ article }) => {
   const classes = useStyles();
-
+  const site = Ide.useSite();
   const links: API.CMS.Link[] = Object.values(site.links).filter(link => link.articles.includes(article.id));
 
 

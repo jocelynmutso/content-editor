@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
 
 import MDEditor from '@uiw/react-md-editor';
-import { API } from '../../deps';
+import { API, Ide } from '../../deps';
 
 const useStyles = () => makeStyles((theme: Theme) =>
   createStyles({
@@ -19,25 +19,25 @@ const useStyles = () => makeStyles((theme: Theme) =>
 
 
 type PageComposerProps = {
-  site: API.CMS.Site,
   article: API.CMS.Article,
   locale: API.CMS.Locale
 }
 
-const PageComposer: React.FC<PageComposerProps> = ({ site, article, locale }) => {
+const PageComposer: React.FC<PageComposerProps> = ({ article, locale }) => {
   const classes = useStyles();
-  const page = Object.values(site.pages)
+  const ide = Ide.useIde();
+  const page = Object.values(ide.session.site.pages)
     .filter(page => page.article === article.id)
-    .filter(page => page.locale === locale).pop();
+    .filter(page => page.locale === locale).pop() as API.CMS.Page;
 
-  const [value, setValue] = React.useState<string | undefined>(page?.content);
+  const value = ide.session.pages[page.id] ? ide.session.pages[page.id].value : page.content;
+  const handleChange = (value: string | undefined) => {
+    ide.actions.handlePageUpdate(page.id, value ? value : "");
+  } 
 
   return (
     <div className={classes.container}>
-      <MDEditor
-        value={value}
-        onChange={setValue}
-      />
+      <MDEditor value={value} onChange={handleChange} />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import React from 'react';
 import { API, Layout } from './deps';
 import { Composer } from './composers';
 import { toolbar } from './toolbar';
+import Ide from './context';
 import messages from '../intl';
 
 interface CMSEditorProps {
@@ -12,24 +13,13 @@ interface CMSEditorProps {
 
 const Components: React.FC<{ service: API.CMS.Service }> = ({ service }) => {
   const layout = Layout.useContext();
-  const [site, setSite] = React.useState<API.CMS.Site>();
-  const [releases, setReleases] = React.useState<API.CMS.Releases>([]);
-
-  React.useLayoutEffect(() => {
-    service.getSite().then(setSite);
-    service.getReleases().then(setReleases);
-  }, [service]);
-
-  if (!site) {
-    return null;
-  }
 
   return (
     <Layout.Container components={{
       search: (_value: string) => console.log("Search"),
       header: (<></>),
-      content: (<Composer site={site} releases={releases} />),
-      toolbar: toolbar(layout.actions, site, releases),
+      content: (<Composer />),
+      toolbar: toolbar(layout.actions),
       badges: []
     }} />);
 }
@@ -37,7 +27,9 @@ const Components: React.FC<{ service: API.CMS.Service }> = ({ service }) => {
 const CMSEditor: React.FC<CMSEditorProps> = ({ service }) => {
   return (
     <Layout.Provider>
-      <Components service={service} />
+      <Ide.Provider service={service} >
+        <Components service={service} />
+      </Ide.Provider>
     </Layout.Provider>
   );
 }

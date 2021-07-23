@@ -1,14 +1,10 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core';
-import { API, Layout } from '../deps';
+import { Layout, Ide } from '../deps';
 import {
-  PageComposer, ComposerSelect, LinkComposer, LinksView, WorkflowsView,
-  WorkflowsTable, ReleasesView, LocalesView
+  PageComposer, ComposerSelect, LinkTable, LinksView, WorkflowsView,
+  WorkflowsTable, ReleasesView, LocalesView, ArticlesView
 } from './';
-
-import Context from '../context';
-import { ArticlesView } from './article';
-
 
 const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
   createStyles({
@@ -31,16 +27,11 @@ const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
 )();
 
 
-interface ComposerProps {
-  site: API.CMS.Site;
-  releases: API.CMS.Releases;
-}
-
-const Composer: React.FC<ComposerProps> = ({ site, releases }) => {
+const Composer: React.FC<{}> = () => {
   const layout = Layout.useContext();
+  const site = Ide.useSite();
   const classes = useStyles(layout.session.dimensions);
   const tabs = layout.session.tabs;
-
 
   if (tabs.length === 0) {
     return null;
@@ -49,51 +40,41 @@ const Composer: React.FC<ComposerProps> = ({ site, releases }) => {
   //composers which are not linked directly with an article
   const active = tabs[layout.session.history.open];
   if (active.id === 'releases') {
-    return (<ReleasesView site={site} releases={releases} />);
+    return (<ReleasesView />);
   } else if (active.id === 'links') {
-    return (<LinksView site={site} />)
+    return (<LinksView />)
   } else if (active.id === 'newItem') {
-    return (<ComposerSelect site={site} releases={releases} />)
+    return (<ComposerSelect />)
   } else if (active.id === 'locales') {
-    return (<LocalesView site={site} />)
+    return (<LocalesView />)
   } else if (active.id === 'workflows') {
-    return (<WorkflowsView site={site} />)
+    return (<WorkflowsView />)
   } else if (active.id === 'articles') {
-    return (<ArticlesView site={site}/>)
+    return (<ArticlesView />)
   }
-
 
   //article-based composers
   const article = site.articles[active.id];
-  const tab: Context.Tab = active;
+  const tab: Ide.Tab = active;
   if (!tab.data || !tab.data.nav) {
     return null;
   }
 
 
   let composer: React.ReactChild;
-  if (tab.data.nav.type === "LOCALE") {
+  if (tab.data.nav.type === "ARTICLE_PAGES") {
     const locale = tab.data.nav.value as string;
-    composer = (<PageComposer key={article.id + "-" + locale} site={site} article={article} locale={locale} />);
-  } else if (tab.data.nav.type === "LINK") {
-    composer = (<LinkComposer key={article.id} site={site} />)
-  } else if (tab.data.nav.type === "WORKFLOW") {
-    composer = (<WorkflowsTable site={site} article={article} />)
-  }
-  else {
+    composer = (<PageComposer key={article.id + "-" + locale} article={article} locale={locale} />);
+  } else if (tab.data.nav.type === "ARTICLE_LINKS") {
+    composer = (<LinkTable key={article.id + "-links"} article={article} />)
+  } else if (tab.data.nav.type === "ARTICLE_WORKFLOWS") {
+    composer = (<WorkflowsTable key={article.id + "-workflows"} article={article} />)
+  } else {
     composer = (<></>);
   }
 
-  //<LinkComposer key={article.id} site={site} article={article} />
-
-  return (
-    <div className={classes.root} key={article.id} >
-      {composer}
-    </div>
-  )
+  return (<div className={classes.root} key={article.id}>{composer}</div>)
 }
-
-export type { ComposerProps }
 export { Composer }
 
 

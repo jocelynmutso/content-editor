@@ -12,10 +12,9 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import EditIcon from '@material-ui/icons/Edit';
 
-import { API } from '../../deps';
+import { API, Ide } from '../../deps'; 
 
-
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((_theme: Theme) =>
   createStyles({
     table: {
       minWidth: 650,
@@ -61,14 +60,9 @@ const useRowStyles = makeStyles((theme: Theme) =>
   }));
 
 
-interface ReleasesViewProps {
-  site: API.CMS.Site,
-  releases: API.CMS.Releases,
-}
-
-const ReleasesView: React.FC<ReleasesViewProps> = ({ site, releases }) => {
+const ReleasesView: React.FC<{}> = () => {
   const classes = useStyles();
-
+  const releases = Ide.useReleases();
 
   return (
     <TableContainer component={Paper}>
@@ -82,20 +76,15 @@ const ReleasesView: React.FC<ReleasesViewProps> = ({ site, releases }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {releases.map((release, index) => (<Row site={site} release={release} />))}
+          {releases.map((release, index) => (<Row key={index} release={release} />))}
         </TableBody>
       </Table>
     </TableContainer>
   );
 }
 
-interface RowProps {
-  site: API.CMS.Site,
-  release: API.CMS.Release,
 
-}
-
-const Row: React.FC<RowProps> = ({ site, release }) => {
+const Row: React.FC<{release: API.CMS.Release}> = ({ release }) => {
   const classes = useRowStyles();
 
   return (

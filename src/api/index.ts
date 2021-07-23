@@ -1,9 +1,9 @@
 import CMS from './cms';
-import Session from './session';
 import createMock from './spi/mock';
 
+
 declare namespace API {
-  export { CMS, Session }
+  export { CMS  }
 }
 
 namespace API { 
@@ -11,5 +11,7 @@ namespace API {
     return createMock();
   };
 }
+
+
 
 export default API;

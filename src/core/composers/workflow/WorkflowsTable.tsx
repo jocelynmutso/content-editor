@@ -7,10 +7,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import EditIcon from '@material-ui/icons/Edit';
-import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import Paper from '@material-ui/core/Paper';
 
-import { API } from '../../deps';
+import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -41,14 +40,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 interface WorkflowsTableProps {
-  site: API.CMS.Site,
   article: API.CMS.Article
 }
 
-const WorkflowsTable: React.FC<WorkflowsTableProps> = ({ site, article }) => {
+const WorkflowsTable: React.FC<WorkflowsTableProps> = ({ article }) => {
   const classes = useStyles();
+  const site = Ide.useSite();
   const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => workflow.articles.includes(article.id));
-
 
   return (
     <TableContainer component={Paper}>
@@ -58,7 +56,6 @@ const WorkflowsTable: React.FC<WorkflowsTableProps> = ({ site, article }) => {
             <TableCell className={classes.bold} align="left">Technical Name</TableCell>
             <TableCell className={classes.bold} align="left">Locale</TableCell>
             <TableCell className={classes.bold} align="left">Localised Name</TableCell>
-            <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -67,10 +64,6 @@ const WorkflowsTable: React.FC<WorkflowsTableProps> = ({ site, article }) => {
               <TableCell className={classes.tableCell} align="left">{workflow.name}</TableCell>
               <TableCell className={classes.tableCell} align="left">{workflow.locale}</TableCell>
               <TableCell className={classes.tableCell} align="left">{workflow.content}</TableCell>
-                <TableCell className={classes.tableCell} align="right">
-                  <IconButton className={classes.iconButton}><EditIcon /></IconButton>
-                  <IconButton className={classes.iconButton}><RemoveCircleOutlineIcon /></IconButton>
-              </TableCell>
             </TableRow>
           ))}
         </TableBody>
