@@ -55,7 +55,7 @@ const createCards: (props: ComposerSelectProps) => Record<CardType, CardData> = 
     composer: () => (<LocaleComposer site={site} />),
     title: "Locale",
     dialog: "Create a new locale",
-    desc: "Add, activate, and deactivate content languages"
+    desc: "Add, activate, and deactivate content languages globally"
   },
 
   page: {
@@ -88,7 +88,7 @@ const createCards: (props: ComposerSelectProps) => Record<CardType, CardData> = 
 });
 
 
-
+//card view for all CREATE views
 const ComposerSelect: React.FC<ComposerSelectProps> = ({ site, releases }) => {
   const classes = useStyles();
 
