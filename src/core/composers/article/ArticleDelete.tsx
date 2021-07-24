@@ -8,12 +8,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
 
-import { API } from '../../deps';
+import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
-     // padding: 0,
+      // padding: 0,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.background.paper,
       fontWeight: 'bold',
@@ -43,49 +43,57 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 interface ArticleDeleteProps {
-  site: API.CMS.Site;
-  article: API.CMS.Article; 
+  article: API.CMS.Article;
 }
 
-const ArticleDelete: React.FC<ArticleDeleteProps> = ({ site, article }) => {
+const ArticleDelete: React.FC<ArticleDeleteProps> = ({ article }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  
+  const ide = Ide.useIde();
+
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+  
+  
+  const handleDelete = () => {
+    console.log("entity", article)
+    ide.service.delete().article(article.id).then(success => {
+      console.log(success)
+      handleClose();
+      ide.actions.handleLoadSite();
+    });
+  }
 
-  return (
-    <div className={classes.margin}>
+  return (<>
+    <span className={classes.margin}>
       <IconButton className={classes.iconButton} onClick={handleClickOpen}>
         <DeleteOutlinedIcon />
       </IconButton>
-      
-      <Dialog
-        open={open}
-        onClose={handleClose}
-      >
-        <DialogTitle>{"Permanently delete this article?"} </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            <ListItem>* Deleting this article will remove it and its associated pages globally from the application.</ListItem>
-            <ListItem>* Links and workflows associated with this article will not be deleted.</ListItem>
-            <ListItem>* This action cannot be undone! </ListItem>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="inherit">
-            Cancel
+    </span>
+
+    <Dialog open={open} onClose={handleClose}>
+      <DialogTitle>{"Permanently delete this article?"} </DialogTitle>
+      <DialogContent>
+        <DialogContentText>
+          <ListItem>* Deleting this article will remove it and its associated pages globally from the application.</ListItem>
+          <ListItem>* Links and workflows associated with this article will not be deleted.</ListItem>
+          <ListItem>* This action cannot be undone! </ListItem>
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} color="inherit">
+          Cancel
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Continue and delete
+        <Button onClick={handleDelete} color="primary" autoFocus>
+          Continue and delete
           </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+      </DialogActions>
+    </Dialog>
+  </>
   );
 }
 export { ArticleDelete }

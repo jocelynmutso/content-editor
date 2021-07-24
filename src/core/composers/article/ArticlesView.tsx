@@ -11,10 +11,10 @@ import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-import { ArticleRemovePage, ArticleDelete } from '../article';
+import { ArticleDeletePage, ArticleDelete, ArticleEdit } from '../article';
 import { API, Ide } from '../../deps';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((_theme: Theme) =>
   createStyles({
     table: {
       minWidth: 650,
@@ -65,35 +65,33 @@ const useRowStyles = makeStyles((theme: Theme) =>
 const ArticlesView: React.FC<{}> = () => {
   const classes = useStyles();
   const site = Ide.useSite();
-  const articles = Object.values(site.articles);
+  const articles = Object.values(site.articles).sort((a1, a2) => a1.order - a2.order);
 
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} size="small">
         <TableHead>
           <TableRow>
-            <TableCell className={classes.bold} align="center" colSpan={2}>Parent</TableCell>
+            <TableCell className={classes.bold} align="left" colSpan={2}>Name</TableCell>
             <TableCell className={classes.bold} align="left">Order</TableCell>
-            <TableCell className={classes.bold} align="left">Name</TableCell>
-            <TableCell className={classes.bold} align="center">Delete</TableCell>
+            <TableCell className={classes.bold} align="center"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {articles.map((article, index) => (<Row key={index} article={article} />))}
+          {articles.map((article, index) => (<Row key={index} article={article} site={site} />))}
         </TableBody>
       </Table>
     </TableContainer>
   );
 }
 
-interface RowProps {
-  article: API.CMS.Article
-}
-
-const Row: React.FC<RowProps> = ({ article }) => {
+const Row: React.FC<{article: API.CMS.Article, site: API.CMS.Site}> = ({ article, site }) => {
   const classes = useRowStyles();
   const [open, setOpen] = React.useState(false);
-
+  const parentName = article.parentId ? site.articles[article.parentId].name +  "/" : "";
+  
+  const pages = Object.values(site.pages).filter(page => page.article === article.id);
+  
   return (
     <>
       <TableRow key={article.id} hover className={classes.row}>
@@ -102,9 +100,12 @@ const Row: React.FC<RowProps> = ({ article }) => {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell className={classes.tableCell} align="left">{article.parentId}</TableCell>
+        <TableCell className={classes.tableCell} align="left">{parentName}{article.name}</TableCell>
         <TableCell className={classes.tableCell} align="left">{article.order}</TableCell>
-        <TableCell className={classes.tableCell} align="left">{article.name}</TableCell>
+        <TableCell className={classes.tableCell} align="right">
+          <ArticleEdit article={article} />
+          <ArticleDelete article={article} />
+        </TableCell>
       </TableRow>
 
       <TableRow>
@@ -114,11 +115,16 @@ const Row: React.FC<RowProps> = ({ article }) => {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}>Articles</TableCell>
+                    <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}>Pages</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
- 
+                  {pages.map((page, key) => (
+                    <TableRow hover key={key} className={classes.row}>
+                      <TableCell component="th" scope="row" align="left">{page.locale}</TableCell>
+                      <TableCell><ArticleDeletePage article={article} page={page} /></TableCell>
+                    </TableRow>
+                  ))}
                 </TableBody>
               </Table>
             </Box>
