@@ -29,7 +29,6 @@ declare namespace CMS {
     enabled: boolean
   }
 
-
   interface Page {
     id: PageId,
     article: ArticleId,
