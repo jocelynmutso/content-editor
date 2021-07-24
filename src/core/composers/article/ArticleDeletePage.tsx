@@ -5,15 +5,15 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
 
-import { API } from '../../deps';
+import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
-     // padding: 0,
+      // padding: 0,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.background.paper,
       fontWeight: 'bold',
@@ -42,49 +42,50 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-interface ArticleRemovePageProps {
-  site: API.CMS.Site;
-  link: API.CMS.Link; 
-}
-
-const ArticleRemovePage: React.FC<ArticleRemovePageProps> = ({ site, link }) => {
+const ArticleDeletePage: React.FC<{ article: API.CMS.Article, page: API.CMS.Page }> = ({ article, page }) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const ide = Ide.useIde();
   
+  const [open, setOpen] = React.useState(false);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+  
+  const handleDelete = () => {
+    ide.service.delete().page(page.id).then(success => {
+      console.log(success)
+      handleClose();
+      ide.actions.handleLoadSite();
+    })
+  }
 
   return (
     <div className={classes.margin}>
       <IconButton className={classes.iconButton} onClick={handleClickOpen}>
-        <RemoveCircleOutlineIcon />
+        <DeleteOutlinedIcon />
       </IconButton>
-      
-      <Dialog
-        open={open}
-        onClose={handleClose}
-      >
-        <DialogTitle>{"Remove this link?"} </DialogTitle>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>{"Delete this page?"} </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <ListItem>* Removing the link only removes its association with this article.</ListItem>
-            <ListItem>* To delete this item permanently, click the Delete icon. </ListItem>
+            <ListItem>* This page will be deleted from the application.</ListItem>
+            <ListItem>* This action cannot be undone! </ListItem>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="inherit">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Continue and remove
+          <Button onClick={handleDelete} color="primary" autoFocus>
+            Continue and delete
           </Button>
         </DialogActions>
       </Dialog>
     </div>
   );
 }
-export { ArticleRemovePage }
+export { ArticleDeletePage }

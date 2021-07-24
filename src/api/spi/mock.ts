@@ -120,8 +120,8 @@ const createMock = (): API.CMS.Service => {
   return {
     getSite, getReleases,
     create: () => new MockCreateBuilder(),
-    update: () => { },
-    delete: () => { }
+    update: () => new MockUpdateBuilder(),
+    delete: () => new MockDeleteBuilder()
   } as any;
 }
 
@@ -142,6 +142,42 @@ class MockCreateBuilder implements API.CMS.CreateBuilder {
     return init as any;
   }
   async workflow(init: API.CMS.CreateWorkflow): Promise<API.CMS.Workflow> {
+    return init as any;
+  }
+}
+
+class MockUpdateBuilder implements API.CMS.UpdateBuilder {
+  async locale(init: API.CMS.LocaleMutator): Promise<API.CMS.SiteLocale> {
+    return init as any;
+  }
+  async article(init: API.CMS.ArticleMutator): Promise<API.CMS.Article> {
+    return init as any;
+  }
+  async page(init: API.CMS.PageMutator): Promise<API.CMS.Page> {
+    return init as any;
+  }
+  async link(init: API.CMS.LinkMutator): Promise<API.CMS.Link> {
+    return init as any;
+  }
+  async workflow(init: API.CMS.WorkflowMutator): Promise<API.CMS.Workflow> {
+    return init as any;
+  }
+}
+
+class MockDeleteBuilder implements API.CMS.DeleteBuilder {
+  async locale(init: API.CMS.LocaleId): Promise<void> {
+    return init as any;
+  }
+  async article(init: API.CMS.ArticleId): Promise<void> {
+    return init as any;
+  }
+  async page(init: API.CMS.PageId): Promise<void> {
+    return init as any;
+  }
+  async link(init: API.CMS.LinkId): Promise<void> {
+    return init as any;
+  }
+  async workflow(init: API.CMS.WorkflowId): Promise<void> {
     return init as any;
   }
 }
