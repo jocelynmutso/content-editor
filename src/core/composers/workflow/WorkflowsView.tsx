@@ -112,7 +112,7 @@ const Row: React.FC<RowProps> = ({ site, workflow }) => {
         <TableCell className={classes.tableCell} align="left">{workflow.locale}</TableCell>
         <TableCell className={classes.tableCell} align="left">{workflow.content}</TableCell>
         <TableCell className={classes.tableCell} align="center">{workflow.articles.length}</TableCell>
-        <TableCell className={classes.tableCell} align="center"><WorkflowDelete workflow={workflow} site={site} /></TableCell>
+        <TableCell className={classes.tableCell} align="center"><WorkflowDelete workflow={workflow} /></TableCell>
       </TableRow>
 
       <TableRow>
@@ -134,7 +134,7 @@ const Row: React.FC<RowProps> = ({ site, workflow }) => {
                       </TableCell>
                       
                       <TableCell align="left">
-                        <WorkflowRemovePage site={site} workflow={workflow} article={article} />
+                        <WorkflowRemovePage locale={workflow.locale} workflow={workflow} article={article} />
                       </TableCell>
                       
                     </TableRow>

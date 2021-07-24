@@ -1,16 +1,12 @@
 import React from 'react';
 import {
-  makeStyles, Theme, createStyles, Divider, Typography, TableContainer, Table, TableRow, TableCell, TableBody, IconButton
+  makeStyles, Theme, createStyles, Divider, Typography, TableContainer,
+  Table, TableRow, TableCell, TableBody, IconButton,
+  Button, ButtonGroup, ListItem, ListItemText, Collapse
 } from '@material-ui/core';
-
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
 
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-
-import { DeleteRename } from './DeleteRename';
 
 import { API, Ide } from '../deps';
 
@@ -86,6 +82,16 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       lineHeight: 1.1
     },
+    pageButtons: {
+      '& > *': {
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
+      },
+    },
+    pageButton: {
+      backgroundColor: theme.palette.info.main
+    }
+    
   }),
 );
 
@@ -96,7 +102,10 @@ interface ExplorerItemProps {
 const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
 
   const { handleInTab } = Ide.useNav();
-  const site = Ide.useSite();
+  const ide = Ide.useIde();
+  const site = ide.session.site;
+  const unsaved = Ide.useUnsaved(article);
+  
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -111,6 +120,18 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
   const handleClose = () => {
     setOpen(false);
   }
+  
+  const handleSavePages = () => {
+    const unsaved: API.CMS.PageMutator[] = Object.values(ide.session.pages)
+      .filter(p => !p.saved)
+      .filter(p => p.origin.article === article.id)
+      .map(p => ({id: p.origin.id, locale: p.origin.locale, content: p.value}));
+      
+    ide.service.update().pages(unsaved).then(success => {
+      ide.actions.handlePageUpdateRemove(success.map(p => p.id));
+    });
+  }
+
   const pages: API.CMS.Page[] = Object.values(site.pages).filter(page => article.id === page.article);
   const links: API.CMS.Link[] = Object.values(site.links).filter(link => link.articles.includes(article.id));
   const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => workflow.articles.includes(article.id));
@@ -130,20 +151,31 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
         <TableContainer>
           <Table size="small">
             <TableBody >
+
               <TableRow className={classes.hoverRow} >
                 <TableCell className={classes.table}>
                   Locales: {pages.map((page, index) => (<span className={classes.hoverRow} key={index}
-                  onClick={() =>  handleInTab({article, type: "ARTICLE_PAGES", locale: page.locale})  }>
+                  onClick={() => handleInTab({ article, type: "ARTICLE_PAGES", locale: page.locale })}>
                   <span className={classes.localeSummary}>{page.locale}&nbsp;</span></span>))}
                 </TableCell>
               </TableRow>
+
+              {unsaved ? (<TableRow>
+                <TableCell className={classes.table}>
+                  <div className={classes.pageButtons}>
+                    <Button className={classes.pageButton} fullWidth onClick={handleSavePages}>Save Pages</Button>
+                  </div>
+                </TableCell>
+              </TableRow>) : null}
+
+
               <TableRow className={classes.hoverRow} >
-                <TableCell className={classes.table} onClick={() => handleInTab({article, type: "ARTICLE_LINKS"})}>
+                <TableCell className={classes.table} onClick={() => handleInTab({ article, type: "ARTICLE_LINKS" })}>
                   Links:  <span className={classes.summary}>{links.length}</span>
                 </TableCell>
               </TableRow>
               <TableRow className={classes.hoverRow}>
-                <TableCell className={classes.table} onClick={() => handleInTab({article, type: "ARTICLE_WORKFLOWS"})}>
+                <TableCell className={classes.table} onClick={() => handleInTab({ article, type: "ARTICLE_WORKFLOWS" })}>
                   Workflows: <span className={classes.summary}>{workflows.length}</span>
                 </TableCell>
               </TableRow>
@@ -153,11 +185,6 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
                 </TableCell>
               </TableRow>
 
-              <TableRow>
-                <TableCell>
-                  <DeleteRename site={site} article={article} />
-                </TableCell>
-              </TableRow>
             </TableBody>
           </Table>
         </TableContainer>

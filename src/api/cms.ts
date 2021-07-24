@@ -157,12 +157,15 @@ declare namespace CMS {
     article(id: ArticleId): Promise<void>;
     page(id: PageId): Promise<void>;
     link(id: LinkId): Promise<void>;
+    linkArticlePage(link: LinkId, article: ArticleId, locale: Locale): Promise<void>;
     workflow(id: WorkflowId): Promise<void>;
+    workflowArticlePage(workflow: WorkflowId, article: ArticleId, locale: Locale): Promise<void>;
+    
   }
   interface UpdateBuilder {
     locale(article: LocaleMutator): Promise<SiteLocale>;
     article(article: ArticleMutator): Promise<Article>;
-    page(page: PageMutator): Promise<Page>;
+    pages(pages: PageMutator[]): Promise<Page[]>;
     link(link: LinkMutator): Promise<Link>;
     workflow(workflow: WorkflowMutator): Promise<Workflow>;
   }

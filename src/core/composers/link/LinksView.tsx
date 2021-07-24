@@ -131,7 +131,7 @@ const Row: React.FC<RowProps> = ({ site, link }) => {
                         {site.articles[id].name}
                       </TableCell>
                       <TableCell>
-                        <LinkRemovePage link={link} site={site} />
+                        <LinkRemovePage link={link} article={site.articles[id]} locale={link.locale} />
                       </TableCell>
                     </TableRow>
                   ))}

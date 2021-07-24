@@ -8,12 +8,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
 
-import { API } from '../../deps';
+import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
-     // padding: 0,
+      // padding: 0,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.background.paper,
       fontWeight: 'bold',
@@ -43,27 +43,37 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 interface LinkRemovePageProps {
-  site: API.CMS.Site;
-  link: API.CMS.Link; 
+  article: API.CMS.Article;
+  link: API.CMS.Link;
+  locale: API.CMS.Locale;
 }
 
-const LinkRemovePage: React.FC<LinkRemovePageProps> = ({ site, link }) => {
+const LinkRemovePage: React.FC<LinkRemovePageProps> = ({ article, locale, link }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  
+  const ide = Ide.useIde();
+
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+  
+  const handleDelete = () => {
+    ide.service.delete().linkArticlePage(link.id, article.id, locale).then(success => {
+      console.log(success)
+      handleClose();
+      ide.actions.handleLoadSite();
+    })
+  }
 
   return (
     <div className={classes.margin}>
       <IconButton className={classes.iconButton} onClick={handleClickOpen}>
         <RemoveCircleOutlineIcon />
       </IconButton>
-      
+
       <Dialog
         open={open}
         onClose={handleClose}
@@ -79,8 +89,8 @@ const LinkRemovePage: React.FC<LinkRemovePageProps> = ({ site, link }) => {
           <Button onClick={handleClose} color="inherit">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Continue and remove
+          <Button onClick={handleDelete} color="primary" autoFocus>
+            Continue and delete
           </Button>
         </DialogActions>
       </Dialog>

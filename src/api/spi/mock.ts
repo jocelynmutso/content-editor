@@ -153,7 +153,8 @@ class MockUpdateBuilder implements API.CMS.UpdateBuilder {
   async article(init: API.CMS.ArticleMutator): Promise<API.CMS.Article> {
     return init as any;
   }
-  async page(init: API.CMS.PageMutator): Promise<API.CMS.Page> {
+  async pages(init: API.CMS.PageMutator[]): Promise<API.CMS.Page[]> {
+    console.log("saving pages", init);
     return init as any;
   }
   async link(init: API.CMS.LinkMutator): Promise<API.CMS.Link> {
@@ -179,6 +180,14 @@ class MockDeleteBuilder implements API.CMS.DeleteBuilder {
   }
   async workflow(init: API.CMS.WorkflowId): Promise<void> {
     return init as any;
+  }
+  async workflowArticlePage(workflow: API.CMS.WorkflowId, article: API.CMS.ArticleId, locale: API.CMS.Locale): Promise<void> {
+    const body = {workflow, article, locale};
+    console.log("delete workflow article", body);
+  }
+  async linkArticlePage(link: API.CMS.LinkId, article: API.CMS.ArticleId, locale: API.CMS.Locale): Promise<void> {
+    const body = {link, article, locale};
+    console.log("delete link article", body);
   }
 }
 

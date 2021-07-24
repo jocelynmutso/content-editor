@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
 
-import { API } from '../../deps';
+import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -50,6 +50,7 @@ interface LinkDeleteProps {
 const LinkDelete: React.FC<LinkDeleteProps> = ({ site, link }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const ide = Ide.useIde();
   
   const handleClickOpen = () => {
     setOpen(true);
@@ -57,6 +58,14 @@ const LinkDelete: React.FC<LinkDeleteProps> = ({ site, link }) => {
   const handleClose = () => {
     setOpen(false);
   };
+  
+  const handleDelete = () => {
+    ide.service.delete().link(link.id).then(success => {
+      console.log(success)
+      handleClose();
+      ide.actions.handleLoadSite();
+    })
+  }
 
   return (
     <div className={classes.margin}>
@@ -79,8 +88,8 @@ const LinkDelete: React.FC<LinkDeleteProps> = ({ site, link }) => {
           <Button onClick={handleClose} color="inherit">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Continue and remove
+          <Button onClick={handleDelete} color="primary" autoFocus>
+            Continue and delete
           </Button>
         </DialogActions>
       </Dialog>

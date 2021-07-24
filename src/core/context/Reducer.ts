@@ -5,18 +5,21 @@ import { API } from '../deps';
 enum ActionType {
   setSite = "setSite",
   setReleases = "setReleases",
-  setPageUpdate = "setPageUpdate"
+  setPageUpdate = "setPageUpdate",
+  setPageUpdateRemove = "setPageUpdateRemove"
 }
 
 interface Action {
   type: ActionType;
 
+  setPageUpdateRemove?: {pages: API.CMS.PageId[]}
   setPageUpdate?: { page: API.CMS.PageId, value: API.CMS.LocalisedContent };
   setSite?: { site: API.CMS.Site };
   setReleases?: { releases: API.CMS.Releases };
 }
 
 const ActionBuilder = {
+  setPageUpdateRemove: (setPageUpdateRemove: { pages: API.CMS.PageId[] } ) => ({type: ActionType.setPageUpdateRemove, setPageUpdateRemove }),
   setPageUpdate: (setPageUpdate: { page: API.CMS.PageId, value: API.CMS.LocalisedContent }) => ({ type: ActionType.setPageUpdate, setPageUpdate }),
   setSite: (setSite: { site: API.CMS.Site }) => ({ type: ActionType.setSite, setSite }),
   setReleases: (setReleases: { releases: API.CMS.Releases }) => ({ type: ActionType.setReleases, setReleases }),
@@ -45,6 +48,9 @@ class ReducerDispatch implements Ide.Actions {
   handlePageUpdate(page: API.CMS.PageId, value: API.CMS.LocalisedContent): void {
     this._sessionDispatch(ActionBuilder.setPageUpdate({page, value}));
   }
+  handlePageUpdateRemove(pages: API.CMS.PageId[]): void {
+    this._sessionDispatch(ActionBuilder.setPageUpdateRemove({pages}));
+  }
 }
 
 const Reducer = (state: Ide.Session, action: Action): Ide.Session => {
@@ -66,6 +72,13 @@ const Reducer = (state: Ide.Session, action: Action): Ide.Session => {
     case ActionType.setPageUpdate: {
       if (action.setPageUpdate) {
         return state.withPageValue(action.setPageUpdate.page, action.setPageUpdate.value);
+      }
+      console.error("Action data error", action);
+      return state;
+    }
+    case ActionType.setPageUpdateRemove: {
+      if (action.setPageUpdateRemove) {
+        return state.withoutPages(action.setPageUpdateRemove.pages);
       }
       console.error("Action data error", action);
       return state;

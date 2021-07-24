@@ -1,5 +1,5 @@
 import React from 'react';
-
+BOBA
 import { API, Layout } from '../deps';
 import { ReducerDispatch, Reducer } from './Reducer';
 import { SessionData, ImmutableTabData } from './SessionData';
@@ -37,7 +37,6 @@ declare namespace Ide {
     
     withPage(page: API.CMS.PageId): Session;
     withPageValue(page: API.CMS.PageId, value: API.CMS.LocalisedContent): Session;
-    withoutPages(pages: API.CMS.PageId[]): Session;
     
     withSite(site: API.CMS.Site): Session;
     withReleases(releases: API.CMS.Releases): Session;
@@ -48,7 +47,6 @@ declare namespace Ide {
     handleLoadReleases(): Promise<void>;
     handleLoadSite(): Promise<void>;
     handlePageUpdate(page: API.CMS.PageId, value: API.CMS.LocalisedContent): void;
-    handlePageUpdateRemove(pages: API.CMS.PageId[]): void;
   }
 
   interface ContextType {
@@ -92,12 +90,13 @@ namespace Ide {
 
   export const useNav = () => {
     const layout = Layout.useContext();
+    const site = useSite();
     
     const handleInTab = (props: {article: API.CMS.Article, type: Ide.NavType, locale?: string}) => {
       const nav = { type: props.type, value: props.locale };
       const tab: Ide.Tab = {
         id: props.article.id,
-        label: props.type === "ARTICLE_PAGES" ? <ArticlePagesTab article={props.article} /> : props.article.name, 
+        label: <span>{{props.article.name}}</span>, 
         data: Ide.createTab({ nav })
       };
 
@@ -126,13 +125,6 @@ namespace Ide {
     return (<IdeContext.Provider value={{ session, actions, service }}>{children}</IdeContext.Provider>);
   };
 }
-
-const ArticlePagesTab: React.FC<{article: API.CMS.Article}> = ({ article }) => {
-  const unsaved = Ide.useUnsaved(article);
-  return <span>{article.name}{unsaved ? " *": ""}</span>;
-}
-
-
 
 export default Ide;
 
