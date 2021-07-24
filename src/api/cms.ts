@@ -4,6 +4,7 @@ declare namespace CMS {
   type LinkId = string;
   type ArticleId = string;
   type WorkflowId = string;
+  type LocaleId = string;
   type Locale = string;
   type LocalisedMarkdown = string;
   type LocalisedContent = string;
@@ -18,11 +19,16 @@ declare namespace CMS {
   }
   
   interface SiteLocale {
-    id: string,
+    id: LocaleId,
     value: Locale,
-    enabled: boolean,
-    note: string,
+    enabled: boolean
   }
+  
+  interface LocaleMutator {
+    id: LocaleId, 
+    enabled: boolean
+  }
+
 
   interface Page {
     id: PageId,
@@ -44,6 +50,13 @@ declare namespace CMS {
     parentId?: ArticleId,
     name: string,
     order: number,
+  }
+  
+  interface ArticleMutator {
+    id: ArticleId, 
+    parentId?: ArticleId, 
+    name: string, 
+    order: number
   }
 
   type Releases = Release[];
@@ -100,20 +113,55 @@ declare namespace CMS {
     delete(): DeleteBuilder;
     update(): UpdateBuilder;
   }
+  
+  interface CreateArticle { 
+    parentId?: ArticleId;
+    name: string;
+    order: number; 
+  }
+  
+  interface CreateLocale {
+    locale: Locale;
+  }
+  interface CreatePage {
+    articleId: ArticleId;
+    locale: Locale;
+    content?: string
+  }
+  interface CreateLink { 
+    type: "internal" | "external";
+    value: string;
+    locale: Locale;
+    description: string; 
+  }
+  interface CreateWorkflow { 
+    name: string;
+    locale: Locale; 
+    content: string; 
+  }
+  interface CreateRelease {
+    name: string,
+    note?: string
+  }
+  
   interface CreateBuilder {
-    article(init: { parentId?: ArticleId, name: string, order: number }): Promise<Article>;
-    page(init: { locale: Locale, content: string, }): Promise<Page>;
-    link(init: { content: string, locale: Locale, description: string }): Promise<Link>;
-    workflow(init: { name: string, locale: Locale, content: string }): Promise<Workflow>;
+    release(init: CreateRelease): Promise<Release>;
+    locale(init: CreateLocale): Promise<SiteLocale>;
+    article(init: CreateArticle): Promise<Article>;
+    page(init: CreatePage): Promise<Page>;
+    link(init: CreateLink): Promise<Link>;
+    workflow(init: CreateWorkflow): Promise<Workflow>;
   }
   interface DeleteBuilder {
+    locale(id: LocaleId): Promise<void>;
     article(id: ArticleId): Promise<void>;
     page(id: PageId): Promise<void>;
     link(id: LinkId): Promise<void>;
     workflow(id: WorkflowId): Promise<void>;
   }
   interface UpdateBuilder {
-    article(id: ArticleId, mutator: { parentId?: ArticleId, name: string, order: number }): Promise<Article>;
+    locale(article: LocaleMutator): Promise<SiteLocale>;
+    article(article: ArticleMutator): Promise<Article>;
     page(page: PageMutator): Promise<Page>;
     link(link: LinkMutator): Promise<Link>;
     workflow(workflow: WorkflowMutator): Promise<Workflow>;

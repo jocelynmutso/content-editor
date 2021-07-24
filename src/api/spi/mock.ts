@@ -78,24 +78,24 @@ const links: API.CMS.Link[] = [
   { id: "l14", articles: ["a2"], type: "internal", description: "general information", content: "http://www.example.com", locale: "fi" },
   { id: "l15", articles: ["a2"], type: "external", description: "vocational training", content: "http://www.adult-learning.com", locale: "fi" },
   { id: "l16", articles: ["a2"], type: "internal", description: "education", content: "http://www.learn.fi", locale: "fi" },
-  
+
 
 ];
 
 const workflows: API.CMS.Workflow[] = [
-  { id: "w1", articles: ["a1"],   name: "generalProcess1", content: "General Inquiry",     locale: "en" },
-  { id: "w2", articles: ["a1"],   name: "greatFlow",       content: "Default Form",        locale: "en" },
-  { id: "w3", articles: ["a1"],   name: "inquiryMgr",      content: "Super good question", locale: "en" },
-  { id: "w4", articles: ["a1.2"], name: "generalProcess1", content: "General Process",     locale: "fi" },
-  { id: "w5", articles: ["a1.3"], name: "greatFlow",       content: "Default Flow",        locale: "en" },
-  { id: "w6", articles: ["a1.3"], name: "inquiryMgr",      content: "General Question",    locale: "fi" },
+  { id: "w1", articles: ["a1"], name: "generalProcess1", content: "General Inquiry", locale: "en" },
+  { id: "w2", articles: ["a1"], name: "greatFlow", content: "Default Form", locale: "en" },
+  { id: "w3", articles: ["a1"], name: "inquiryMgr", content: "Super good question", locale: "en" },
+  { id: "w4", articles: ["a1.2"], name: "generalProcess1", content: "General Process", locale: "fi" },
+  { id: "w5", articles: ["a1.3"], name: "greatFlow", content: "Default Flow", locale: "en" },
+  { id: "w6", articles: ["a1.3"], name: "inquiryMgr", content: "General Question", locale: "fi" },
 ];
 
 const locales: API.CMS.SiteLocale[] = [
-  {id: "l1", enabled: true, value: "fi", note: "Finnish: initial translation"},
-  {id: "l2", enabled: true, value: "sv", note: "Swedish: initial translation"},
-  {id: "l3", enabled: false, value: "en", note: "English: initial translation"}
-] 
+  { id: "l1", enabled: true, value: "fi" },
+  { id: "l2", enabled: true, value: "sv" },
+  { id: "l3", enabled: false, value: "en" }
+]
 
 const createMock = (): API.CMS.Service => {
   const releases: API.CMS.Releases = [
@@ -117,8 +117,35 @@ const createMock = (): API.CMS.Service => {
   const getReleases = async () => {
     return releases;
   }
-  return { getSite, getReleases } as any;
+  return {
+    getSite, getReleases,
+    create: () => new MockCreateBuilder(),
+    update: () => { },
+    delete: () => { }
+  } as any;
 }
+
+class MockCreateBuilder implements API.CMS.CreateBuilder {
+  async release(init: API.CMS.CreateRelease): Promise<API.CMS.Release> {
+    return init as any;
+  }
+  async locale(init: API.CMS.CreateLocale): Promise<API.CMS.SiteLocale> {
+    return init as any;
+  }
+  async article(init: API.CMS.CreateArticle): Promise<API.CMS.Article> {
+    return init as any;
+  }
+  async page(init: API.CMS.CreatePage): Promise<API.CMS.Page> {
+    return init as any;
+  }
+  async link(init: API.CMS.CreateLink): Promise<API.CMS.Link> {
+    return init as any;
+  }
+  async workflow(init: API.CMS.CreateWorkflow): Promise<API.CMS.Workflow> {
+    return init as any;
+  }
+}
+
 
 const toRecord = (entities: { id: string }[]): Record<string, any> => {
   const result: Record<string, any> = {};

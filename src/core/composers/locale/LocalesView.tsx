@@ -76,7 +76,6 @@ const LocalesView: React.FC<{}> = () => {
             <TableRow>
               <TableCell className={classes.bold} align="left">Locale</TableCell>
               <TableCell className={classes.bold} align="left">Status</TableCell>
-              <TableCell className={classes.bold} align="left">Note</TableCell>
               <TableCell className={classes.bold} align="left">Disable</TableCell>
             </TableRow>
           </TableHead>
@@ -107,7 +106,6 @@ const Row: React.FC<RowProps> = ({ site, locale }) => {
             <IconButton className={classes.iconButton}> <VisibilityOnIcon /></IconButton>
             : <IconButton className={classes.iconButton}><VisibilityOffIcon /></IconButton>}
         </TableCell>
-        <TableCell className={classes.tableCell} align="left">{locale.note}</TableCell>
         <TableCell className={classes.tableCell} align="left">
           <LocaleDisable site={site} locale={locale} />
         </TableCell>
