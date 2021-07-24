@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
 
-import { API } from '../../deps';
+import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,13 +43,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 interface WorkflowDeleteProps {
-  site: API.CMS.Site;
   workflow: API.CMS.Workflow; 
 }
 
-const WorkflowDelete: React.FC<WorkflowDeleteProps> = ({ site, workflow }) => {
+const WorkflowDelete: React.FC<WorkflowDeleteProps> = ({ workflow }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const ide = Ide.useIde();
   
   const handleClickOpen = () => {
     setOpen(true);
@@ -57,6 +57,14 @@ const WorkflowDelete: React.FC<WorkflowDeleteProps> = ({ site, workflow }) => {
   const handleClose = () => {
     setOpen(false);
   };
+  
+  const handleDelete = () => {
+    ide.service.delete().workflow(workflow.id).then(success => {
+      console.log(success)
+      handleClose();
+      ide.actions.handleLoadSite();
+    })
+  }
 
   return (
     <div className={classes.margin}>
@@ -79,7 +87,7 @@ const WorkflowDelete: React.FC<WorkflowDeleteProps> = ({ site, workflow }) => {
           <Button onClick={handleClose} color="inherit">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button onClick={handleDelete} color="primary" autoFocus>
             Continue and delete
           </Button>
         </DialogActions>

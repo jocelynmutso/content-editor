@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
 
-import { API } from '../../deps';
+import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,21 +43,31 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 interface WorkflowRemovePageProps {
-  site: API.CMS.Site;
   workflow: API.CMS.Workflow; 
   article: API.CMS.Article;
+  locale: API.CMS.Locale;
 }
 
-const WorkflowRemovePage: React.FC<WorkflowRemovePageProps> = ({ site, workflow, article }) => {
+const WorkflowRemovePage: React.FC<WorkflowRemovePageProps> = ({ workflow, article, locale }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  
+  const ide = Ide.useIde();
+    
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+  
+    
+  const handleDelete = () => {
+    ide.service.delete().workflowArticlePage(workflow.id, article.id, locale).then(success => {
+      handleClose();
+      ide.actions.handleLoadSite();
+    })
+  }
+
 
   return (
     <div className={classes.margin}>
@@ -80,7 +90,7 @@ const WorkflowRemovePage: React.FC<WorkflowRemovePageProps> = ({ site, workflow,
           <Button onClick={handleClose} color="inherit">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button onClick={handleDelete} color="primary" autoFocus>
             Continue and remove
           </Button>
         </DialogActions>

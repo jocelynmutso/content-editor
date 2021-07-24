@@ -33,6 +33,16 @@ class SessionData implements Ide.Session {
   withReleases(releases: API.CMS.Releases) {
     return new SessionData({ site: this._site, releases: releases });
   }
+  withoutPages(pageIds: API.CMS.PageId[]): Ide.Session {
+    const pages = {};
+    for(const page of Object.values(this._pages)) {
+      if(pageIds.includes(page.origin.id)) {
+        continue;
+      }
+      pages[page.origin.id] = page;
+    }
+    return new SessionData({ site: this._site, releases: this._releases, pages });
+  } 
   withPage(page: API.CMS.PageId): Ide.Session {
     if (this._pages[page]) {
       return this;
