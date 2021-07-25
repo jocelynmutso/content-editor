@@ -5,6 +5,7 @@ import { PaletteOptions } from '@material-ui/core/styles/createPalette';
 
 const palette = {
   type: 'light',
+
   primary: {
     main: '#078299',
     contrastText: '#2f3131',
@@ -37,8 +38,10 @@ const palette = {
   info: {
     main: "#f28d00", //orange
     light: '#f0f6fa', //light blue
-  },
-};
+  }
+}
+
+
 
 
 const siteTheme = createMuiTheme({

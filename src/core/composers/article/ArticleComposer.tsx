@@ -1,8 +1,10 @@
 import React from 'react';
 import {
   makeStyles, createStyles, Theme, TextField, InputLabel, FormControl, MenuItem, Select,
-  Button, Dialog, Typography, DialogTitle, DialogContent, DialogActions,
+  Button, Dialog, Typography, DialogTitle, DialogContent, DialogActions, Tooltip
 } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
+
 
 import { API, Ide } from '../../deps';
 
@@ -40,14 +42,15 @@ const ArticleComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   }
 
   const articles: API.CMS.Article[] = Object.values(site.articles);
+
   return (
     <Dialog open={true} onClose={onClose} >
-      <DialogTitle>Create a new article</DialogTitle>
+
+      <DialogTitle><FormattedMessage id='article.composer.title' /></DialogTitle>
       <DialogContent>
-      
         <Typography className={classes.root}>
           <FormControl variant="outlined" className={classes.select} fullWidth>
-            <InputLabel >Parent article</InputLabel>
+            <InputLabel><FormattedMessage id='article.composer.parent' /></InputLabel>
             <Select
               value={parentId}
               onChange={({ target }) => setParentId(target.value as any)}
@@ -58,18 +61,29 @@ const ArticleComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
               ))}
             </Select>
           </FormControl >
-          <TextField type={"number"} label="Order" variant="outlined" placeholder="100" helperText="number for ordering purposes" fullWidth className={classes.select}
+          <TextField
+           fullWidth
+            className={classes.select}
             value={order}
+            type={"number"}
+            variant="outlined"
+            placeholder="100"
+            helperText={<FormattedMessage id='article.composer.orderhelper' />}
             onChange={({ target }) => setOrder(target.value as any)} />
-          <TextField className={classes.select} label="Name" variant="outlined" fullWidth required
+          <TextField
+            className={classes.select}
+            label={<FormattedMessage id='article.composer.name' />}
+            variant="outlined"
+            fullWidth
+            required
             value={name}
             onChange={({ target }) => setName(target.value)} />
         </Typography>
-        
+
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="inherit">Cancel</Button>
-        <Button onClick={handleCreate} color="primary" autoFocus disabled={!name}>Create</Button>
+        <Button onClick={onClose} color="inherit"><FormattedMessage id='button.cancel' /></Button>
+        <Button onClick={handleCreate} color="primary" autoFocus disabled={!name}><FormattedMessage id='button.create' /></Button>
       </DialogActions>
     </Dialog>
   );

@@ -3,6 +3,7 @@ import {
   makeStyles, createStyles, Theme, InputLabel, FormControl, Button,
   Dialog, Typography, DialogTitle, DialogContent, DialogActions, MenuItem, Select
 } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
 
@@ -40,16 +41,16 @@ const NewPage: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
   return (
     <Dialog open={true} onClose={onClose} >
-      <DialogTitle>Create a new page</DialogTitle>
+      <DialogTitle><FormattedMessage id='newpage.title' /></DialogTitle>
       <DialogContent>
-
-        <Typography className={classes.root}>
+        <Typography>
+          <FormattedMessage id='newpage.info' />
           <FormControl variant="outlined" className={classes.select} fullWidth>
-            <InputLabel >Article</InputLabel>
+            <InputLabel><FormattedMessage id='article.composer.name' /></InputLabel>
             <Select
               value={articleId}
               onChange={({ target }) => setArticleId(target.value as any)}
-              label="article"
+              label={<FormattedMessage id='article.composer.name' />}
             >
               {articles.map((article, index) => (
                 <MenuItem key={index} value={article.name}>{article.order}{"_"}{article.name}</MenuItem>
@@ -57,11 +58,11 @@ const NewPage: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             </Select>
           </FormControl >
           <FormControl variant="outlined" className={classes.select} fullWidth>
-            <InputLabel >Locale</InputLabel>
+            <InputLabel><FormattedMessage id='locale' /></InputLabel>
             <Select
               value={locale}
               onChange={({ target }) => setLocale(target.value as any)}
-              label="locale"
+              label={<FormattedMessage id='locale' />}
             >
               {locales.map((locale, index) => (
                 <MenuItem key={index} value={locale.value}>{locale.value}</MenuItem>
@@ -71,8 +72,8 @@ const NewPage: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="inherit">Cancel</Button>
-        <Button onClick={handleCreate} color="primary" autoFocus disabled={!locale}>Create</Button>
+        <Button onClick={onClose} color="inherit"><FormattedMessage id='button.cancel' /></Button>
+        <Button onClick={handleCreate} color="primary" autoFocus disabled={!locale}><FormattedMessage id='button.create' /></Button>
       </DialogActions>
     </Dialog>
   );
