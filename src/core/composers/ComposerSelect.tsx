@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { Button, Dialog, Card, CardActions, CardContent, Typography, DialogTitle, DialogContent, DialogActions } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, Typography } from '@material-ui/core';
+
+import { FormattedMessage } from 'react-intl';
 
 import { ArticleComposer } from './article';
 import { LinkComposer } from './link';
@@ -39,38 +41,38 @@ type CardType = "release" | "article" | "page" | "link" | "workflow" | "locale";
 const createCards: (site: API.CMS.Site, releases: API.CMS.Releases) => Record<CardType, CardData> = (site, releases) => ({
   article: {
     composer: (handleClose) => (<ArticleComposer onClose={handleClose}/>),
-    title: "Article",
-    desc: "A group of associated Pages, Links, Workflows, and Locales"
+    title: "composer.article.title",
+    desc: "composer.article.desc"
   },
 
   locale: {
     composer: (handleClose) => (<LocaleComposer onClose={handleClose}/>),
-    title: "Locale",
-    desc: "Add, activate, and deactivate content languages globally"
+    title: "composer.locale.title",
+    desc: "composer.locale.desc"
   },
 
   page: {
     composer: (handleClose) => (<NewPage onClose={handleClose}/>),
-    title: "Page",
-    desc: "One file representing one language and its associated links and workflows within an Article",
+    title: "composer.page.title",
+    desc: "composer.page.desc",
   },
 
   link: {
     composer: (handleClose) => (<LinkComposer onClose={handleClose}/>),
-    title: "Link",
-    desc: "Internal links connect to content within your domain, and external links connect to content outside your domain"
+    title: "composer.link.title",
+    desc: "composer.link.desc"
   },
 
   workflow: {
     composer: (handleClose) => (<WorkflowComposer onClose={handleClose}/>),
-    title: "Workflow",
-    desc: "Connect forms and processes"
+    title: "composer.workflow.title",
+    desc: "composer.workflow.desc"
   },
 
   release: {
     composer: (handleClose) => (<ReleaseComposer onClose={handleClose}/>),
-    title: "Release",
-    desc: "Create a snapshot of all site content at one certain point of time for testing or production purposes"
+    title: "composer.release.title",
+    desc: "composer.release.desc"
   },
 });
 
@@ -91,8 +93,8 @@ const ComposerSelect: React.FC<{}> = () => {
       {Object.entries(cards).map((card, index) => (
         <Card key={index} className={classes.container} variant="outlined">
           <CardContent>
-            <Typography variant="h6">{card[1].title}</Typography>
-            <Typography color="textSecondary" variant="caption">{card[1].desc}</Typography>
+            <Typography variant="h6"><FormattedMessage id={card[1].title}/></Typography>
+            <Typography color="textSecondary" variant="caption"><FormattedMessage id={card[1].desc}/></Typography>
           </CardContent>
           <CardActions>
             <Button onClick={() => handleOpen(card[0] as any)} size="small">Create</Button>
