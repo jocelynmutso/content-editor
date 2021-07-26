@@ -6,14 +6,15 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
-import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, IconButton } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
-     // padding: 0,
+      // padding: 0,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.background.paper,
       fontWeight: 'bold',
@@ -44,21 +45,21 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface LinkDeleteProps {
   site: API.CMS.Site;
-  link: API.CMS.Link; 
+  link: API.CMS.Link;
 }
 
 const LinkDelete: React.FC<LinkDeleteProps> = ({ site, link }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const ide = Ide.useIde();
-  
+
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
-  
+
   const handleDelete = () => {
     ide.service.delete().link(link.id).then(success => {
       console.log(success)
@@ -72,24 +73,23 @@ const LinkDelete: React.FC<LinkDeleteProps> = ({ site, link }) => {
       <IconButton className={classes.iconButton} onClick={handleClickOpen}>
         <DeleteOutlinedIcon />
       </IconButton>
-      
+
       <Dialog
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>{"Permanently delete this link?"} </DialogTitle>
+        <DialogTitle><FormattedMessage id="link.delete.title" /></DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <ListItem>* Deleting this link will remove it globally from the application.</ListItem>
-            <ListItem>* This action cannot be undone! </ListItem>
+            <FormattedMessage id="link.delete" />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="inherit">
-            Cancel
+            <FormattedMessage id="button.cancel"/>
           </Button>
           <Button onClick={handleDelete} color="primary" autoFocus>
-            Continue and delete
+            <FormattedMessage id="button.delete"/>
           </Button>
         </DialogActions>
       </Dialog>

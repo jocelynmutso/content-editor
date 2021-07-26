@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
-import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, IconButton } from '@material-ui/core';
 import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
@@ -80,7 +80,7 @@ const ArticleDelete: React.FC<ArticleDeleteProps> = ({ article }) => {
       <DialogTitle><FormattedMessage id="article.delete.title" /></DialogTitle>
       <DialogContent>
         <DialogContentText>
-          <ListItem><FormattedMessage id="article.delete" /></ListItem>
+          <FormattedMessage id="article.delete" />
         </DialogContentText>
       </DialogContent>
       <DialogActions>

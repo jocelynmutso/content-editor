@@ -36,8 +36,6 @@ const SmallAvatar = withStyles((theme: Theme) =>
       width: "20px",
       height: "20px",
       fontSize: "unset",
-      //color: theme.palette.primary.main,
-      //background: "transparent",
       border: `2px solid ${theme.palette.background.paper}`,
     },
   }),
