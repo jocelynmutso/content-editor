@@ -6,7 +6,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
-import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, IconButton } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
 
@@ -45,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const ArticleDeletePage: React.FC<{ article: API.CMS.Article, page: API.CMS.Page }> = ({ article, page }) => {
   const classes = useStyles();
   const ide = Ide.useIde();
-  
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -54,7 +55,7 @@ const ArticleDeletePage: React.FC<{ article: API.CMS.Article, page: API.CMS.Page
   const handleClose = () => {
     setOpen(false);
   };
-  
+
   const handleDelete = () => {
     ide.service.delete().page(page.id).then(success => {
       console.log(success)
@@ -69,19 +70,18 @@ const ArticleDeletePage: React.FC<{ article: API.CMS.Article, page: API.CMS.Page
         <DeleteOutlinedIcon />
       </IconButton>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>{"Delete this page?"} </DialogTitle>
+        <DialogTitle><FormattedMessage id="article.deletepage.title" /> </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <ListItem>* This page will be deleted from the application.</ListItem>
-            <ListItem>* This action cannot be undone! </ListItem>
+            <FormattedMessage id={'article.deletepage'} />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="inherit">
-            Cancel
+          <Button variant="text" onClick={handleClose} color="primary">
+            <FormattedMessage id={'button.cancel'} />
           </Button>
-          <Button onClick={handleDelete} color="primary" autoFocus>
-            Continue and delete
+          <Button variant="contained" onClick={handleDelete} color="primary" autoFocus>
+            <FormattedMessage id={'button.delete'} />
           </Button>
         </DialogActions>
       </Dialog>

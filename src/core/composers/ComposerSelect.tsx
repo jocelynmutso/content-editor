@@ -91,13 +91,13 @@ const ComposerSelect: React.FC<{}> = () => {
       { !open ? null : ( cards[open].composer(handleClose) )}
 
       {Object.entries(cards).map((card, index) => (
-        <Card key={index} className={classes.container} variant="outlined">
+        <Card key={index} className={classes.container} variant="elevation">
           <CardContent>
             <Typography variant="h6"><FormattedMessage id={card[1].title}/></Typography>
             <Typography color="textSecondary" variant="caption"><FormattedMessage id={card[1].desc}/></Typography>
           </CardContent>
           <CardActions>
-            <Button onClick={() => handleOpen(card[0] as any)} size="small">Create</Button>
+            <Button variant="contained" color="primary" onClick={() => handleOpen(card[0] as any)} size="small"><FormattedMessage id="button.create"/></Button>
           </CardActions>
         </Card>
       ))}

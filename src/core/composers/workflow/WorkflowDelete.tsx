@@ -84,7 +84,7 @@ const WorkflowDelete: React.FC<WorkflowDeleteProps> = ({ workflow }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="inherit">
+          <Button variant="text" onClick={handleClose} color="primary">
             <FormattedMessage id="button.cancel" />
           </Button>
           <Button onClick={handleDelete} color="primary" autoFocus>

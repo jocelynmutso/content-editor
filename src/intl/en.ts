@@ -11,12 +11,15 @@ const en = {
 
   'article.delete.title': 'Permanently delete this Article?',
   'article.delete': 'Deleting this article will remove it and its associated pages globally from the application.',
+  'article.deletepage.title': 'Delete this page?',
+  'article.deletepage': 'Deleting this page will permanently remove it from the application.',
 
   'button.cancel': 'Cancel',
   'button.create': 'Create',
   'button.add': 'Add',
   'button.delete': 'Continue and delete',
   'button.disable': 'Continue and disable',
+  'button.remove': 'Continue and remove',
 
   'composer.article.title': 'Article',
   'composer.article.desc': 'A group of associated Pages, Links, Workflows, and Locales',
@@ -43,6 +46,9 @@ const en = {
 
   'link.delete.title': 'Permanently delete this link?',
   'link.delete': 'Deleting this link will permanently remove it from the application, and all associations with Articles/Pages will be lost.',
+  
+  'link.removepage.title': 'Remove this link?',
+  'link.removepage': 'Removing the link only removes its association with this article. To delete this item permanently, click the Delete icon.',
 
   'locale.composer.title': 'Create a new locale',
   'locale.composer.helper': 'Two-letter locale code',
@@ -66,8 +72,9 @@ const en = {
 
   'workflow.delete.title': 'Permanently delete this workflow?',
   'workflow.delete': 'Deleting this workflow will remove it globally from the application.',
-
-
+  
+  'workflow.removepage.title': 'Remove this Workflow?',
+  'workflow.removepage': 'Removing the Workflow only removes its association with this article. To delete this item permanently, click the Delete icon.'
 
 };
 

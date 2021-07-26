@@ -76,10 +76,10 @@ const LocaleDisable: React.FC<LocaleDisableProps> = ({ site, locale }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="inherit">
+          <Button variant="text" onClick={handleClose} color="primary">
             <FormattedMessage id="button.cancel" />
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button variant="contained" onClick={handleClose} color="primary" autoFocus>
             <FormattedMessage id="button.disable" />
           </Button>
         </DialogActions>
