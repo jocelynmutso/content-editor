@@ -2,11 +2,12 @@ import React from 'react';
 import {
   makeStyles, Theme, createStyles, Divider, Typography, TableContainer,
   Table, TableRow, TableCell, TableBody, IconButton,
-  Button, ButtonGroup, ListItem, ListItemText, Collapse
+  Button, ListItem, ListItemText, Collapse
 } from '@material-ui/core';
 
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../deps';
 
@@ -61,14 +62,14 @@ const useStyles = makeStyles((theme: Theme) =>
       textTransform: 'uppercase',
       "&:hover": {
         //backgroundColor: theme.palette.info.light,
-        color: theme.palette.text.primary,
+       // color: theme.palette.text.primary,
         fontWeight: 'bold',
         cursor: 'pointer',
       }
     },
     itemHover: {
       "&:hover": {
-        backgroundColor: theme.palette.info.light,
+       // backgroundColor: theme.palette.info.light,
         color: theme.palette.text.primary,
         fontWeight: 'bold',
         cursor: 'pointer',
@@ -154,7 +155,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
 
               <TableRow className={classes.hoverRow} >
                 <TableCell className={classes.table}>
-                  Locales: {pages.map((page, index) => (<span className={classes.hoverRow} key={index}
+                  <FormattedMessage id="locales"/> {pages.map((page, index) => (<span className={classes.hoverRow} key={index}
                   onClick={() => handleInTab({ article, type: "ARTICLE_PAGES", locale: page.locale })}>
                   <span className={classes.localeSummary}>{page.locale}&nbsp;</span></span>))}
                 </TableCell>
@@ -163,7 +164,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
               {unsaved ? (<TableRow>
                 <TableCell className={classes.table}>
                   <div className={classes.pageButtons}>
-                    <Button className={classes.pageButton} fullWidth onClick={handleSavePages}>Save Pages</Button>
+                    <Button className={classes.pageButton} fullWidth onClick={handleSavePages}><FormattedMessage id="pages.save"/></Button>
                   </div>
                 </TableCell>
               </TableRow>) : null}
@@ -171,17 +172,17 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
 
               <TableRow className={classes.hoverRow} >
                 <TableCell className={classes.table} onClick={() => handleInTab({ article, type: "ARTICLE_LINKS" })}>
-                  Links:  <span className={classes.summary}>{links.length}</span>
+                  <FormattedMessage id="links"/> <span className={classes.summary}>{links.length}</span>
                 </TableCell>
               </TableRow>
               <TableRow className={classes.hoverRow}>
                 <TableCell className={classes.table} onClick={() => handleInTab({ article, type: "ARTICLE_WORKFLOWS" })}>
-                  Workflows: <span className={classes.summary}>{workflows.length}</span>
+                  <FormattedMessage id="workflows"/> <span className={classes.summary}>{workflows.length}</span>
                 </TableCell>
               </TableRow>
               <TableRow className={classes.hoverRow} >
                 <TableCell className={classes.table}>
-                  Last Modified: <span className={classes.summary}>9 days ago</span>
+                  <FormattedMessage id="modified"/> <span className={classes.summary}>9 days ago</span>
                 </TableCell>
               </TableRow>
 

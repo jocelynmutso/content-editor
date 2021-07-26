@@ -87,7 +87,7 @@ const ArticleDelete: React.FC<ArticleDeleteProps> = ({ article }) => {
         <Button variant="text" onClick={handleClose} color="primary">
           <FormattedMessage id="button.cancel" />
         </Button>
-        <Button onClick={handleDelete} color="primary" autoFocus>
+        <Button variant="contained" onClick={handleDelete} color="primary" autoFocus>
           <FormattedMessage id="button.delete" />
         </Button>
       </DialogActions>

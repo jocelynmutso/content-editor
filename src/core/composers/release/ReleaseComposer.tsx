@@ -68,8 +68,8 @@ const ReleaseComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="inherit"><FormattedMessage id='button.cancel'/></Button>
-        <Button onClick={handleCreate} color="primary" autoFocus disabled={!name}><FormattedMessage id='button.create'/></Button>
+        <Button variant="text" onClick={onClose} color="primary"><FormattedMessage id='button.cancel'/></Button>
+        <Button variant="contained" onClick={handleCreate} color="primary" autoFocus disabled={!name}><FormattedMessage id='button.create'/></Button>
       </DialogActions>
     </Dialog>
   );

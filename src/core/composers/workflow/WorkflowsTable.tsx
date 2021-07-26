@@ -1,13 +1,14 @@
 import React from 'react';
-import { makeStyles, IconButton, Theme, createStyles } from '@material-ui/core';
+import { makeStyles, Theme, createStyles } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import EditIcon from '@material-ui/icons/Edit';
 import Paper from '@material-ui/core/Paper';
+import { FormattedMessage } from 'react-intl';
+
 
 import { API, Ide } from '../../deps';
 
@@ -53,9 +54,9 @@ const WorkflowsTable: React.FC<WorkflowsTableProps> = ({ article }) => {
       <Table className={classes.table} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell className={classes.bold} align="left">Technical Name</TableCell>
-            <TableCell className={classes.bold} align="left">Locale</TableCell>
-            <TableCell className={classes.bold} align="left">Localised Name</TableCell>
+            <TableCell className={classes.bold} align="left"><FormattedMessage id="workflow.technicalname"/></TableCell>
+            <TableCell className={classes.bold} align="left"><FormattedMessage id="locale"/></TableCell>
+            <TableCell className={classes.bold} align="left"><FormattedMessage id="workflow.composer.name"/></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

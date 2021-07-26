@@ -1,22 +1,43 @@
 const en = {
 
   'locale': 'Locale',
+  'locales': 'Locales',
   'value': 'Value',
   'date': 'Date',
+  'order': 'Order',
+  'pages': 'Pages',
+  'articles': 'Articles',
+  'description': 'Description',
+  'delete': 'Delete',
+  'disable': 'Disable',
+  'status': 'Status',
+  'tag': 'Tag',
+  'created': 'Created',
+  'modified': 'Modified',
+  'options': 'Options',
+  'links': 'Links',
+  'workflows': 'Workflows',
+ 
 
   'article.composer.title': 'Create new Article',
   'article.composer.parent': 'Parent Article',
   'article.composer.orderhelper': 'Number for menu ordering purposes',
-  'article.composer.name': 'Article name',
+  'article.name': 'Article name',
 
   'article.delete.title': 'Permanently delete this Article?',
   'article.delete': 'Deleting this article will remove it and its associated pages globally from the application.',
   'article.deletepage.title': 'Delete this page?',
   'article.deletepage': 'Deleting this page will permanently remove it from the application.',
+  
+  'article.edit.title': 'Edit article',
+  'article.edit.parent': 'Parent article',
+  'article.edit.orderhelper': 'Three-digit number for ordering purposes',
+
 
   'button.cancel': 'Cancel',
   'button.create': 'Create',
   'button.add': 'Add',
+  'button.update': 'Update',
   'button.delete': 'Continue and delete',
   'button.disable': 'Continue and disable',
   'button.remove': 'Continue and remove',
@@ -36,10 +57,11 @@ const en = {
 
 
   'link.composer.title': 'Create a new link',
-  'link.composer.type': 'Type',
-  'link.composer.type.internal': 'Internal (within my domain)',
-  'link.composer.type.external': 'External (outside of my domain)',
-  'link.composer.type.phone': 'Phone number',
+  'link.type': 'Type',
+  'link.url': 'URL / value',
+  'link.type.internal': 'Internal (within my domain)',
+  'link.type.external': 'External (outside of my domain)',
+  'link.type.phone': 'Phone number',
   'link.composer.descriptionlabel': 'Description',
   'link.composer.descriptionhelper': 'Text that the user will see',
   'link.composer.valuehelper': 'URL / path of link (http://www.example.com)',
@@ -55,10 +77,14 @@ const en = {
 
   'locale.disable.title': 'Disable this locale?',
   'locale.disable': 'Disabling this locale will remove it globally from the application. Pages using this locale will not be displayed on the UI.',
+  
+  'locale.overview': 'Locale usage overview<',
 
   'newpage.title': 'Create a new page',
   'newpage.info': 'A page consists of localised content and must be associated with an Article.',
 
+  'pages.save': 'Save pages',
+  
   'release.composer.title': 'Create a new release',
   'release.composer.label': 'Tag Name',
   'release.composer.note': "Note",
@@ -66,6 +92,7 @@ const en = {
 
   'workflow.composer.title': "Add a Workflow",
   'workflow.composer.name': "Localised name",
+  'workflow.technicalname': 'Technical name',
   'workflow.composer.select': 'Select existing flow',
   'workflow.composer.helper': 'Name to be displayed to users',
   'workflow.composer.placeholder': 'Permit application form',

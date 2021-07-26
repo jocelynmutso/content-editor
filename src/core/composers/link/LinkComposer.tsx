@@ -54,14 +54,14 @@ const LinkComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
         <Typography className={classes.heading}>
           <FormControl variant="outlined" className={classes.select} fullWidth>
-            <InputLabel><FormattedMessage id='link.composer.type' /></InputLabel>
+            <InputLabel><FormattedMessage id='link.type' /></InputLabel>
             <Select
               value={type}
               onChange={({ target }) => setType(target.value as any)}
-              label={<FormattedMessage id='link.composer.type' />}>
-              <MenuItem value="internal"><FormattedMessage id='link.composer.type.internal' /></MenuItem>
-              <MenuItem value="external"><FormattedMessage id='link.composer.type.external' /></MenuItem>
-              <MenuItem value="phone"><FormattedMessage id='link.composer.type.phone' /></MenuItem>
+              label={<FormattedMessage id='link.type' />}>
+              <MenuItem value="internal"><FormattedMessage id='link.type.internal' /></MenuItem>
+              <MenuItem value="external"><FormattedMessage id='link.type.external' /></MenuItem>
+              <MenuItem value="phone"><FormattedMessage id='link.type.phone' /></MenuItem>
             </Select>
           </FormControl >
           <FormControl variant="outlined" className={classes.select} fullWidth>
@@ -98,8 +98,8 @@ const LinkComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="inherit"><FormattedMessage id='button.cancel' /></Button>
-        <Button onClick={handleCreate} color="primary" autoFocus disabled={!value || !locale || !description}><FormattedMessage id='button.create' /></Button>
+        <Button onClick={onClose} color="primary" variant="text"><FormattedMessage id='button.cancel' /></Button>
+        <Button onClick={handleCreate} color="primary" variant="contained" autoFocus disabled={!value || !locale || !description}><FormattedMessage id='button.create' /></Button>
       </DialogActions>
     </Dialog>
   );

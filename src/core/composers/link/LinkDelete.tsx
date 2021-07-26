@@ -85,10 +85,10 @@ const LinkDelete: React.FC<LinkDeleteProps> = ({ site, link }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="inherit">
+          <Button variant="text" onClick={handleClose} color="primary">
             <FormattedMessage id="button.cancel"/>
           </Button>
-          <Button onClick={handleDelete} color="primary" autoFocus>
+          <Button variant="contained" onClick={handleDelete} color="primary" autoFocus>
             <FormattedMessage id="button.delete"/>
           </Button>
         </DialogActions>

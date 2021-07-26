@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import { FormattedMessage } from 'react-intl';
 
 import { ArticleDeletePage, ArticleDelete, ArticleEdit } from '../article';
 import { API, Ide } from '../../deps';
@@ -72,8 +73,8 @@ const ArticlesView: React.FC<{}> = () => {
       <Table className={classes.table} size="small">
         <TableHead>
           <TableRow>
-            <TableCell className={classes.bold} align="left" colSpan={2}>Name</TableCell>
-            <TableCell className={classes.bold} align="left">Order</TableCell>
+            <TableCell className={classes.bold} align="left" colSpan={2}><FormattedMessage id="article.name"/></TableCell>
+            <TableCell className={classes.bold} align="left"><FormattedMessage id="order"/></TableCell>
             <TableCell className={classes.bold} align="center"></TableCell>
           </TableRow>
         </TableHead>
@@ -112,10 +113,10 @@ const Row: React.FC<{article: API.CMS.Article, site: API.CMS.Site}> = ({ article
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={7}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={2}>
-              <Table size="small" aria-label="purchases">
+              <Table size="small">
                 <TableHead>
                   <TableRow>
-                    <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}>Pages</TableCell>
+                    <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}><FormattedMessage id="pages"/></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
