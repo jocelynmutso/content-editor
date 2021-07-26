@@ -6,41 +6,40 @@ import { PaletteOptions } from '@material-ui/core/styles/createPalette';
 const palette = {
   type: 'light',
 
-    primary: {
-      main: '#330036',
-      contrastText: '#ffffff',
-      dark: '#230025',
-      light: '#5b335e',
-    },
-    secondary: {
-      main: '#da4167',
-      light: '#ff7595',
-      dark: '#a3003d'
-    },
-    error: {
-      main: '#e53935',
-    },
-    info: {
-      main: '#2196f3',
-      light: '#4dabf5',
-      dark: '#1c639c',
-    },
-    warning: {
-      main: '#ff9800',
-      light: '#ffac33',
-      dark: '#b26a00',
-      contrastText: '#000001',
-    },
-    success: {
-      main: '#4caf50',
-    },
-    text: {
-      primary: 'rgba(0,0,0,0.86)',
-      secondary: 'rgba(0,0,0,0.55)',
-      disabled: 'rgba(0,0,0,0.36)',
-      hint: 'rgba(0,0,0,0.37)',
-    },
-  
+
+  primary: {
+    main: '#078299',
+    contrastText: '#2f3131',
+    dark: '#078299',
+    light: '#edf0f2',
+  },
+  secondary: {
+    main: '#078299',
+    light: 'rgba(7,130,153, 0.25)',
+    dark: 'rgb(217,227,230)', //darker blue for under header
+    contrastText: '#ffffff',
+  },
+  background: {
+    paper: '#fefefe',
+  },
+  text: {
+    main: '#000000',
+    dark: '#066474', //dark variant of primary.main
+    light: 'ffffff',
+    hint: 'rgba(125,73,73,0.38)',
+  },
+  success: {
+    main: '#4caf50',
+    light: '#81c784',
+    dark: '#388e3c',
+  },
+  action: {
+    main: '#f28d00', //orange
+  },
+  info: {
+    main: "#f28d00", //orange
+    light: '#f0f6fa', //light blue
+  }
 }
 
 const siteTheme = createMuiTheme({
@@ -115,7 +114,7 @@ const siteTheme = createMuiTheme({
         marginBottom: 0,
       },
       primary: {
-        //color: palette.text.main,
+        color: palette.text.main,
         "&:hover": {
           color: palette.primary.dark,
           fontWeight: 'bold',
@@ -124,7 +123,7 @@ const siteTheme = createMuiTheme({
 
       secondary: {
         fontSize: '.9rem',
-        //color: palette.text.main,
+        color: palette.text.main,
         "&:hover": {
           color: palette.primary.dark,
           fontWeight: 'bold',
@@ -148,6 +147,46 @@ const siteTheme = createMuiTheme({
         transition: 'unset'
       }
     },
+
+
+    MuiFormControl: {
+      root: {
+        "& .MuiOutlinedInput-input": {
+          color: palette.primary.contrastText
+        },
+        "& .MuiInputLabel-root": {
+          color: palette.primary.contrastText
+        },
+        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+          color: palette.primary.contrastText
+        },
+        "&:hover .MuiOutlinedInput-input": {
+          color: palette.primary.contrastText
+        },
+        "&:hover .MuiInputLabel-root": {
+          color: palette.primary.contrastText
+        },
+        "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+          borderColor: palette.primary.contrastText,
+          borderWidth: '1px'
+        },
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-input": {
+          color: palette.primary.contrastText
+        },
+        "& .MuiInputLabel-root.Mui-focused": {
+          color: palette.primary.contrastText
+        },
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+          borderColor: palette.primary.contrastText
+        },
+        "& .MuiFormLabel-root": {
+          color: palette.primary.contrastText
+        },
+        "& .MuiListItem-root .MuiTouchRipple-child": {
+          backgroundColor: palette.info.main
+        }
+      }
+    }
   },
   props: {
     MuiButton: {

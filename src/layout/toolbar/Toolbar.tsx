@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     width: theme.spacing(7),
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText
   },
   view: {
     flexGrow: 1,

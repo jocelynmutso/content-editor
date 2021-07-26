@@ -53,14 +53,14 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.text.primary
     },
     divider: {
-      background: theme.palette.secondary.dark,
+      background: theme.palette.primary.light,
       marginTop: 4,
     },
     hoverRow: {
       fontWeight: 'bold',
       textTransform: 'uppercase',
       "&:hover": {
-        backgroundColor: theme.palette.info.light,
+        //backgroundColor: theme.palette.info.light,
         color: theme.palette.text.primary,
         fontWeight: 'bold',
         cursor: 'pointer',

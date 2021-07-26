@@ -2,6 +2,8 @@ const en = {
 
   'button.cancel': 'Cancel',
   'button.create': 'Create',
+  'button.add': 'Add',
+  'button.delete': 'Continue and delete',
 
   'locale': 'Locale',
   'value': 'Value',
@@ -12,6 +14,9 @@ const en = {
   'article.composer.parent': 'Parent Article',
   'article.composer.orderhelper': 'Number for menu ordering purposes',
   'article.composer.name': 'Article name',
+  
+  'article.delete.title': 'Permanently delete this Article?',
+  'article.delete': 'Deleting this article will remove it and its associated pages globally from the application.',
 
   'link.composer.title': 'Create a new link',
   'link.composer.type': 'Type',

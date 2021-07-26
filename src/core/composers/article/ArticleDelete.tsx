@@ -7,6 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
 
@@ -57,8 +58,8 @@ const ArticleDelete: React.FC<ArticleDeleteProps> = ({ article }) => {
   const handleClose = () => {
     setOpen(false);
   };
-  
-  
+
+
   const handleDelete = () => {
     console.log("entity", article)
     ide.service.delete().article(article.id).then(success => {
@@ -76,21 +77,19 @@ const ArticleDelete: React.FC<ArticleDeleteProps> = ({ article }) => {
     </span>
 
     <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>{"Permanently delete this article?"} </DialogTitle>
+      <DialogTitle><FormattedMessage id="article.delete.title" /></DialogTitle>
       <DialogContent>
         <DialogContentText>
-          <ListItem>* Deleting this article will remove it and its associated pages globally from the application.</ListItem>
-          <ListItem>* Links and workflows associated with this article will not be deleted.</ListItem>
-          <ListItem>* This action cannot be undone! </ListItem>
+          <ListItem><FormattedMessage id="article.delete" /></ListItem>
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="inherit">
-          Cancel
-          </Button>
+          <FormattedMessage id="button.cancel" />
+        </Button>
         <Button onClick={handleDelete} color="primary" autoFocus>
-          Continue and delete
-          </Button>
+          <FormattedMessage id="button.delete" />
+        </Button>
       </DialogActions>
     </Dialog>
   </>
