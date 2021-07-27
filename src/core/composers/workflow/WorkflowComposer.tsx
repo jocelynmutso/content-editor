@@ -85,8 +85,8 @@ const WorkflowComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             value={name}
             onChange={({ target }) => setName(target.value)} />
         </Typography>
-
       </DialogContent>
+      
       <DialogActions>
         <Button variant="text" onClick={onClose} color="primary"><FormattedMessage id='button.cancel' /></Button>
         <Button variant="contained" onClick={handleCreate} color="primary" autoFocus disabled={!name}><FormattedMessage id='button.add' /></Button>

@@ -71,6 +71,7 @@ const NewPage: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           </FormControl >
         </Typography>
       </DialogContent>
+      
       <DialogActions>
         <Button variant="text" onClick={onClose} color="primary"><FormattedMessage id='button.cancel' /></Button>
         <Button variant="contained" onClick={handleCreate} color="primary" autoFocus disabled={!locale}><FormattedMessage id='button.create' /></Button>

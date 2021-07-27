@@ -19,14 +19,22 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       margin: theme.spacing(1),
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: "center"
     },
-    container: {
+    card: {
       margin: theme.spacing(1),
-      maxWidth: '25%'
+      width: '400px',
+      alignItems: 'bottom'
+
     },
     title: {
       fontSize: 14,
     },
+    button: {
+     //justifyContent: 'bottom'
+    }
   }),
 );
 
@@ -87,21 +95,21 @@ const ComposerSelect: React.FC<{}> = () => {
   const cards = React.useMemo(() => createCards(site, releases), [site, releases]);
 
   return (
-    <div className={classes.root}>
+    <span className={classes.root}>
       { !open ? null : ( cards[open].composer(handleClose) )}
 
       {Object.entries(cards).map((card, index) => (
-        <Card key={index} className={classes.container} variant="elevation">
+        <Card key={index} className={classes.card} variant="elevation">
           <CardContent>
             <Typography variant="h6"><FormattedMessage id={card[1].title}/></Typography>
             <Typography color="textSecondary" variant="caption"><FormattedMessage id={card[1].desc}/></Typography>
           </CardContent>
           <CardActions>
-            <Button variant="contained" color="primary" onClick={() => handleOpen(card[0] as any)} size="small"><FormattedMessage id="button.create"/></Button>
+            <Button variant="contained" color="primary" className={classes.button} onClick={() => handleOpen(card[0] as any)} size="small"><FormattedMessage id="button.create"/></Button>
           </CardActions>
         </Card>
       ))}
-    </div>
+    </span>
   );
 }
 
