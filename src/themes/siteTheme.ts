@@ -54,7 +54,6 @@ const siteTheme = createMuiTheme({
       lineHeight: 2,
       fontFamily: "'Open Sans', sans-serif",
       fontWeight: 600,
-      color: palette.primary.contrastText
     },
     h2: {
       fontSize: "1.9rem",
@@ -63,7 +62,6 @@ const siteTheme = createMuiTheme({
       fontWeight: 400,
       paddingTop: 15,
       paddingBottom: 15,
-      color: palette.primary.contrastText,
     },
     h3: {
       fontSize: "1.6rem",
@@ -72,8 +70,6 @@ const siteTheme = createMuiTheme({
       fontWeight: 300,
       paddingTop: 15,
       paddingBottom: 15,
-      color: palette.primary.contrastText,
-
     },
     h4: {
       fontSize: "1.3rem",

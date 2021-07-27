@@ -28,14 +28,13 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '400px',
       display: 'flex',
       flexDirection: 'column',
-      border: '1px solid',
       "&:hover, &.Mui-focusVisible": {
         color: theme.palette.secondary.dark,
         fontWeight: 'bold',
       }
     },
     cardActions: {
-      justifyContent: 'center'
+      justifyContent: 'flex-start'
     },
     cardContent: {
       flexGrow: 1,
@@ -101,8 +100,7 @@ const ComposerSelect: React.FC<{}> = () => {
 
   return (
     <div className={classes.root}>
-      { !open ? null : (cards[open].composer(handleClose))}
-
+      {!open ? null : (cards[open].composer(handleClose))}
       {Object.entries(cards).map((card, index) => (
         <Card key={index} className={classes.card} variant="elevation">
 
