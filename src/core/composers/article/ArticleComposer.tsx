@@ -45,8 +45,8 @@ const ArticleComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
   return (
     <Dialog open={true} onClose={onClose} >
-
       <DialogTitle><FormattedMessage id='article.composer.title' /></DialogTitle>
+      
       <DialogContent>
         <Typography className={classes.root}>
           <FormControl variant="outlined" className={classes.select} fullWidth>
@@ -54,7 +54,7 @@ const ArticleComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             <Select
               value={parentId}
               onChange={({ target }) => setParentId(target.value as any)}
-              label="parent article"
+              label={<FormattedMessage id='article.composer.parent'/>}
             >
               {articles.map((article, index) => (
                 <MenuItem key={index} value={article.id}>{article.order}{"_"}{article.name}</MenuItem>
@@ -62,7 +62,7 @@ const ArticleComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             </Select>
           </FormControl >
           <TextField
-           fullWidth
+            fullWidth
             className={classes.select}
             value={order}
             type={"number"}

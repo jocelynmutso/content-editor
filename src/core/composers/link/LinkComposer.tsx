@@ -50,8 +50,8 @@ const LinkComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   return (
     <Dialog open={true} onClose={onClose} >
       <DialogTitle><FormattedMessage id='link.composer.title'/></DialogTitle>
+      
       <DialogContent>
-
         <Typography className={classes.heading}>
           <FormControl variant="outlined" className={classes.select} fullWidth>
             <InputLabel><FormattedMessage id='link.type' /></InputLabel>
