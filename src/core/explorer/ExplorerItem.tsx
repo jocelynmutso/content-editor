@@ -22,28 +22,29 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       "&:hover": {
         cursor: 'pointer',
-        color: theme.palette.secondary.main
+        color: theme.palette.secondary.dark
       }
     },
     summary: {
-      color: theme.palette.primary.dark,
       fontWeight: 'bold',
+      color: theme.palette.secondary.dark
     },
     localeSummary: {
-      color: theme.palette.primary.dark,
+      color: theme.palette.secondary.dark,
       paddingLeft: 3,
       paddingRight: 3,
       fontWeight: 'bold',
       "&:hover, &.Mui-focusVisible": {
         backgroundColor: theme.palette.info.main,
         color: theme.palette.background.paper,
+        borderRadius: 3
       }
     },
     iconButton: {
       marginTop: 1,
-      color: theme.palette.primary.dark,
+      color: theme.palette.primary.main,
       "&:hover, &.Mui-focusVisible": {
-        backgroundColor: theme.palette.info.main,
+        backgroundColor: theme.palette.primary.light,
         color: theme.palette.background.paper,
         "& .MuiSvgIcon-root": {
           color: theme.palette.background.paper,

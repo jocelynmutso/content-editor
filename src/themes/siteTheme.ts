@@ -13,10 +13,10 @@ const palette = {
       light: '#534bae',
     },
     secondary: {
-      main: '#455a64',
-      light: '#718792',
-      dark: '#1c313a',
-      contrastText: '#000'
+      main: '#c51162',
+      light: '#fd558f',
+      dark: '#8e0038',
+      contrastText: '#fff'
     },
     error: {
       main: '#e53935',
