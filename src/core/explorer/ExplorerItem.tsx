@@ -22,15 +22,15 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       "&:hover": {
         cursor: 'pointer',
-        color: theme.palette.text.primary
+        color: theme.palette.secondary.main
       }
     },
     summary: {
-      color: theme.palette.primary.main,
+      color: theme.palette.primary.dark,
       fontWeight: 'bold',
     },
     localeSummary: {
-      color: theme.palette.primary.main,
+      color: theme.palette.primary.dark,
       paddingLeft: 3,
       paddingRight: 3,
       fontWeight: 'bold',
@@ -54,7 +54,6 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.text.primary
     },
     divider: {
-      background: theme.palette.primary.light,
       marginTop: 4,
     },
     hoverRow: {
@@ -62,15 +61,13 @@ const useStyles = makeStyles((theme: Theme) =>
       textTransform: 'uppercase',
       "&:hover": {
         //backgroundColor: theme.palette.info.light,
-       // color: theme.palette.text.primary,
+        color: theme.palette.primary.main,
         fontWeight: 'bold',
         cursor: 'pointer',
       }
     },
     itemHover: {
       "&:hover": {
-       // backgroundColor: theme.palette.info.light,
-        color: theme.palette.text.primary,
         fontWeight: 'bold',
         cursor: 'pointer',
       }
@@ -92,7 +89,7 @@ const useStyles = makeStyles((theme: Theme) =>
     pageButton: {
       backgroundColor: theme.palette.info.main
     }
-    
+
   }),
 );
 
@@ -106,7 +103,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
   const ide = Ide.useIde();
   const site = ide.session.site;
   const unsaved = Ide.useUnsaved(article);
-  
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -121,13 +118,13 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
   const handleClose = () => {
     setOpen(false);
   }
-  
+
   const handleSavePages = () => {
     const unsaved: API.CMS.PageMutator[] = Object.values(ide.session.pages)
       .filter(p => !p.saved)
       .filter(p => p.origin.article === article.id)
-      .map(p => ({id: p.origin.id, locale: p.origin.locale, content: p.value}));
-      
+      .map(p => ({ id: p.origin.id, locale: p.origin.locale, content: p.value }));
+
     ide.service.update().pages(unsaved).then(success => {
       ide.actions.handlePageUpdateRemove(success.map(p => p.id));
     });
@@ -155,16 +152,16 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
 
               <TableRow className={classes.hoverRow} >
                 <TableCell className={classes.table}>
-                  <FormattedMessage id="locales"/> {pages.map((page, index) => (<span className={classes.hoverRow} key={index}
-                  onClick={() => handleInTab({ article, type: "ARTICLE_PAGES", locale: page.locale })}>
-                  <span className={classes.localeSummary}>{page.locale}&nbsp;</span></span>))}
+                  <FormattedMessage id="locales" /> {pages.map((page, index) => (<span className={classes.hoverRow} key={index}
+                    onClick={() => handleInTab({ article, type: "ARTICLE_PAGES", locale: page.locale })}>
+                    <span className={classes.localeSummary}>{page.locale}&nbsp;</span></span>))}
                 </TableCell>
               </TableRow>
 
               {unsaved ? (<TableRow>
                 <TableCell className={classes.table}>
                   <div className={classes.pageButtons}>
-                    <Button className={classes.pageButton} fullWidth onClick={handleSavePages}><FormattedMessage id="pages.save"/></Button>
+                    <Button className={classes.pageButton} fullWidth onClick={handleSavePages}><FormattedMessage id="pages.save" /></Button>
                   </div>
                 </TableCell>
               </TableRow>) : null}
@@ -172,17 +169,17 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
 
               <TableRow className={classes.hoverRow} >
                 <TableCell className={classes.table} onClick={() => handleInTab({ article, type: "ARTICLE_LINKS" })}>
-                  <FormattedMessage id="links"/> <span className={classes.summary}>{links.length}</span>
+                  <FormattedMessage id="links" /> <span className={classes.summary}>{links.length}</span>
                 </TableCell>
               </TableRow>
               <TableRow className={classes.hoverRow}>
                 <TableCell className={classes.table} onClick={() => handleInTab({ article, type: "ARTICLE_WORKFLOWS" })}>
-                  <FormattedMessage id="workflows"/> <span className={classes.summary}>{workflows.length}</span>
+                  <FormattedMessage id="workflows" /> <span className={classes.summary}>{workflows.length}</span>
                 </TableCell>
               </TableRow>
               <TableRow className={classes.hoverRow} >
                 <TableCell className={classes.table}>
-                  <FormattedMessage id="modified"/> <span className={classes.summary}>9 days ago</span>
+                  <FormattedMessage id="modified" /> <span className={classes.summary}>9 days ago</span>
                 </TableCell>
               </TableRow>
 
