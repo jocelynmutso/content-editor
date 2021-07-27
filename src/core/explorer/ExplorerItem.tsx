@@ -27,7 +27,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     summary: {
       fontWeight: 'bold',
-      color: theme.palette.secondary.dark
+      paddingLeft: 3,
+      paddingRight: 3,
+      color: theme.palette.secondary.dark,
+      "&:hover, &.Mui-focusVisible": {
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.background.paper,
+        borderRadius: 3
+      }
     },
     localeSummary: {
       color: theme.palette.secondary.dark,
@@ -35,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingRight: 3,
       fontWeight: 'bold',
       "&:hover, &.Mui-focusVisible": {
-        backgroundColor: theme.palette.info.main,
+        backgroundColor: theme.palette.primary.main,
         color: theme.palette.background.paper,
         borderRadius: 3
       }
@@ -61,8 +68,6 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       textTransform: 'uppercase',
       "&:hover": {
-        //backgroundColor: theme.palette.info.light,
-        color: theme.palette.primary.main,
         fontWeight: 'bold',
         cursor: 'pointer',
       }
@@ -180,7 +185,7 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
               </TableRow>
               <TableRow className={classes.hoverRow} >
                 <TableCell className={classes.table}>
-                  <FormattedMessage id="modified" /> <span className={classes.summary}>9 days ago</span>
+                  <FormattedMessage id="modified" /> <span>9 days ago</span>
                 </TableCell>
               </TableRow>
 
