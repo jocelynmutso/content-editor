@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Typography, Theme } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import { API, Layout } from './deps';
 import { Composer } from './composers';
 import { toolbar } from './toolbar';
@@ -27,7 +27,8 @@ const Components: React.FC<{ service: API.CMS.Service }> = ({ service }) => {
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    justifyContent: 'center',
+    padding: 0,
+    margin: 0
   },
 }));
 
@@ -39,7 +40,7 @@ const Header: React.FC<HeaderProps> = () => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h3">Stencil io</Typography>
+
     </div>
   )
 }
