@@ -72,7 +72,7 @@ const ArticleComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             onChange={({ target }) => setOrder(target.value as any)} />
           <TextField
             className={classes.select}
-            label={<FormattedMessage id='article.composer.name' />}
+            label={<FormattedMessage id='article.name' />}
             variant="outlined"
             fullWidth
             required
