@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
 import { WorkflowRemovePage} from './WorkflowRemovePage';
@@ -74,11 +75,11 @@ const WorkflowsView: React.FC<{}> = () => {
       <Table className={classes.table} size="small">
         <TableHead>
           <TableRow>
-            <TableCell className={classes.bold} align="center" colSpan={2}>Technical name</TableCell>
-            <TableCell className={classes.bold} align="left">Locale</TableCell>
-            <TableCell className={classes.bold} align="left">Localised name</TableCell>
-            <TableCell className={classes.bold} align="center">Articles</TableCell>
-            <TableCell className={classes.bold} align="center">Delete</TableCell>
+            <TableCell className={classes.bold} align="center" colSpan={2}><FormattedMessage id="workflow.technicalname"/></TableCell>
+            <TableCell className={classes.bold} align="left"><FormattedMessage id="locale"/></TableCell>
+            <TableCell className={classes.bold} align="left"><FormattedMessage id="workflow.composer.name"/></TableCell>
+            <TableCell className={classes.bold} align="center"><FormattedMessage id="articles"/></TableCell>
+            <TableCell className={classes.bold} align="center"><FormattedMessage id="delete"/></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -122,7 +123,7 @@ const Row: React.FC<RowProps> = ({ site, workflow }) => {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}>Articles</TableCell>
+                    <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}><FormattedMessage id="articles"/></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

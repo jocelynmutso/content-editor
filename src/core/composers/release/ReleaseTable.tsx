@@ -10,6 +10,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import EditIcon from '@material-ui/icons/Edit';
 import Paper from '@material-ui/core/Paper';
+import { FormattedMessage } from 'react-intl';
 
 
 import { API } from '../../deps';
@@ -54,9 +55,9 @@ const ReleaseTable: React.FC<ReleaseTableProps> = ({ site, releases }) => {
       <Table className={classes.table} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell className={classes.bold} align="left">Tag</TableCell>
-            <TableCell className={classes.bold} align="left">Note</TableCell>
-            <TableCell className={classes.bold} align="left">Created</TableCell>
+            <TableCell className={classes.bold} align="left"><FormattedMessage id="tag"/></TableCell>
+            <TableCell className={classes.bold} align="left"><FormattedMessage id="release.composer.note"/></TableCell>
+            <TableCell className={classes.bold} align="left"><FormattedMessage id="created"/></TableCell>
             <TableCell className={classes.bold} align="left"></TableCell>
             <TableCell align="left"></TableCell>
           </TableRow>

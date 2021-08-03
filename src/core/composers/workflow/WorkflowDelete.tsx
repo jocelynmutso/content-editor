@@ -7,13 +7,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
-     // padding: 0,
+      // padding: 0,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.background.paper,
       fontWeight: 'bold',
@@ -43,21 +44,21 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 interface WorkflowDeleteProps {
-  workflow: API.CMS.Workflow; 
+  workflow: API.CMS.Workflow;
 }
 
 const WorkflowDelete: React.FC<WorkflowDeleteProps> = ({ workflow }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const ide = Ide.useIde();
-  
+
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
-  
+
   const handleDelete = () => {
     ide.service.delete().workflow(workflow.id).then(success => {
       console.log(success)
@@ -71,24 +72,23 @@ const WorkflowDelete: React.FC<WorkflowDeleteProps> = ({ workflow }) => {
       <IconButton className={classes.iconButton} onClick={handleClickOpen}>
         <DeleteOutlinedIcon />
       </IconButton>
-      
+
       <Dialog
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>{"Permanently delete this workflow?"} </DialogTitle>
+        <DialogTitle><FormattedMessage id="workflow.delete.title" /></DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <ListItem>* Deleting this workflow will remove it globally from the application.</ListItem>
-            <ListItem>* This action cannot be undone! </ListItem>
+            <FormattedMessage id="workflow.delete" />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="inherit">
-            Cancel
+          <Button variant="text" onClick={handleClose} color="primary">
+            <FormattedMessage id="button.cancel" />
           </Button>
           <Button onClick={handleDelete} color="primary" autoFocus>
-            Continue and delete
+            <FormattedMessage id="button.delete" />
           </Button>
         </DialogActions>
       </Dialog>

@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import VisibilityOnIcon from '@material-ui/icons/Visibility';
+import { FormattedMessage } from 'react-intl';
 
 import { LocalesOverview } from './LocalesOverview';
 import { LocaleDisable } from './LocaleDisable';
@@ -74,9 +75,9 @@ const LocalesView: React.FC<{}> = () => {
         <Table className={classes.table} size="small">
           <TableHead>
             <TableRow>
-              <TableCell className={classes.bold} align="left">Locale</TableCell>
-              <TableCell className={classes.bold} align="left">Status</TableCell>
-              <TableCell className={classes.bold} align="left">Disable</TableCell>
+              <TableCell className={classes.bold} align="left"><FormattedMessage id="locale"/></TableCell>
+              <TableCell className={classes.bold} align="left"><FormattedMessage id="status"/></TableCell>
+              <TableCell className={classes.bold} align="left"><FormattedMessage id="disable"/></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

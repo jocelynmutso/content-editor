@@ -7,13 +7,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
-     // padding: 0,
+      // padding: 0,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.background.paper,
       fontWeight: 'bold',
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 interface WorkflowRemovePageProps {
-  workflow: API.CMS.Workflow; 
+  workflow: API.CMS.Workflow;
   article: API.CMS.Article;
   locale: API.CMS.Locale;
 }
@@ -52,15 +53,15 @@ const WorkflowRemovePage: React.FC<WorkflowRemovePageProps> = ({ workflow, artic
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const ide = Ide.useIde();
-    
+
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
-  
-    
+
+
   const handleDelete = () => {
     ide.service.delete().workflowArticlePage(workflow.id, article.id, locale).then(success => {
       handleClose();
@@ -74,24 +75,23 @@ const WorkflowRemovePage: React.FC<WorkflowRemovePageProps> = ({ workflow, artic
       <IconButton className={classes.iconButton} onClick={handleClickOpen}>
         <RemoveCircleOutlineIcon />
       </IconButton>
-      
+
       <Dialog
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>{"Remove this Workflow?"} </DialogTitle>
+        <DialogTitle><FormattedMessage id="workflow.removepage.title" /></DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <ListItem>* Removing the Workflow only removes its association with this article.</ListItem>
-            <ListItem>* To delete this item permanently, click the Delete icon. </ListItem>
+            <FormattedMessage id="workflow.removepage" />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="inherit">
-            Cancel
+          <Button variant="text" onClick={handleClose} color="primary">
+            <FormattedMessage id="button.cancel" />
           </Button>
-          <Button onClick={handleDelete} color="primary" autoFocus>
-            Continue and remove
+          <Button variant="contained" onClick={handleDelete} color="primary" autoFocus>
+            <FormattedMessage id="button.remove" />
           </Button>
         </DialogActions>
       </Dialog>

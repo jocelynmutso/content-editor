@@ -3,7 +3,7 @@ import {
   makeStyles, createStyles, Theme, TextField, InputLabel, FormControl,
   MenuItem, Select, Button, Dialog, Typography, DialogTitle, DialogContent, DialogActions,
 } from '@material-ui/core';
-
+import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
 
@@ -49,26 +49,27 @@ const LinkComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
   return (
     <Dialog open={true} onClose={onClose} >
-      <DialogTitle>Create a new link</DialogTitle>
+      <DialogTitle><FormattedMessage id='link.composer.title'/></DialogTitle>
+      
       <DialogContent>
-
         <Typography className={classes.heading}>
           <FormControl variant="outlined" className={classes.select} fullWidth>
-            <InputLabel>Type</InputLabel>
+            <InputLabel><FormattedMessage id='link.type' /></InputLabel>
             <Select
               value={type}
               onChange={({ target }) => setType(target.value as any)}
-              label="Type">
-              <MenuItem value="internal">Internal</MenuItem>
-              <MenuItem value="external">External</MenuItem>
+              label={<FormattedMessage id='link.type' />}>
+              <MenuItem value="internal"><FormattedMessage id='link.type.internal' /></MenuItem>
+              <MenuItem value="external"><FormattedMessage id='link.type.external' /></MenuItem>
+              <MenuItem value="phone"><FormattedMessage id='link.type.phone' /></MenuItem>
             </Select>
           </FormControl >
           <FormControl variant="outlined" className={classes.select} fullWidth>
-            <InputLabel>Locale</InputLabel>
+            <InputLabel><FormattedMessage id='locale' /></InputLabel>
             <Select
               value={locale}
               onChange={({ target }) => setLocale(target.value as any)}
-              label="locale"
+              label={<FormattedMessage id='locale' />}
             >
               {locales.map((locale, index) => (
                 <MenuItem key={index} value={locale.value}>{locale.value}</MenuItem>
@@ -79,21 +80,26 @@ const LinkComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           <TextField className={classes.formControl}
             fullWidth
             required
-            label="Description" variant="outlined" helperText="Text that the user will see"
+            label={<FormattedMessage id='link.composer.descriptionlabel' />}
+            helperText={<FormattedMessage id='link.composer.descriptionhelper' />}
+            variant="outlined"
             value={description}
             onChange={({ target }) => setDescription(target.value)} />
+            
           <TextField className={classes.formControl}
             fullWidth
             required
-            label="Value" variant="outlined" helperText="URL / path of link (http://www.example.com)"
+            label={<FormattedMessage id='value' />}
+            helperText={<FormattedMessage id='link.composer.valuehelper' />}
+            variant="outlined"
             value={value}
             onChange={({ target }) => setValue(target.value)} />
         </Typography>
 
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="inherit">Cancel</Button>
-        <Button onClick={handleCreate} color="primary" autoFocus disabled={!value || !locale || !description}>Create</Button>
+        <Button onClick={onClose} color="primary" variant="text"><FormattedMessage id='button.cancel' /></Button>
+        <Button onClick={handleCreate} color="primary" variant="contained" autoFocus disabled={!value || !locale || !description}><FormattedMessage id='button.create' /></Button>
       </DialogActions>
     </Dialog>
   );

@@ -5,6 +5,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import AddIcon from '@material-ui/icons/Add';
+import { FormattedMessage } from 'react-intl';
 
 import { API } from '../../deps';
 
@@ -86,10 +87,10 @@ const LocalesOverview: React.FC<LocalesOverviewProps> = ({ site }) => {
     <div className={classes.root}>
 
       <TableContainer >
-        <Typography variant="body1" className={classes.typography}>Locale usage overview</Typography>
+        <Typography variant="body1" className={classes.typography}><FormattedMessage id="locale.overview"/></Typography>
         <Divider />
         <TableRow>
-          <TableCell className={classes.bold} align="left">Article</TableCell>
+          <TableCell className={classes.bold} align="left"><FormattedMessage id="article.name"/></TableCell>
           {locales.map((locale, index) => <TableCell key={index} className={classes.bold} align="left" >{locale.value}</TableCell>
           )}
         </TableRow>

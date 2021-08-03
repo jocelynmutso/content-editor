@@ -7,13 +7,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
 
 import { API } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
-     // padding: 0,
+      // padding: 0,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.background.paper,
       fontWeight: 'bold',
@@ -44,13 +45,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface LocaleDisableProps {
   site: API.CMS.Site;
-  locale: API.CMS.SiteLocale; 
+  locale: API.CMS.SiteLocale;
 }
 
 const LocaleDisable: React.FC<LocaleDisableProps> = ({ site, locale }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -63,24 +64,23 @@ const LocaleDisable: React.FC<LocaleDisableProps> = ({ site, locale }) => {
       <IconButton className={classes.iconButton} onClick={handleClickOpen}>
         <DeleteOutlinedIcon />
       </IconButton>
-      
+
       <Dialog
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>{"Disable this locale?"} </DialogTitle>
+        <DialogTitle><FormattedMessage id="locale.disable.title" /> </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <ListItem>* Disabling this locale will remove it globally from the application.</ListItem>
-            <ListItem>* Pages using this locale will not be shown.</ListItem>
+            <FormattedMessage id="locale.disable" />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="inherit">
-            Cancel
+          <Button variant="text" onClick={handleClose} color="primary">
+            <FormattedMessage id="button.cancel" />
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Continue and disable
+          <Button variant="contained" onClick={handleClose} color="primary" autoFocus>
+            <FormattedMessage id="button.disable" />
           </Button>
         </DialogActions>
       </Dialog>

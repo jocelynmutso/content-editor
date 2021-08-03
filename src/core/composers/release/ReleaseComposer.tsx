@@ -3,6 +3,7 @@ import {
   makeStyles, createStyles, Theme, TextField, InputLabel, FormControl, MenuItem, Select,
   Button, Dialog, Typography, DialogTitle, DialogContent, DialogActions,
 } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
 
@@ -36,25 +37,39 @@ const ReleaseComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   }
   return (
     <Dialog open={true} onClose={onClose} >
-      <DialogTitle>Create a new release</DialogTitle>
+      <DialogTitle><FormattedMessage id='release.composer.title' /></DialogTitle>
       <DialogContent>
 
         <Typography className={classes.heading}>
-          <TextField className={classes.formControl}
+          <TextField
+            className={classes.formControl}
             fullWidth
-            id="outlined-basic" label="Tag Name" variant="outlined"
+            id="outlined-basic"
+            label={<FormattedMessage id='release.composer.label' />}
+            variant="outlined"
             onChange={({ target }) => setName(target.value as any)}
           />
-          <TextField className={classes.formControl}
+          <TextField
+            className={classes.formControl}
             fullWidth
-            id="outlined-basic" label="Note" variant="outlined"
+            id="outlined-basic"
+            label={<FormattedMessage id='release.composer.note' />}
+            helperText={<FormattedMessage id='release.composer.helper' />}
+            variant="outlined"
             onChange={({ target }) => setNote(target.value as any)} />
-          <TextField className={classes.formControl} disabled id="outlined-basic" label="Date" defaultValue={new Date().toISOString()} variant="outlined" fullWidth />
+          <TextField
+            className={classes.formControl}
+            disabled
+            id="outlined-basic"
+            label={<FormattedMessage id='date'/>}
+            defaultValue={new Date().toISOString()}
+            variant="outlined"
+            fullWidth />
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="inherit">Cancel</Button>
-        <Button onClick={handleCreate} color="primary" autoFocus disabled={!name}>Create</Button>
+        <Button variant="text" onClick={onClose} color="primary"><FormattedMessage id='button.cancel'/></Button>
+        <Button variant="contained" onClick={handleCreate} color="primary" autoFocus disabled={!name}><FormattedMessage id='button.create'/></Button>
       </DialogActions>
     </Dialog>
   );

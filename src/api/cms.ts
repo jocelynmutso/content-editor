@@ -29,7 +29,6 @@ declare namespace CMS {
     enabled: boolean
   }
 
-
   interface Page {
     id: PageId,
     article: ArticleId,
@@ -73,10 +72,10 @@ declare namespace CMS {
   interface Link {
     id: LinkId,
     articles: ArticleId[],
-    type: string,
-    content: LocalisedContent,
+    type: "internal" | "external" | "phone",
+    content: LocalisedContent, //url, phone number
     locale: Locale,
-    description: string
+    description: string //text that user sees
   }
   
   interface LinkMutator {

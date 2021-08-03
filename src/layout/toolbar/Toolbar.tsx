@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     width: theme.spacing(7),
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText
   },
   view: {
     flexGrow: 1,
@@ -35,8 +36,6 @@ const SmallAvatar = withStyles((theme: Theme) =>
       width: "20px",
       height: "20px",
       fontSize: "unset",
-      //color: theme.palette.primary.main,
-      //background: "transparent",
       border: `2px solid ${theme.palette.background.paper}`,
     },
   }),

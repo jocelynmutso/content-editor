@@ -3,6 +3,8 @@ import {
   makeStyles, createStyles, Theme, TextField, InputLabel, FormControl, MenuItem, Select,
   Button, Dialog, Typography, DialogTitle, DialogContent, DialogActions,
 } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
+
 import { API, Ide } from '../../deps';
 
 
@@ -45,16 +47,16 @@ const WorkflowComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
   return (
     <Dialog open={true} onClose={onClose} >
-      <DialogTitle>Add a workflow</DialogTitle>
+      <DialogTitle><FormattedMessage id='workflow.composer.title' /></DialogTitle>
       <DialogContent>
 
         <Typography className={classes.heading}>
           <FormControl variant="outlined" className={classes.select} fullWidth>
-            <InputLabel>Locale</InputLabel>
+            <InputLabel><FormattedMessage id='locale' /></InputLabel>
             <Select
               onChange={({ target }) => setLocale(target.value as any)}
               value={locale}
-              label="Locale"
+              label={<FormattedMessage id='locale' />}
             >
               {locales.map((locale, index) => (
                 <MenuItem key={index} value={locale.value}>{locale.value}</MenuItem>
@@ -63,11 +65,11 @@ const WorkflowComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
           </FormControl>
           <FormControl variant="outlined" className={classes.select} fullWidth>
-            <InputLabel>Content</InputLabel>
+            <InputLabel><FormattedMessage id='workflow.composer.select' /></InputLabel>
             <Select
               onChange={({ target }) => setContent(target.value as any)}
               value={content}
-              label="workflow"
+              label={<FormattedMessage id='workflow.composer.technicalname' />}
             >
               {workflows.map((workflow, index) => (
                 <MenuItem key={index} value={workflow.name}>{workflow.name}</MenuItem>
@@ -76,15 +78,18 @@ const WorkflowComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
           </FormControl>
           <TextField className={classes.select}
-            label="Localised Name" variant="outlined" placeholder="Permit application form" helperText="Name to be displayed to users" fullWidth
+            label={<FormattedMessage id='workflow.composer.name' />}
+            helperText={<FormattedMessage id='workflow.composer.helper' />}
+            variant="outlined" 
+            fullWidth
             value={name}
             onChange={({ target }) => setName(target.value)} />
         </Typography>
-
       </DialogContent>
+      
       <DialogActions>
-        <Button onClick={onClose} color="inherit">Cancel</Button>
-        <Button onClick={handleCreate} color="primary" autoFocus disabled={!name}>Add</Button>
+        <Button variant="text" onClick={onClose} color="primary"><FormattedMessage id='button.cancel' /></Button>
+        <Button variant="contained" onClick={handleCreate} color="primary" autoFocus disabled={!name}><FormattedMessage id='button.add' /></Button>
       </DialogActions>
     </Dialog>
   );

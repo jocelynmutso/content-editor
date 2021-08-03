@@ -3,6 +3,7 @@ import {
   makeStyles, createStyles, Theme, TextField,
   Button, Dialog, Typography, DialogTitle, DialogContent, DialogActions,
 } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
 
@@ -43,19 +44,25 @@ const LocaleComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
   return (
     <Dialog open={true} onClose={onClose} >
-      <DialogTitle>Create a new locale</DialogTitle>
+      <DialogTitle><FormattedMessage id='locale.composer.title'/></DialogTitle>
       <DialogContent>
 
         <Typography className={classes.root}>
-          <TextField className={classes.input} helperText="Two-letter locale code" placeholder="en" variant="outlined" fullWidth required
+          <TextField 
+            className={classes.input} 
+            helperText={<FormattedMessage id='locale.composer.helper' />}
+            placeholder="en" 
+            variant="outlined" 
+            fullWidth 
+            required
             value={locale}
             onChange={({ target }) => setLocale(target.value as any)} />
         </Typography>
 
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="inherit">Cancel</Button>
-        <Button onClick={handleCreate} color="primary" autoFocus disabled={!locale || locales.includes(locale) || locale.length != 2}>Create</Button>
+        <Button variant="text" onClick={onClose} color="primary"><FormattedMessage id='button.cancel' /></Button>
+        <Button variant="contained" onClick={handleCreate} color="primary" autoFocus disabled={!locale || locales.includes(locale) || locale.length != 2}><FormattedMessage id='button.create' /></Button>
       </DialogActions>
     </Dialog>
   );

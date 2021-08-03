@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { Button, Dialog, Card, CardActions, CardContent, Typography, DialogTitle, DialogContent, DialogActions } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, Typography, Box } from '@material-ui/core';
+
+import { FormattedMessage } from 'react-intl';
 
 import { ArticleComposer } from './article';
 import { LinkComposer } from './link';
@@ -17,13 +19,25 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       margin: theme.spacing(1),
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
     },
-    container: {
+    card: {
       margin: theme.spacing(1),
-      maxWidth: '25%'
+      width: '400px',
+      display: 'flex',
+      flexDirection: 'column',
+      "&:hover, &.Mui-focusVisible": {
+        color: theme.palette.secondary.dark,
+        fontWeight: 'bold',
+      }
     },
-    title: {
-      fontSize: 14,
+    cardActions: {
+      justifyContent: 'flex-start'
+    },
+    cardContent: {
+      flexGrow: 1,
     },
   }),
 );
@@ -38,39 +52,39 @@ type CardType = "release" | "article" | "page" | "link" | "workflow" | "locale";
 
 const createCards: (site: API.CMS.Site, releases: API.CMS.Releases) => Record<CardType, CardData> = (site, releases) => ({
   article: {
-    composer: (handleClose) => (<ArticleComposer onClose={handleClose}/>),
-    title: "Article",
-    desc: "A group of associated Pages, Links, Workflows, and Locales"
+    composer: (handleClose) => (<ArticleComposer onClose={handleClose} />),
+    title: "composer.article.title",
+    desc: "composer.article.desc"
   },
 
   locale: {
-    composer: (handleClose) => (<LocaleComposer onClose={handleClose}/>),
-    title: "Locale",
-    desc: "Add, activate, and deactivate content languages globally"
+    composer: (handleClose) => (<LocaleComposer onClose={handleClose} />),
+    title: "composer.locale.title",
+    desc: "composer.locale.desc"
   },
 
   page: {
-    composer: (handleClose) => (<NewPage onClose={handleClose}/>),
-    title: "Page",
-    desc: "One file representing one language and its associated links and workflows within an Article",
+    composer: (handleClose) => (<NewPage onClose={handleClose} />),
+    title: "composer.page.title",
+    desc: "composer.page.desc",
   },
 
   link: {
-    composer: (handleClose) => (<LinkComposer onClose={handleClose}/>),
-    title: "Link",
-    desc: "Internal links connect to content within your domain, and external links connect to content outside your domain"
+    composer: (handleClose) => (<LinkComposer onClose={handleClose} />),
+    title: "composer.link.title",
+    desc: "composer.link.desc"
   },
 
   workflow: {
-    composer: (handleClose) => (<WorkflowComposer onClose={handleClose}/>),
-    title: "Workflow",
-    desc: "Connect forms and processes"
+    composer: (handleClose) => (<WorkflowComposer onClose={handleClose} />),
+    title: "composer.workflow.title",
+    desc: "composer.workflow.desc"
   },
 
   release: {
-    composer: (handleClose) => (<ReleaseComposer onClose={handleClose}/>),
-    title: "Release",
-    desc: "Create a snapshot of all site content at one certain point of time for testing or production purposes"
+    composer: (handleClose) => (<ReleaseComposer onClose={handleClose} />),
+    title: "composer.release.title",
+    desc: "composer.release.desc"
   },
 });
 
@@ -86,17 +100,20 @@ const ComposerSelect: React.FC<{}> = () => {
 
   return (
     <div className={classes.root}>
-      { !open ? null : ( cards[open].composer(handleClose) )}
-
+      {!open ? null : (cards[open].composer(handleClose))}
       {Object.entries(cards).map((card, index) => (
-        <Card key={index} className={classes.container} variant="outlined">
-          <CardContent>
-            <Typography variant="h6">{card[1].title}</Typography>
-            <Typography color="textSecondary" variant="caption">{card[1].desc}</Typography>
+        <Card key={index} className={classes.card} variant="elevation">
+
+          <CardContent className={classes.cardContent}>
+            <Typography variant="h6"><FormattedMessage id={card[1].title} /></Typography>
+            <Typography color="textSecondary" variant="caption"><FormattedMessage id={card[1].desc} /></Typography>
           </CardContent>
-          <CardActions>
-            <Button onClick={() => handleOpen(card[0] as any)} size="small">Create</Button>
+          <CardActions className={classes.cardActions}>
+            <Box flexDirection="flex-end">
+              <Button variant="contained" color="primary" onClick={() => handleOpen(card[0] as any)}><FormattedMessage id="button.create" /></Button>
+            </Box>
           </CardActions>
+
         </Card>
       ))}
     </div>

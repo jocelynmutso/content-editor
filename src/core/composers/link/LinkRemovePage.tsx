@@ -7,6 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
+import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
 
@@ -59,7 +60,7 @@ const LinkRemovePage: React.FC<LinkRemovePageProps> = ({ article, locale, link }
   const handleClose = () => {
     setOpen(false);
   };
-  
+
   const handleDelete = () => {
     ide.service.delete().linkArticlePage(link.id, article.id, locale).then(success => {
       console.log(success)
@@ -78,19 +79,19 @@ const LinkRemovePage: React.FC<LinkRemovePageProps> = ({ article, locale, link }
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>{"Remove this link?"} </DialogTitle>
+        <DialogTitle><FormattedMessage id="link.removepage.title" /></DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <ListItem>* Removing the link only removes its association with this article.</ListItem>
-            <ListItem>* To delete this item permanently, click the Delete icon. </ListItem>
+            <FormattedMessage id="link.removepage" />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="inherit">
-            Cancel
+          <Button variant="text" onClick={handleClose} color="primary">
+            <FormattedMessage id="button.cancel" />
           </Button>
-          <Button onClick={handleDelete} color="primary" autoFocus>
-            Continue and delete
+          <Button variant="contained" onClick={handleDelete} color="primary" autoFocus>
+            <FormattedMessage id="button.remove" />
+
           </Button>
         </DialogActions>
       </Dialog>

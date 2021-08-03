@@ -4,6 +4,7 @@ import {
   Button, Dialog, Typography, DialogTitle, DialogContent, DialogActions, IconButton
 } from '@material-ui/core';
 import EditOutlined from '@material-ui/icons/EditOutlined';
+import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
 
@@ -83,33 +84,45 @@ const ArticleEdit: React.FC<{ article: API.CMS.Article }> = ({ article }) => {
       </IconButton>
     </span>
     <Dialog open={open} onClose={handleClose} >
-      <DialogTitle>Edit article</DialogTitle>
+      <DialogTitle><FormattedMessage id="article.edit.title" /></DialogTitle>
       <DialogContent>
         <Typography className={classes.root}>
           <FormControl variant="outlined" className={classes.select} fullWidth>
-            <InputLabel >Parent article</InputLabel>
+            <InputLabel ><FormattedMessage id="article.edit.parent" /></InputLabel>
             <Select
               value={parentId}
               onChange={({ target }) => setParentId(target.value as any)}
-              label="parent article"
+              label={<FormattedMessage id="article.edit.parent" />}
             >
               {articles.map((article, index) => (
                 <MenuItem key={index} value={article.id}>{article.order}{"_"}{article.name}</MenuItem>
               ))}
             </Select>
           </FormControl >
-          <TextField type={"number"} label="Order" variant="outlined" placeholder="100" helperText="number for ordering purposes" fullWidth className={classes.select}
+          <TextField
+            type={"number"}
+            label={<FormattedMessage id="order" />}
+            variant="outlined"
+            placeholder="100"
+            helperText={<FormattedMessage id="article.edit.orderhelper" />}
+            fullWidth
+            className={classes.select}
             value={order}
             onChange={({ target }) => setOrder(target.value as any)} />
-          <TextField className={classes.select} label="Name" variant="outlined" fullWidth required
+          <TextField
+            className={classes.select}
+            label={<FormattedMessage id="article.name" />}
+            variant="outlined"
+            fullWidth
+            required
             value={name}
             onChange={({ target }) => setName(target.value)} />
         </Typography>
 
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="inherit">Cancel</Button>
-        <Button onClick={handleCreate} color="primary" autoFocus disabled={!name}>Update</Button>
+        <Button variant="text" onClick={handleClose} color="primary"><FormattedMessage id="button.cancel" /></Button>
+        <Button variant="contained" onClick={handleCreate} color="primary" autoFocus disabled={!name}><FormattedMessage id="button.update" /></Button>
       </DialogActions>
     </Dialog>
   </>
