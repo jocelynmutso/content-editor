@@ -11,6 +11,7 @@
   * [Localisations](#Localisations)
   * [Releases](#Releases)
 * [Creating your first resources](#Creating-your-first-resources)
+* [Deleting and removing resources](#Deleting-and-removing-resources)
 
 
 
@@ -142,6 +143,8 @@ Locales are created by specifying the [two-letter language code](https://en.wiki
 
 Once a locale has been created, it is available globally throughout the application. You can then start creating / associating content such as pages, links, etc. with this locale.
 
+The Stencil also provides a "Locale Usage Overview" where you can quickly and easily see which Articles have Pages (or don't have) for each of your activated languages.
+
 ---
 
 ### Releases
@@ -161,4 +164,36 @@ If it turns out that your release isn't what you were expecting, you can easily 
 5. Once Links / Workflows have been created, you can "associate" them with Articles and Pages. 
 6. Once a Locale has been created, it can be applied to new Pages.
 7. When your content is ready, make a new Release. Give it a name and an optional note, and you're ready for publishing.
+
+## Deleting and removing resources
+
+
+**Important Notes**:
+
+**Deleting** is a global action. The deleted Resource will no longer be available.  
+**Deactivating** is specific to one Resource or a Resource Association. The Resource will still be globally available if you want to use it again later, but it will be hidden from the end-user point of view.
+
+* **Article**: Articles are deleted globally via the "Articles" menu option.  
+* **Page**: Because Pages cannot exist outside of Articles, they are deleted from their article via the "Articles" menu option.  
+
+Note that when you delete an Article, you also delete **all pages** associated with that Article.
+
+* **Link**: Links are deleted globally via the "Links" menu option. 
+ 
+Link / Article associations are deactivated via the "Links" menu option.  
+
+* **Workflow**: Workflows are deleted globally via the "Workflows" menu option.
+
+Workflow / Article associations are deactivated via the "Workflows" menu option.
+
+
+* **Locale**: Locales are deleted globally via the "Locales" menu option.
+
+Locales can be set to "Active" or "Deactivated". If a locale is set to Deactivated, all Resources of that locale will be invisible on the end-user side.  This can be done via the "Locales" menu option.
+
+
+* **Release**: Releases cannot be deleted or edited once they are created.
+
+Previous Releases can be activated if you need to revert to a previous version. They can also be viewed. 
+
 
