@@ -40,7 +40,7 @@ const useRowStyles = makeStyles((theme: Theme) =>
     column: {
       width: '25%',
       fontWeight: 'bold',
-      borderBottom: 'unset',
+      border: '1px solid',
       padding: 0
     },
     expandRow: {
@@ -73,12 +73,12 @@ const LinksView: React.FC<{}> = () => {
       <Table className={classes.table} size="small">
         <TableHead>
           <TableRow>
-            <TableCell className={classes.bold} align="center" colSpan={2}><FormattedMessage id="link.type"/></TableCell>
-            <TableCell className={classes.bold} align="left"><FormattedMessage id="locale"/></TableCell>
-            <TableCell className={classes.bold} align="left"><FormattedMessage id="description"/></TableCell>
-            <TableCell className={classes.bold} align="left"><FormattedMessage id="link.url"/></TableCell>
-            <TableCell className={classes.bold} align="center"><FormattedMessage id="articles"/></TableCell>
-            <TableCell className={classes.bold} align="center"><FormattedMessage id="delete"/></TableCell>
+            <TableCell className={classes.bold} align="center" colSpan={2}><FormattedMessage id="link.type" /></TableCell>
+            <TableCell className={classes.bold} align="left"><FormattedMessage id="locale" /></TableCell>
+            <TableCell className={classes.bold} align="left"><FormattedMessage id="description" /></TableCell>
+            <TableCell className={classes.bold} align="left"><FormattedMessage id="link.url" /></TableCell>
+            <TableCell className={classes.bold} align="center"><FormattedMessage id="articles" /></TableCell>
+            <TableCell className={classes.bold} align="center"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -122,7 +122,8 @@ const Row: React.FC<RowProps> = ({ site, link }) => {
               <Table size="small">
                 <TableHead>
                   <TableRow>
-                    <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}><FormattedMessage id="articles"/></TableCell>
+                    <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}><FormattedMessage id="articles" /></TableCell>
+                    <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}><FormattedMessage id="associations.add" /></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -134,6 +135,10 @@ const Row: React.FC<RowProps> = ({ site, link }) => {
                       <TableCell>
                         <LinkRemovePage link={link} article={site.articles[id]} locale={link.locale} />
                       </TableCell>
+                      <TableCell>
+                        arlualru
+                      </TableCell>
+
                     </TableRow>
                   ))}
                 </TableBody>

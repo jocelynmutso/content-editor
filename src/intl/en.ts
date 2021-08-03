@@ -1,5 +1,6 @@
 const en = {
 
+  'associations.add': 'Associate with an article',
   'locale': 'Locale',
   'locales': 'Locales',
   'value': 'Value',
@@ -17,7 +18,6 @@ const en = {
   'options': 'Options',
   'links': 'Links',
   'workflows': 'Workflows',
- 
 
   'article.composer.title': 'Create new Article',
   'article.composer.parent': 'Parent Article',
@@ -55,6 +55,7 @@ const en = {
   'composer.release.title': 'Release',
   'composer.release.desc': 'Create a snapshot of all site content at one certain point of time for testing or production purposes',
 
+  'link.associate.title': 'Associate a link with an Article',
 
   'link.composer.title': 'Create a new link',
   'link.type': 'Type',
@@ -78,7 +79,7 @@ const en = {
   'locale.disable.title': 'Disable this locale?',
   'locale.disable': 'Disabling this locale will remove it globally from the application. Pages using this locale will not be displayed on the UI.',
   
-  'locale.overview': 'Locale usage overview<',
+  'locale.overview': 'Locale usage overview',
 
   'newpage.title': 'Create a new page',
   'newpage.info': 'A page consists of localised content and must be associated with an Article.',
@@ -89,7 +90,9 @@ const en = {
   'release.composer.label': 'Tag Name',
   'release.composer.note': "Note",
   'release.composer.helper': 'Optional additional information for future reference',
-
+ 
+  'workflow.associate.title': 'Associate a Workflow with an Article',
+  
   'workflow.composer.title': "Add a Workflow",
   'workflow.composer.name': "Localised name",
   'workflow.technicalname': 'Technical name',

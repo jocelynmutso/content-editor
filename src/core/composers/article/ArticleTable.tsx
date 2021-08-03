@@ -53,7 +53,7 @@ const ArticleTable: React.FC<ArticleTableProps> = ({ site, article }) => {
 
   return (
     <TableContainer component={Paper}>
-      <Table className={classes.table} size="small" aria-label="a dense table" >
+      <Table className={classes.table} size="small" >
         <TableHead>
           <TableRow>
             <TableCell className={classes.bold} align="left"><FormattedMessage id="article.composer.parent"/></TableCell>

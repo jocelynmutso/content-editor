@@ -46,11 +46,11 @@ const NewPage: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         <Typography>
           <FormattedMessage id='newpage.info' />
           <FormControl variant="outlined" className={classes.select} fullWidth>
-            <InputLabel><FormattedMessage id='article.composer.name' /></InputLabel>
+            <InputLabel><FormattedMessage id='article.name' /></InputLabel>
             <Select
               value={articleId}
               onChange={({ target }) => setArticleId(target.value as any)}
-              label={<FormattedMessage id='article.composer.name' />}
+              label={<FormattedMessage id='article.name' />}
             >
               {articles.map((article, index) => (
                 <MenuItem key={index} value={article.name}>{article.order}{"_"}{article.name}</MenuItem>
