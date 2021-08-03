@@ -112,6 +112,8 @@ Pages are Markdown files corresponding to their content language. For example, a
 
 The basic rule is this: 1 page == 1 language. You can have as many pages per Article as you wish, depending on how many languages you need to represent.
 
+A Page **must** have at least 1 Markdown Level 1 Header. The first occurrence of a Level 1 Header within a Page will provide the localised name for the Article that the end user sees in your content portal's Topic menu.
+
 A Page does not have a customisable name. The name of a page is always the [two-letter language code](https://en.wikipedia.org/wiki/ISO_639-1) corresponding to its content language, followed by `.md` file extension. 
 
 A Page is specific to an Article, and it cannot exist outside of an Article.
