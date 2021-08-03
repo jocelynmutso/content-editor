@@ -17,13 +17,13 @@
 
 ### Introduction
 
-The Stencil is a content management system designed for composing static content via [Markdown](https://www.markdownguide.org/). 
+The Stencil is a content management system designed for composing and managing static content in multiple languages via [Markdown](https://www.markdownguide.org/). 
 
 Core Philsophies:
 
 * **Multi-language content creation should be efficient and simple.**
 
-These days, multi-language content creation and management is critical. Everything in The Stencil is meant to complement people who translate content. For example, content translators can view the source language and edit the target language via a split-screen view, saving time and energy from switching screens or editors.
+These days, multi-language content creation and management is critical. Everything about The Stencil is meant to streamline content creation and translation processes.  A great example of this is that, with the Stencil, content translators can view the source language and edit the target language via a split-screen view, saving time and energy from switching screens or editors.  
 
 * **Content creators shouldn't need to micromanage their content in several different places simultaneously.**
 
@@ -165,7 +165,7 @@ If it turns out that your release isn't what you were expecting, you can easily 
 6. Once a Locale has been created, it can be applied to new Pages.
 7. When your content is ready, make a new Release. Give it a name and an optional note, and you're ready for publishing.
 
-## Deleting and removing resources
+## Deleting and Deactivating resources
 
 
 **Important Notes**:
