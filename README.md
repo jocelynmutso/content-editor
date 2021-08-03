@@ -26,7 +26,7 @@ These days, multi-language content creation and management is critical. Everythi
 
 * **Content creators shouldn't need to micromanage their content in several different places simultaneously.**
 
-The Stencil lets you set up your translations once, and apply those translations globally. If you need to change a link text, you do it in **one** place only, and the changes apply wherever that link is used. Or perhaps you have a form that appears in multiple place across your content application. You can update that form and it will be changed / removed everywhere. This gives you more time to focus on composing with less worry about "...did I update that everywhere?"
+The Stencil lets you set up your translations, links, languages, and workflows once, and apply these resources and their translations globally. If you need to change a link text, you do it in **one** place only, and the changes apply wherever that link is used. Or perhaps you have a form that appears in multiple place across your content application. You can update that form and it will be changed / removed everywhere. This gives you more time to focus on composing with less worry about "...did I update that everywhere?"
 
 * **Version control is essential.**
 
