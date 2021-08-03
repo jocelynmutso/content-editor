@@ -7,7 +7,7 @@
   * [Articles](#Articles)
   * [Pages](#Pages)
   * [Links](#Links)
-  * [Workflows](#Workflows)
+  * [Forms and Workflows](#Forms-and-workflows)
   * [Localisations](#Localisations)
   * [Releases](#Releases)
 * [Creating your first resources](#Creating-your-first-resources)
@@ -19,17 +19,23 @@
 
 The Stencil is a content management system designed for composing and managing static content in multiple languages via [Markdown](https://www.markdownguide.org/). 
 
+This platform unifies and consolidates your content, data gathering, and process automation under one roof. 
+
 Core Philsophies:
 
-* **Multi-language content creation should be efficient and simple.**
+**Multi-language content creation should be efficient and simple.**  
 
 These days, multi-language content creation and management is critical. Everything about The Stencil is meant to streamline content creation and translation processes.  A great example of this is that, with the Stencil, content translators can view the source language and edit the target language via a split-screen view, saving time and energy from switching screens or editors.  
 
-* **Content creators shouldn't need to micromanage their content in several different places simultaneously.**
+**Content creators shouldn't need to micromanage their content in several different places simultaneously.**  
 
 The Stencil lets you set up your translations, links, languages, and workflows once, and apply these resources and their translations globally. If you need to change a link text, you do it in **one** place only, and the changes apply wherever that link is used. Or perhaps you have a form that appears in multiple place across your content application. You can update that form and it will be changed / removed everywhere. This gives you more time to focus on composing with less worry about "...did I update that everywhere?"
 
-* **Version control is essential.**
+**Data gathering and process automation are essential elements of a complete CMS solution**  
+
+Presenting users with content is great. What's even better is giving users possibilities to act on that content and designing processes to act upon that data. The Stencil integrates with two other platforms to provide form service and process services. We believe that organisations should be able to control all three of these elements in order to craft the perfect solution to meet their needs.
+
+**Version control is essential.**  
 
 Keeping both a single source of truth and an audit history of changes saves time and effort.
 
@@ -129,9 +135,11 @@ Once a link has been created, it is available globally throughout the applicatio
 
 ---
 
-### Workflows
+### Forms and Workflows
 
-TODO
+The Stencil is designed to unify your content, data gathering, and process automation into one consolidated frontend. In practice, this means that you can set up your static content to point users to your forms, and you can create workflows which specify what happens once those forms are submitted.
+
+For example, your organisation may want to provide a form for users to send an inquiry about a product, and then when a user completes and submits the inquiry form, a notification is sent to an administrator who then performs some action. Or, perhaps something automated should happen when this form is completed. This is all up to you to customise however you need. 
 
 ---
 
