@@ -180,6 +180,84 @@ declare namespace CMS {
     link(link: LinkMutator): Promise<Link>;
     workflow(workflow: WorkflowMutator): Promise<Workflow>;
   }
+  interface Store {
+    fetch<T>(path: string, init?: RequestInit): Promise<T>;
+  }
+  
+  interface ErrorMsg {
+    id: string;
+    value: string;
+  }
+
+  interface ErrorProps {
+    text: string;
+    status: number;
+    errors: any[];
+  }
+}
+
+namespace CMS {
+  
+  export class StoreError extends Error {
+    private _props: ErrorProps;
+
+    constructor(props: ErrorProps) {
+      super(props.text);
+      this._props = {
+        text: props.text,
+        status: props.status,
+        errors: parseErrors(props.errors)
+      };
+
+
+      ///children.errors
+    }
+    get name() {
+      return this._props.text;
+    }
+    get status() {
+      return this._props.status;
+    }
+    get errors() {
+      return this._props.errors;
+    }
+  }
+}
+
+const getErrorMsg = (error: any) => {
+  if (error.msg) {
+    return error.msg;
+  }
+  if (error.value) {
+    return error.value
+  }
+  if (error.message) {
+    return error.message;
+  }
+}
+
+const getErrorId = (error: any) => {
+  if (error.id) {
+    return error.id;
+  }
+  if (error.code) {
+    return error.code
+  }
+  return "";
+}
+
+
+const parseErrors = (props: any[]): CMS.ErrorMsg[] => {
+  if (!props) {
+    return []
+  }
+
+  const result: CMS.ErrorMsg[] = props.map(error => ({
+    id: getErrorId(error),
+    value: getErrorMsg(error)
+  }));
+
+  return result;
 }
 
 export default CMS;
