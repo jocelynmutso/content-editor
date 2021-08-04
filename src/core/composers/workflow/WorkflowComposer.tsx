@@ -59,7 +59,7 @@ const WorkflowComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
               label={<FormattedMessage id='locale' />}
             >
               {locales.map((locale, index) => (
-                <MenuItem key={index} value={locale.value}>{locale.value}</MenuItem>
+                <MenuItem key={index} value={locale.body.value}>{locale.body.value}</MenuItem>
               ))}
             </Select>
 
@@ -72,7 +72,7 @@ const WorkflowComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
               label={<FormattedMessage id='workflow.composer.technicalname' />}
             >
               {workflows.map((workflow, index) => (
-                <MenuItem key={index} value={workflow.name}>{workflow.name}</MenuItem>
+                <MenuItem key={index} value={workflow.body.name}>{workflow.body.name}</MenuItem>
               ))}
             </Select>
 

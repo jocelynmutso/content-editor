@@ -27,10 +27,10 @@ const PageComposer: React.FC<PageComposerProps> = ({ article, locale }) => {
   const classes = useStyles();
   const ide = Ide.useIde();
   const page = Object.values(ide.session.site.pages)
-    .filter(page => page.article === article.id)
-    .filter(page => page.locale === locale).pop() as API.CMS.Page;
+    .filter(page => page.body.article === article.id)
+    .filter(page => page.body.locale === locale).pop() as API.CMS.Page;
 
-  const value = ide.session.pages[page.id] ? ide.session.pages[page.id].value : page.content;
+  const value = ide.session.pages[page.id] ? ide.session.pages[page.id].value : page.body.content;
   const handleChange = (value: string | undefined) => {
     ide.actions.handlePageUpdate(page.id, value ? value : "");
   } 

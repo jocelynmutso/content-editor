@@ -53,9 +53,9 @@ const ArticleEdit: React.FC<{ article: API.CMS.Article }> = ({ article }) => {
   const ide = Ide.useIde();
   const { site } = ide.session;
 
-  const [name, setName] = React.useState(article.name);
-  const [order, setOrder] = React.useState(article.order);
-  const [parentId, setParentId] = React.useState(article.parentId);
+  const [name, setName] = React.useState(article.body.name);
+  const [order, setOrder] = React.useState(article.body.order);
+  const [parentId, setParentId] = React.useState(article.body.parentId);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -95,7 +95,7 @@ const ArticleEdit: React.FC<{ article: API.CMS.Article }> = ({ article }) => {
               label={<FormattedMessage id="article.edit.parent" />}
             >
               {articles.map((article, index) => (
-                <MenuItem key={index} value={article.id}>{article.order}{"_"}{article.name}</MenuItem>
+                <MenuItem key={index} value={article.id}>{article.body.order}{"_"}{article.body.name}</MenuItem>
               ))}
             </Select>
           </FormControl >

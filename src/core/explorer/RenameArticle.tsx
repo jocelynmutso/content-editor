@@ -73,7 +73,7 @@ const RenameArticle: React.FC<RenameArticleProps> = ({ site, article }) => {
           <DialogContentText>
             Renaming this article will only change its technical name. This action has no consequences for the end-user experience.
           </DialogContentText>
-          <Typography className={classes.typography} variant="body1">Old order: {" "} {article.order} <Divider /> Old name: {" "} {article.name}</Typography>
+          <Typography className={classes.typography} variant="body1">Old order: {" "} {article.body.order} <Divider /> Old name: {" "} {article.body.name}</Typography>
           <TextField placeholder="Example: 100" label="New order" variant="outlined" className={classes.formControl} />
           <TextField label="New name" variant="outlined" className={classes.formControl} />
         </DialogContent>

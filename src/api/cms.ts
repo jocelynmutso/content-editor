@@ -20,8 +20,10 @@ declare namespace CMS {
   
   interface SiteLocale {
     id: LocaleId,
-    value: Locale,
-    enabled: boolean
+    body: {
+      value: Locale,
+      enabled: boolean
+    }
   }
   
   interface LocaleMutator {
@@ -31,11 +33,13 @@ declare namespace CMS {
 
   interface Page {
     id: PageId,
-    article: ArticleId,
     created: string,
     modified: string,
-    locale: Locale,
-    content: LocalisedMarkdown,
+    body: {
+      article: ArticleId,
+      locale: Locale,
+      content: LocalisedMarkdown
+    }
   }
   
   interface PageMutator {
@@ -46,9 +50,11 @@ declare namespace CMS {
 
   interface Article {
     id: ArticleId,
-    parentId?: ArticleId,
-    name: string,
-    order: number,
+    body: {
+      parentId?: ArticleId,
+      name: string,
+      order: number,
+    }
   }
   
   interface ArticleMutator {
@@ -62,20 +68,24 @@ declare namespace CMS {
 
   interface Release {
     id: string,
-    name: string,
     created: string,
-    note?: string
+    body: {
+      note?: string,
+      name: string,
+    }
   }
 
   type Links = Link[];
 
   interface Link {
     id: LinkId,
-    articles: ArticleId[],
-    type: "internal" | "external" | "phone",
-    content: LocalisedContent, //url, phone number
-    locale: Locale,
-    description: string //text that user sees
+    body: {
+      articles: ArticleId[],
+      contentType: "internal" | "external" | "phone",
+      content: LocalisedContent, //url, phone number
+      locale: Locale,
+      description: string //text that user sees
+    }
   }
   
   interface LinkMutator {
@@ -87,10 +97,12 @@ declare namespace CMS {
 
   interface Workflow {
     id: WorkflowId,
-    articles: ArticleId[],
-    name: string,
-    locale: Locale,
-    content: LocalisedContent
+    body: {
+      articles: ArticleId[],
+      name: string,
+      locale: Locale,
+      content: LocalisedContent
+    }
   }
   
   interface WorkflowMutator {
