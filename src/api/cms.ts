@@ -72,7 +72,7 @@ declare namespace CMS {
   interface Link {
     id: LinkId,
     articles: ArticleId[],
-    type: "internal" | "external" | "phone",
+    contentType: "internal" | "external" | "phone",
     content: LocalisedContent, //url, phone number
     locale: Locale,
     description: string //text that user sees
