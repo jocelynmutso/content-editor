@@ -6,7 +6,7 @@ import { IntlProvider } from 'react-intl'
 import { siteTheme } from './themes/siteTheme'
 
 const locale = "en";
-const service = API.mock();
+const service = API.service("/q/zoe-ide-services");
 
 ReactDOM.render(
   <React.StrictMode>
