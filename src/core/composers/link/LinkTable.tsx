@@ -46,7 +46,7 @@ interface LinkTableProps {
 const LinkTable: React.FC<LinkTableProps> = ({ article }) => {
   const classes = useStyles();
   const site = Ide.useSite();
-  const links: API.CMS.Link[] = Object.values(site.links).filter(link => link.articles.includes(article.id));
+  const links: API.CMS.Link[] = Object.values(site.links).filter(link => link.body.articles.includes(article.id));
 
 
   return (
@@ -63,10 +63,10 @@ const LinkTable: React.FC<LinkTableProps> = ({ article }) => {
         <TableBody>
           {links.map((link, index) => (
             <TableRow hover key={index}>
-              <TableCell className={classes.tableCell} align="left">{link.type}</TableCell>
-              <TableCell className={classes.tableCell} align="left">{link.locale}</TableCell>
-              <TableCell className={classes.tableCell} align="left">{link.description}</TableCell>
-              <TableCell className={classes.tableCell} align="left">{link.content}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{link.body.contentType}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{link.body.locale}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{link.body.description}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{link.body.content}</TableCell>
             </TableRow>
           ))}
         </TableBody>

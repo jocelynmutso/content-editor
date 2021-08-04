@@ -65,12 +65,12 @@ const ReleaseTable: React.FC<ReleaseTableProps> = ({ site, releases }) => {
         <TableBody>
           {releases.map((release, index) => (
             <TableRow key={index}>
-              <TableCell align="left">{release.name}</TableCell>
-              <TableCell align="left">{release.note}</TableCell>
+              <TableCell align="left">{release.body.name}</TableCell>
+              <TableCell align="left">{release.body.note}</TableCell>
               <TableCell align="left">{release.created}</TableCell>
               <TableCell align="left"></TableCell>
               <TableCell align="right">
-                {release.name === "LATEST" ?
+                {release.body.name === "LATEST" ?
                   <>
                     <IconButton className={classes.iconButton}> <EditIcon /> </IconButton>
                     <IconButton className={classes.iconButton}> <CheckCircleIcon /> </IconButton>

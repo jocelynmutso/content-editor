@@ -71,7 +71,7 @@ namespace Ide {
   
   export const useUnsaved = (article: API.CMS.Article) => {
     const ide: ContextType = React.useContext(IdeContext);
-    const unsaved = Object.values(ide.session.pages).filter(p => !p.saved).filter(p => p.origin.article === article.id);
+    const unsaved = Object.values(ide.session.pages).filter(p => !p.saved).filter(p => p.origin.body.article === article.id);
     return unsaved.length > 0
   }
 
@@ -97,7 +97,7 @@ namespace Ide {
       const nav = { type: props.type, value: props.locale };
       const tab: Ide.Tab = {
         id: props.article.id,
-        label: props.type === "ARTICLE_PAGES" ? <ArticlePagesTab article={props.article} /> : props.article.name, 
+        label: props.type === "ARTICLE_PAGES" ? <ArticlePagesTab article={props.article} /> : props.article.body.name, 
         data: Ide.createTab({ nav })
       };
 
@@ -129,7 +129,7 @@ namespace Ide {
 
 const ArticlePagesTab: React.FC<{article: API.CMS.Article}> = ({ article }) => {
   const unsaved = Ide.useUnsaved(article);
-  return <span>{article.name}{unsaved ? " *": ""}</span>;
+  return <span>{article.body.name}{unsaved ? " *": ""}</span>;
 }
 
 

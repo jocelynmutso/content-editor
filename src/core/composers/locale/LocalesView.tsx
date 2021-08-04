@@ -101,9 +101,9 @@ const Row: React.FC<RowProps> = ({ site, locale }) => {
   return (
     <>
       <TableRow key={locale.id} hover className={classes.row}>
-        <TableCell className={classes.tableCell} align="left">{locale.value}</TableCell>
+        <TableCell className={classes.tableCell} align="left">{locale.body.value}</TableCell>
         <TableCell className={classes.tableCell} align="left">
-          {locale.enabled ?
+          {locale.body.enabled ?
             <IconButton className={classes.iconButton}> <VisibilityOnIcon /></IconButton>
             : <IconButton className={classes.iconButton}><VisibilityOffIcon /></IconButton>}
         </TableCell>

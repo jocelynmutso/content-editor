@@ -78,8 +78,8 @@ const LocalesOverview: React.FC<LocalesOverviewProps> = ({ site }) => {
 
   const isLocale = (locale: API.CMS.SiteLocale, article: API.CMS.Article): boolean => {
     const articlePages = pages
-      .filter(p => p.locale === locale.value)
-      .filter(p => p.article === article.id);
+      .filter(p => p.body.locale === locale.body.value)
+      .filter(p => p.body.article === article.id);
     return articlePages.length > 0;
   }
 
@@ -91,12 +91,12 @@ const LocalesOverview: React.FC<LocalesOverviewProps> = ({ site }) => {
         <Divider />
         <TableRow>
           <TableCell className={classes.bold} align="left"><FormattedMessage id="article.name"/></TableCell>
-          {locales.map((locale, index) => <TableCell key={index} className={classes.bold} align="left" >{locale.value}</TableCell>
+          {locales.map((locale, index) => <TableCell key={index} className={classes.bold} align="left" >{locale.body.value}</TableCell>
           )}
         </TableRow>
         {articles.map((article, index) => (
           <TableRow key={index} hover>
-            <TableCell align="left">{article.name}</TableCell>
+            <TableCell align="left">{article.body.name}</TableCell>
             {locales.map((locale, index) => <TableCell key={index} className={classes.bold} align="left">{
               isLocale(locale, article) === true ? (<span><CheckCircleOutlineIcon className={classes.checkIcon} /></span>) : (<span><AddIcon /></span>)
             }</TableCell>)}

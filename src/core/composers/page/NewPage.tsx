@@ -53,7 +53,7 @@ const NewPage: React.FC<{ onClose: () => void }> = ({ onClose }) => {
               label={<FormattedMessage id='article.name' />}
             >
               {articles.map((article, index) => (
-                <MenuItem key={index} value={article.name}>{article.order}{"_"}{article.name}</MenuItem>
+                <MenuItem key={index} value={article.body.name}>{article.body.order}{"_"}{article.body.name}</MenuItem>
               ))}
             </Select>
           </FormControl >
@@ -65,7 +65,7 @@ const NewPage: React.FC<{ onClose: () => void }> = ({ onClose }) => {
               label={<FormattedMessage id='locale' />}
             >
               {locales.map((locale, index) => (
-                <MenuItem key={index} value={locale.value}>{locale.value}</MenuItem>
+                <MenuItem key={index} value={locale.body.value}>{locale.body.value}</MenuItem>
               ))}
             </Select>
           </FormControl >

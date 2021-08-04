@@ -99,7 +99,7 @@ interface RowProps {
 const Row: React.FC<RowProps> = ({ site, workflow }) => {
   const classes = useRowStyles();
   const [open, setOpen] = React.useState(false);
-  const articles = workflow.articles.map(articleId => site.articles[articleId]);
+  const articles = workflow.body.articles.map(articleId => site.articles[articleId]);
   
   return (
     <>
@@ -109,10 +109,10 @@ const Row: React.FC<RowProps> = ({ site, workflow }) => {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell className={classes.tableCell} align="left">{workflow.name}</TableCell>
-        <TableCell className={classes.tableCell} align="left">{workflow.locale}</TableCell>
-        <TableCell className={classes.tableCell} align="left">{workflow.content}</TableCell>
-        <TableCell className={classes.tableCell} align="center">{workflow.articles.length}</TableCell>
+        <TableCell className={classes.tableCell} align="left">{workflow.body.name}</TableCell>
+        <TableCell className={classes.tableCell} align="left">{workflow.body.locale}</TableCell>
+        <TableCell className={classes.tableCell} align="left">{workflow.body.content}</TableCell>
+        <TableCell className={classes.tableCell} align="center">{workflow.body.articles.length}</TableCell>
         <TableCell className={classes.tableCell} align="center"><WorkflowDelete workflow={workflow} /></TableCell>
       </TableRow>
 
@@ -131,11 +131,11 @@ const Row: React.FC<RowProps> = ({ site, workflow }) => {
                     
                     <TableRow hover key={id} className={classes.row}>
                       <TableCell component="th" scope="row" align="left" >
-                        {article.name}
+                        {article.body.name}
                       </TableCell>
                       
                       <TableCell align="left">
-                        <WorkflowRemovePage locale={workflow.locale} workflow={workflow} article={article} />
+                        <WorkflowRemovePage locale={workflow.body.locale} workflow={workflow} article={article} />
                       </TableCell>
                       
                     </TableRow>

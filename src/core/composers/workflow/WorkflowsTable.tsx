@@ -47,7 +47,7 @@ interface WorkflowsTableProps {
 const WorkflowsTable: React.FC<WorkflowsTableProps> = ({ article }) => {
   const classes = useStyles();
   const site = Ide.useSite();
-  const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => workflow.articles.includes(article.id));
+  const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => workflow.body.articles.includes(article.id));
 
   return (
     <TableContainer component={Paper}>
@@ -62,9 +62,9 @@ const WorkflowsTable: React.FC<WorkflowsTableProps> = ({ article }) => {
         <TableBody>
           {workflows.map((workflow, index) => (
             <TableRow key={index} hover>
-              <TableCell className={classes.tableCell} align="left">{workflow.name}</TableCell>
-              <TableCell className={classes.tableCell} align="left">{workflow.locale}</TableCell>
-              <TableCell className={classes.tableCell} align="left">{workflow.content}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{workflow.body.name}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{workflow.body.locale}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{workflow.body.content}</TableCell>
             </TableRow>
           ))}
         </TableBody>

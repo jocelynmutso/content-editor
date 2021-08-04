@@ -66,7 +66,7 @@ const useRowStyles = makeStyles((theme: Theme) =>
 const ArticlesView: React.FC<{}> = () => {
   const classes = useStyles();
   const site = Ide.useSite();
-  const articles = Object.values(site.articles).sort((a1, a2) => a1.order - a2.order);
+  const articles = Object.values(site.articles).sort((a1, a2) => a1.body.order - a2.body.order);
 
   return (
     <TableContainer component={Paper}>
@@ -89,9 +89,9 @@ const ArticlesView: React.FC<{}> = () => {
 const Row: React.FC<{article: API.CMS.Article, site: API.CMS.Site}> = ({ article, site }) => {
   const classes = useRowStyles();
   const [open, setOpen] = React.useState(false);
-  const parentName = article.parentId ? site.articles[article.parentId].name +  "/" : "";
+  const parentName = article.body.parentId ? site.articles[article.body.parentId].body.name +  "/" : "";
   
-  const pages = Object.values(site.pages).filter(page => page.article === article.id);
+  const pages = Object.values(site.pages).filter(page => page.body.article === article.id);
   
   return (
     <>
@@ -101,8 +101,8 @@ const Row: React.FC<{article: API.CMS.Article, site: API.CMS.Site}> = ({ article
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell className={classes.tableCell} align="left">{parentName}{article.name}</TableCell>
-        <TableCell className={classes.tableCell} align="left">{article.order}</TableCell>
+        <TableCell className={classes.tableCell} align="left">{parentName}{article.body.name}</TableCell>
+        <TableCell className={classes.tableCell} align="left">{article.body.order}</TableCell>
         <TableCell className={classes.tableCell} align="right">
           <ArticleEdit article={article} />
           <ArticleDelete article={article} />
@@ -122,7 +122,7 @@ const Row: React.FC<{article: API.CMS.Article, site: API.CMS.Site}> = ({ article
                 <TableBody>
                   {pages.map((page, key) => (
                     <TableRow hover key={key} className={classes.row}>
-                      <TableCell component="th" scope="row" align="left">{page.locale}</TableCell>
+                      <TableCell component="th" scope="row" align="left">{page.body.locale}</TableCell>
                       <TableCell><ArticleDeletePage article={article} page={page} /></TableCell>
                     </TableRow>
                   ))}

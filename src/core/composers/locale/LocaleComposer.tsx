@@ -40,7 +40,7 @@ const LocaleComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   }
 
 
-  const locales: API.CMS.Locale[] = Object.values(site.locales).map(l => l.value);
+  const locales: API.CMS.Locale[] = Object.values(site.locales).map(l => l.body.value);
 
   return (
     <Dialog open={true} onClose={onClose} >

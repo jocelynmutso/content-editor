@@ -57,7 +57,7 @@ const ArticleComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
               label={<FormattedMessage id='article.composer.parent'/>}
             >
               {articles.map((article, index) => (
-                <MenuItem key={index} value={article.id}>{article.order}{"_"}{article.name}</MenuItem>
+                <MenuItem key={index} value={article.id}>{article.body.order}{"_"}{article.body.name}</MenuItem>
               ))}
             </Select>
           </FormControl >

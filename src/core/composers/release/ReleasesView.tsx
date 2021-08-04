@@ -92,12 +92,12 @@ const Row: React.FC<{release: API.CMS.Release}> = ({ release }) => {
     <>
       <TableRow key={release.id} hover className={classes.row}>
         <TableCell className={classes.expandRow}></TableCell>
-        <TableCell className={classes.tableCell} align="left">{release.name}</TableCell>
+        <TableCell className={classes.tableCell} align="left">{release.body.name}</TableCell>
         <TableCell className={classes.tableCell} align="left">{release.created}</TableCell>
-        <TableCell className={classes.tableCell} align="left">{release.note}</TableCell>
+        <TableCell className={classes.tableCell} align="left">{release.body.note}</TableCell>
         <TableCell align="center">
 
-          {release.name === "LATEST" ?
+          {release.body.name === "LATEST" ?
             <>
               <IconButton className={classes.iconButton}> <EditIcon /> </IconButton>
               <IconButton className={classes.iconButton}> <CheckCircleIcon /> </IconButton>

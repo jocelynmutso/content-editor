@@ -48,7 +48,7 @@ interface ArticleTableProps {
 const ArticleTable: React.FC<ArticleTableProps> = ({ site, article }) => {
   const classes = useStyles();
 
-  const links: API.CMS.Link[] = Object.values(site.links).filter(link => link.articles.includes(article.id));
+  const links: API.CMS.Link[] = Object.values(site.links).filter(link => link.body.articles.includes(article.id));
 
 
   return (
@@ -64,9 +64,9 @@ const ArticleTable: React.FC<ArticleTableProps> = ({ site, article }) => {
         <TableBody>
           {links.map((link, index) => (
             <TableRow hover key={index}>
-              <TableCell className={classes.tableCell} align="left">{article.parentId}</TableCell>
-              <TableCell className={classes.tableCell} align="left">{article.order}</TableCell>
-              <TableCell className={classes.tableCell} align="left">{article.name}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{article.body.parentId}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{article.body.order}</TableCell>
+              <TableCell className={classes.tableCell} align="left">{article.body.name}</TableCell>
             </TableRow>
           ))}
         </TableBody>

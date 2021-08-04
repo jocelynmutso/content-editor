@@ -128,23 +128,23 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
   const handleSavePages = () => {
     const unsaved: API.CMS.PageMutator[] = Object.values(ide.session.pages)
       .filter(p => !p.saved)
-      .filter(p => p.origin.article === article.id)
-      .map(p => ({ id: p.origin.id, locale: p.origin.locale, content: p.value }));
+      .filter(p => p.origin.body.article === article.id)
+      .map(p => ({ id: p.origin.id, locale: p.origin.body.locale, content: p.value }));
 
     ide.service.update().pages(unsaved).then(success => {
       ide.actions.handlePageUpdateRemove(success.map(p => p.id));
     });
   }
 
-  const pages: API.CMS.Page[] = Object.values(site.pages).filter(page => article.id === page.article);
-  const links: API.CMS.Link[] = Object.values(site.links).filter(link => link.articles.includes(article.id));
-  const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => workflow.articles.includes(article.id));
+  const pages: API.CMS.Page[] = Object.values(site.pages).filter(page => article.id === page.body.article);
+  const links: API.CMS.Link[] = Object.values(site.links).filter(link => link.body.articles.includes(article.id));
+  const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => workflow.body.articles.includes(article.id));
 
   return (
     <>
       <ListItem className={classes.itemHover}>
         <ListItemText
-          primary={<Typography onClick={handleClick} variant="body1" className={classes.nameStyle}>{article.name}</Typography>}
+          primary={<Typography onClick={handleClick} variant="body1" className={classes.nameStyle}>{article.body.name}</Typography>}
         />
         {open ?
           <IconButton className={classes.iconButton} onClick={handleClose}><ExpandLess /></IconButton> :
@@ -159,8 +159,8 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
               <TableRow className={classes.hoverRow} >
                 <TableCell className={classes.table}>
                   <FormattedMessage id="locales" /> {pages.map((page, index) => (<span className={classes.hoverRow} key={index}
-                    onClick={() => handleInTab({ article, type: "ARTICLE_PAGES", locale: page.locale })}>
-                    <span className={classes.localeSummary}>{page.locale}&nbsp;</span></span>))}
+                    onClick={() => handleInTab({ article, type: "ARTICLE_PAGES", locale: page.body.locale })}>
+                    <span className={classes.localeSummary}>{page.body.locale}&nbsp;</span></span>))}
                 </TableCell>
               </TableRow>
 

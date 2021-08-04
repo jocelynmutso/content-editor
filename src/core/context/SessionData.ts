@@ -49,7 +49,7 @@ class SessionData implements Ide.Session {
     }
     const pages = Object.assign({}, this._pages);
     const origin = this._site.pages[page];
-    pages[page] = new ImmutablePageUpdate({origin, saved: true, value: origin.content});
+    pages[page] = new ImmutablePageUpdate({origin, saved: true, value: origin.body.content});
     return new SessionData({ site: this._site, releases: this._releases, pages });
   }
   withPageValue(page: API.CMS.PageId, value: API.CMS.LocalisedContent): Ide.Session {
