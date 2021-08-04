@@ -2,10 +2,7 @@ import API from '../';
 
 const createService = (init: {store?: API.CMS.Store, url?: string}): API.CMS.Service => {
   const backend: API.CMS.Store = init.url ? store(init.url): init.store as any;
-  
-  const getSite = async () => {
-    
-  }
+  const getSite = async () => backend.fetch("").then((data) => data as any)
   const getReleases = async () => {
     
   }
@@ -23,22 +20,22 @@ class CreateBuilderImpl implements API.CMS.CreateBuilder {
     this._backend = backend;
   }
   async release(init: API.CMS.CreateRelease): Promise<API.CMS.Release> {
-    return init as any;
+    return this._backend.fetch(`/releases`, { method: "POST", body: JSON.stringify(init) }).then((data) => data as any)
   }
   async locale(init: API.CMS.CreateLocale): Promise<API.CMS.SiteLocale> {
-    return init as any;
+    return this._backend.fetch(`/locales`, { method: "POST", body: JSON.stringify(init) }).then((data) => data as any)
   }
   async article(init: API.CMS.CreateArticle): Promise<API.CMS.Article> {
-    return init as any;
+    return this._backend.fetch(`/articles`, { method: "POST", body: JSON.stringify(init) }).then((data) => data as any)
   }
   async page(init: API.CMS.CreatePage): Promise<API.CMS.Page> {
-    return init as any;
+    return this._backend.fetch(`/pages`, { method: "POST", body: JSON.stringify(init) }).then((data) => data as any)
   }
   async link(init: API.CMS.CreateLink): Promise<API.CMS.Link> {
-    return init as any;
+    return this._backend.fetch(`/links`, { method: "POST", body: JSON.stringify(init) }).then((data) => data as any)
   }
   async workflow(init: API.CMS.CreateWorkflow): Promise<API.CMS.Workflow> {
-    return init as any;
+    return this._backend.fetch(`/workflows`, { method: "POST", body: JSON.stringify(init) }).then((data) => data as any)
   }
 }
 
@@ -48,20 +45,19 @@ class UpdateBuilderImpl implements API.CMS.UpdateBuilder {
     this._backend = backend;
   }
   async locale(init: API.CMS.LocaleMutator): Promise<API.CMS.SiteLocale> {
-    return init as any;
+    return this._backend.fetch(`/locales`, { method: "PUT", body: JSON.stringify(init) }).then((data) => data as any)
   }
   async article(init: API.CMS.ArticleMutator): Promise<API.CMS.Article> {
-    return init as any;
+    return this._backend.fetch(`/articles`, { method: "PUT", body: JSON.stringify(init) }).then((data) => data as any)
   }
   async pages(init: API.CMS.PageMutator[]): Promise<API.CMS.Page[]> {
-    console.log("saving pages", init);
-    return init as any;
+    return this._backend.fetch(`/pages`, { method: "PUT", body: JSON.stringify(init) }).then((data) => data as any)
   }
   async link(init: API.CMS.LinkMutator): Promise<API.CMS.Link> {
-    return init as any;
+    return this._backend.fetch(`/links`, { method: "PUT", body: JSON.stringify(init) }).then((data) => data as any)
   }
   async workflow(init: API.CMS.WorkflowMutator): Promise<API.CMS.Workflow> {
-    return init as any;
+    return this._backend.fetch(`/workflows`, { method: "PUT", body: JSON.stringify(init) }).then((data) => data as any)
   }
 }
 
@@ -71,27 +67,25 @@ class DeleteBuilderImpl implements API.CMS.DeleteBuilder {
     this._backend = backend;
   }
   async locale(init: API.CMS.LocaleId): Promise<void> {
-    return init as any;
+    return this._backend.fetch(`/locales/${init}`, { method: "DELETE" }).then((data) => data as any)
   }
   async article(init: API.CMS.ArticleId): Promise<void> {
-    return init as any;
+    return this._backend.fetch(`/articles/${init}`, { method: "DELETE" }).then((data) => data as any)
   }
   async page(init: API.CMS.PageId): Promise<void> {
-    return init as any;
+    return this._backend.fetch(`/pages/${init}`, { method: "DELETE" }).then((data) => data as any)
   }
   async link(init: API.CMS.LinkId): Promise<void> {
-    return init as any;
+    return this._backend.fetch(`/links/${init}`, { method: "DELETE" }).then((data) => data as any)
   }
   async workflow(init: API.CMS.WorkflowId): Promise<void> {
-    return init as any;
+    return this._backend.fetch(`/workflows/${init}`, { method: "DELETE" }).then((data) => data as any)
   }
   async workflowArticlePage(workflow: API.CMS.WorkflowId, article: API.CMS.ArticleId, locale: API.CMS.Locale): Promise<void> {
-    const body = {workflow, article, locale};
-    console.log("delete workflow article", body);
+    return this._backend.fetch(`/workflows/${workflow}/${article}`, { method: "DELETE" }).then((data) => data as any)
   }
   async linkArticlePage(link: API.CMS.LinkId, article: API.CMS.ArticleId, locale: API.CMS.Locale): Promise<void> {
-    const body = {link, article, locale};
-    console.log("delete link article", body);
+    return this._backend.fetch(`/links/${link}/${article}`, { method: "DELETE" }).then((data) => data as any)
   }
 }
 
