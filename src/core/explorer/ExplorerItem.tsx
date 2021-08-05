@@ -2,7 +2,7 @@ import React from 'react';
 import {
   makeStyles, Theme, createStyles, Divider, Typography, TableContainer,
   Table, TableRow, TableCell, TableBody, IconButton,
-  Button, ListItem, ListItemText, Collapse
+  Button, ListItem, ListItemText, Collapse, Switch
 } from '@material-ui/core';
 
 import ExpandLess from '@material-ui/icons/ExpandLess';
@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
     nameStyle: {
       color: theme.palette.text.primary,
       fontWeight: 'bold',
+      maxWidth: '260px',
       "&:hover": {
         cursor: 'pointer',
         color: theme.palette.secondary.dark
@@ -106,13 +107,14 @@ interface ExplorerItemProps {
 
 const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
   const classes = useStyles();
-  const { handleInTab } = Ide.useNav();
+  const { handleInTab, findTab, handleDualView } = Ide.useNav();
   const ide = Ide.useIde();
   const site = ide.session.site;
   const unsaved = Ide.useUnsaved(article);
   const [open, setOpen] = React.useState(false);
   const [localeOpen, setLocaleOpen] = React.useState(false);
   const [articlePageOpen, setArticlePageOpen] = React.useState<API.CMS.SiteLocale>();
+  const dualView = findTab(article)?.data?.dualView ? true : false;
 
   const handleClick = () => {
     setOpen(!open);
@@ -148,7 +150,10 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
     <>
       <ListItem className={classes.itemHover}>
         <ListItemText
-          primary={<Typography onClick={handleClick} variant="body1" className={classes.nameStyle}>{article.body.name}</Typography>}
+          primary={<Typography 
+            onClick={handleClick}
+            noWrap
+            variant="body1" className={classes.nameStyle}>{article.body.name}</Typography>}
         />
         {open ?
           <IconButton className={classes.iconButton} onClick={handleClose}><ExpandLess /></IconButton> :
@@ -184,6 +189,14 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
                 </TableRow>
               )}
 
+
+              <TableRow className={classes.hoverRow}>
+                <TableCell className={classes.table}>
+                  <FormattedMessage id="explorer.pages.dualview" />
+                  <Switch color="primary" checked={dualView} onClick={() => handleDualView(article)}/>
+                </TableCell>
+              </TableRow>
+
               {unsaved ? (<TableRow>
                 <TableCell className={classes.table}>
                   <div className={classes.pageButtons}>
@@ -202,17 +215,17 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
                 ): undefined
               }
 
-
-              <TableRow className={classes.hoverRow} >
+              {links.length === 0 ? undefined : (<TableRow className={classes.hoverRow} >
                 <TableCell className={classes.table} onClick={() => handleInTab({ article, type: "ARTICLE_LINKS" })}>
                   <FormattedMessage id="links" /> <span className={classes.summary}>{links.length}</span>
                 </TableCell>
-              </TableRow>
-              <TableRow className={classes.hoverRow}>
+              </TableRow>)}
+              
+              {workflows.length === 0 ? undefined : (<TableRow className={classes.hoverRow}>
                 <TableCell className={classes.table} onClick={() => handleInTab({ article, type: "ARTICLE_WORKFLOWS" })}>
                   <FormattedMessage id="workflows" /> <span className={classes.summary}>{workflows.length}</span>
                 </TableCell>
-              </TableRow>
+              </TableRow>)}
               
 {/*
               <TableRow className={classes.hoverRow} >

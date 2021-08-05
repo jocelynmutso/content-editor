@@ -10,7 +10,7 @@ const useStyles = (props: { y: number }) => makeStyles((theme: Theme) =>
   createStyles({
     root: {
       height: `${props.y}px`,
-      paddingLeft: theme.spacing(2)
+      padding: theme.spacing(1)
     },
     left: {
       display: 'flex',
@@ -40,17 +40,17 @@ const Composer: React.FC<{}> = () => {
   //composers which are not linked directly with an article
   const active = tabs[layout.session.history.open];
   if (active.id === 'releases') {
-    return (<ReleasesView />);
+    return (<div className={classes.root}><ReleasesView /></div>);
   } else if (active.id === 'links') {
-    return (<LinksView />)
+    return (<div className={classes.root}><LinksView /></div>)
   } else if (active.id === 'newItem') {
-    return (<ComposerSelect />)
+    return (<div className={classes.root}><ComposerSelect /></div>)
   } else if (active.id === 'locales') {
-    return (<LocalesView />)
+    return (<div className={classes.root}><LocalesView /></div>)
   } else if (active.id === 'workflows') {
-    return (<WorkflowsView />)
+    return (<div className={classes.root}><WorkflowsView /></div>)
   } else if (active.id === 'articles') {
-    return (<ArticlesView />)
+    return (<div className={classes.root}><ArticlesView /></div>)
   }
 
   //article-based composers
@@ -63,8 +63,9 @@ const Composer: React.FC<{}> = () => {
 
   let composer: React.ReactChild;
   if (tab.data.nav.type === "ARTICLE_PAGES") {
-    const locale = tab.data.nav.value as string;
-    composer = (<PageComposer key={article.id + "-" + locale} article={article} locale={locale} />);
+    const locale1 = tab.data.nav.value as string;
+    const locale2 = tab.data.nav.value2 as string;
+    composer = (<PageComposer key={article.id + "-" + locale1 + "-" + locale2} article={article} locale1={locale1} locale2={locale2}/>);
   } else if (tab.data.nav.type === "ARTICLE_LINKS") {
     composer = (<LinkTable key={article.id + "-links"} article={article} />)
   } else if (tab.data.nav.type === "ARTICLE_WORKFLOWS") {

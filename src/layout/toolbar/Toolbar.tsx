@@ -88,7 +88,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ children, open, setOpen }) => {
   }, [children, activeView, links, view]);
 
 
-  const buttons = children.map((item, index) => (
+  const buttons = children.filter(item => item.icon).map((item, index) => (
     <Tooltip title={<FormattedMessage id={item.id} />} key={index}>
       <ListItem disableGutters>
         <Box display="flex" justifyContent="center" className={classes.item}>
