@@ -85,14 +85,34 @@ class ImmutablePageUpdate implements Ide.PageUpdate {
 
 class ImmutableTabData implements Ide.TabData {
   private _nav: Ide.Nav;
+  private _dualView?: boolean;
 
-  constructor(props: { nav: Ide.Nav }) {
+  constructor(props: { nav: Ide.Nav, dualView?: boolean }) {
     this._nav = props.nav;
+    this._dualView = props.dualView;
   }
   get nav() {
     return this._nav;
   }
+  get dualView() {
+    return this._dualView;
+  }
+  withDualView(enabled: boolean) {
+    if(enabled) {
+      return new ImmutableTabData({ nav: this._nav, dualView: enabled });  
+    }
+    return new ImmutableTabData({ nav: { type: this._nav.type, value: this._nav.value }, dualView: enabled });
+  }
   withNav(nav: Ide.Nav) {
+    if(nav.type === 'ARTICLE_PAGES') {
+      if(this._dualView) {
+        const value = this._nav.value;
+        const value2 = this._nav.value === nav.value ? undefined : nav.value;
+        return new ImmutableTabData({ nav: { type: nav.type, value: value, value2 }, dualView: this._dualView });
+      } else {
+        return new ImmutableTabData({ nav: nav, dualView: this._dualView });
+      }   
+    }
     return new ImmutableTabData({ nav });
   }
 }

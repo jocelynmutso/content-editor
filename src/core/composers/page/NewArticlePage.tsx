@@ -18,13 +18,11 @@ const NewArticlePage: React.FC<{
   const handleCreate = () => {
     const entity: API.CMS.CreatePage = { articleId: article.id, locale: locale.id };
     ide.service.create().page(entity)
+    .then(success => ide.actions.handleLoadSite().then(() => success))
     .then(success => {
-      console.log(success)
+      onCreate(success);
       onClose();
-      ide.actions.handleLoadSite();
-      return success;
     })
-    .then(onCreate)
   }
 
   return (

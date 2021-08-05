@@ -17,7 +17,7 @@ declare namespace Session {
 
   interface ToolbarItem {
     id: string;
-    icon: React.ReactNode;
+    icon?: React.ReactNode;
     badge?: { color: string, text: string };
     enabled?: boolean;
     type: ToolbarItemType;

@@ -1,18 +1,13 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, Box } from '@material-ui/core';
 
 import MDEditor from '@uiw/react-md-editor';
 import { API, Ide } from '../../deps';
 
 const useStyles = () => makeStyles((theme: Theme) =>
   createStyles({
-    container: {
-      width: '98%',
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      marginBottom: theme.spacing(1),
-      backgroundColor: theme.palette.background.paper,
-
+    left: {
+      paddingRight: theme.spacing(1)
     }
   }),
 )();
@@ -20,26 +15,40 @@ const useStyles = () => makeStyles((theme: Theme) =>
 
 type PageComposerProps = {
   article: API.CMS.Article,
-  locale: API.CMS.Locale
+  locale1: API.CMS.LocaleId,
+  locale2?: API.CMS.LocaleId,
 }
 
-const PageComposer: React.FC<PageComposerProps> = ({ article, locale }) => {
+const PageComposer: React.FC<PageComposerProps> = ({ article, locale1, locale2 }) => {
   const classes = useStyles();
   const ide = Ide.useIde();
-  const page = Object.values(ide.session.site.pages)
-    .filter(page => page.body.article === article.id)
-    .filter(page => page.body.locale === locale).pop() as API.CMS.Page;
+  const page1 = Object.values(ide.session.site.pages)
+    .filter(p => p.body.article === article.id)
+    .filter(p => p.body.locale === locale1).pop() as API.CMS.Page;
 
-  const value = ide.session.pages[page.id] ? ide.session.pages[page.id].value : page.body.content;
-  const handleChange = (value: string | undefined) => {
-    ide.actions.handlePageUpdate(page.id, value ? value : "");
-  } 
+  const page2 = Object.values(ide.session.site.pages)
+    .filter(p => p.body.article === article.id)
+    .filter(p => p.body.locale === locale2).pop() as API.CMS.Page | undefined;
 
-  return (
-    <div className={classes.container}>
-      <MDEditor value={value} onChange={handleChange} />
-    </div>
-  );
+  const value1 = ide.session.pages[page1.id] ? ide.session.pages[page1.id].value : page1.body.content;
+  const value2 = page2 ? (ide.session.pages[page2.id] ? ide.session.pages[page2.id].value : page2.body.content) : undefined;
+  
+  const handleChange1 = (value: string | undefined) => {
+    ide.actions.handlePageUpdate(page1.id, value ? value : "");
+  }  
+  if(value2 === undefined || !page2) {
+    return (<MDEditor value={value1} onChange={handleChange1} />);
+  }
+
+  const handleChange2 = (value: string | undefined) => {
+    ide.actions.handlePageUpdate(page2.id, value ? value : "");
+  }
+  
+  
+  return (<Box display="flex" flexDirection="row" flexWrap="wrap">
+    <Box flex="1" className={classes.left}><MDEditor value={value1} onChange={handleChange1} /></Box>
+    <Box flex="1"><MDEditor value={value2} onChange={handleChange2} /></Box>
+  </Box>);
 }
 
 export { PageComposer }

@@ -111,13 +111,15 @@ const en = {
   'workflow.removepage.title': 'Remove this Workflow?',
   'workflow.removepage': 'Removing the Workflow only removes its association with this article. To delete this item permanently, click the Delete icon.',
 
-  'toolbar.articles': 'toolbar.articles',
-  'toolbar.explorer': 'toolbar.explorer',
-  'toolbar.links': 'toolbar.links',
-  'toolbar.workflows': 'toolbar.workflows',
-  'toolbar.releases': 'toolbar.releases',
-  'toolbar.locales': 'toolbar.locales',
-  'toolbar.createNew': 'toolbar.createNew',
+  'toolbar.articles': 'Articles overview',
+  'toolbar.newarticle': 'Create new Article',
+  'toolbar.newlocale': 'Add new Locale',
+  'toolbar.explorer': 'Explorer',
+  'toolbar.links': 'Links overview',
+  'toolbar.workflows': 'Workflows overview',
+  'toolbar.releases': 'Releases',
+  'toolbar.locales': 'Locales',
+  'toolbar.createNew': 'Create new',
 };
 
 export default en;

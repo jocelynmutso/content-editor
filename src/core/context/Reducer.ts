@@ -32,7 +32,7 @@ class ReducerDispatch implements Ide.Actions {
     this._service = service;
   }
   async handleLoad(): Promise<void> {
-    this._service.getSite()
+    return this._service.getSite()
       .then(site => {
         if(site.contentType === "NOT_CREATED") {
           this._service.create().site().then(created => this._sessionDispatch(ActionBuilder.setSite({site: created})));
@@ -42,7 +42,7 @@ class ReducerDispatch implements Ide.Actions {
       });
   }
   async handleLoadSite(): Promise<void> {
-    this._service.getSite().then(site => this._sessionDispatch(ActionBuilder.setSite({site})));
+    return this._service.getSite().then(site => this._sessionDispatch(ActionBuilder.setSite({site})));
   }
   handlePageUpdate(page: API.CMS.PageId, value: API.CMS.LocalisedContent): void {
     this._sessionDispatch(ActionBuilder.setPageUpdate({page, value}));
@@ -56,6 +56,7 @@ const Reducer = (state: Ide.Session, action: Action): Ide.Session => {
   switch (action.type) {
     case ActionType.setSite: {
       if (action.setSite) {
+        console.log("new site", action.setSite.site);
         return state.withSite(action.setSite.site);
       }
       console.error("Action data error", action);

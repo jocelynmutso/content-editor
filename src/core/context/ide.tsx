@@ -11,10 +11,13 @@ declare namespace Ide {
   interface Nav {
     type: NavType;
     value?: string;
+    value2?: string;
   }
 
   interface TabData {
     nav?: Nav
+    dualView?: boolean;
+    withDualView(enabled: boolean): TabData;
     withNav(nav: Nav): TabData;
   }
 
@@ -99,7 +102,25 @@ namespace Ide {
       layout.actions.handleTabAdd(tab);
     }
 
-    return { handleInTab };
+    const findTab = (article: API.CMS.Article): Ide.Tab | undefined => {
+      const oldTab = layout.session.findTab(article.id);
+      if (oldTab !== undefined) {
+        const tabs = layout.session.tabs;
+        const active = tabs[layout.session.history.open];
+        const tab: Ide.Tab = active;
+        return tab;
+      }
+      return undefined;
+    }
+    
+    const handleDualView = (article: API.CMS.Article) => {
+      const oldTab = layout.session.findTab(article.id);
+      if (oldTab !== undefined) {
+        layout.actions.handleTabData(article.id, (oldData: Ide.TabData) => oldData.withDualView(!oldData.dualView));
+      }
+    }
+
+    return { handleInTab, findTab, handleDualView };
   }
   
   export const Provider: React.FC<{ children: React.ReactNode, service: API.CMS.Service }> = ({ children, service }) => {
