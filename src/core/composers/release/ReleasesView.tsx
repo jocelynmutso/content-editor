@@ -8,12 +8,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import GetAppIcon from '@material-ui/icons/GetApp';
 import EditIcon from '@material-ui/icons/Edit';
 import { FormattedMessage } from 'react-intl';
 
-import { API, Ide } from '../../deps'; 
+import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((_theme: Theme) =>
   createStyles({
@@ -70,10 +69,10 @@ const ReleasesView: React.FC<{}> = () => {
       <Table className={classes.table} size="small">
         <TableHead>
           <TableRow>
-            <TableCell className={classes.bold} align="left" colSpan={2}><FormattedMessage id="tag"/></TableCell>
-            <TableCell className={classes.bold} align="left"><FormattedMessage id="created"/></TableCell>
-            <TableCell className={classes.bold} align="left"><FormattedMessage id="release.composer.note"/></TableCell>
-            <TableCell className={classes.bold} align="center"><FormattedMessage id="options"/></TableCell>
+            <TableCell className={classes.bold} align="left" colSpan={2}><FormattedMessage id="tag" /></TableCell>
+            <TableCell className={classes.bold} align="left"><FormattedMessage id="created" /></TableCell>
+            <TableCell className={classes.bold} align="left"><FormattedMessage id="release.composer.note" /></TableCell>
+            <TableCell className={classes.bold} align="center"><FormattedMessage id="download" /></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -85,7 +84,7 @@ const ReleasesView: React.FC<{}> = () => {
 }
 
 
-const Row: React.FC<{release: API.CMS.Release}> = ({ release }) => {
+const Row: React.FC<{ release: API.CMS.Release }> = ({ release }) => {
   const classes = useRowStyles();
 
   return (
@@ -96,14 +95,7 @@ const Row: React.FC<{release: API.CMS.Release}> = ({ release }) => {
         <TableCell className={classes.tableCell} align="left">{release.created}</TableCell>
         <TableCell className={classes.tableCell} align="left">{release.body.note}</TableCell>
         <TableCell align="center">
-
-          {release.body.name === "LATEST" ?
-            <>
-              <IconButton className={classes.iconButton}> <EditIcon /> </IconButton>
-              <IconButton className={classes.iconButton}> <CheckCircleIcon /> </IconButton>
-            </>
-            : <IconButton className={classes.iconButton}><VisibilityIcon /> </IconButton>}
-
+          <IconButton className={classes.iconButton}><GetAppIcon /> </IconButton>
         </TableCell>
       </TableRow>
     </>

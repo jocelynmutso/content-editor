@@ -37,12 +37,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 interface LinkEditProps {
-  site: API.CMS.Site;
+  /*site: API.CMS.Site;
   article: API.CMS.Article;
   link: API.CMS.Link;
+  */
 }
 
-const LinkEdit: React.FC<LinkEditProps> = ({ site, article, link }) => {
+const LinkEdit: React.FC<LinkEditProps> = ({  }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 

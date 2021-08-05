@@ -10,9 +10,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import AddIcon from '@material-ui/icons/AddOutlined';
+
 import { FormattedMessage } from 'react-intl';
 
-import { LinkRemovePage, LinkDelete } from '../link';
+import { LinkRemovePage, LinkDelete, NewLinkArticle, LinkEdit } from './';
 import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((_theme: Theme) =>
@@ -40,7 +42,6 @@ const useRowStyles = makeStyles((theme: Theme) =>
     column: {
       width: '25%',
       fontWeight: 'bold',
-      border: '1px solid',
       padding: 0
     },
     expandRow: {
@@ -52,7 +53,8 @@ const useRowStyles = makeStyles((theme: Theme) =>
     },
     iconButton: {
       padding: 2,
-      color: theme.palette.primary.dark,
+      margin: 2,
+      color: theme.palette.secondary.main,
       "&:hover, &.Mui-focusVisible": {
         backgroundColor: theme.palette.info.main,
         color: theme.palette.background.paper,
@@ -63,7 +65,7 @@ const useRowStyles = makeStyles((theme: Theme) =>
     },
   }));
 
-const LinksView: React.FC<{}> = () => {
+const LinksView: React.FC<{}> = ({ }) => {
   const classes = useStyles();
   const site = Ide.useSite();
   const links = Object.values(site.links);
@@ -92,12 +94,12 @@ const LinksView: React.FC<{}> = () => {
 interface RowProps {
   site: API.CMS.Site,
   link: API.CMS.Link,
-
 }
 
 const Row: React.FC<RowProps> = ({ site, link }) => {
   const classes = useRowStyles();
   const [open, setOpen] = React.useState(false);
+  const [newLinkArticleOpen, setNewLinkArticleOpen] = React.useState(false);
 
   return (
     <>
@@ -112,7 +114,10 @@ const Row: React.FC<RowProps> = ({ site, link }) => {
         <TableCell className={classes.tableCell} align="left">{link.body.description}</TableCell>
         <TableCell className={classes.tableCell} align="left">{link.body.content}</TableCell>
         <TableCell className={classes.tableCell} align="center">{link.body.articles.length}</TableCell>
-        <TableCell className={classes.tableCell} align="center"><LinkDelete link={link} site={site} /></TableCell>
+        <TableCell className={classes.tableCell} align="center">
+          <LinkDelete link={link} site={site} />
+          <LinkEdit />
+          </TableCell>
       </TableRow>
 
       <TableRow>
@@ -123,9 +128,16 @@ const Row: React.FC<RowProps> = ({ site, link }) => {
                 <TableHead>
                   <TableRow>
                     <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}><FormattedMessage id="articles" /></TableCell>
-                    <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}><FormattedMessage id="associations.add" /></TableCell>
+                    
+                    <TableCell className={classes.column} align="right" style={{ paddingRight: 0 }}>
+                      <NewLinkArticle link={link} open={newLinkArticleOpen} onClose={() => setNewLinkArticleOpen(false)}/>
+                      <FormattedMessage id="associations.add" />
+                      <IconButton className={classes.iconButton} onClick={() => setNewLinkArticleOpen(true)}><AddIcon /></IconButton>
+                    </TableCell>
                   </TableRow>
                 </TableHead>
+                
+                
                 <TableBody>
                   {link.body.articles.map((id) => (
                     <TableRow hover key={id} className={classes.row}>
@@ -136,7 +148,6 @@ const Row: React.FC<RowProps> = ({ site, link }) => {
                         <LinkRemovePage link={link} article={site.articles[id]} locale={link.body.locale} />
                       </TableCell>
                       <TableCell>
-                        arlualru
                       </TableCell>
 
                     </TableRow>

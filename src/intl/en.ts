@@ -10,6 +10,7 @@ const en = {
   'articles': 'Articles',
   'description': 'Description',
   'delete': 'Delete',
+  'download': 'Download JSON',
   'disable': 'Disable',
   'status': 'Status',
   'tag': 'Tag',
@@ -21,6 +22,7 @@ const en = {
   
   'explorer.pages': 'Pages',
   'explorer.pages.create': 'Create Page',
+  'explorer.pages.dualview': 'Dual View',
   'explorer.locale.empty': 'No Locales',
 
   'article.composer.title': 'Create new Article',
@@ -60,7 +62,9 @@ const en = {
   'composer.release.desc': 'Create a snapshot of all site content at one certain point of time for testing or production purposes',
 
   'link.associate.title': 'Associate a link with an Article',
-
+  'link.article.add.title': 'Add link to an Article',
+  'link.article.select': 'Select Article',
+  
   'link.composer.title': 'Create a new link',
   'link.type': 'Type',
   'link.url': 'URL / value',

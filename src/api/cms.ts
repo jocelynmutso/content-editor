@@ -91,7 +91,9 @@ declare namespace CMS {
     linkId: LinkId,
     content: LocalisedContent, 
     locale: Locale, 
-    description: string
+    type: "internal" | "external" | "phone",
+    description: string,
+    articles: ArticleId[],
   }
 
   interface Workflow {
@@ -108,7 +110,8 @@ declare namespace CMS {
     workflowId: WorkflowId, 
     name: string, 
     locale: Locale, 
-    content: LocalisedContent
+    content: LocalisedContent,
+    articles: ArticleId[]
   }
 
   interface FetchIntegration {
