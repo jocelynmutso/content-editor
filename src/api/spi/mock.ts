@@ -75,29 +75,27 @@ const locales: API.CMS.SiteLocale[] = [
   { id: "l2", body: { enabled: true, value: "sv" }},
   { id: "l3", body: { enabled: false, value: "en" }}
 ]
+const releases: API.CMS.Release[] = [
+  { id: "r3", body: {name: "LATEST", note: "" }, created: "03/10/2021"},
+  { id: "r1", body: {name: "v1.5", note: "super note here" }, created: "04/02/2021"},
+  { id: "r2", body: {name: "v1.6", note: "Even better note here" }, created: "12/02/2021"},
 
-const createMock = (): API.CMS.Service => {
-  const releases: API.CMS.Releases = [
-    { id: "r3", body: {name: "LATEST", note: "" }, created: "03/10/2021"},
-    { id: "r1", body: {name: "v1.5", note: "super note here" }, created: "04/02/2021"},
-    { id: "r2", body: {name: "v1.6", note: "Even better note here" }, created: "12/02/2021"},
-
-  ];
-  const getSite = async () => {
-    return {
-      pages: toRecord(pages),
-      links: toRecord(links),
-      articles: toRecord(articles),
-      workflows: toRecord(workflows),
-      release: toRecord(releases),
-      locales: toRecord(locales),
-    };
-  }
-  const getReleases = async () => {
-    return releases;
-  }
+];
+const getSite = async (): Promise<API.CMS.Site> => {
   return {
-    getSite, getReleases,
+    name: "mock", contentType: "OK",
+    releases: toRecord(releases),
+    pages: toRecord(pages),
+    links: toRecord(links),
+    articles: toRecord(articles),
+    workflows: toRecord(workflows),
+    locales: toRecord(locales),
+  };
+}
+const createMock = (): API.CMS.Service => {
+
+  return {
+    getSite,
     create: () => new MockCreateBuilder(),
     update: () => new MockUpdateBuilder(),
     delete: () => new MockDeleteBuilder()
@@ -105,6 +103,9 @@ const createMock = (): API.CMS.Service => {
 }
 
 class MockCreateBuilder implements API.CMS.CreateBuilder {
+  async site(): Promise<API.CMS.Site> {
+    return getSite();
+  }
   async release(init: API.CMS.CreateRelease): Promise<API.CMS.Release> {
     return init as any;
   }

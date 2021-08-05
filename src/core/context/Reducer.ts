@@ -4,7 +4,6 @@ import { API } from '../deps';
 
 enum ActionType {
   setSite = "setSite",
-  setReleases = "setReleases",
   setPageUpdate = "setPageUpdate",
   setPageUpdateRemove = "setPageUpdateRemove"
 }
@@ -15,14 +14,12 @@ interface Action {
   setPageUpdateRemove?: {pages: API.CMS.PageId[]}
   setPageUpdate?: { page: API.CMS.PageId, value: API.CMS.LocalisedContent };
   setSite?: { site: API.CMS.Site };
-  setReleases?: { releases: API.CMS.Releases };
 }
 
 const ActionBuilder = {
   setPageUpdateRemove: (setPageUpdateRemove: { pages: API.CMS.PageId[] } ) => ({type: ActionType.setPageUpdateRemove, setPageUpdateRemove }),
   setPageUpdate: (setPageUpdate: { page: API.CMS.PageId, value: API.CMS.LocalisedContent }) => ({ type: ActionType.setPageUpdate, setPageUpdate }),
   setSite: (setSite: { site: API.CMS.Site }) => ({ type: ActionType.setSite, setSite }),
-  setReleases: (setReleases: { releases: API.CMS.Releases }) => ({ type: ActionType.setReleases, setReleases }),
 }
 
 class ReducerDispatch implements Ide.Actions {
@@ -35,16 +32,18 @@ class ReducerDispatch implements Ide.Actions {
     this._service = service;
   }
   async handleLoad(): Promise<void> {
-    this._service.getSite().then(site => this._sessionDispatch(ActionBuilder.setSite({site})));
-    this._service.getReleases().then(releases => this._sessionDispatch(ActionBuilder.setReleases({releases})));
-  }
-  async handleLoadReleases(): Promise<void> {
-    this._service.getReleases().then(releases => this._sessionDispatch(ActionBuilder.setReleases({releases})));
+    this._service.getSite()
+      .then(site => {
+        if(site.contentType === "NOT_CREATED") {
+          this._service.create().site().then(created => this._sessionDispatch(ActionBuilder.setSite({site: created})));
+        } else {
+          this._sessionDispatch(ActionBuilder.setSite({site})) 
+        }
+      });
   }
   async handleLoadSite(): Promise<void> {
     this._service.getSite().then(site => this._sessionDispatch(ActionBuilder.setSite({site})));
   }
-  
   handlePageUpdate(page: API.CMS.PageId, value: API.CMS.LocalisedContent): void {
     this._sessionDispatch(ActionBuilder.setPageUpdate({page, value}));
   }
@@ -58,13 +57,6 @@ const Reducer = (state: Ide.Session, action: Action): Ide.Session => {
     case ActionType.setSite: {
       if (action.setSite) {
         return state.withSite(action.setSite.site);
-      }
-      console.error("Action data error", action);
-      return state;
-    }
-    case ActionType.setReleases: {
-      if (action.setReleases) {
-        return state.withReleases(action.setReleases.releases);
       }
       console.error("Action data error", action);
       return state;

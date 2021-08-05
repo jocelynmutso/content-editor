@@ -31,8 +31,6 @@ declare namespace Ide {
 
   interface Session {
     site: API.CMS.Site,
-    releases: API.CMS.Releases
-    
     pages: Record<API.CMS.PageId, PageUpdate>;
     
     withPage(page: API.CMS.PageId): Session;
@@ -40,12 +38,10 @@ declare namespace Ide {
     withoutPages(pages: API.CMS.PageId[]): Session;
     
     withSite(site: API.CMS.Site): Session;
-    withReleases(releases: API.CMS.Releases): Session;
   }
 
   interface Actions {
     handleLoad(): Promise<void>;
-    handleLoadReleases(): Promise<void>;
     handleLoadSite(): Promise<void>;
     handlePageUpdate(page: API.CMS.PageId, value: API.CMS.LocalisedContent): void;
     handlePageUpdateRemove(pages: API.CMS.PageId[]): void;
@@ -85,11 +81,6 @@ namespace Ide {
     return result.session.site;
   }
 
-  export const useReleases = () => {
-    const result: ContextType = React.useContext(IdeContext);
-    return result.session.releases;
-  }
-
   export const useNav = () => {
     const layout = Layout.useContext();
     
@@ -121,7 +112,7 @@ namespace Ide {
     React.useLayoutEffect(() => {
       console.log("init ide data");
       actions.handleLoad();
-    }, [service]);
+    }, [service, actions]);
 
     return (<IdeContext.Provider value={{ session, actions, service }}>{children}</IdeContext.Provider>);
   };

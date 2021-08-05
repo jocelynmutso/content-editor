@@ -9,6 +9,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { FormattedMessage } from 'react-intl';
 
+import { LocaleComposer, NewArticlePage } from '../composers';
 import { API, Ide } from '../deps';
 
 
@@ -104,14 +105,14 @@ interface ExplorerItemProps {
 }
 
 const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
-
+  const classes = useStyles();
   const { handleInTab } = Ide.useNav();
   const ide = Ide.useIde();
   const site = ide.session.site;
   const unsaved = Ide.useUnsaved(article);
-
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [localeOpen, setLocaleOpen] = React.useState(false);
+  const [articlePageOpen, setArticlePageOpen] = React.useState<API.CMS.SiteLocale>();
 
   const handleClick = () => {
     setOpen(!open);
@@ -129,14 +130,17 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
     const unsaved: API.CMS.PageMutator[] = Object.values(ide.session.pages)
       .filter(p => !p.saved)
       .filter(p => p.origin.body.article === article.id)
-      .map(p => ({ id: p.origin.id, locale: p.origin.body.locale, content: p.value }));
+      .map(p => ({ pageId: p.origin.id, locale: p.origin.body.locale, content: p.value }));
 
     ide.service.update().pages(unsaved).then(success => {
       ide.actions.handlePageUpdateRemove(success.map(p => p.id));
+    }).then(() => {
+      ide.actions.handleLoadSite();
     });
   }
 
   const pages: API.CMS.Page[] = Object.values(site.pages).filter(page => article.id === page.body.article);
+  const canCreate: API.CMS.SiteLocale[] = Object.values(site.locales).filter(locale => pages.filter(p => p.body.locale === locale.id).length === 0);
   const links: API.CMS.Link[] = Object.values(site.links).filter(link => link.body.articles.includes(article.id));
   const workflows: API.CMS.Workflow[] = Object.values(site.workflows).filter(workflow => workflow.body.articles.includes(article.id));
 
@@ -154,15 +158,31 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <TableContainer>
           <Table size="small">
-            <TableBody >
-
-              <TableRow className={classes.hoverRow} >
-                <TableCell className={classes.table}>
-                  <FormattedMessage id="locales" /> {pages.map((page, index) => (<span className={classes.hoverRow} key={index}
-                    onClick={() => handleInTab({ article, type: "ARTICLE_PAGES", locale: page.body.locale })}>
-                    <span className={classes.localeSummary}>{page.body.locale}&nbsp;</span></span>))}
-                </TableCell>
-              </TableRow>
+            <TableBody>
+              { pages.length === 0 ? undefined : (
+                <TableRow className={classes.hoverRow} >
+                  <TableCell className={classes.table}>
+                    <FormattedMessage id="pages" /> {pages.map((page, index) => (<span className={classes.hoverRow} key={index}
+                      onClick={() => handleInTab({ article, type: "ARTICLE_PAGES", locale: page.body.locale })}>
+                      <span className={classes.localeSummary}>{site.locales[page.body.locale].body.value}&nbsp;</span></span>))}
+                  </TableCell>
+                </TableRow>
+              )}
+              
+              { articlePageOpen ? (<NewArticlePage locale={articlePageOpen} article={article} 
+                  onClose={() => setArticlePageOpen(undefined)}
+                  onCreate={(page) => handleInTab({ article, type: "ARTICLE_PAGES", locale: page.body.locale })}
+                  />
+                ) : undefined }
+              { canCreate.length === 0 ? undefined : (
+                <TableRow className={classes.hoverRow}>
+                  <TableCell className={classes.table}>
+                    <FormattedMessage id="explorer.pages.create" /> {canCreate.map((locale, index) => (<span className={classes.hoverRow} key={index}
+                      onClick={() => setArticlePageOpen(locale)}>
+                      <span className={classes.localeSummary}>{locale.body.value}&nbsp;</span></span>))}
+                  </TableCell>
+                </TableRow>
+              )}
 
               {unsaved ? (<TableRow>
                 <TableCell className={classes.table}>
@@ -171,6 +191,16 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
                   </div>
                 </TableCell>
               </TableRow>) : null}
+
+              { localeOpen ? (<LocaleComposer onClose={() => setLocaleOpen(false)}/>) : undefined }
+              { pages.length === 0 && canCreate.length === 0 ? (
+                <TableRow className={classes.hoverRow} onClick={() => setLocaleOpen(true)}>
+                  <TableCell className={classes.table}>
+                    <FormattedMessage id="explorer.locale.empty" />
+                  </TableCell>
+                </TableRow>
+                ): undefined
+              }
 
 
               <TableRow className={classes.hoverRow} >
@@ -183,12 +213,14 @@ const ExplorerItem: React.FC<ExplorerItemProps> = ({ article }) => {
                   <FormattedMessage id="workflows" /> <span className={classes.summary}>{workflows.length}</span>
                 </TableCell>
               </TableRow>
+              
+{/*
               <TableRow className={classes.hoverRow} >
                 <TableCell className={classes.table}>
                   <FormattedMessage id="modified" /> <span>9 days ago</span>
                 </TableCell>
               </TableRow>
-
+*/}
             </TableBody>
           </Table>
         </TableContainer>

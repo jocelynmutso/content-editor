@@ -43,11 +43,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface ReleaseTableProps {
   site: API.CMS.Site,
-  releases: API.CMS.Releases;
-
 }
 
-const ReleaseTable: React.FC<ReleaseTableProps> = ({ site, releases }) => {
+const ReleaseTable: React.FC<ReleaseTableProps> = ({ site }) => {
   const classes = useStyles();
 
   return (
@@ -63,7 +61,7 @@ const ReleaseTable: React.FC<ReleaseTableProps> = ({ site, releases }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {releases.map((release, index) => (
+          {Object.values(site.releases).map((release, index) => (
             <TableRow key={index}>
               <TableCell align="left">{release.body.name}</TableCell>
               <TableCell align="left">{release.body.note}</TableCell>

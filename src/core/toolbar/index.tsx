@@ -8,7 +8,7 @@ import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
 import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
 import { Explorer } from '../explorer';
 
-import { Layout, API } from '../deps';
+import { Layout } from '../deps';
 
 
 

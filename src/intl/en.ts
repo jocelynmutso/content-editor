@@ -18,6 +18,10 @@ const en = {
   'options': 'Options',
   'links': 'Links',
   'workflows': 'Workflows',
+  
+  'explorer.pages': 'Pages',
+  'explorer.pages.create': 'Create Page',
+  'explorer.locale.empty': 'No Locales',
 
   'article.composer.title': 'Create new Article',
   'article.composer.parent': 'Parent Article',
@@ -83,6 +87,7 @@ const en = {
 
   'newpage.title': 'Create a new page',
   'newpage.info': 'A page consists of localised content and must be associated with an Article.',
+  'newpage.article.info': 'Confirm creation of page for: {article} with locale: {locale}',
 
   'pages.save': 'Save pages',
   
@@ -104,8 +109,15 @@ const en = {
   'workflow.delete': 'Deleting this workflow will remove it globally from the application.',
   
   'workflow.removepage.title': 'Remove this Workflow?',
-  'workflow.removepage': 'Removing the Workflow only removes its association with this article. To delete this item permanently, click the Delete icon.'
+  'workflow.removepage': 'Removing the Workflow only removes its association with this article. To delete this item permanently, click the Delete icon.',
 
+  'toolbar.articles': 'toolbar.articles',
+  'toolbar.explorer': 'toolbar.explorer',
+  'toolbar.links': 'toolbar.links',
+  'toolbar.workflows': 'toolbar.workflows',
+  'toolbar.releases': 'toolbar.releases',
+  'toolbar.locales': 'toolbar.locales',
+  'toolbar.createNew': 'toolbar.createNew',
 };
 
 export default en;

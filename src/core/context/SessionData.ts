@@ -3,23 +3,17 @@ import { API } from '../deps';
 
 class SessionData implements Ide.Session {
   private _site: API.CMS.Site;
-  private _releases: API.CMS.Releases;
   private _pages: Record<API.CMS.PageId, Ide.PageUpdate>;
 
   constructor(props: {
     site?: API.CMS.Site,
-    releases?: API.CMS.Releases,
     pages?: Record<API.CMS.PageId, Ide.PageUpdate>
   }) {
 
-    this._site = props.site ? props.site : { articles: {}, links: {}, locales: {}, pages: {}, workflows: {} };
-    this._releases = props.releases ? props.releases : [];
+    this._site = props.site ? props.site : { name: "", contentType: "OK", releases: {}, articles: {}, links: {}, locales: {}, pages: {}, workflows: {} };
     this._pages = props.pages ? props.pages : {};
   }
 
-  get releases() {
-    return this._releases;
-  }
   get site() {
     return this._site;
   }
@@ -28,10 +22,7 @@ class SessionData implements Ide.Session {
   }
 
   withSite(site: API.CMS.Site) {
-    return new SessionData({ site: site, releases: this._releases });
-  }
-  withReleases(releases: API.CMS.Releases) {
-    return new SessionData({ site: this._site, releases: releases });
+    return new SessionData({ site: site });
   }
   withoutPages(pageIds: API.CMS.PageId[]): Ide.Session {
     const pages = {};
@@ -41,7 +32,7 @@ class SessionData implements Ide.Session {
       }
       pages[page.origin.id] = page;
     }
-    return new SessionData({ site: this._site, releases: this._releases, pages });
+    return new SessionData({ site: this._site, pages });
   } 
   withPage(page: API.CMS.PageId): Ide.Session {
     if (this._pages[page]) {
@@ -50,7 +41,7 @@ class SessionData implements Ide.Session {
     const pages = Object.assign({}, this._pages);
     const origin = this._site.pages[page];
     pages[page] = new ImmutablePageUpdate({origin, saved: true, value: origin.body.content});
-    return new SessionData({ site: this._site, releases: this._releases, pages });
+    return new SessionData({ site: this._site, pages });
   }
   withPageValue(page: API.CMS.PageId, value: API.CMS.LocalisedContent): Ide.Session {
     const session = this.withPage(page);
@@ -59,7 +50,7 @@ class SessionData implements Ide.Session {
     const pages = Object.assign({}, session.pages);
     pages[page] = pageUpdate.withValue(value);    
     
-    return new SessionData({ site: session.site, releases: session.releases, pages });
+    return new SessionData({ site: session.site, pages });
   }
 }
 

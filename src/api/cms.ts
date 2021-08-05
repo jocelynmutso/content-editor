@@ -8,14 +8,17 @@ declare namespace CMS {
   type Locale = string;
   type LocalisedMarkdown = string;
   type LocalisedContent = string;
-
+  type ReleaseId = string;
 
   interface Site {
+    name: string,
+    contentType: "OK" | "NOT_CREATED" | "EMPTY" | "ERRORS",
     locales: Record<string, SiteLocale>,
     pages: Record<PageId, Page>,
     links: Record<LinkId, Link>,
     articles: Record<ArticleId, Article>,
     workflows: Record<WorkflowId, Workflow>,
+    releases: Record<ReleaseId, Release>
   }
   
   interface SiteLocale {
@@ -43,7 +46,7 @@ declare namespace CMS {
   }
   
   interface PageMutator {
-    id: PageId,
+    pageId: PageId,
     locale: Locale;
     content: LocalisedContent;
   }
@@ -58,13 +61,11 @@ declare namespace CMS {
   }
   
   interface ArticleMutator {
-    id: ArticleId, 
+    articleId: ArticleId, 
     parentId?: ArticleId, 
     name: string, 
     order: number
   }
-
-  type Releases = Release[];
 
   interface Release {
     id: string,
@@ -74,8 +75,6 @@ declare namespace CMS {
       name: string,
     }
   }
-
-  type Links = Link[];
 
   interface Link {
     id: LinkId,
@@ -89,7 +88,7 @@ declare namespace CMS {
   }
   
   interface LinkMutator {
-    id: LinkId,
+    linkId: LinkId,
     content: LocalisedContent, 
     locale: Locale, 
     description: string
@@ -106,7 +105,7 @@ declare namespace CMS {
   }
   
   interface WorkflowMutator {
-    id: WorkflowId, 
+    workflowId: WorkflowId, 
     name: string, 
     locale: Locale, 
     content: LocalisedContent
@@ -118,8 +117,6 @@ declare namespace CMS {
 
   interface Service {
     getSite(): Promise<Site>,
-    getReleases(): Promise<Releases>,
-
     create(): CreateBuilder;
     delete(): DeleteBuilder;
     update(): UpdateBuilder;
@@ -156,6 +153,7 @@ declare namespace CMS {
   }
   
   interface CreateBuilder {
+    site(): Promise<Site>;
     release(init: CreateRelease): Promise<Release>;
     locale(init: CreateLocale): Promise<SiteLocale>;
     article(init: CreateArticle): Promise<Article>;
@@ -179,6 +177,20 @@ declare namespace CMS {
     pages(pages: PageMutator[]): Promise<Page[]>;
     link(link: LinkMutator): Promise<Link>;
     workflow(workflow: WorkflowMutator): Promise<Workflow>;
+  }
+  interface Store {
+    fetch<T>(path: string, init?: RequestInit): Promise<T>;
+  }
+  
+  interface ErrorMsg {
+    id: string;
+    value: string;
+  }
+
+  interface ErrorProps {
+    text: string;
+    status: number;
+    errors: any[];
   }
 }
 
