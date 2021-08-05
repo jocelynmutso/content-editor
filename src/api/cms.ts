@@ -8,14 +8,17 @@ declare namespace CMS {
   type Locale = string;
   type LocalisedMarkdown = string;
   type LocalisedContent = string;
-
+  type ReleaseId = string;
 
   interface Site {
+    name: string,
+    contentType: "OK" | "NOT_CREATED" | "EMPTY" | "ERRORS",
     locales: Record<string, SiteLocale>,
     pages: Record<PageId, Page>,
     links: Record<LinkId, Link>,
     articles: Record<ArticleId, Article>,
     workflows: Record<WorkflowId, Workflow>,
+    releases: Record<ReleaseId, Release>
   }
   
   interface SiteLocale {
@@ -43,7 +46,7 @@ declare namespace CMS {
   }
   
   interface PageMutator {
-    id: PageId,
+    pageId: PageId,
     locale: Locale;
     content: LocalisedContent;
   }
@@ -58,13 +61,11 @@ declare namespace CMS {
   }
   
   interface ArticleMutator {
-    id: ArticleId, 
+    articleId: ArticleId, 
     parentId?: ArticleId, 
     name: string, 
     order: number
   }
-
-  type Releases = Release[];
 
   interface Release {
     id: string,
@@ -74,8 +75,6 @@ declare namespace CMS {
       name: string,
     }
   }
-
-  type Links = Link[];
 
   interface Link {
     id: LinkId,
@@ -89,7 +88,7 @@ declare namespace CMS {
   }
   
   interface LinkMutator {
-    id: LinkId,
+    linkId: LinkId,
     content: LocalisedContent, 
     locale: Locale, 
     description: string
@@ -106,7 +105,7 @@ declare namespace CMS {
   }
   
   interface WorkflowMutator {
-    id: WorkflowId, 
+    workflowId: WorkflowId, 
     name: string, 
     locale: Locale, 
     content: LocalisedContent
@@ -118,8 +117,6 @@ declare namespace CMS {
 
   interface Service {
     getSite(): Promise<Site>,
-    getReleases(): Promise<Releases>,
-
     create(): CreateBuilder;
     delete(): DeleteBuilder;
     update(): UpdateBuilder;
@@ -156,6 +153,7 @@ declare namespace CMS {
   }
   
   interface CreateBuilder {
+    site(): Promise<Site>;
     release(init: CreateRelease): Promise<Release>;
     locale(init: CreateLocale): Promise<SiteLocale>;
     article(init: CreateArticle): Promise<Article>;
@@ -194,70 +192,6 @@ declare namespace CMS {
     status: number;
     errors: any[];
   }
-}
-
-namespace CMS {
-  
-  export class StoreError extends Error {
-    private _props: ErrorProps;
-
-    constructor(props: ErrorProps) {
-      super(props.text);
-      this._props = {
-        text: props.text,
-        status: props.status,
-        errors: parseErrors(props.errors)
-      };
-
-
-      ///children.errors
-    }
-    get name() {
-      return this._props.text;
-    }
-    get status() {
-      return this._props.status;
-    }
-    get errors() {
-      return this._props.errors;
-    }
-  }
-}
-
-const getErrorMsg = (error: any) => {
-  if (error.msg) {
-    return error.msg;
-  }
-  if (error.value) {
-    return error.value
-  }
-  if (error.message) {
-    return error.message;
-  }
-}
-
-const getErrorId = (error: any) => {
-  if (error.id) {
-    return error.id;
-  }
-  if (error.code) {
-    return error.code
-  }
-  return "";
-}
-
-
-const parseErrors = (props: any[]): CMS.ErrorMsg[] => {
-  if (!props) {
-    return []
-  }
-
-  const result: CMS.ErrorMsg[] = props.map(error => ({
-    id: getErrorId(error),
-    value: getErrorMsg(error)
-  }));
-
-  return result;
 }
 
 export default CMS;

@@ -63,7 +63,7 @@ const useRowStyles = makeStyles((theme: Theme) =>
 
 const ReleasesView: React.FC<{}> = () => {
   const classes = useStyles();
-  const releases = Ide.useReleases();
+  const releases = Object.values(Ide.useSite().releases);
 
   return (
     <TableContainer component={Paper}>

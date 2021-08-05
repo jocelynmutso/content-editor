@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 
 import { 
-  CssBaseline, Drawer, AppBar, Toolbar as MaterialToolbar, Typography, IconButton, Container as MaterialContainer, InputBase 
+  CssBaseline, Drawer, AppBar, Toolbar as MaterialToolbar, Typography, IconButton, InputBase 
 } from '@material-ui/core';
 
 import MenuIcon from '@material-ui/icons/Menu';
@@ -59,7 +59,7 @@ const Container: React.FC<ContainerProps> = ({ components }) => {
     }, 500);
 
 
-  }, [ref.current, actions, setDimensions, session.dimensions, drawerOpen, dimensions]);
+  }, [ref, actions, setDimensions, session.dimensions, drawerOpen, dimensions]);
 
 
 
@@ -67,7 +67,7 @@ const Container: React.FC<ContainerProps> = ({ components }) => {
     const update = () => setDimensions(false);
     window.addEventListener('resize', update)
     return () => window.removeEventListener('resize', update);
-  }, [ref.current, actions, dimensions, setDimensions, session.dimensions])
+  }, [actions, dimensions, setDimensions, session.dimensions])
 
   // Drawer
   const handleDrawerOpen = () => {

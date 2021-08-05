@@ -62,7 +62,7 @@ const LocaleComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       </DialogContent>
       <DialogActions>
         <Button variant="text" onClick={onClose} color="primary"><FormattedMessage id='button.cancel' /></Button>
-        <Button variant="contained" onClick={handleCreate} color="primary" autoFocus disabled={!locale || locales.includes(locale) || locale.length != 2}><FormattedMessage id='button.create' /></Button>
+        <Button variant="contained" onClick={handleCreate} color="primary" autoFocus disabled={!locale || locales.includes(locale) || locale.length !== 2}><FormattedMessage id='button.create' /></Button>
       </DialogActions>
     </Dialog>
   );

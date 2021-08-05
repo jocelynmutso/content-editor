@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
-import { makeStyles, createStyles, Theme, ListItem, IconButton } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, IconButton } from '@material-ui/core';
 import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';

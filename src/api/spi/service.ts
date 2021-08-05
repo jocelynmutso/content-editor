@@ -2,12 +2,10 @@ import API from '../';
 
 const createService = (init: {store?: API.CMS.Store, url?: string}): API.CMS.Service => {
   const backend: API.CMS.Store = init.url ? store(init.url): init.store as any;
-  const getSite = async () => backend.fetch("").then((data) => data as any)
-  const getReleases = async () => {
-    
-  }
+  const getSite = async () => backend.fetch("/").then((data) => data as any)
+  
   return {
-    getSite, getReleases,
+    getSite,
     create: () => new CreateBuilderImpl(backend),
     update: () => new UpdateBuilderImpl(backend),
     delete: () => new DeleteBuilderImpl(backend)
@@ -18,6 +16,9 @@ class CreateBuilderImpl implements API.CMS.CreateBuilder {
   private _backend: API.CMS.Store;
   constructor(backend: API.CMS.Store) {
     this._backend = backend;
+  }
+  async site(): Promise<API.CMS.Site> {
+    return this._backend.fetch(`/`, { method: "POST" }).then((data) => data as any)
   }
   async release(init: API.CMS.CreateRelease): Promise<API.CMS.Release> {
     return this._backend.fetch(`/releases`, { method: "POST", body: JSON.stringify(init) }).then((data) => data as any)
@@ -81,10 +82,10 @@ class DeleteBuilderImpl implements API.CMS.DeleteBuilder {
   async workflow(init: API.CMS.WorkflowId): Promise<void> {
     return this._backend.fetch(`/workflows/${init}`, { method: "DELETE" }).then((data) => data as any)
   }
-  async workflowArticlePage(workflow: API.CMS.WorkflowId, article: API.CMS.ArticleId, locale: API.CMS.Locale): Promise<void> {
+  async workflowArticlePage(workflow: API.CMS.WorkflowId, article: API.CMS.ArticleId, _locale: API.CMS.Locale): Promise<void> {
     return this._backend.fetch(`/workflows/${workflow}/${article}`, { method: "DELETE" }).then((data) => data as any)
   }
-  async linkArticlePage(link: API.CMS.LinkId, article: API.CMS.ArticleId, locale: API.CMS.Locale): Promise<void> {
+  async linkArticlePage(link: API.CMS.LinkId, article: API.CMS.ArticleId, _locale: API.CMS.Locale): Promise<void> {
     return this._backend.fetch(`/links/${link}/${article}`, { method: "DELETE" }).then((data) => data as any)
   }
 }
@@ -114,7 +115,7 @@ const store: (initUrl: string) => API.CMS.Store = (initUrl: string) => ({
         if (!response.ok) {
           return response.json().then(data => {
             console.error(data);
-            throw new API.CMS.StoreError({
+            throw new API.StoreError({
               text: response.statusText,
               status: response.status,
               errors: data

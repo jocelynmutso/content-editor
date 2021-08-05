@@ -50,7 +50,7 @@ interface CardData {
 
 type CardType = "release" | "article" | "page" | "link" | "workflow" | "locale";
 
-const createCards: (site: API.CMS.Site, releases: API.CMS.Releases) => Record<CardType, CardData> = (site, releases) => ({
+const createCards: (site: API.CMS.Site) => Record<CardType, CardData> = (_site) => ({
   article: {
     composer: (handleClose) => (<ArticleComposer onClose={handleClose} />),
     title: "composer.article.title",
@@ -92,11 +92,11 @@ const createCards: (site: API.CMS.Site, releases: API.CMS.Releases) => Record<Ca
 //card view for all CREATE views
 const ComposerSelect: React.FC<{}> = () => {
   const classes = useStyles();
-  const { site, releases } = Ide.useIde().session;
+  const { site } = Ide.useIde().session;
   const [open, setOpen] = React.useState<CardType>();
   const handleOpen = (type: CardType) => setOpen(type);
   const handleClose = () => setOpen(undefined);
-  const cards = React.useMemo(() => createCards(site, releases), [site, releases]);
+  const cards = React.useMemo(() => createCards(site), [site]);
 
   return (
     <div className={classes.root}>

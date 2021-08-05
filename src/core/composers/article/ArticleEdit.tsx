@@ -67,7 +67,7 @@ const ArticleEdit: React.FC<{ article: API.CMS.Article }> = ({ article }) => {
 
 
   const handleCreate = () => {
-    const entity: API.CMS.ArticleMutator = { id: article.id, name, parentId, order };
+    const entity: API.CMS.ArticleMutator = { articleId: article.id, name, parentId, order };
     console.log("entity", entity)
     ide.service.update().article(entity).then(success => {
       console.log(success)
