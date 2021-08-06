@@ -42,6 +42,10 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1),
       minWidth: '20ch'
     },
+    title: {
+      margin: theme.spacing(1),
+      color: theme.palette.primary.main
+    },
     heading: {
       fontWeight: 'bold',
       padding: theme.spacing(1),
@@ -82,23 +86,28 @@ const LocalesOverview: React.FC<LocalesOverviewProps> = ({ site }) => {
       .filter(p => p.body.article === article.id);
     return articlePages.length > 0;
   }
+  
+
 
   return (
     <div className={classes.root}>
-
       <TableContainer >
-        <Typography variant="body1" className={classes.typography}><FormattedMessage id="locale.overview" /></Typography>
+        <Typography variant="h4" className={classes.title}><FormattedMessage id="locale.overview" /></Typography>
+
         <Divider />
         <TableRow>
           <TableCell className={classes.bold} align="left"><FormattedMessage id="article.name" /></TableCell>
           {locales.map((locale, index) => <TableCell key={index} className={classes.bold} align="left" >{locale.body.value}</TableCell>
           )}
         </TableRow>
+        
+        
         {articles.map((article, index) => (
           <TableRow key={index} hover>
             <TableCell align="left">{article.body.name}</TableCell>
             {locales.map((locale, index) => <TableCell key={index} className={classes.bold} align="left">{
-              isLocale(locale, article) === true ? (<span><CheckCircleOutlineIcon className={classes.checkIcon} /></span>) : (<span><AddIcon /></span>)
+              isLocale(locale, article) === true              
+               ? (<span><CheckCircleOutlineIcon className={classes.checkIcon} /></span>) : (<span><AddIcon /></span>)
             }</TableCell>)}
           </TableRow>
 
