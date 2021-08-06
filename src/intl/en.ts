@@ -89,8 +89,10 @@ const en = {
 
   'locale.disable.title': 'Disable this locale?',
   'locale.disable': 'Disabling this locale will remove it globally from the application. Pages using this locale will not be displayed on the UI.',
-  
   'locale.overview': 'Locale usage overview',
+  'locales.content': 'Page in this locale has content',
+  'locales.nocontent': 'Page in this locale has no content',
+  'locales.nopage': 'There is no page for this locale in this Article',
 
   'newpage.title': 'Create a new page',
   'newpage.info': 'A page consists of localised content and must be associated with an Article.',
