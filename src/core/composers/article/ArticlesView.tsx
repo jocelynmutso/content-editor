@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles, Collapse, Box } from '@material-ui/core';
+import { makeStyles, Theme, createStyles, Collapse, Box, Typography } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -15,13 +15,17 @@ import { FormattedMessage } from 'react-intl';
 import { ArticleDeletePage, ArticleDelete, ArticleEdit } from '../article';
 import { API, Ide } from '../../deps';
 
-const useStyles = makeStyles((_theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     table: {
       minWidth: 650,
     },
     bold: {
       fontWeight: 'bold'
+    },
+    title: {
+      margin: theme.spacing(1),
+      color: theme.palette.primary.main
     },
   }));
 
@@ -69,30 +73,33 @@ const ArticlesView: React.FC<{}> = () => {
   const articles = Object.values(site.articles).sort((a1, a2) => a1.body.order - a2.body.order);
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell className={classes.bold} align="left" colSpan={2}><FormattedMessage id="article.name"/></TableCell>
-            <TableCell className={classes.bold} align="left"><FormattedMessage id="order"/></TableCell>
-            <TableCell className={classes.bold} align="center"></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {articles.map((article, index) => (<Row key={index} article={article} site={site} />))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <Typography variant="h3" className={classes.title}><FormattedMessage id="articles" />: {articles.length}</Typography>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell className={classes.bold} align="left" colSpan={2}><FormattedMessage id="article.name" /></TableCell>
+              <TableCell className={classes.bold} align="left"><FormattedMessage id="order" /></TableCell>
+              <TableCell className={classes.bold} align="center"></TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {articles.map((article, index) => (<Row key={index} article={article} site={site} />))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }
 
-const Row: React.FC<{article: API.CMS.Article, site: API.CMS.Site}> = ({ article, site }) => {
+const Row: React.FC<{ article: API.CMS.Article, site: API.CMS.Site }> = ({ article, site }) => {
   const classes = useRowStyles();
   const [open, setOpen] = React.useState(false);
-  const parentName = article.body.parentId ? site.articles[article.body.parentId].body.name +  "/" : "";
-  
+  const parentName = article.body.parentId ? site.articles[article.body.parentId].body.name + "/" : "";
+
   const pages = Object.values(site.pages).filter(page => page.body.article === article.id);
-  
+
   return (
     <>
       <TableRow key={article.id} hover className={classes.row}>
@@ -116,13 +123,13 @@ const Row: React.FC<{article: API.CMS.Article, site: API.CMS.Site}> = ({ article
               <Table size="small">
                 <TableHead>
                   <TableRow>
-                    <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}><FormattedMessage id="pages"/></TableCell>
+                    <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}><FormattedMessage id="pages" /></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {pages.map((page, key) => (
                     <TableRow hover key={key} className={classes.row}>
-                      <TableCell component="th" scope="row" align="left">{page.body.locale}</TableCell>
+                      <TableCell component="th" scope="row" align="left">{site.locales[page.body.locale].body.value}</TableCell>
                       <TableCell><ArticleDeletePage article={article} page={page} /></TableCell>
                     </TableRow>
                   ))}

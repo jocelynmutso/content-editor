@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles, IconButton } from '@material-ui/core';
+import { makeStyles, Theme, createStyles, IconButton, Typography } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -15,13 +15,17 @@ import { LocalesOverview } from './LocalesOverview';
 import { LocaleDisable } from './LocaleDisable';
 import { API, Ide } from '../../deps';
 
-const useStyles = makeStyles((_theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     table: {
       minWidth: 650,
     },
     bold: {
       fontWeight: 'bold'
+    },
+    title: {
+      margin: theme.spacing(1),
+      color: theme.palette.primary.main
     },
   }));
 
@@ -71,13 +75,14 @@ const LocalesView: React.FC<{}> = () => {
 
   return (
     <>
+      <Typography variant="h3" className={classes.title}><FormattedMessage id="locales" /> </Typography>
       <TableContainer component={Paper}>
         <Table className={classes.table} size="small">
           <TableHead>
             <TableRow>
-              <TableCell className={classes.bold} align="left"><FormattedMessage id="locale"/></TableCell>
-              <TableCell className={classes.bold} align="left"><FormattedMessage id="status"/></TableCell>
-              <TableCell className={classes.bold} align="left"><FormattedMessage id="disable"/></TableCell>
+              <TableCell className={classes.bold} align="left"><FormattedMessage id="locale" /></TableCell>
+              <TableCell className={classes.bold} align="left"><FormattedMessage id="status" /></TableCell>
+              <TableCell className={classes.bold} align="left"><FormattedMessage id="disable" /></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

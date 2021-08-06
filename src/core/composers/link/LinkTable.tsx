@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core';
+import { makeStyles, Theme, createStyles, Typography } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -31,6 +31,10 @@ const useStyles = makeStyles((theme: Theme) =>
     bold: {
       fontWeight: 'bold',
     },
+    title: {
+      margin: theme.spacing(1),
+      color: theme.palette.primary.main
+    },
     tableCell: {
       paddingTop: 0,
       paddingBottom: 0
@@ -50,6 +54,8 @@ const LinkTable: React.FC<LinkTableProps> = ({ article }) => {
 
 
   return (
+    <>
+   <Typography variant="h3" className={classes.title}>{article.body.name}{": "}<FormattedMessage id="links" /> </Typography>
     <TableContainer component={Paper}>
       <Table className={classes.table} size="small" aria-label="a dense table" >
         <TableHead>
@@ -72,6 +78,7 @@ const LinkTable: React.FC<LinkTableProps> = ({ article }) => {
         </TableBody>
       </Table>
     </TableContainer >
+    </>
   );
 }
 

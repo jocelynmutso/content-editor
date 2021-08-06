@@ -87,10 +87,10 @@ const LocalesOverview: React.FC<LocalesOverviewProps> = ({ site }) => {
     <div className={classes.root}>
 
       <TableContainer >
-        <Typography variant="body1" className={classes.typography}><FormattedMessage id="locale.overview"/></Typography>
+        <Typography variant="body1" className={classes.typography}><FormattedMessage id="locale.overview" /></Typography>
         <Divider />
         <TableRow>
-          <TableCell className={classes.bold} align="left"><FormattedMessage id="article.name"/></TableCell>
+          <TableCell className={classes.bold} align="left"><FormattedMessage id="article.name" /></TableCell>
           {locales.map((locale, index) => <TableCell key={index} className={classes.bold} align="left" >{locale.body.value}</TableCell>
           )}
         </TableRow>

@@ -16,6 +16,7 @@ const en = {
   'tag': 'Tag',
   'created': 'Created',
   'modified': 'Modified',
+  'releases': 'Releases',
   'options': 'Options',
   'links': 'Links',
   'workflows': 'Workflows',
@@ -64,6 +65,8 @@ const en = {
   'link.associate.title': 'Associate a link with an Article',
   'link.article.add.title': 'Add link to an Article',
   'link.article.select': 'Select Article',
+  'links.message': 'Expand rows to view or modify link and article associations',
+
   
   'link.composer.title': 'Create a new link',
   'link.type': 'Type',

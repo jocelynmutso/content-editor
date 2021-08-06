@@ -61,15 +61,15 @@ const ReleaseComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             className={classes.formControl}
             disabled
             id="outlined-basic"
-            label={<FormattedMessage id='date'/>}
+            label={<FormattedMessage id='date' />}
             defaultValue={new Date().toISOString()}
             variant="outlined"
             fullWidth />
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button variant="text" onClick={onClose} color="primary"><FormattedMessage id='button.cancel'/></Button>
-        <Button variant="contained" onClick={handleCreate} color="primary" autoFocus disabled={!name}><FormattedMessage id='button.create'/></Button>
+        <Button variant="text" onClick={onClose} color="primary"><FormattedMessage id='button.cancel' /></Button>
+        <Button variant="contained" onClick={handleCreate} color="primary" autoFocus disabled={!name}><FormattedMessage id='button.create' /></Button>
       </DialogActions>
     </Dialog>
   );
