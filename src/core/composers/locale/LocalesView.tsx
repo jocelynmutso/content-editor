@@ -12,7 +12,6 @@ import VisibilityOnIcon from '@material-ui/icons/Visibility';
 import { FormattedMessage } from 'react-intl';
 
 import { LocalesOverview } from './LocalesOverview';
-import { LocaleDisable } from './LocaleDisable';
 import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -52,7 +51,7 @@ const useRowStyles = makeStyles((theme: Theme) =>
   createStyles({
     row: {
       '& > *': {
-        paddingLeft: 15
+        // paddingLeft: 15
       },
     },
 
@@ -67,10 +66,6 @@ const useRowStyles = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       borderBottom: 'unset',
       padding: 0
-    },
-    tableCell: {
-      paddingTop: 0,
-      paddingBottom: 0
     },
     iconButton: {
       padding: 2,
@@ -121,20 +116,17 @@ interface RowProps {
   locale: API.CMS.SiteLocale,
 }
 
-const Row: React.FC<RowProps> = ({ site, locale }) => {
+const Row: React.FC<RowProps> = ({ locale }) => {
   const classes = useRowStyles();
 
   return (
-    <div >
-      <TableRow key={locale.id} hover className={classes.row}>
-        <TableCell className={classes.tableCell} align="left">{locale.body.value}</TableCell>
-        <TableCell className={classes.tableCell} align="left">
-          {locale.body.enabled ?
-            <IconButton className={classes.iconButton}> <VisibilityOnIcon /></IconButton>
-            : <IconButton className={classes.iconButton}><VisibilityOffIcon /></IconButton>}
-        </TableCell>
-      </TableRow>
-    </div>
+    <TableRow key={locale.id} hover className={classes.row}>
+      <TableCell align="left">{locale.body.value}</TableCell>
+      <TableCell align="left">{locale.body.enabled ?
+        <IconButton className={classes.iconButton}> <VisibilityOnIcon /></IconButton>
+        : <IconButton className={classes.iconButton}><VisibilityOffIcon /></IconButton>}
+      </TableCell>
+    </TableRow>
   )
 }
 

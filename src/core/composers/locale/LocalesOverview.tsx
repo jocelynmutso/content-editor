@@ -129,7 +129,7 @@ const LocalesOverview: React.FC<LocalesOverviewProps> = ({ site }) => {
                   <TableCell align="left">{article.body.name}</TableCell>
                   {locales.map((locale, index) => (
                     <TableCell key={index} className={classes.bold} align="left">
-                      { isLocale(locale, article) === true && isContent(locale, article) == true ?
+                      { isLocale(locale, article) && isContent(locale, article) ?
                         (<span><Tooltip title={<FormattedMessage id="locales.content" />}><CheckCircleOutlineIcon className={classes.checkIcon} /></Tooltip></span>) :
                         isLocale(locale, article) === true ?
                           (<span><Tooltip title={<FormattedMessage id="locales.nocontent" />}><CheckCircleOutlineIcon className={classes.checkIconOrange} /></Tooltip></span>) :

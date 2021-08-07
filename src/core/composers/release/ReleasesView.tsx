@@ -31,7 +31,7 @@ const useRowStyles = makeStyles((theme: Theme) =>
   createStyles({
     row: {
       '& > *': {
-        padding: 0
+        padding: 0,
       },
     },
     expandRow: {
@@ -44,10 +44,6 @@ const useRowStyles = makeStyles((theme: Theme) =>
       width: '25%',
       fontWeight: 'bold',
       padding: 0
-    },
-    tableCell: {
-      paddingTop: 0,
-      paddingBottom: 0
     },
     iconButton: {
       padding: 2,
@@ -97,9 +93,9 @@ const Row: React.FC<{ release: API.CMS.Release }> = ({ release }) => {
     <>
       <TableRow key={release.id} hover className={classes.row}>
         <TableCell className={classes.expandRow}></TableCell>
-        <TableCell className={classes.tableCell} align="left">{release.body.name}</TableCell>
-        <TableCell className={classes.tableCell} align="left">{release.created}</TableCell>
-        <TableCell className={classes.tableCell} align="left">{release.body.note}</TableCell>
+        <TableCell align="left">{release.body.name}</TableCell>
+        <TableCell align="left">{release.created}</TableCell>
+        <TableCell align="left">{release.body.note}</TableCell>
         <TableCell align="center">
           <IconButton className={classes.iconButton}><GetAppIcon /> </IconButton>
         </TableCell>

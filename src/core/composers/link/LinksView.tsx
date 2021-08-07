@@ -69,7 +69,7 @@ const useRowStyles = makeStyles((theme: Theme) =>
     },
   }));
 
-const LinksView: React.FC<{}> = ({ }) => {
+const LinksView: React.FC<{}> = () => {
   const classes = useStyles();
   const site = Ide.useSite();
   const links = Object.values(site.links);
