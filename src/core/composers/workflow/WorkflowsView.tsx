@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles, Collapse, Box } from '@material-ui/core';
+import { makeStyles, Theme, createStyles, Collapse, Box, Typography } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -13,16 +13,20 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
-import { WorkflowRemovePage} from './WorkflowRemovePage';
+import { WorkflowRemovePage } from './WorkflowRemovePage';
 import { WorkflowDelete } from './WorkflowDelete';
 
-const useStyles = makeStyles((_theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     table: {
       minWidth: 650,
     },
     bold: {
       fontWeight: 'bold'
+    },
+    title: {
+      margin: theme.spacing(1),
+      color: theme.palette.primary.main
     },
   }));
 
@@ -71,22 +75,26 @@ const WorkflowsView: React.FC<{}> = () => {
   const workflows = Object.values(site.workflows);
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell className={classes.bold} align="center" colSpan={2}><FormattedMessage id="workflow.technicalname"/></TableCell>
-            <TableCell className={classes.bold} align="left"><FormattedMessage id="locale"/></TableCell>
-            <TableCell className={classes.bold} align="left"><FormattedMessage id="workflow.composer.name"/></TableCell>
-            <TableCell className={classes.bold} align="center"><FormattedMessage id="articles"/></TableCell>
-            <TableCell className={classes.bold} align="center"></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {workflows.map((workflow, index) => (<Row key={index} site={site} workflow={workflow} />))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <Typography variant="h3" className={classes.title}><FormattedMessage id="workflows" />: {workflows.length} </Typography>
+
+      <TableContainer component={Paper}>
+        <Table className={classes.table} size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell className={classes.bold} align="center" colSpan={2}><FormattedMessage id="workflow.technicalname" /></TableCell>
+              <TableCell className={classes.bold} align="left"><FormattedMessage id="locale" /></TableCell>
+              <TableCell className={classes.bold} align="left"><FormattedMessage id="workflow.composer.name" /></TableCell>
+              <TableCell className={classes.bold} align="center"><FormattedMessage id="articles" /></TableCell>
+              <TableCell className={classes.bold} align="center"></TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {workflows.map((workflow, index) => (<Row key={index} site={site} workflow={workflow} />))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }
 
@@ -100,7 +108,7 @@ const Row: React.FC<RowProps> = ({ site, workflow }) => {
   const classes = useRowStyles();
   const [open, setOpen] = React.useState(false);
   const articles = workflow.body.articles.map(articleId => site.articles[articleId]);
-  
+
   return (
     <>
       <TableRow key={workflow.id} hover className={classes.row}>
@@ -123,23 +131,23 @@ const Row: React.FC<RowProps> = ({ site, workflow }) => {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}><FormattedMessage id="articles"/></TableCell>
+                    <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}><FormattedMessage id="articles" /></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {articles.map((article, id) => (
-                    
+
                     <TableRow hover key={id} className={classes.row}>
                       <TableCell component="th" scope="row" align="left" >
                         {article.body.name}
                       </TableCell>
-                      
+
                       <TableCell align="left">
                         <WorkflowRemovePage locale={workflow.body.locale} workflow={workflow} article={article} />
                       </TableCell>
-                      
+
                     </TableRow>
-                    
+
                   ))}
                 </TableBody>
               </Table>

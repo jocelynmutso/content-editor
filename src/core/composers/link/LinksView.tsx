@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles, Collapse, Box } from '@material-ui/core';
+import { makeStyles, Theme, createStyles, Collapse, Box, Typography } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -17,13 +17,17 @@ import { FormattedMessage } from 'react-intl';
 import { LinkRemovePage, LinkDelete, NewLinkArticle, LinkEdit } from './';
 import { API, Ide } from '../../deps';
 
-const useStyles = makeStyles((_theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     table: {
       minWidth: 650,
     },
     bold: {
       fontWeight: 'bold'
+    },
+    title: {
+      margin: theme.spacing(1),
+      color: theme.palette.primary.main
     },
   }));
 
@@ -65,29 +69,34 @@ const useRowStyles = makeStyles((theme: Theme) =>
     },
   }));
 
-const LinksView: React.FC<{}> = ({ }) => {
+const LinksView: React.FC<{}> = () => {
   const classes = useStyles();
   const site = Ide.useSite();
   const links = Object.values(site.links);
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell className={classes.bold} align="center" colSpan={2}><FormattedMessage id="link.type" /></TableCell>
-            <TableCell className={classes.bold} align="left"><FormattedMessage id="locale" /></TableCell>
-            <TableCell className={classes.bold} align="left"><FormattedMessage id="description" /></TableCell>
-            <TableCell className={classes.bold} align="left"><FormattedMessage id="link.url" /></TableCell>
-            <TableCell className={classes.bold} align="center"><FormattedMessage id="articles" /></TableCell>
-            <TableCell className={classes.bold} align="center"></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {links.map((link, index) => (<Row key={index} site={site} link={link} />))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <Typography variant="h3" className={classes.title}><FormattedMessage id="links" />: {links.length}</Typography>
+      <Typography variant="body1" className={classes.title}><FormattedMessage id="links.message" /></Typography>
+
+      <TableContainer component={Paper}>
+        <Table className={classes.table} size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell className={classes.bold} align="center" colSpan={2}><FormattedMessage id="link.type" /></TableCell>
+              <TableCell className={classes.bold} align="left"><FormattedMessage id="locale" /></TableCell>
+              <TableCell className={classes.bold} align="left"><FormattedMessage id="description" /></TableCell>
+              <TableCell className={classes.bold} align="left"><FormattedMessage id="link.url" /></TableCell>
+              <TableCell className={classes.bold} align="center"><FormattedMessage id="articles" /></TableCell>
+              <TableCell className={classes.bold} align="center"></TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {links.map((link, index) => (<Row key={index} site={site} link={link} />))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }
 
@@ -117,7 +126,7 @@ const Row: React.FC<RowProps> = ({ site, link }) => {
         <TableCell className={classes.tableCell} align="center">
           <LinkDelete link={link} site={site} />
           <LinkEdit />
-          </TableCell>
+        </TableCell>
       </TableRow>
 
       <TableRow>
@@ -128,16 +137,16 @@ const Row: React.FC<RowProps> = ({ site, link }) => {
                 <TableHead>
                   <TableRow>
                     <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}><FormattedMessage id="articles" /></TableCell>
-                    
+
                     <TableCell className={classes.column} align="right" style={{ paddingRight: 0 }}>
-                      <NewLinkArticle link={link} open={newLinkArticleOpen} onClose={() => setNewLinkArticleOpen(false)}/>
+                      <NewLinkArticle link={link} open={newLinkArticleOpen} onClose={() => setNewLinkArticleOpen(false)} />
                       <FormattedMessage id="associations.add" />
                       <IconButton className={classes.iconButton} onClick={() => setNewLinkArticleOpen(true)}><AddIcon /></IconButton>
                     </TableCell>
                   </TableRow>
                 </TableHead>
-                
-                
+
+
                 <TableBody>
                   {link.body.articles.map((id) => (
                     <TableRow hover key={id} className={classes.row}>

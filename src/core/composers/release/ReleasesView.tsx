@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core';
+import { makeStyles, Theme, createStyles, Typography } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,12 +9,11 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import GetAppIcon from '@material-ui/icons/GetApp';
-import EditIcon from '@material-ui/icons/Edit';
 import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
 
-const useStyles = makeStyles((_theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     table: {
       minWidth: 650,
@@ -22,13 +21,17 @@ const useStyles = makeStyles((_theme: Theme) =>
     bold: {
       fontWeight: 'bold'
     },
+    title: {
+      margin: theme.spacing(1),
+      color: theme.palette.primary.main
+    },
   }));
 
 const useRowStyles = makeStyles((theme: Theme) =>
   createStyles({
     row: {
       '& > *': {
-        padding: 0
+        padding: 0,
       },
     },
     expandRow: {
@@ -41,10 +44,6 @@ const useRowStyles = makeStyles((theme: Theme) =>
       width: '25%',
       fontWeight: 'bold',
       padding: 0
-    },
-    tableCell: {
-      paddingTop: 0,
-      paddingBottom: 0
     },
     iconButton: {
       padding: 2,
@@ -65,21 +64,24 @@ const ReleasesView: React.FC<{}> = () => {
   const releases = Object.values(Ide.useSite().releases);
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell className={classes.bold} align="left" colSpan={2}><FormattedMessage id="tag" /></TableCell>
-            <TableCell className={classes.bold} align="left"><FormattedMessage id="created" /></TableCell>
-            <TableCell className={classes.bold} align="left"><FormattedMessage id="release.composer.note" /></TableCell>
-            <TableCell className={classes.bold} align="center"><FormattedMessage id="download" /></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {releases.map((release, index) => (<Row key={index} release={release} />))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <Typography variant="h3" className={classes.title}><FormattedMessage id="releases" /> </Typography>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell className={classes.bold} align="left" colSpan={2}><FormattedMessage id="tag" /></TableCell>
+              <TableCell className={classes.bold} align="left"><FormattedMessage id="created" /></TableCell>
+              <TableCell className={classes.bold} align="left"><FormattedMessage id="release.composer.note" /></TableCell>
+              <TableCell className={classes.bold} align="center"><FormattedMessage id="download" /></TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {releases.map((release, index) => (<Row key={index} release={release} />))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }
 
@@ -91,9 +93,9 @@ const Row: React.FC<{ release: API.CMS.Release }> = ({ release }) => {
     <>
       <TableRow key={release.id} hover className={classes.row}>
         <TableCell className={classes.expandRow}></TableCell>
-        <TableCell className={classes.tableCell} align="left">{release.body.name}</TableCell>
-        <TableCell className={classes.tableCell} align="left">{release.created}</TableCell>
-        <TableCell className={classes.tableCell} align="left">{release.body.note}</TableCell>
+        <TableCell align="left">{release.body.name}</TableCell>
+        <TableCell align="left">{release.created}</TableCell>
+        <TableCell align="left">{release.body.note}</TableCell>
         <TableCell align="center">
           <IconButton className={classes.iconButton}><GetAppIcon /> </IconButton>
         </TableCell>

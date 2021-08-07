@@ -2,8 +2,6 @@ import React from 'react';
 import EditIcon from '@material-ui/icons/Edit';
 import { makeStyles, createStyles, Theme, IconButton } from '@material-ui/core';
 
-import { API } from '../../deps';
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
@@ -43,7 +41,7 @@ interface LinkEditProps {
   */
 }
 
-const LinkEdit: React.FC<LinkEditProps> = ({  }) => {
+const LinkEdit: React.FC<LinkEditProps> = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 

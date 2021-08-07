@@ -1,10 +1,10 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme, Typography, Divider } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, Typography, Table, Tooltip, Card, Paper } from '@material-ui/core';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
-import AddIcon from '@material-ui/icons/Add';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import { FormattedMessage } from 'react-intl';
 
 import { API } from '../../deps';
@@ -12,11 +12,25 @@ import { API } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    container: {
+      display: 'flex'
+    },
+    cardContent: {
+      flexGrow: 1,
+    },
     root: {
-      display: 'flex',
       margin: theme.spacing(1),
-      padding: theme.spacing(1),
-
+      flexWrap: 'wrap',
+    },
+    card: {
+      margin: theme.spacing(1),
+      width: '40vw',
+     flexGrow: 1,
+      flexDirection: 'column',
+      "&:hover, &.Mui-focusVisible": {
+        color: theme.palette.secondary.dark,
+        fontWeight: 'bold',
+      }
     },
     bold: {
       fontWeight: 'bold',
@@ -38,9 +52,10 @@ const useStyles = makeStyles((theme: Theme) =>
       minWidth: '30ch',
       backgroundColor: theme.palette.background.paper
     },
-    formControl: {
-      marginRight: theme.spacing(1),
-      minWidth: '20ch'
+
+    title: {
+      margin: theme.spacing(1),
+      color: theme.palette.primary.main
     },
     heading: {
       fontWeight: 'bold',
@@ -60,6 +75,9 @@ const useStyles = makeStyles((theme: Theme) =>
     checkIcon: {
       color: theme.palette.success.main
     },
+    checkIconOrange: {
+      color: theme.palette.warning.main
+    }
   }),
 );
 
@@ -76,35 +94,54 @@ const LocalesOverview: React.FC<LocalesOverviewProps> = ({ site }) => {
   const articles: API.CMS.Article[] = Object.values(site.articles);
   const pages: API.CMS.Page[] = Object.values(site.pages);
 
+  //check if page has content
+  const isContent = (locale: API.CMS.SiteLocale, article: API.CMS.Article) => {
+    const contents = pages
+      .filter(p => p.body.article === article.id)
+      .filter(p => p.body.locale === locale.id)
+      .filter(p => p.body.content);
+    return contents.length > 0;
+  }
+
+  // check if locale exists on article
   const isLocale = (locale: API.CMS.SiteLocale, article: API.CMS.Article): boolean => {
     const articlePages = pages
-      .filter(p => p.body.locale === locale.body.value)
-      .filter(p => p.body.article === article.id);
+      .filter(p => p.body.article === article.id)
+      .filter(p => p.body.locale === locale.id);
     return articlePages.length > 0;
   }
 
   return (
-    <div className={classes.root}>
+    <div >
+      <Card className={classes.card}>
+          <Typography variant="h3" className={classes.title}><FormattedMessage id="locale.overview" /></Typography>
+          <TableContainer component={Paper}>
+            <Table size="small">
+              <TableRow>
+                <TableCell className={classes.bold} align="left"><FormattedMessage id="article.name" /></TableCell>
+                {locales.map((locale, index) => <TableCell key={index} className={classes.bold} align="left" >{locale.body.value}</TableCell>
+                )}
+              </TableRow>
 
-      <TableContainer >
-        <Typography variant="body1" className={classes.typography}><FormattedMessage id="locale.overview"/></Typography>
-        <Divider />
-        <TableRow>
-          <TableCell className={classes.bold} align="left"><FormattedMessage id="article.name"/></TableCell>
-          {locales.map((locale, index) => <TableCell key={index} className={classes.bold} align="left" >{locale.body.value}</TableCell>
-          )}
-        </TableRow>
-        {articles.map((article, index) => (
-          <TableRow key={index} hover>
-            <TableCell align="left">{article.body.name}</TableCell>
-            {locales.map((locale, index) => <TableCell key={index} className={classes.bold} align="left">{
-              isLocale(locale, article) === true ? (<span><CheckCircleOutlineIcon className={classes.checkIcon} /></span>) : (<span><AddIcon /></span>)
-            }</TableCell>)}
-          </TableRow>
 
-        ))}
-
-      </TableContainer>
+              {articles.map((article, index) => (
+                <TableRow key={index} hover>
+                  <TableCell align="left">{article.body.name}</TableCell>
+                  {locales.map((locale, index) => (
+                    <TableCell key={index} className={classes.bold} align="left">
+                      { isLocale(locale, article) && isContent(locale, article) ?
+                        (<span><Tooltip title={<FormattedMessage id="locales.content" />}><CheckCircleOutlineIcon className={classes.checkIcon} /></Tooltip></span>) :
+                        isLocale(locale, article) === true ?
+                          (<span><Tooltip title={<FormattedMessage id="locales.nocontent" />}><CheckCircleOutlineIcon className={classes.checkIconOrange} /></Tooltip></span>) :
+                          (<span><Tooltip title={<FormattedMessage id="locales.nocontent" />}><ErrorOutlineIcon /></Tooltip></span>)
+                      }
+                    </TableCell>)
+                  )}
+                </TableRow>
+              ))}
+            </Table>
+          </TableContainer>
+      </Card>
     </div >
 
   );

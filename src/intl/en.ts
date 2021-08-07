@@ -16,6 +16,7 @@ const en = {
   'tag': 'Tag',
   'created': 'Created',
   'modified': 'Modified',
+  'releases': 'Releases',
   'options': 'Options',
   'links': 'Links',
   'workflows': 'Workflows',
@@ -64,6 +65,8 @@ const en = {
   'link.associate.title': 'Associate a link with an Article',
   'link.article.add.title': 'Add link to an Article',
   'link.article.select': 'Select Article',
+  'links.message': 'Expand rows to view or modify link and article associations',
+
   
   'link.composer.title': 'Create a new link',
   'link.type': 'Type',
@@ -86,8 +89,10 @@ const en = {
 
   'locale.disable.title': 'Disable this locale?',
   'locale.disable': 'Disabling this locale will remove it globally from the application. Pages using this locale will not be displayed on the UI.',
-  
   'locale.overview': 'Locale usage overview',
+  'locales.content': 'Page in this locale has content',
+  'locales.nocontent': 'Page in this locale has no content',
+  'locales.nopage': 'There is no page for this locale in this Article',
 
   'newpage.title': 'Create a new page',
   'newpage.info': 'A page consists of localised content and must be associated with an Article.',
