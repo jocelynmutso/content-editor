@@ -1,4 +1,4 @@
-# The Stencil CMS Guide 
+# The Stencil CMS Alpha User Guide 
 
 ## Contents
 
@@ -110,7 +110,7 @@ et.md
 
 Pages are Markdown files corresponding to their content language. For example, a page named `en.md` contains English language content.  
 
-The basic rule is this: 1 page == 1 language. You can have as many pages per Article as you wish, depending on how many languages you need to represent.
+The basic rule is this: 1 page == 1 locale. You can have as many pages per Article as you wish, depending on how many languages you need to represent.  Pages can only be created for existing locales, so if you want a page in a language you haven't added yet, you'll need to add that locale first, and only then start creating pages that use it.
 
 A Page **must** have at least 1 Markdown Level 1 Header. The first occurrence of a Level 1 Header within a Page will provide the localised name for the Article that the end user sees in your content portal's Topic menu.
 
@@ -167,13 +167,52 @@ If it turns out that your release isn't what you were expecting, you can easily 
 
 ## Creating your first resources
 
-1. Create an Article
-2. Select the Locale of the first Page for this Article.
-3. Now that you have an Article with a Page, you can start editing your Markdown content.
-4. Links, Workflows, and additional Locales are added globally. You can add these in whatever order you wish. 
-5. Once Links / Workflows have been created, you can "associate" them with Articles and Pages. 
-6. Once a Locale has been created, it can be applied to new Pages.
-7. When your content is ready, make a new Release. Give it a name and an optional note, and you're ready for publishing.
+#### Create an Article
+
+Select "Create an Article" in the Explorer. (Note, this button only appears the first time you add an Article).
+
+In the dialog window, leave "Parent Article" empty, as you don't have any other Articles yet.
+
+Set the Order Number of your Article. 
+
+The Order number sets this Article's order, which dictates where it will appear in your portal's Topic menu. 
+
+The number must be 3 digits. The lower the number, the higher the Article will appear in the Topic menu. For example, an Article with Order: 100 will appear *before* an Article with Order: 300.
+
+Once you hit "Create", your first Article will be created in the Explorer. However, you don't yet have any Locales, so you also don't have any Pages. Expand your Article by clicking the expand arrow icon. You will be prompted to create your first Locale.
+
+#### Create a Locale
+
+You will see a notification that says: "No Locales". Click here to add your first Locale, which will enable you to start creating content.
+
+When creating your locale:
+
+Use the two-letter language code of the locale you want to add: Examples:
+
+`en` : English  
+`fi` : Finnish  
+`sv` : Swedish  
+
+#### Create a Page for your Locale
+ 
+Once you have created a locale, you need to create a Page for that locale. In the expanded view of your Article, click "Create page" to do this.  
+NOTE: Once you have enabled two locales, you can enable "Dual View", which will allow for side-by-side content editing of two languages at the same time.
+
+#### Add Links, Workflows, and additional Locales
+
+Links, Workflows, and additional Locales are added globally. You can create these in whatever order you wish by clicking the "Create new" icon on the bottom of the toolbar.
+
+#### Associate Links and Workflows with Articles and Pages
+
+Once Links / Workflows have been created, you can "associate" them with existing Articles. To associate a link with an Article, open the "Links View" via the toolbar. Expand the link you want to associate, and click "Associate with an Article". Then, select the Article you want.
+
+The locale you specify for the Link will create the connection between that Link and the correct Page within that Article.
+
+Associating Workflows with Articles is done in the same way as links. Check out the "Workflows View" via the toolbar for this functionality.
+
+#### Make a release
+
+* When your content is ready, make a new Release. Give it a name and an optional note, and you're ready for publishing.
 
 ## Deleting and Deactivating resources
 
