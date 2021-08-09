@@ -32,7 +32,8 @@ declare namespace CMS {
   }
   
   interface LocaleMutator {
-    id: LocaleId, 
+    localeId: LocaleId, 
+    value: string,
     enabled: boolean
   }
 

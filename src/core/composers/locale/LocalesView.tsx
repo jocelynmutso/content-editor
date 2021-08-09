@@ -7,11 +7,11 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import VisibilityOnIcon from '@material-ui/icons/Visibility';
+
 import { FormattedMessage } from 'react-intl';
 
 import { LocalesOverview } from './LocalesOverview';
+import { LocaleDisable } from './LocaleDisable';
 import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -118,13 +118,27 @@ interface RowProps {
 
 const Row: React.FC<RowProps> = ({ locale }) => {
   const classes = useRowStyles();
+  const ide = Ide.useIde();
+  const { site } = ide.session;
+
+  /*const handleUpdate = () => {
+    const entity: API.CMS.LocaleMutator = { enabled, id: locale.id };
+    console.log("entity", entity)
+    ide.service.update().locale(entity).then(success => {
+      console.log(success)
+      ide.actions.handleLoadSite();
+    });
+  }
+  */
+
+  const locales: API.CMS.SiteLocale[] = Object.values(site.locales);
+
 
   return (
     <TableRow key={locale.id} hover className={classes.row}>
       <TableCell align="left">{locale.body.value}</TableCell>
-      <TableCell align="left">{locale.body.enabled ?
-        <IconButton className={classes.iconButton}> <VisibilityOnIcon /></IconButton>
-        : <IconButton className={classes.iconButton}><VisibilityOffIcon /></IconButton>}
+      <TableCell>
+       <LocaleDisable site={site} locale={locale} />
       </TableCell>
     </TableRow>
   )

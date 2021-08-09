@@ -62,8 +62,6 @@ const LinkEdit: React.FC<LinkEditProps> = ({ link }) => {
   const [contentType, setContentType] = React.useState(link.body.contentType);
   const [description, setDescription] = React.useState(link.body.description);
 
-  const articles: API.CMS.Article[] = Object.values(site.articles);
-  const links: API.CMS.Link[] = Object.values(site.links);
   const locales: API.CMS.SiteLocale[] = Object.values(site.locales);
 
 
