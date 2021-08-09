@@ -74,10 +74,12 @@ const en = {
   'link.type.internal': 'Internal (within my domain)',
   'link.type.external': 'External (outside of my domain)',
   'link.type.phone': 'Phone number',
+  'link.content': 'Link URL / path',
   'link.composer.descriptionlabel': 'Description',
   'link.composer.descriptionhelper': 'Text that the user will see',
   'link.composer.valuehelper': 'URL / path of link (http://www.example.com)',
 
+  'link.edit.title': 'Edit link',
   'link.delete.title': 'Permanently delete this link?',
   'link.delete': 'Deleting this link will permanently remove it from the application, and all associations with Articles/Pages will be lost.',
   

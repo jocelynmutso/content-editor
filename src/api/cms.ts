@@ -9,7 +9,9 @@ declare namespace CMS {
   type LocalisedMarkdown = string;
   type LocalisedContent = string;
   type ReleaseId = string;
-
+  type LinkType = "internal" | "external" | "phone";
+  
+  
   interface Site {
     name: string,
     contentType: "OK" | "NOT_CREATED" | "EMPTY" | "ERRORS",
@@ -80,7 +82,7 @@ declare namespace CMS {
     id: LinkId,
     body: {
       articles: ArticleId[],
-      contentType: "internal" | "external" | "phone",
+      contentType: LinkType,
       content: LocalisedContent, //url, phone number
       locale: Locale,
       description: string //text that user sees
@@ -91,7 +93,7 @@ declare namespace CMS {
     linkId: LinkId,
     content: LocalisedContent, 
     locale: Locale, 
-    type: "internal" | "external" | "phone",
+    type: LinkType,
     description: string,
     articles: ArticleId[],
   }

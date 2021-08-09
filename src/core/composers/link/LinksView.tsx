@@ -107,8 +107,11 @@ interface RowProps {
 
 const Row: React.FC<RowProps> = ({ site, link }) => {
   const classes = useRowStyles();
+
   const [open, setOpen] = React.useState(false);
   const [newLinkArticleOpen, setNewLinkArticleOpen] = React.useState(false);
+
+  //const articles: API.CMS.Article[] = Object.values(site.articles);
 
   return (
     <>
@@ -125,7 +128,7 @@ const Row: React.FC<RowProps> = ({ site, link }) => {
         <TableCell className={classes.tableCell} align="center">{link.body.articles.length}</TableCell>
         <TableCell className={classes.tableCell} align="center">
           <LinkDelete link={link} site={site} />
-          <LinkEdit />
+          <LinkEdit link={link} />
         </TableCell>
       </TableRow>
 
