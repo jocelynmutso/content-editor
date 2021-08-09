@@ -83,10 +83,10 @@ class DeleteBuilderImpl implements API.CMS.DeleteBuilder {
     return this._backend.fetch(`/workflows/${init}`, { method: "DELETE" }).then((data) => data as any)
   }
   async workflowArticlePage(workflow: API.CMS.WorkflowId, article: API.CMS.ArticleId, _locale: API.CMS.Locale): Promise<void> {
-    return this._backend.fetch(`/workflows/${workflow}/${article}`, { method: "DELETE" }).then((data) => data as any)
+    return this._backend.fetch(`/workflows/${workflow}?articleId=${article}`, { method: "DELETE" }).then((data) => data as any)
   }
   async linkArticlePage(link: API.CMS.LinkId, article: API.CMS.ArticleId, _locale: API.CMS.Locale): Promise<void> {
-    return this._backend.fetch(`/links/${link}/${article}`, { method: "DELETE" }).then((data) => data as any)
+    return this._backend.fetch(`/links/${link}?articleId=${article}`, { method: "DELETE" }).then((data) => data as any)
   }
 }
 
