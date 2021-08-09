@@ -14,7 +14,7 @@ import AddIcon from '@material-ui/icons/AddOutlined';
 
 import { FormattedMessage } from 'react-intl';
 
-import { LinkRemovePage, LinkDelete, NewLinkArticle, LinkEdit } from './';
+import { LinkRemovePage, LinkDelete, NewLinkArticle, LinkEdit, LinkComposer } from './';
 import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -73,9 +73,11 @@ const LinksView: React.FC<{}> = () => {
   const classes = useStyles();
   const site = Ide.useSite();
   const links = Object.values(site.links);
+  
 
   return (
     <>
+      <Typography>ADD NEW LINK</Typography>
       <Typography variant="h3" className={classes.title}><FormattedMessage id="links" />: {links.length}</Typography>
       <Typography variant="body1" className={classes.title}><FormattedMessage id="links.message" /></Typography>
 
@@ -110,8 +112,6 @@ const Row: React.FC<RowProps> = ({ site, link }) => {
 
   const [open, setOpen] = React.useState(false);
   const [newLinkArticleOpen, setNewLinkArticleOpen] = React.useState(false);
-
-  //const articles: API.CMS.Article[] = Object.values(site.articles);
 
   return (
     <>

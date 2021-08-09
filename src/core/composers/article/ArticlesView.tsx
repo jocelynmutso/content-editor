@@ -75,6 +75,7 @@ const ArticlesView: React.FC<{}> = () => {
   return (
     <>
       <Typography variant="h3" className={classes.title}><FormattedMessage id="articles" />: {articles.length}</Typography>
+      <Typography variant="body1" className={classes.title}><FormattedMessage id="articles.message" /></Typography>
       <TableContainer component={Paper}>
         <Table className={classes.table} size="small">
           <TableHead>

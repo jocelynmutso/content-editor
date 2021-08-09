@@ -30,7 +30,7 @@ const en = {
   'article.composer.parent': 'Parent Article',
   'article.composer.orderhelper': 'Number for menu ordering purposes',
   'article.name': 'Article name',
-
+  'articles.message': 'Expand rows to view Pages associated with Articles and modify these associations',
   'article.delete.title': 'Permanently delete this Article?',
   'article.delete': 'Deleting this article will remove it and its associated pages globally from the application.',
   'article.deletepage.title': 'Delete this page?',
@@ -65,7 +65,7 @@ const en = {
   'link.associate.title': 'Associate a link with an Article',
   'link.article.add.title': 'Add link to an Article',
   'link.article.select': 'Select Article',
-  'links.message': 'Expand rows to view or modify link and article associations',
+  'links.message': 'Expand rows to view Link - Article associations',
 
   
   'link.composer.title': 'Create a new link',
