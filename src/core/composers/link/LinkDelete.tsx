@@ -69,7 +69,7 @@ const LinkDelete: React.FC<LinkDeleteProps> = ({ site, link }) => {
   }
 
   return (
-    <div className={classes.margin}>
+    <span className={classes.margin}>
       <IconButton className={classes.iconButton} onClick={handleClickOpen}>
         <DeleteOutlinedIcon />
       </IconButton>
@@ -93,7 +93,7 @@ const LinkDelete: React.FC<LinkDeleteProps> = ({ site, link }) => {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </span>
   );
 }
 export { LinkDelete }

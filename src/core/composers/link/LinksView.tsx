@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles, Collapse, Box, Typography } from '@material-ui/core';
+import { makeStyles, Theme, createStyles, Collapse, Box, Typography, Tooltip } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -126,9 +126,13 @@ const Row: React.FC<RowProps> = ({ site, link }) => {
         <TableCell className={classes.tableCell} align="left">{link.body.description}</TableCell>
         <TableCell className={classes.tableCell} align="left">{link.body.content}</TableCell>
         <TableCell className={classes.tableCell} align="center">{link.body.articles.length}</TableCell>
-        <TableCell className={classes.tableCell} align="center">
-          <LinkDelete link={link} site={site} />
+        <TableCell className={classes.tableCell} align="right">
+
           <LinkEdit link={link} />
+          <IconButton className={classes.iconButton} onClick={() => setNewLinkArticleOpen(true)}>
+            <Tooltip title={<FormattedMessage id="associations.add" />}><AddIcon /></Tooltip></IconButton>
+          <NewLinkArticle link={link} open={newLinkArticleOpen} onClose={() => setNewLinkArticleOpen(false)} />
+          <LinkDelete link={link} site={site} />
         </TableCell>
       </TableRow>
 
@@ -140,12 +144,6 @@ const Row: React.FC<RowProps> = ({ site, link }) => {
                 <TableHead>
                   <TableRow>
                     <TableCell className={classes.column} align="left" style={{ paddingRight: 0 }}><FormattedMessage id="articles" /></TableCell>
-
-                    <TableCell className={classes.column} align="right" style={{ paddingRight: 0 }}>
-                      <NewLinkArticle link={link} open={newLinkArticleOpen} onClose={() => setNewLinkArticleOpen(false)} />
-                      <FormattedMessage id="associations.add" />
-                      <IconButton className={classes.iconButton} onClick={() => setNewLinkArticleOpen(true)}><AddIcon /></IconButton>
-                    </TableCell>
                   </TableRow>
                 </TableHead>
 
