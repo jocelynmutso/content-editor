@@ -3,7 +3,6 @@
 
 1. Order number can only be 3 digits and cannot be already in use
 2. Name cannot already be in use
-3. Be able to de-select ParentId / have this field cleared upon hitting "cancel"
 
 
 # Locale
@@ -20,11 +19,16 @@
 
 1. Implement json download
 
+# Explorer
+
+1. Articles appear in Explorer in order of their Order numbers
+
 
 ---
 
 # Completed fixes
 
 1. Link Edit: Description and Value are required fields -- Button is disabled until both values are filled
+2. Article Composer, Article Edit: Be able to de-select ParentId / have this field cleared upon hitting "cancel". 
 
 

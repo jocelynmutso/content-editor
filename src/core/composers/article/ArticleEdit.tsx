@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 
-const ArticleEdit: React.FC<{ article: API.CMS.Article }> = ({ article }) => {
+const ArticleEdit: React.FC<{ article: API.CMS.Article}> = ({ article }) => {
   const classes = useStyles();
   const ide = Ide.useIde();
   const { site } = ide.session;
@@ -57,7 +57,8 @@ const ArticleEdit: React.FC<{ article: API.CMS.Article }> = ({ article }) => {
   const [order, setOrder] = React.useState(article.body.order);
   const [parentId, setParentId] = React.useState(article.body.parentId);
   const [open, setOpen] = React.useState(false);
-
+  
+ 
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -74,6 +75,9 @@ const ArticleEdit: React.FC<{ article: API.CMS.Article }> = ({ article }) => {
       handleClose();
       ide.actions.handleLoadSite();
     });
+  }
+    const handleCancel = () => {
+    handleClose();
   }
 
   const articles: API.CMS.Article[] = Object.values(site.articles);
@@ -96,7 +100,8 @@ const ArticleEdit: React.FC<{ article: API.CMS.Article }> = ({ article }) => {
             >
               {articles.map((article, index) => (
                 <MenuItem key={index} value={article.id}>{article.body.order}{"_"}{article.body.name}</MenuItem>
-              ))}
+              ))}              
+              <MenuItem value={""}><FormattedMessage id='article.composer.parent.unselected' /></MenuItem>
             </Select>
           </FormControl >
           <TextField
@@ -121,7 +126,7 @@ const ArticleEdit: React.FC<{ article: API.CMS.Article }> = ({ article }) => {
 
       </DialogContent>
       <DialogActions>
-        <Button variant="text" onClick={handleClose} color="primary"><FormattedMessage id="button.cancel" /></Button>
+        <Button variant="text" onClick={handleCancel} color="primary"><FormattedMessage id="button.cancel" /></Button>
         <Button variant="contained" onClick={handleCreate} color="primary" autoFocus disabled={!name}><FormattedMessage id="button.update" /></Button>
       </DialogActions>
     </Dialog>

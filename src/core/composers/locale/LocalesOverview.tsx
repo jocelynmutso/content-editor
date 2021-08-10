@@ -135,7 +135,7 @@ const LocalesOverview: React.FC<LocalesOverviewProps> = ({ site }) => {
                         (<span><Tooltip title={<FormattedMessage id="locales.content" />}><CheckCircleOutlineIcon className={classes.checkIcon} /></Tooltip></span>) :
                         isLocale(locale, article) === true ?
                           (<span><Tooltip title={<FormattedMessage id="locales.nocontent" />}><CheckCircleOutlineIcon className={classes.checkIconOrange} /></Tooltip></span>) :
-                          (<span><Tooltip title={<FormattedMessage id="locales.nocontent" />}><ErrorOutlineIcon /></Tooltip></span>)
+                          (<span><Tooltip title={<FormattedMessage id="locales.nopage" />}><ErrorOutlineIcon /></Tooltip></span>)
                       }
                     </TableCell>)
                   )}

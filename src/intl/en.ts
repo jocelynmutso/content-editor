@@ -28,6 +28,7 @@ const en = {
 
   'article.composer.title': 'Create new Article',
   'article.composer.parent': 'Parent Article',
+  'article.composer.parent.unselected': 'None',
   'article.composer.orderhelper': 'Number for menu ordering purposes',
   'article.name': 'Article name',
   'articles.message': 'Expand rows to view Pages associated with Articles and modify these associations',

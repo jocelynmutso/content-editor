@@ -40,7 +40,11 @@ const ArticleComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       ide.actions.handleLoadSite();
     });
   }
-
+  
+  const handleCancel = () => {
+    onClose();
+  }
+  
   const articles: API.CMS.Article[] = Object.values(site.articles);
 
   return (
@@ -59,8 +63,10 @@ const ArticleComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
               {articles.map((article, index) => (
                 <MenuItem key={index} value={article.id}>{article.body.order}{"_"}{article.body.name}</MenuItem>
               ))}
+               <MenuItem value={""}><FormattedMessage id='article.composer.parent.unselected' /></MenuItem>
             </Select>
           </FormControl >
+          
           <TextField
             fullWidth
             className={classes.select}
@@ -69,7 +75,9 @@ const ArticleComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             variant="outlined"
             placeholder="100"
             helperText={<FormattedMessage id='article.composer.orderhelper' />}
-            onChange={({ target }) => setOrder(target.value as any)} />
+            onChange={({ target }) => setOrder(target.value as any)} 
+            />
+            
           <TextField
             className={classes.select}
             label={<FormattedMessage id='article.name' />}
@@ -82,7 +90,7 @@ const ArticleComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
       </DialogContent>
       <DialogActions>
-        <Button variant="text" onClick={onClose} color="primary"><FormattedMessage id='button.cancel' /></Button>
+        <Button variant="text" onClick={handleCancel} color="primary"><FormattedMessage id='button.cancel' /></Button>
         <Button variant="contained" onClick={handleCreate} color="primary" autoFocus disabled={!name}><FormattedMessage id='button.create' /></Button>
       </DialogActions>
     </Dialog>
