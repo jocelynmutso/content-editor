@@ -1,28 +1,20 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
-import { makeStyles, createStyles, Theme, IconButton } from '@material-ui/core';
+import { makeStyles, createStyles, Theme, Switch } from '@material-ui/core';
 import { FormattedMessage } from 'react-intl';
 
 import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    disabled: {
-      color: theme.palette.warning.main
-    },
-    enabled: {
-      color: theme.palette.success.main
-    },
     button: {
-      // padding: 0,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.background.paper,
       fontWeight: 'bold',
@@ -34,18 +26,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     margin: {
       marginRight: theme.spacing(1)
-    },
-    iconButton: {
-      padding: 2,
-      marginLeft: theme.spacing(1),
-      color: theme.palette.primary.dark,
-      "&:hover, &.Mui-focusVisible": {
-        backgroundColor: theme.palette.info.main,
-        color: theme.palette.background.paper,
-        "& .MuiSvgIcon-root": {
-          color: theme.palette.background.paper,
-        }
-      }
     },
   }),
 );
@@ -62,13 +42,22 @@ const LocaleDisable: React.FC<LocaleDisableProps> = ({ site, locale }) => {
 
   const ide = Ide.useIde();
 
-
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+
+  const [state, setState] = React.useState({
+    checkedA: true,
+    checkedB: false,
+  });
+
+  const handleChange = (event: any) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
+
 
   const handleEnable = (enabled: boolean) => {
     const entity: API.CMS.LocaleMutator = { localeId: locale.id, value: locale.body.value, enabled: enabled };
@@ -80,14 +69,18 @@ const LocaleDisable: React.FC<LocaleDisableProps> = ({ site, locale }) => {
     });
   }
 
-  const articles = Object.values(site.articles);
-
   return (
     <div className={classes.margin}>
-      <IconButton className={classes.iconButton} onClick={handleClickOpen}>
+      {locale.body.enabled === true ?
+        <Switch
+          onClick={handleClickOpen}
+          checked={state.checkedA}
+          onChange={handleChange} />
+        : <Switch
+          onClick={handleClickOpen}
+          checked={state.checkedB}
+          onChange={handleChange} />}
 
-        {locale.body.enabled === true ? <RemoveCircleOutlineIcon className={classes.enabled}/> : <AddCircleOutlineIcon className={classes.disabled} />}
-      </IconButton>
       <Dialog
         open={open}
         onClose={handleClose}
