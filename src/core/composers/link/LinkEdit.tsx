@@ -123,6 +123,7 @@ const LinkEdit: React.FC<LinkEditProps> = ({ link }) => {
             placeholder={link.body.description}
             helperText={<FormattedMessage id="link.composer.descriptionhelper" />}
             fullWidth
+            required
             className={classes.select}
             value={description}
             onChange={({ target }) => setDescription(target.value as any)} />
@@ -131,6 +132,7 @@ const LinkEdit: React.FC<LinkEditProps> = ({ link }) => {
             <TextField
               label={<FormattedMessage id="link.content" />}
               variant="outlined"
+              required
               placeholder={link.body.content}
               helperText={<FormattedMessage id="link.composer.valuehelper" />}
               fullWidth
@@ -142,7 +144,7 @@ const LinkEdit: React.FC<LinkEditProps> = ({ link }) => {
       </DialogContent >
       <DialogActions>
         <Button variant="text" onClick={handleClose} color="primary"><FormattedMessage id="button.cancel" /></Button>
-        <Button variant="contained" onClick={handleCreate} color="primary" autoFocus ><FormattedMessage id="button.update" /></Button>
+        <Button variant="contained" onClick={handleCreate} color="primary" autoFocus  disabled={!content || !description}  ><FormattedMessage id="button.update"/></Button>
       </DialogActions>
 
     </Dialog >

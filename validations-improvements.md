@@ -15,9 +15,16 @@
 # Link
 
 1. Ability to add more than one locale to a link / leave locale empty 
-2. Description and Value are required fields
 
 # Releases
 
 1. Implement json download
+
+
+---
+
+# Completed fixes
+
+1. Link Edit: Description and Value are required fields -- Button is disabled until both values are filled
+
 
