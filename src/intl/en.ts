@@ -47,6 +47,7 @@ const en = {
   'button.update': 'Update',
   'button.delete': 'Continue and delete',
   'button.disable': 'Continue and disable',
+  'button.enable': 'Continue and enable',
   'button.remove': 'Continue and remove',
 
   'composer.article.title': 'Article',
@@ -90,7 +91,10 @@ const en = {
   'locale.composer.helper': 'Two-letter locale code',
 
   'locale.disable.title': 'Disable this locale?',
-  'locale.disable': 'Disabling this locale will remove it globally from the application. Pages using this locale will not be displayed on the UI.',
+  'locale.enable.title': 'Enable this locale?',
+  'locale.disable': 'Any Pages using this locale will be hidden on the UI. Pages can still be edited.',
+  'locale.enable': 'All Pages using this locale will be displayed on the UI.',
+
   'locale.overview': 'Locale usage overview',
   'locales.content': 'Page in this locale has content',
   'locales.nocontent': 'Page in this locale has no content',

@@ -15,6 +15,12 @@ import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    disabled: {
+      color: theme.palette.warning.main
+    },
+    enabled: {
+      color: theme.palette.success.main
+    },
     button: {
       // padding: 0,
       backgroundColor: theme.palette.primary.main,
@@ -80,15 +86,15 @@ const LocaleDisable: React.FC<LocaleDisableProps> = ({ site, locale }) => {
     <div className={classes.margin}>
       <IconButton className={classes.iconButton} onClick={handleClickOpen}>
 
-        {locale.body.enabled === true ? <RemoveCircleOutlineIcon /> : <AddCircleOutlineIcon />}
+        {locale.body.enabled === true ? <RemoveCircleOutlineIcon className={classes.enabled}/> : <AddCircleOutlineIcon className={classes.disabled} />}
       </IconButton>
       <Dialog
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle><FormattedMessage id="locale.disable.title" /> </DialogTitle>
+        <DialogTitle>{locale.body.enabled === true ? <FormattedMessage id="locale.disable.title" /> : <FormattedMessage id="locale.enable.title" />}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
+          <DialogContentText >
             {locale.body.enabled ? <FormattedMessage id="locale.disable" /> : <FormattedMessage id="locale.enable" />}
           </DialogContentText>
         </DialogContent>
