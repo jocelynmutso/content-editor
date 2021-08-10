@@ -52,7 +52,7 @@ const ArticleComposer: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           <FormControl variant="outlined" className={classes.select} fullWidth>
             <InputLabel><FormattedMessage id='article.composer.parent' /></InputLabel>
             <Select
-              value={parentId}
+              value={parentId} 
               onChange={({ target }) => setParentId(target.value as any)}
               label={<FormattedMessage id='article.composer.parent'/>}
             >

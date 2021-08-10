@@ -14,7 +14,7 @@ import AddIcon from '@material-ui/icons/AddOutlined';
 
 import { FormattedMessage } from 'react-intl';
 
-import { LinkRemovePage, LinkDelete, NewLinkArticle, LinkEdit, LinkComposer } from './';
+import { LinkRemovePage, LinkDelete, NewLinkArticle, LinkEdit } from './';
 import { API, Ide } from '../../deps';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -77,7 +77,6 @@ const LinksView: React.FC<{}> = () => {
 
   return (
     <>
-      <Typography>ADD NEW LINK</Typography>
       <Typography variant="h3" className={classes.title}><FormattedMessage id="links" />: {links.length}</Typography>
       <Typography variant="body1" className={classes.title}><FormattedMessage id="links.message" /></Typography>
 

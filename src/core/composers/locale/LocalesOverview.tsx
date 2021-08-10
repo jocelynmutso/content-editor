@@ -94,6 +94,8 @@ const LocalesOverview: React.FC<LocalesOverviewProps> = ({ site }) => {
   const articles: API.CMS.Article[] = Object.values(site.articles);
   const pages: API.CMS.Page[] = Object.values(site.pages);
 
+
+
   //check if page has content
   const isContent = (locale: API.CMS.SiteLocale, article: API.CMS.Article) => {
     const contents = pages

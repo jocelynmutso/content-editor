@@ -75,7 +75,8 @@ const LocaleDisable: React.FC<LocaleDisableProps> = ({ site, locale }) => {
         <Switch
           onClick={handleClickOpen}
           checked={state.checkedA}
-          onChange={handleChange} />
+          onChange={handleChange} 
+          />
         : <Switch
           onClick={handleClickOpen}
           checked={state.checkedB}
