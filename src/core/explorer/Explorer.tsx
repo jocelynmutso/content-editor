@@ -33,14 +33,14 @@ const useStyles = makeStyles((theme: Theme) =>
 const Explorer: React.FC<{}> = () => {
   const classes = useStyles();
   const site = Ide.useSite();
-  const paths = Object.values(site.articles);
+  const articles = Object.values(site.articles).sort((a1, a2) => a1.body.order - a2.body.order);
 
   const [openArticleComposer, setOpenArticleComposer] = React.useState(false);
 
 
   return (
     <div className={classes.drawerContainer}>
-      { paths.length !== 0 ? null : (
+      { articles.length !== 0 ? null : (
         <div>
          { openArticleComposer ? <ArticleComposer onClose={() => setOpenArticleComposer(false) } /> : null} 
           <Button className={classes.button} variant="contained" color="primary" onClick={() => setOpenArticleComposer(true)} >
@@ -48,7 +48,7 @@ const Explorer: React.FC<{}> = () => {
           </Button>
         </div>)
       }
-      {paths.map((path, index) => (<ExplorerItem key={index} article={path} />))}
+      {articles.map((article, index) => (<ExplorerItem key={index} article={article} />))}
     </div>
   );
 }

@@ -21,7 +21,6 @@
 
 # Explorer
 
-1. Articles appear in Explorer in order of their Order numbers
 
 
 ---
@@ -30,5 +29,6 @@
 
 1. Link Edit: Description and Value are required fields -- Button is disabled until both values are filled
 2. Article Composer, Article Edit: Be able to de-select ParentId / have this field cleared upon hitting "cancel". 
+3. Articles appear in Explorer in order of their Order numbers
 
 
